@@ -1,5 +1,19 @@
 /* CSS Styles */
 
-.h1 {
+.visuallyhidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+#globalnav{
+    background-color: #000;
+    color: #fff;
+    padding: 10px;
     text-align: center;
 }
