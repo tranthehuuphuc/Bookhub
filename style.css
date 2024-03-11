@@ -28,21 +28,7 @@ html, body {
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   border: 0;
-  color:#F08A5D
-}
-
-#globalheader {
-    background-color: #000;
-    color: #fff;
-    padding: 10px;
-    text-align: center;
-}
-
-#globalnav{
-    background-color: #000;
-    color: #fff;
-    padding: 10px;
-    text-align: center;
+  color:#000000
 }
 
 #header{
@@ -55,6 +41,12 @@ html, body {
   background-color: #F08A5D;
   padding: 0;
   float: left;
+}
+
+#navigation {
+  background-color: #F08A5D;
+  float: right;
+  
 }
 
 .topimg{
