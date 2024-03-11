@@ -1,17 +1,8 @@
 /* CSS Styles */
-h1 {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 16px;
-  line-height: 1.6;
-  color: #F08A5D;
-  background-color: #f4f4f4;
-  margin: 0;
-  padding: 0;
-}
 
 @font-face {
   font-family: 'MavenPro';
-  src: url('/fonts/MavenPro-VariableFont_wght.ttf');
+  src: url('./fonts/MavenPro-VariableFont_wght.ttf');
 }
 
 html, body {
@@ -28,24 +19,46 @@ html, body {
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   border: 0;
-  color:#000000
 }
 
 #header{
-  img {
-      width: 18%;
-      height: auto;
-      margin: 10px;
-      padding: 8px;
-  }
   background-color: #F08A5D;
   padding: 0;
-  float: left;
+  margin: 0;
+  display: flex;
+  width: 100%;
+  height: auto;
 }
 
-#navigation {
-  background-color: #F08A5D;
-  float: right;
+#BookHub {
+  width: 25vw;
+  height: auto;
+  margin: 2vw;
+  padding: 0px;
+  margin-left: 3vw;
+}
+
+#globalnav{
+  background-color: #ffffff;
+  color: #F08A5D;
+  padding: 1vw;
+  text-align: center;
+  display: flex;
+  margin: auto;
+  margin-right: 2vw;
+  border-radius: 3vw;
+}
+
+.globalnav-item {
+  cursor: pointer;
+  font-size: 1.75vw;
+  font-family: MavenPro;
+  font-weight: 500;
+  padding: 0px;
+  text-decoration: none;
+  color: #F08A5D;
+  position: relative;
+  margin: auto 2vw;
   
 }
 
@@ -94,26 +107,4 @@ html, body {
   transform: translateY(-50%);
   width: 2.5vw; 
   height: auto;
-}
-
-.footer-content{
-  padding: 5vw;
-  padding-left: 10vw;
-  padding-top: 1vw;
-  padding-bottom: 8vw;
-}
-
-footer{
-  display: flex;
-  background-image: url('/assets/footer.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  color: #fff;
-  font-family:MavenPro;
-}
-
-.link_contact {
-  padding: 4vw;
-  padding-left: 10vw;
-  
 }
