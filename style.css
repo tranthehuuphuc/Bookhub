@@ -68,6 +68,8 @@ html, body {
     height: auto;
     padding: 0px;
     margin: 0px;
+    border-top: 0.2vw solid #ffffff;
+    border-bottom: 0.2vw solid #ffffff;
   }
   padding: 0px;
   margin-bottom: 0;
@@ -107,6 +109,7 @@ html, body {
   transform: translateY(-50%);
   width: 2.5vw; 
   height: auto;
+
 }
 
 .footer-content{
@@ -115,6 +118,8 @@ html, body {
   padding-top: 1vw;
   padding-bottom: 8vw;
 }
+
+
 footer{
   display: flex;
   background-image: url('./assets/footer.png');
@@ -123,10 +128,12 @@ footer{
   color: #fff;
   font-family:MavenPro;
 }
+
 .link_contact {
   padding: 3.25vw;
   padding-left: 10vw;
 }
+
 .contact {
   display: flex;
   padding: 3.25vw;
