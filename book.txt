@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Home | BookHub</title>
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="./favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="./favicon_io/site.webmanifest">
+
+</head>
+<body>
+ <div>
+        <section id="đề cử">
+            <hr width="60%" size="7px" color="#F08A5D" />
+            <h2> ĐỀ CỬ DÀNH CHO BẠN </h2>
+            <div>
+                <nav class="promotionnav">
+                    <a class="promotionnav-item" href="./Bookhub.html" style="margin-left: 5vw;">
+                        <img src="C:\Users\Lenovo\OneDrive\Pictures\book.jpg" align= "right" height="100" width= "100"<br/>
+                        <p style="margin: 0; padding: 0; font-weight: 500; font-size: 1.75vw;">Book 1</p>
+                    </a>
+                    <a class="promotionnav-item" href="./Bookhub.html">
+                        <img src="C:\Users\Lenovo\OneDrive\Pictures\book.jpg" align= "right" height="100" width= "100"<br/>
+                        <p style="margin: 0; padding: 0; font-weight: 500; font-size: 1.75vw;">Book 2</p>
+                    </a>
+                    <a class="promotionnav-item" href="./Bookhub.html">
+                        <img src="C:\Users\Lenovo\OneDrive\Pictures\book.jpg" align= "right" height="100" width= "100"<br/>
+                        <p style="margin: 0; padding: 0; font-weight: 500; font-size: 1.75vw;">Book 3</p>
+                    </a>
+                </nav>
+            </div>
+        
+            <div>
+	            <h2> CÂU NÓI HAY CỦA NGÀY </h2>
+                <p>" Chỉ khi bạn có một khát khao, một ước mơ mãnh liệt cũng như cố gắng hết sức để đạt được ước mơ đó, thì vũ trụ sẽ đáp lại mong muốn sâu thẳm trong tâm hồn bạn." <br> - Nhà giả kim -  </p>
+            </div>
+		</section>
+    
+        <section id="posts">
+            <div class="p1">
+                <hr width="98%" size="7px" color="#f08a5d" />
+                <h1> THÔNG BÁO MỚI ></h1>
+                <div class="pos1">
+                    <img src="assets/book2.jpg" alt="">
+                    <h3> THÔNG BÁO TỪ QUẢN TRỊ VIÊN </h3>
+                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                        Aenean commodo ligula eget dolor. Aenean massa. Cum sociis
+                        natoque penatibus et magnis dis parturient montes, nascetur
+                        ridiculus mus.
+					</p>
+                </div>
+            </div>
+    
+        </section>
+    </div>
+    
+ 
+</body>
+</html>
