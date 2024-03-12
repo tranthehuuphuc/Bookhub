@@ -8,6 +8,7 @@
 html, body {
   margin: 0;
   padding: 0;
+  font-family: 'MavenPro';
 }
 
 .visuallyhidden {
@@ -120,8 +121,6 @@ html, body {
 }
 
 
-
-
 #promotion {
   background-color: #ffffff;
   max-height: 100vw;
@@ -164,9 +163,6 @@ html, body {
   margin: 0px;
 }
 
-
-
-
 footer {
   display: flex;
   background-image: url('./assets/footer.png');
@@ -194,13 +190,6 @@ footer {
   padding-left: 10vw;
 }
 
-/* ND1 */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Spartan', sans-serif;
-}
 
 #best-seller hr,
 #posts .p1 hr {
