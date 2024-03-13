@@ -118,7 +118,7 @@ html, body {
 
 #promotion {
   background-color: #ffffff;
-  max-height: 100vw;
+  max-height: 200vw;
   margin: 0px;
 }
 
@@ -182,6 +182,27 @@ footer {
   display: flex;
   padding: 3.25vw;
   padding-left: 10vw;
+}
+
+/* ND1 */
+/* * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Spartan', sans-serif;
+} */
+
+#best-seller hr,
+#posts .p1 hr {
+  margin-top: 60px;
+  margin-left: 10px;
+}
+
+#best-seller h5,
+#posts h5 {
+  padding-top: 12px;
+  padding-left: 50px;
+  font-size: 25px;
 }
 
 #best-seller .details {
