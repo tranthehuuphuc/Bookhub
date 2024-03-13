@@ -258,3 +258,7 @@ footer {
   display: flex;
   font-size: 1vw;
 }
+
+#notification {
+  padding-bottom: 5vw;
+}
