@@ -155,6 +155,7 @@ html, body {
   height: auto;
   padding: 0px;
   margin: 0px;
+  border-radius: 4%;
 }
 
 footer {
@@ -261,4 +262,5 @@ footer {
 
 #notification {
   padding-bottom: 5vw;
+  margin: 2vw 3vw;
 }
