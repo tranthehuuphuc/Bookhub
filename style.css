@@ -27,15 +27,13 @@ html, body {
 
 #globalheader {
   background-color: #F08A5D;
-  padding: 0;
-  margin: 0;
   display: flex;
   width: 100%;
   height: auto;
 }
 
 #BookHub {
-  width: 25vw;
+  width: 17vw;
   height: auto;
   margin: 2vw;
   padding: 0px;
@@ -45,7 +43,7 @@ html, body {
 #globalnav {
   background-color: #ffffff;
   color: #F08A5D;
-  padding: 1vw;
+  padding: 0.5vw;
   text-align: center;
   display: flex;
   margin: auto;
@@ -55,24 +53,16 @@ html, body {
 
 .globalnav-item {
   cursor: pointer;
-  font-size: 1.75vw;
+  font-size: 1.5vw;
   font-family: MavenPro;
   font-weight: 500;
-  padding: 0px;
   text-decoration: none;
   color: #F08A5D;
   position: relative;
   margin: auto 2vw;
-  
 }
 
 #topimg {
-  img {
-    width: 100%;
-    height: auto;
-    padding: 0px;
-    margin: auto;
-  }
   padding: 0px;
   margin: auto;
   background-color: #F08A5D;
@@ -103,6 +93,7 @@ html, body {
   border: 0.2vw solid #ffffff;
   display: flex;
   margin: auto;
+  cursor: pointer;
 }
 
 .btn img {
@@ -119,7 +110,7 @@ html, body {
 #promotion {
   background-color: #ffffff;
   max-height: 200vw;
-  margin: 0px;
+  margin-left: 9vw;
 }
 
 .promotionnav {
@@ -129,13 +120,12 @@ html, body {
 
 .promotionnav-item {
   background-color: #faf7f7;
-  font-family: MavenPro;
   display: block;
   color: #000;
   text-align: center;
   text-decoration: none;
   border-radius: 4%;
-  width: 14vw;
+  width: 10vw;
   height: auto;
   padding: 1vw;
   margin-left: 3vw;
@@ -164,7 +154,6 @@ footer {
   background-size: cover;
   background-repeat: no-repeat;
   color: #fff;
-  font-family:MavenPro;
 }
 
 .footer-content {
@@ -185,49 +174,30 @@ footer {
   padding-left: 10vw;
 }
 
-/* ND1 */
-/* * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Spartan', sans-serif;
-} */
-
-#best-seller hr,
-#posts .p1 hr {
-  margin-top: 60px;
-  margin-left: 10px;
-}
-
-#best-seller h5,
-#posts h5 {
-  padding-top: 12px;
-  padding-left: 50px;
-  font-size: 25px;
-}
-
-#best-seller .details {
+.details {
   display: flex;
+  font-style: italic;
 }
 
-#best-seller .details .details-b1 {
+.details-b1 {
   display: flex;
   flex-direction: column;
-  padding-left: 5vw;
+  padding-left: 4vw;
 }
 
-#best-seller .details .details-b2 {
+.details-b2 {
   display: flex;
   flex-direction: column;
-  padding-left: 5vw;
 }
 
 #best-seller span a{
-  font-size: 2vw;
+  font-size: 1.5vw;
+  padding-right: 6vw;
   text-decoration: none;
   color: #0084ff;
   transition: 0.3s;
 }
+
 
 .post-item {
   background-color: rgba(240, 138, 93, 0.8);
@@ -236,19 +206,20 @@ footer {
   text-align: left;
   text-decoration: none;
   border-radius: 10%;
-  width: 25vw;
-  height: auto;
+  width: 30vw;
+  height: fit-content;
   padding: 3vw;
 }
 
 .post1-item {
   background-color: rgba(240, 138, 93, 0.8);
   display: block;
+  font-size: 1vw;
   color: #ffffff;
   text-align: left;
   text-decoration: none;
   border-radius: 10%;
-  width: 13vw;
+  width: 12vw;
   height: fit-content;
   padding: 2vw;
 }
@@ -260,7 +231,40 @@ footer {
   font-size: 1vw;
 }
 
+.promotionnav-item1 {
+  color: #000;
+  text-decoration: none;
+  border-radius: 4%;
+  width: 10vw;
+  height: auto;
+  background-blend-mode:lighten;
+  margin-left: 8vw; 
+  border: solid 3px; 
+  border-color: #F08A5D; 
+  padding-bottom: 0vw;
+  padding-left: 2vw;
+  padding-right: 2vw;
+  background-image:url('assets/book2.jpg');
+  background-size:cover ;
+    background-color: rgba(250, 247, 247, 0.8);
+  }
+
 #notification {
   padding-bottom: 5vw;
-  margin: 2vw 3vw;
+  margin-right: 30vw;
+  padding-left: 3vw;
+}
+
+.noti a{
+  transition: 0.3s;
+  font-style: italic;
+  padding-left: 2vw;
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 1.3vw;
+  line-height: 2vw;
+}
+
+.noti a:hover{
+  color:#000000;
 }
