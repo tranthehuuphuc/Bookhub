@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5, viewport-fit=cover">
+    <title>Sign in | Bookhub</title>
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <link rel="stylesheet" type="text/css" href="./signin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="./favicon_io/site.webmanifest">
+</head>
+<body>
+
+    <div id="globalheader">
+        <a href="Bookhub.html"><img id="BookHub" src="./assets/logo.png" alt="BookHub"></a>
+        <nav id="globalnav">
+            <a class="globalnav-item" href="./Bookhub.html">Bookstore</a>
+            <a class="globalnav-item" href="./Bookhub.html">Thể loại</a>
+            <a class="globalnav-item" href="./Bookhub.html">Thảo luận</a>
+            <a class="globalnav-item" href="./Bookhub.html">Đăng nhập</a>
+            <a href="Bookhub.html" style="width: 3vw; height: 3vw;"><img src="./assets/search.png" alt="Search" style="width: 3vw; height: 3vw; margin: 0px;"></a>
+        </nav>
+    </div>
+
+    <div class="container" id="container" style="margin-bottom: 5vw;">
+        <div class="form-container sign-up-container">
+            <form action="#">
+                <h1>Tạo tài khoản</h1>
+                <div class="social-container">
+                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social"><i class="fab fa-google"></i></a>
+                </div>
+                <span>hoặc đăng ký bằng email của bạn</span>
+                <div class="infield">
+                    <input type="text" placeholder="Tên người dùng" />
+                    <label></label>
+                </div>
+                <div class="infield">
+                    <input type="email" placeholder="Email" name="email"/>
+                    <label></label>
+                </div>
+                <div class="infield">
+                    <input type="password" placeholder="Mật khẩu" />
+                    <label></label>
+                </div>
+                <button>Đăng ký</button>
+            </form>
+        </div>
+        <div class="form-container sign-in-container">
+            <form action="#">
+                <h1>Đăng nhập</h1>
+                <div class="social-container">
+                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social"><i class="fab fa-google"></i></a>
+                </div>
+                <span>hoặc đăng nhập bằng tài khoản</span>
+                <div class="infield">
+                    <input type="email" placeholder="Email" name="email"/>
+                    <label></label>
+                </div>
+                <div class="infield">
+                    <input type="password" placeholder="Mật khẩu" />
+                    <label></label>
+                </div>
+                <a href="#" class="forgot" style="    color: #141E30;
+                font-size: 14px;
+                text-decoration: none;
+                margin: 15px 0px;">Quên mật khẩu?</a>
+                <button>Đăng nhập</button>
+            </form>
+        </div>
+        <div class="overlay-container" id="overlayCon">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Xin chào!</h1>
+                    <p style="    font-size: 14px;
+                    font-weight: 300;
+                    line-height: 20px;
+                    letter-spacing: 0.5px;
+                    margin: 25px 0px 35px;
+                    color: #fff;">Đã có tài khoản? Đăng nhập và bắt đầu ngay bây giờ!</p>
+                    <button>Đăng nhập</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>Xin chào!</h1>
+                    <p style="    font-size: 14px;
+                    font-weight: 300;
+                    line-height: 20px;
+                    letter-spacing: 0.5px;
+                    margin: 25px 0px 35px;
+                    color: white">Chưa có tài khoản? Đăng ký ngay để có thể tham gia cộng đồng nhé!</p>
+                    <button>Đăng ký</button>
+                </div>
+            </div>
+            <button id="overlayBtn"></button>
+        </div>
+    </div>
+
+    <script>
+        const container = document.getElementById('container');
+        const overlayCon = document.getElementById('overlayCon');
+        const overlayBtn = document.getElementById('overlayBtn');
+        overlayBtn.addEventListener('click', () => {
+            container.classList.toggle('right-panel-active');
+
+            overlayBtn.classList.remove('btnScaled');
+            window.requestAnimationFrame(() => {
+                overlayBtn.classList.add('btnScaled');
+            });
+        });
+    </script>
+
+    <footer>
+        <div class="footer-content">
+            <p style="font-size: 1vw;">&copy; 2024 BookHub. All rights reserved.</p>
+            <p style="font-size:2vw;font-weight:700;margin-bottom:1.1vw;">VỀ BOOKHUB</p>
+            <div style="width: 100%; height: 0.1vw; background-color: #ffffff;margin-bottom: 1vw;"></div>
+            <p style="font-size:1vw ; font-weight: 500;margin-bottom: 1vw;">
+                BookHub là nền tảng kết nối những người
+            <br/>có niềm yêu thích sách lại với nhau.</p>
+            <a href="https://facebook.com" target="_blank" style="margin-right: 1vw;"><img src="./assets/facebook.png" alt="facebook" style="height: auto;width: 3vw;"></a>
+            <a href="https://instagram.com" target="_blank"><img src="./assets/instagram.png" alt="instagram" style="height: auto;width: 3vw;"></a>
+        </div>
+        <div class="link_contact">
+            <p style="font-size:2vw;font-weight:700;margin-bottom:1vw ;">ĐƯỜNG DẪN</p>
+            <div style="width: 100%; height: 0.1vw; background-color: #ffffff;margin-bottom: 0vw;"></div>
+            <ul style="list-style-type: none; font-size: 1.5vw;text-align: center;padding-left: 0;font-weight: 500;">
+                <li style="margin-bottom: 0.7vw;"><a href="Bookhub.html" style="color: white; text-decoration: none;" class="myLink">Bookstore</a></li>
+                <li style="margin-bottom: 0.7vw;"><a href="Bookhub.html" style="color: white; text-decoration: none;" class="myLink">Thể loại</a></li>
+                <li style="margin-bottom: 0.7vw;"><a href="Bookhub.html" style="color: white; text-decoration: none;" class="myLink">Thảo luận</a></li>
+                <li style="margin-bottom: 0.7vw;"><a href="Bookhub.html" style="color: white; text-decoration: none;" class="myLink">Đăng nhập</a></li>
+            </ul>
+        </div>
+        <div class="contact" style="display:block">
+            <p style="font-size:2vw;font-weight:700;margin-bottom:1vw;">LIÊN HỆ</p>
+            <div style="width: 100%; height: 0.1vw; background-color: #ffffff;margin-bottom: 1vw;"></div>
+            <table>
+                <tr>
+                    <td style="padding-right: 1vw;"><img src="./assets/phone-call.png" alt="phone" style="height: auto;width: 2vw;"></td>
+                    <td style="font-size: 1.5vw;font-weight: 500;vertical-align: middle;">016.161.6161</td>
+                </tr>
+                <tr>
+                    <td style="padding-right: 1vw;"><img src="./assets/email.png" alt="mail" style="height: auto;width: 2vw;"></td>
+                    <td style="font-size: 1.5vw;font-weight: 500;vertical-align: middle;"><a alt="mail" href="https://gmail.com" target="_blank" 
+                        style="text-decoration: none;color: #ffffff;">group16@gmail.com</td>
+            </table>
+        </div>
+    </footer>
+    
+</body>
+</html>
