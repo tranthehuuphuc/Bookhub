@@ -9,6 +9,7 @@ html, body {
   margin: 0;
   padding: 0;
   font-family: 'MavenPro';
+  margin-top: 3vw;
 }
 
 .visuallyhidden {
@@ -22,27 +23,20 @@ html, body {
   border: 0;
 }
 
-
-
-
 #globalheader {
   background-color: #F08A5D;
-  padding: 0;
-  margin: 0;
   display: flex;
+  top: 0;
   width: 100%;
   height: auto;
-<<<<<<< Updated upstream
-=======
   position: fixed;
-  z-index: 99;
->>>>>>> Stashed changes
+  z-index: 1;
 }
 
 #BookHub {
-  width: 25vw;
+  width: 12vw;
   height: auto;
-  margin: 2vw;
+  margin: 1vw;
   padding: 0px;
   margin-left: 3vw;
 }
@@ -50,7 +44,7 @@ html, body {
 #globalnav {
   background-color: #ffffff;
   color: #F08A5D;
-  padding: 1vw;
+  padding: 0.3vw;
   text-align: center;
   display: flex;
   margin: auto;
@@ -60,28 +54,16 @@ html, body {
 
 .globalnav-item {
   cursor: pointer;
-  font-size: 1.75vw;
+  font-size: 1.2vw;
   font-family: MavenPro;
   font-weight: 500;
-  padding: 0px;
   text-decoration: none;
   color: #F08A5D;
-  position: relative;
   margin: auto 2vw;
-  
 }
 
 #topimg {
-<<<<<<< Updated upstream
-  img {
-    width: 100%;
-    height: auto;
-    padding: 0px;
-    margin: auto;
-  }
-=======
   padding: auto;
->>>>>>> Stashed changes
   padding: 0px;
   margin: auto;
   background-color: #F08A5D;
@@ -112,6 +94,7 @@ html, body {
   border: 0.2vw solid #ffffff;
   display: flex;
   margin: auto;
+  cursor: pointer;
 }
 
 .btn img {
@@ -127,8 +110,8 @@ html, body {
 
 #promotion {
   background-color: #ffffff;
-  max-height: 100vw;
-  margin: 0px;
+  max-height: 200vw;
+  margin-left: 9vw;
 }
 
 .promotionnav {
@@ -138,13 +121,12 @@ html, body {
 
 .promotionnav-item {
   background-color: #faf7f7;
-  font-family: MavenPro;
   display: block;
   color: #000;
   text-align: center;
   text-decoration: none;
   border-radius: 4%;
-  width: 14vw;
+  width: 10vw;
   height: auto;
   padding: 1vw;
   margin-left: 3vw;
@@ -164,10 +146,9 @@ html, body {
   height: auto;
   padding: 0px;
   margin: 0px;
-<<<<<<< Updated upstream
-=======
   border-radius: 4%;
 }
+
 
 .details {
   display: flex;
@@ -183,7 +164,6 @@ html, body {
 .details-b2 {
   display: flex;
   flex-direction: column;
->>>>>>> Stashed changes
 }
 
 footer {
@@ -192,7 +172,6 @@ footer {
   background-size: cover;
   background-repeat: no-repeat;
   color: #fff;
-  font-family:MavenPro;
 }
 
 .footer-content {
@@ -213,29 +192,30 @@ footer {
   padding-left: 10vw;
 }
 
-#best-seller .details {
+.details {
   display: flex;
+  font-style: italic;
 }
 
-#best-seller .details .details-b1 {
+.details-b1 {
   display: flex;
   flex-direction: column;
-  padding-left: 5vw;
+  padding-left: 4vw;
 }
 
-#best-seller .details .details-b2 {
+.details-b2 {
   display: flex;
   flex-direction: column;
-  padding-left: 5vw;
 }
 
 #best-seller span a{
-  font-size: 2vw;
+  font-size: 1.5vw;
+  padding-right: 6vw;
   text-decoration: none;
   color: #0084ff;
   transition: 0.3s;
-  line-height: 2vw;
 }
+
 
 .post-item {
   background-color: rgba(240, 138, 93, 0.8);
@@ -243,24 +223,21 @@ footer {
   color: #ffffff;
   text-align: left;
   text-decoration: none;
-  border-radius: 10%;
-<<<<<<< Updated upstream
-  width: 25vw;
-=======
+  border-radius: 2vw;
   width: 15vw;
->>>>>>> Stashed changes
-  height: auto;
+  height: fit-content;
   padding: 3vw;
 }
 
 .post1-item {
   background-color: rgba(240, 138, 93, 0.8);
   display: block;
+  font-size: 1vw;
   color: #ffffff;
   text-align: left;
   text-decoration: none;
   border-radius: 10%;
-  width: 13vw;
+  width: 12vw;
   height: fit-content;
   padding: 2vw;
 }
@@ -271,26 +248,24 @@ footer {
   display: flex;
   font-size: 1vw;
 }
-<<<<<<< Updated upstream
-=======
 
 .promotionnav-item1 {
   color: #000;
   text-decoration: none;
   border-radius: 4%;
   width: 10vw;
-  height: fit-content;
+  height: auto;
   background-blend-mode:lighten;
-  margin-left: 10vw; 
+  margin-left: 8vw; 
   border: solid 3px; 
   border-color: #F08A5D; 
   padding-bottom: 0vw;
   padding-left: 2vw;
   padding-right: 2vw;
   background-image:url('assets/book2.jpg');
-  background-size:cover;
-  background-color: rgba(250, 247, 247, 0.8);
-}
+  background-size:cover ;
+    background-color: rgba(250, 247, 247, 0.8);
+  }
 
 #notification {
   padding-bottom: 5vw;
@@ -311,4 +286,3 @@ footer {
 .noti a:hover{
   color:#000000;
 }
->>>>>>> Stashed changes
