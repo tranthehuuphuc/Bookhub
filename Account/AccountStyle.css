@@ -1,0 +1,108 @@
+
+
+@font-face {
+    font-family: 'MavenPro';
+    src: url('../fonts/MavenPro-VariableFont_wght.ttf');
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'MavenPro';
+}
+
+.visuallyhidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+#globalheader {
+    background-color: #F08A5D;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    width: 100%;
+    height: auto;
+    position: fixed;
+    z-index: 1;
+}
+  
+#BookHub {
+    width: 15vw;
+    height: auto;
+    padding: 0px;
+    margin: 2vw;
+    margin-left: 3vw;
+}
+  
+#search {
+    background-color: #ffffff;
+    padding: 0.5vw;
+    display: flex;
+    margin: auto;
+    margin-right: 4vw;
+    border-radius: 4vw;
+    width: 30vw;
+}
+
+
+#search-input {
+    font-size: 1.5vw;
+    padding: 0;
+    border-style: none; 
+    border: transparent;
+    margin: 0; 
+    margin-left: 1vw;
+}
+
+#search-button {
+    background-color: #ffffff;
+    border-style: none;
+    border-radius: 1vw;
+    padding: 0;
+    width: fit-content;
+    height: auto;
+    margin: auto;
+    margin-right: 1vw;
+}
+
+
+#main {
+    margin: 0;
+    padding: 0;
+    padding-top: 10vw;
+    display: flex;
+}
+
+footer {
+    display: flex;
+    background-image: url('../assets/footer.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: #fff;
+    font-family:MavenPro;
+}
+  
+.footer-content {
+    padding: 1vw;
+    padding-left: 10vw;
+    padding-top: 1vw;
+    padding-bottom: 8vw;
+}
+  
+.link_contact {
+    padding: 3.25vw;
+    padding-left: 10vw;
+}
+  
+.contact {
+    display: flex;
+    padding: 3.25vw;
+    padding-left: 10vw;
+}

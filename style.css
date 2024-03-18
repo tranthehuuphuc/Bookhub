@@ -32,6 +32,11 @@ html, body {
   display: flex;
   width: 100%;
   height: auto;
+<<<<<<< Updated upstream
+=======
+  position: fixed;
+  z-index: 99;
+>>>>>>> Stashed changes
 }
 
 #BookHub {
@@ -67,12 +72,16 @@ html, body {
 }
 
 #topimg {
+<<<<<<< Updated upstream
   img {
     width: 100%;
     height: auto;
     padding: 0px;
     margin: auto;
   }
+=======
+  padding: auto;
+>>>>>>> Stashed changes
   padding: 0px;
   margin: auto;
   background-color: #F08A5D;
@@ -155,6 +164,26 @@ html, body {
   height: auto;
   padding: 0px;
   margin: 0px;
+<<<<<<< Updated upstream
+=======
+  border-radius: 4%;
+}
+
+.details {
+  display: flex;
+  font-style: italic;
+}
+
+.details-b1 {
+  display: flex;
+  flex-direction: column;
+  padding-left: 4vw;
+}
+
+.details-b2 {
+  display: flex;
+  flex-direction: column;
+>>>>>>> Stashed changes
 }
 
 footer {
@@ -205,6 +234,7 @@ footer {
   text-decoration: none;
   color: #0084ff;
   transition: 0.3s;
+  line-height: 2vw;
 }
 
 .post-item {
@@ -214,7 +244,11 @@ footer {
   text-align: left;
   text-decoration: none;
   border-radius: 10%;
+<<<<<<< Updated upstream
   width: 25vw;
+=======
+  width: 15vw;
+>>>>>>> Stashed changes
   height: auto;
   padding: 3vw;
 }
@@ -237,3 +271,44 @@ footer {
   display: flex;
   font-size: 1vw;
 }
+<<<<<<< Updated upstream
+=======
+
+.promotionnav-item1 {
+  color: #000;
+  text-decoration: none;
+  border-radius: 4%;
+  width: 10vw;
+  height: fit-content;
+  background-blend-mode:lighten;
+  margin-left: 10vw; 
+  border: solid 3px; 
+  border-color: #F08A5D; 
+  padding-bottom: 0vw;
+  padding-left: 2vw;
+  padding-right: 2vw;
+  background-image:url('assets/book2.jpg');
+  background-size:cover;
+  background-color: rgba(250, 247, 247, 0.8);
+}
+
+#notification {
+  padding-bottom: 5vw;
+  margin-right: 30vw;
+  padding-left: 3vw;
+}
+
+.noti a{
+  transition: 0.3s;
+  font-style: italic;
+  padding-left: 2vw;
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 1.3vw;
+  line-height: 2vw;
+}
+
+.noti a:hover{
+  color:#000000;
+}
+>>>>>>> Stashed changes
