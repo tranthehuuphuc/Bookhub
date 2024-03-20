@@ -1,5 +1,3 @@
-
-
 @font-face {
     font-family: 'MavenPro';
     src: url('../fonts/MavenPro-VariableFont_wght.ttf');
@@ -26,7 +24,6 @@ html, body {
     background-color: #F08A5D;
     padding: 0;
     margin: 0;
-    display: flex;
     width: 100%;
     height: auto;
     position: fixed;
@@ -34,14 +31,74 @@ html, body {
 }
   
 #BookHub {
-    width: 15vw;
+    width: 10vw;
     height: auto;
     padding: 0px;
-    margin: 2vw;
-    margin-left: 3vw;
+    margin: 0.3vw;
+    margin-left: 1.5vw;
+}
+
+#profile-button {
+    background-color: transparent;
+    border-style: none;
+    border-radius: 1vw;
+    padding: 0;
+    width: 3vw;
+    height: 3vw;
+    margin: auto;
+    margin-right: 2.5vw;
+    cursor: pointer;
+    touch-action: manipulation;
+    transition: background-color 0.3s ease;
+}
+
+#profile-button:hover {
+    background-color: #f06326;
+    border-radius: 1vw;
+    padding: 0;
+    width: 3vw;
+    height: 3vw;
+    margin: auto;
+    margin-right: 2.5vw;
+    cursor: pointer;
+    touch-action: manipulation;
+}
+
+#profile-icon {
+    width: 2vw;
+    height: auto;
+    padding: 0;
+    margin: 0.5vw;
+}
+
+#menu {
+    background-color: #ffffff;
+    padding-bottom: 0.5vw;
+}
+
+#menu-list {
+    align-items: center;
+    background-color: #ffffff;
+    border-bottom: solid 0.1vw #F08A5D;
+    color: #ffb89a;
+    display: flex;
+    font-family: 'MavenPro';
+    font-size: 1.3vw;
+    margin: 0 14vw;
+    padding-top: 1vw;
+}
+
+.menu-item {
+    border-bottom: solid 0.1vw transparent;
+    color:#e99d7d;
+    cursor: pointer;
+    margin: auto;
+    padding: 1vw 0;
+    text-align: center;
+    touch-action: manipulation;
 }
   
-#search {
+/* #search {
     background-color: #ffffff;
     padding: 0.5vw;
     display: flex;
@@ -54,32 +111,212 @@ html, body {
 #search-input {
     font-size: 1.5vw;
     padding: 0;
-    border-style: none; 
-    border: transparent 0px;
-    margin: 0; 
-    margin-left: 1vw;
     width: 80%;
     height: auto;
+    border-style: none; 
+    outline: none;
+    margin: 0; 
+    margin-left: 1vw;
+    
 }
 
 #search-button {
     background-color: #ffffff;
     border-style: none;
-    border-radius: 1vw;
     padding: 0;
-    width: fit-content;
-    height: auto;
+    width: 2vw;
+    height: 2vw;
     margin: auto;
     margin-right: 1vw;
-}
+    cursor: pointer;
+    touch-action: manipulation;
+} */
+
+
+
+
+
+
+
+
+
+
 
 
 #main {
-    margin: 0;
+    font-family: 'MavenPro';
+    margin: 0 14vw;
     padding: 0;
     padding-top: 10vw;
-    display: flex;
+    position: relative;
+    z-index: 0;
 }
+
+
+#profile-header {
+    align-items: center;
+    display: flex;
+    margin: 0;
+    margin-top: 4vw;
+    padding: 0;
+}
+
+#profile-avatar {
+    border: solid 0.4vw #f08a5d;
+    border-radius: 50%;
+    width: 14vw;
+    height: auto;
+    margin: 0;
+    padding: 0;
+}
+
+#profile-name {
+    color: #000000;
+    font-size: 3vw;
+    font-weight: 500;
+    margin: 0;
+    margin-bottom: 0.5vw;
+    padding: 0;
+}
+
+#profile-content {
+    margin: 0;
+    margin-top: 1vw;
+    padding: 0;
+}
+
+#profile-intro {
+    color: #000000;
+    background-color: #f9f9f9;
+    border-radius: 1vw;
+    font-size: 1.3vw;
+    max-height: fit-content;
+    margin: 0;
+    padding: 1vw 2vw;
+}
+
+.intro {
+    background-color: #ffffff;
+    border: solid 0.1vw #000000;
+    border-radius: 2vw;
+    display: flex;
+    margin: auto;
+    padding: 0.5vw 1vw;
+}
+
+#profile-posts {
+    color: #000000;
+    font-size: 1.5vw;
+    width: 100%;
+    height: auto;
+    margin: 2vw 0;
+    padding: 0;
+}
+
+.post {
+    color: #000000;
+    background-color: #f9f9f9;
+    border-radius: 1vw;
+    width: 28%;
+    height: fit-content;
+    margin: auto;
+    padding: 1.5vw;
+    margin-bottom: 2vw;
+}
+
+.post-image {
+    width: 100%;
+    height: auto;
+    margin: auto;
+    padding: 0;
+}
+
+#list-header {
+    align-items: center;
+    background-color: #f9f9f9;
+    border-radius: 0.5vw;
+    display: flex;
+    font-size: 1.25vw;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.receipt {
+    align-items: center;
+    background-color: #f9f9f9;
+    border-radius: 0.5vw;
+    display: flex;
+    font-size: 1.25vw;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.receipt-category {
+    color: #000;
+    margin: auto;
+    padding: 2vw 1vw;
+    text-align: center;
+    text-decoration: none;
+    
+}
+
+.container {
+    margin: auto;
+    margin-left: 0;
+    background-color: #fff;
+    padding: 2vw;
+    width: 30%;
+}
+
+.form-group {
+    margin-bottom: 1vw;
+}
+
+label {
+    font-weight: 500;
+    font-size: 1.25vw;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 0.5vw;
+    border: 0.1vw solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    display: block;
+    width: 40%;
+    padding: 0.5vw;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 0.4vw;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 footer {
     display: flex;
