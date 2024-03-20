@@ -1,0 +1,320 @@
+/* CSS Styles */
+
+@font-face {
+    font-family: 'MavenPro';
+    src: url('./fonts/MavenPro-VariableFont_wght.ttf');
+  }
+  
+  html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'MavenPro';
+  }
+  
+  .visuallyhidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+  
+  #globalheader {
+    background-color: #F08A5D;
+    display: flex;
+    width: 100%;
+    height: auto;
+  }
+  
+  #BookHub {
+    width: 17vw;
+    height: auto;
+    margin: 2vw;
+    padding: 0px;
+    margin-left: 3vw;
+  }
+  
+  #globalnav {
+    background-color: #ffffff;
+    color: #F08A5D;
+    padding: 0.5vw;
+    text-align: center;
+    display: flex;
+    margin: auto;
+    margin-right: 2vw;
+    border-radius: 3vw;
+  }
+  
+  .globalnav-item {
+    cursor: pointer;
+    font-size: 1.5vw;
+    font-family: MavenPro;
+    font-weight: 500;
+    text-decoration: none;
+    color: #F08A5D;
+    position: relative;
+    margin: auto 2vw;
+  }
+  
+  footer {
+    display: flex;
+    background-image: url('./assets/footer.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: #fff;
+  }
+  
+  .footer-content {
+    padding: 1vw;
+    padding-left: 10vw;
+    padding-top: 1vw;
+    padding-bottom: 8vw;
+  }
+  
+  .link_contact {
+    padding: 3.25vw;
+    padding-left: 10vw;
+  }
+  
+  .contact {
+    display: flex;
+    padding: 3.25vw;
+    padding-left: 10vw;
+  }
+
+.section-p1 {
+    padding: 40px 80px;
+}
+
+#product1 {
+    text-align: center;
+}
+
+#product1 .pro-container {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 20px;
+    flex-wrap: wrap;  /* cac phan tu con se tu dong xuong dong moi neu khong du khong gian tren mot dong */
+}
+
+#product1 .pro {
+    width: 23%;
+    min-width: 250px;
+    padding: 10px 12px;
+    border: 1px solid #cce7d0;
+    border-radius: 25px;
+    cursor: pointer;
+    box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.02);
+    margin: 15px 0;
+    transition: 0.2s ease;
+    position: relative;
+}
+
+#product1 .pro:hover {
+    box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.06);
+}
+
+#product1 .pro img {
+    width: 100%;
+    border-radius: 20px;
+}
+
+#product1 .pro .des {
+    text-align: start;
+    padding: 10px 0;
+}
+
+#product1 .pro .des span {
+    color: #606063;
+    font-size: 12px;
+}
+
+#product1 .pro .des h5 {
+    padding-top: 7px;
+    color: #1a1a1a;
+    font-size: 14px;
+}
+
+#product1 .pro .des i {
+    font-size: 12px;
+    color: rgb(243, 181, 25);
+}
+
+#product1 .pro .des h4 {
+    padding-top: 7px;
+    font-size: 15px;
+    font-weight: 700;
+    color: #088178;
+}
+
+#product1 .pro .cart {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 50px;
+    background-color: #e8f6ea;
+    /*font-weight: 500;*/
+    color: #088178;
+    border: 1px solid #cce7d0;
+    position: absolute;
+    bottom: 20px;
+    right: 10px;
+}
+
+.wrapper {
+  width: 95%;
+  margin: 0 auto;
+}
+
+#search-container {
+  margin: 1em 17em;
+}
+
+#search-container input {
+  background-color: transparent;
+  width: 84%;
+  border-bottom: 2px solid #110f29;
+  padding: 1em 0.3em;
+}
+
+#search-container input:focus {
+  border-bottom-color: #6759ff;
+}
+
+#search-container button {
+  padding: 1em 2em;
+  margin-left: 1em;
+  background-color: #6759ff;
+  color: #fff;
+  border-radius: 5px;
+  margin-top: 0.5em;
+}
+
+
+/* drop down */
+.books {
+  padding: 1em;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+
+.dropdown {
+  min-width: 15em;
+  position: relative;;
+  margin: 0.5em;
+}
+
+.dropdown * {
+  box-sizing: border-box;
+}
+
+.select {
+  background: #f08a5d;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px #3f3f3f solid;
+  border-radius: 0.5em;
+  padding: 1em;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.select-clicked {
+  border: 1px #269a3d solid;
+  box-shadow: 0 0 0.8em #269a3d;
+}
+
+.select:hover {
+  background: #088178;
+}
+
+.caret {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid #fff;
+  transition: 0.3s;
+}
+
+.caret-rotate {
+  transform: rotate(90deg);
+}
+
+.menu {
+  list-style: none;
+  padding: 0em 0.5em;
+  background: #292929;
+  box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.2);
+  border-radius: 0.5em;
+  color: #878787;
+  position: absolute;
+  top: 3em;
+  left: 0;
+  width: 100%;
+  height: 0;
+  transform: 300ms cubic-bezier(0.77, 0. 0.18, 1);
+  z-index: 1;
+  overflow-y: scroll;
+}
+
+.menu::-webkit-scrollbar {
+  width: 8px;
+}
+
+.menu::-webkit-scrollbar-track {
+  background: #404040;
+}
+
+.menu::-webkit-scrollbar-thumb {
+  background: #727272;
+}
+
+.menu::-webkit-scrollbar-thumb:hover {
+  background: #9e9e9e;
+}
+
+.menu li {
+  padding: 0.7em;
+  margin: 0.3em 0;
+  border-radius: 0.5em;
+  cursor: pointer;
+}
+
+.menu li:hover {
+  background: #242424;
+}
+
+.active {
+  background: #1e1e1e;
+  color: #fff;
+}
+
+.text-fade-in {
+  animation: textFade 300ms ease-out;
+}
+
+.menu-open {
+  border: 1px #383838 solid;
+  height: 15em;
+}
+
+@keyframes textFade {
+  0% {
+    transform: translateX(-1em);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
