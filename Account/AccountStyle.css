@@ -51,14 +51,15 @@ html, body {
     width: 30vw;
 }
 
-
 #search-input {
     font-size: 1.5vw;
     padding: 0;
     border-style: none; 
-    border: transparent;
+    border: transparent 0px;
     margin: 0; 
     margin-left: 1vw;
+    width: 80%;
+    height: auto;
 }
 
 #search-button {

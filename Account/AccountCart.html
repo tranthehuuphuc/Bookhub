@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+        <link rel="stylesheet" type="text/css" href="./AccountStyle.css">
+        <title>Profile</title>
+        <link rel="icon" type="image/x-icon" href="./AccountAssets/account.png">
+    </head>
+
+    <body>
+        <h1 class="visuallyhidden">Cart</h1>
+        
+        <div id="globalheader">
+            <div style="display: flex;">
+                <a href="../Bookhub.html"><img id="BookHub" src="../assets/logo.png" alt="BookHub"></a>
+                <button id="profile-button" href="./AccountProfile.html"><img id="profile-icon" src="./AccountAssets/account.png" alt="Profile Icon"></button>
+            </div>
+            <div id="menu">
+                <nav id="menu-list">
+                    <a class="menu-item" href="./AccountProfile.html" style="margin-left: 0;text-decoration: none; color: #F08A5D;"><span>Trang cá nhân</span></a>
+                    <a class="menu-item" href="./AccountReceipts.html" style="text-decoration: none; color: #F08A5D;"><span>Quản lý đơn hàng</span></a>
+                    <a class="menu-item" href="./AccountCart.html" style="border-bottom: solid 0.1vw #F08A5D; text-decoration: none; color: #f16529;"><span>Giỏ hàng</span></a>
+                    <a class="menu-item" href="./AccountBought.html" style="text-decoration: none; color: #F08A5D;"><span>Đã mua</span></a>
+                    <a class="menu-item" href="./AccountSettings.html" style="margin-right: 0; text-decoration: none; color: #F08A5D;"><span>Cài đặt</span></a>
+                </nav>
+            </div>
+        </div>
+
+        <main id="main">
+            <div id="profile-header">
+                <img style="width: 15vw;" src="./AccountAssets/trolley.png" alt="Avatar">
+                <div style="display: block; padding: 0; padding-left: 1vw; margin: 0;">
+                    <h2 id="profile-name">Giỏ hàng đây rồi! Lên đơn...</h2>
+                    <div style="display: flex;">
+                        <a style="font-size: 1.4vw; margin-right: 1vw;"><span>Số lượng: 7</span></a>
+                    </div>
+                </div>
+            </div>
+            <div style="background-color: #d9d9d9; width: 100%; height: 0.1vw; margin: 0; margin-top: 1vw; padding: 0;"></div>
+            
+            <div id="profile-content">
+                <div id="profile-posts" style="margin-top: 0;">
+                    <div style="display: flex; align-items: center; padding: 0; margin: 0;">
+                        <p style="font-weight: 550; font-size: 1.9vw; margin: auto; margin-left: 0; padding: 0;">Tạo đơn hàng mới</p>
+                        <button style="margin: auto; margin-right: 0; font-size: large; width: 5vw; height:2.5vw; border: none;  text-align: center; color: #ffffff;">+</button>
+                    </div>
+                    <div style="background-color: #d9d9d9; width: 100%; height: 0.1vw; margin: 1vw 0; padding: 0;"></div>
+                    <div style="display: flex; margin: 0;" alt="line1">
+                        <div class="post" style="margin-left: 0;"> 
+                            <div>
+                                <img src="../assets/book2.jpg" class="post-image">
+                                <a style="font-size: 1.75vw; color: #000000; font-weight:500; margin: 0; padding: 0;">Bạn là cậu nhỏ của tớ</a>
+                                <a style="font-size: 1.25vw; color: #000000; font-weight:400; margin: 0; padding: 0;">TunTan</a>
+                            </div>
+                            <div style="background-color: #d9d9d9; width: 100%; height: 0.05vw; margin: 0.5vw 0; padding: 0;"></div>
+                            <nav style="margin-top: 1vw; display: flex; padding:0;">
+                                <a style="margin: auto; margin-left: 0; color: #F08A5D; font-size: 1.75vw;">đ100.000</a>
+                                <a style="margin: auto; margin-right: 0;  font-style: italic; font-size: 1.25vw;">Đã bán: 15</a>
+                            </nav>
+                        </div>
+                        <div class="post">
+                            <div>
+                                <img src="../assets/book2.jpg" class="post-image">
+                                <a style="font-size: 1.75vw; color: #000000; font-weight:500; margin: 0; padding: 0; width: 100%;">Bạn là cậu nhỏ của tớ</a>
+                                <a style="font-size: 1.25vw; color: #000000; font-weight:400; margin: 0; padding: 0;">TunTan</a>
+                            </div>
+                            <div style="background-color: #d9d9d9; width: 100%; height: 0.05vw; margin: 0.5vw 0; padding: 0;"></div>
+                            <nav style="margin-top: 1vw; display: flex">
+                                <a style="margin: auto; margin-left: 0; color: #F08A5D; font-size: 1.75vw;">100.000 VND</a>
+                                <a style="margin: auto; margin-right: 0; font-style: italic; font-size: 1.25vw;">Đã bán: 15</a>
+                            </nav>
+                        </div>
+                        <div class="post" style="margin-right: 0;">
+                            <div>
+                                <img src="../assets/book2.jpg" class="post-image">
+                                <a style="font-size: 1.75vw; color: #000000; font-weight:500; margin: 0; padding: 0; width: 100%;">Bạn là cậu nhỏ của tớ</a>
+                                <a style="font-size: 1.25vw; color: #000000; font-weight:400; margin: 0; padding: 0;">TunTan</a>
+                            </div>
+                            <div style="background-color: #d9d9d9; width: 100%; height: 0.05vw; margin: 0.5vw 0; padding: 0;"></div>
+                            <nav style="margin-top: 1vw; display: flex">
+                                <a style="margin: auto; margin-left: 0; color: #F08A5D; font-size: 1.75vw;">100.000 VND</a>
+                                <a style="margin: auto; margin-right: 0; font-style: italic; font-size: 1.25vw;">Đã bán: 15</a>
+                            </nav>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; margin: 0;" alt="line2">
+                        <div class="post" style="margin-left: 0;"> 
+                            <div>
+                                <img src="../assets/book2.jpg" class="post-image">
+                                <a style="font-size: 1.75vw; color: #000000; font-weight:500; margin: 0; padding: 0; width: 100%;">Bạn là cậu nhỏ của tớ</a>
+                                <a style="font-size: 1.25vw; color: #000000; font-weight:400; margin: 0; padding: 0;">TunTan</a>
+                            </div>
+                            <div style="background-color: #d9d9d9; width: 100%; height: 0.05vw; margin: 0.5vw 0; padding: 0;"></div>
+                            <nav style="margin-top: 1vw; display: flex">
+                                <a style="margin: auto; margin-left: 0; color: #F08A5D; font-size: 1.75vw;">100.000 VND</a>
+                                <a style="margin: auto; margin-right: 0; font-style: italic; font-size: 1.25vw;">Đã bán: 15</a>
+                            </nav>
+                        </div>
+                        <div class="post">
+                            <div>
+                                <img src="../assets/book2.jpg" class="post-image">
+                                <a style="font-size: 1.75vw; color: #000000; font-weight:500; margin: 0; padding: 0; width: 100%;">Bạn là cậu nhỏ của tớ</a>
+                                <a style="font-size: 1.25vw; color: #000000; font-weight:400; margin: 0; padding: 0;">TunTan</a>
+                            </div>
+                            <div style="background-color: #d9d9d9; width: 100%; height: 0.05vw; margin: 0.5vw 0; padding: 0;"></div>
+                            <nav style="margin-top: 1vw; display: flex">
+                                <a style="margin: auto; margin-left: 0; color: #F08A5D; font-size: 1.75vw;">100.000 VND</a>
+                                <a style="margin: auto; margin-right: 0; font-style: italic; font-size: 1.25vw;">Đã bán: 15</a>
+                            </nav>
+                        </div>
+                        <div class="post" style="margin-right: 0;">
+                            <div>
+                                <img src="../assets/book2.jpg" class="post-image">
+                                <a style="font-size: 1.75vw; color: #000000; font-weight:500; margin: 0; padding: 0; width: 100%;">Bạn là cậu nhỏ của tớ</a>
+                                <a style="font-size: 1.25vw; color: #000000; font-weight:400; margin: 0; padding: 0;">TunTan</a>
+                            </div>
+                            <div style="background-color: #d9d9d9; width: 100%; height: 0.05vw; margin: 0.5vw 0; padding: 0;"></div>
+                            <nav style="margin-top: 1vw; display: flex">
+                                <a style="margin: auto; margin-left: 0; color: #F08A5D; font-size: 1.75vw;">100.000 VND</a>
+                                <a style="margin: auto; margin-right: 0; font-style: italic; font-size: 1.25vw;">Đã bán: 15</a>
+                            </nav>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; margin: 0;" alt="line3">
+                        <div class="post" style="margin-left: 0;"> 
+                            <div>
+                                <img src="../assets/book2.jpg" class="post-image">
+                                <a style="font-size: 1.75vw; color: #000000; font-weight:500; margin: 0; padding: 0; width: 100%;">Bạn là cậu nhỏ của tớ</a>
+                                <a style="font-size: 1.25vw; color: #000000; font-weight:400; margin: 0; padding: 0;">TunTan</a>
+                            </div>
+                            <div style="background-color: #d9d9d9; width: 100%; height: 0.05vw; margin: 0.5vw 0; padding: 0;"></div>
+                            <nav style="margin-top: 1vw; display: flex">
+                                <a style="margin: auto; margin-left: 0; color: #F08A5D; font-size: 1.75vw;">100.000 VND</a>
+                                <a style="margin: auto; margin-right: 0; font-style: italic; font-size: 1.25vw;">Đã bán: 15</a>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <div class="footer-content">
+                <p style="font-size: 1vw;">&copy; 2024 BookHub. All rights reserved.</p>
+                <p style="font-size:2vw;font-weight:700;margin-bottom:1.1vw;">VỀ BOOKHUB</p>
+                <div style="width: 100%; height: 0.1vw; background-color: #ffffff;margin-bottom: 1vw;"></div>
+                <p style="font-size:1vw ; font-weight: 500;margin-bottom: 1vw;">BookHub là nền tảng kết nối những người
+                <br/>có niềm yêu thích sách lại với nhau.</p>
+                <a href="https://facebook.com" target="_blank" style="margin-right: 1vw;"><img src="../assets/facebook.png" alt="facebook" style="height: auto;width: 3vw;"></a>
+                <a href="https://instagram.com" target="_blank"><img src="../assets/instagram.png" alt="instagram" style="height: auto;width: 3vw;"></a>
+            </div>
+            <div class="link_contact">
+                <p style="font-size:2vw;font-weight:700;margin-bottom:1vw ;">ĐƯỜNG DẪN</p>
+                <div style="width: 100%; height: 0.1vw; background-color: #ffffff;margin-bottom: 0vw;"></div>
+                <ul style="list-style-type: none; font-size: 1.5vw;text-align: center;padding-left: 0;font-weight: 500;">
+                    <li style="margin-bottom: 0.7vw;"><a href="Bookhub.html" style="color: white; text-decoration: none;" id="myLink">Trang chủ</a></li>
+                    <li style="margin-bottom: 0.7vw;"><a href="Bookhub.html" style="color: white; text-decoration: none;" id="myLink">Sản phẩm</a></li>
+                    <li style="margin-bottom: 0.7vw;"><a href="Bookhub.html" style="color: white; text-decoration: none;" id="myLink">Đăng nhập</a></li>
+                    <li style="margin-bottom: 0.7vw;"><a href="Bookhub.html" style="color: white; text-decoration: none;" id="myLink">Đăng ký</a></li>
+                </ul>
+            </div>
+            <div class="contact" style="display:block">
+                <p style="font-size:2vw;font-weight:700;margin-bottom:1vw;">LIÊN HỆ</p>
+                <div style="width: 100%; height: 0.1vw; background-color: #ffffff;margin-bottom: 1vw;"></div>
+                <table>
+                    <tr>
+                        <td style="padding-right: 1vw;"><img src="../assets/phone-call.png" alt="phone" style="height: auto;width: 2vw;"></td>
+                        <td style="font-size: 1.5vw;font-weight: 500;vertical-align: middle;">016.161.6161</td>
+                    </tr>
+                    <tr>
+                        <td style="padding-right: 1vw;"><img src="../assets/email.png" alt="mail" style="height: auto;width: 2vw;"></td>
+                        <td style="font-size: 1.5vw;font-weight: 500;vertical-align: middle;">group16@gmail.com</td>
+                </table>
+            </div>
+        </footer>
+    </body>
+</html>
