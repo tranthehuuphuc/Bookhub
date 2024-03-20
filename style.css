@@ -30,7 +30,7 @@ html, body {
   width: 100%;
   height: auto;
   position: fixed;
-  z-index: 1;
+  z-index: 99;
 }
 
 #BookHub {
@@ -63,16 +63,9 @@ html, body {
 }
 
 #topimg {
-  img {
-    width: 100%;
-    height: auto;
-    padding: 0px;
-    margin: auto;
-  }
   padding: auto;
   padding: 0px;
   margin: auto;
-  padding-top: 10vw;
   background-color: #F08A5D;
   max-height: 50vw;
 }
@@ -173,70 +166,6 @@ html, body {
   flex-direction: column;
 }
 
-#best-seller span a{
-  font-size: 1.5vw;
-  padding-right: 6vw;
-  text-decoration: none;
-  color: #0084ff;
-  transition: 0.3s;
-}
-
-
-.post-item {
-  background-color: rgba(240, 138, 93, 0.8);
-  display: block;
-  color: #ffffff;
-  text-align: left;
-  text-decoration: none;
-  border-radius: 10%;
-  width: 30vw;
-  height: fit-content;
-  padding: 3vw;
-}
-
-.post1-item {
-  background-color: rgba(240, 138, 93, 0.8);
-  display: block;
-  font-size: 1vw;
-  color: #ffffff;
-  text-align: left;
-  text-decoration: none;
-  border-radius: 10%;
-  width: 12vw;
-  height: fit-content;
-  padding: 2vw;
-}
-
-
-.postnav {
-  align-items: center;
-  display: flex;
-  font-size: 1vw;
-}
-
-.promotionnav-item1 {
-  color: #000;
-  text-decoration: none;
-  border-radius: 4%;
-  width: 10vw;
-  height: auto;
-  background-blend-mode:lighten;
-  margin-left: 8vw; 
-  border: solid 3px; 
-  border-color: #F08A5D; 
-  padding-bottom: 0vw;
-  padding-left: 2vw;
-  padding-right: 2vw;
-  background-image:url('assets/book2.jpg');
-  background-size:cover ;
-    background-color: rgba(250, 247, 247, 0.8);
-  }
-
-#notification {
-  padding-bottom: 5vw;
-  margin: 2vw 3vw;
-}
-
 footer {
   display: flex;
   background-image: url('./assets/footer.png');
@@ -294,8 +223,8 @@ footer {
   color: #ffffff;
   text-align: left;
   text-decoration: none;
-  border-radius: 10%;
-  width: 30vw;
+  border-radius: 2vw;
+  width: 15vw;
   height: fit-content;
   padding: 3vw;
 }
