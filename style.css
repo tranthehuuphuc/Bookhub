@@ -44,11 +44,11 @@ html, body {
 #globalnav {
   background-color: #ffffff;
   color: #F08A5D;
-  padding: 0.3vw;
+  padding: 0.2vw;
   text-align: center;
   display: flex;
   margin: auto;
-  margin-right: 2vw;
+  margin-right: 0vw;
   border-radius: 3vw;
 }
 
@@ -60,6 +60,41 @@ html, body {
   text-decoration: none;
   color: #F08A5D;
   margin: auto 2vw;
+}
+
+#profile-button {
+  background-color: transparent;
+  border-style: none;
+  border-radius: 1vw;
+  padding: 0;
+  width: 3.5vw;
+  height: 3.5vw;
+  margin: auto;
+  margin-left: 1.5vw;
+  margin-right: 1.5vw;
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: background-color 0.3s ease;
+}
+
+#profile-button:hover {
+  background-color: #f06326;
+  border-radius: 1vw;
+  padding: 0;
+  width: 3.5vw;
+  height: 3.5vw;
+  margin: auto;
+  margin-left: 1.5vw;
+  margin-right: 1.5vw;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+#profile-icon {
+  width: 2.5vw;
+  height: auto;
+  padding: 0;
+  margin: 0.5vw;
 }
 
 #topimg {
