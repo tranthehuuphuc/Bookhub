@@ -2,7 +2,7 @@
 
 @font-face {
     font-family: 'MavenPro';
-    src: url('./fonts/MavenPro-VariableFont_wght.ttf');
+    src: url('../fonts/MavenPro-VariableFont_wght.ttf');
   }
   
   html, body {
