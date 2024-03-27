@@ -10,6 +10,7 @@ This web is to buy, sell and discuss about books.
 ## Getting Started
 
 ### Dependencies
+HTML, CSS, PHP, JavaScripts, MySQL
 
 ## Help
 
