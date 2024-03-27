@@ -4,7 +4,7 @@ Bookhub - A website for book lovers.
 
 ## Description
 
-This is a web application project of Group 16, subject Web Application of University of Information Technology.
+This is a web application project of Group 16, subject Web Application of University of Information Technology.<br/>
 This web is to buy, sell and discuss about books.
 
 ## Getting Started
@@ -19,14 +19,10 @@ Any advise for common problems or issues.
 
 Contributors names and contact info
 
-ex. Tran The Huu Phuc
-ex. 
-ex. Tran Thi Thuy Vy
-ex.
-ex. Le Thi Bich Tuyen
-ex.
-ex. Nguyen Thi Hong Lam
-ex.
+Tran The Huu Phuc
+<br/>Tran Thi Thuy Vy
+<br/>Le Thi Bich Tuyen
+<br/>Nguyen Thi Hong Lam
 
 ## Version History
 * 0.1
@@ -36,5 +32,3 @@ ex.
 
 
 ## Acknowledgments
-
-Inspiration, code snippets, etc.
