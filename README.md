@@ -1,6 +1,6 @@
 # Project Title
 
-A website for book lovers.
+Bookhub - A website for book lovers.
 
 ## Description
 
@@ -11,15 +11,9 @@ This web is to buy, sell and discuss about books.
 
 ### Dependencies
 
-* Describe any prerequisites, libraries, OS version, etc., needed before installing program.
-* ex. Windows 10
-
 ## Help
 
 Any advise for common problems or issues.
-```
-command to run if program contains helper info
-```
 
 ## Authors
 
