@@ -26,8 +26,6 @@ Tran The Huu Phuc
 <br/>Nguyen Thi Hong Lam
 
 ## Version History
-* 0.1
-    * Initial Release
 
 ## License
 
