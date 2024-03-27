@@ -19,8 +19,14 @@ Any advise for common problems or issues.
 
 Contributors names and contact info
 
+ex. Tran The Huu Phuc
 ex. 
-ex. 
+ex. Tran Thi Thuy Vy
+ex.
+ex. Le Thi Bich Tuyen
+ex.
+ex. Nguyen Thi Hong Lam
+ex.
 
 ## Version History
 * 0.1
