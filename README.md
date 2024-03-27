@@ -3,6 +3,8 @@
 Bookhub - A website for book lovers.
 
 ## Description
+![BookHub](https://github.com/tranthehuuphuc/Bookhub/assets/152999205/05958863-33f6-4fb2-807b-91348db58c5d)
+
 
 This is a web application project of Group 16, subject Web Application of University of Information Technology.<br/>
 This web is to buy, sell and discuss about books.
