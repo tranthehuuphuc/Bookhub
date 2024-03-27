@@ -10,6 +10,8 @@ This web is to buy, sell and discuss about books.
 ## Getting Started
 
 ### Dependencies
+
+### Program langues, framework, database
 HTML, CSS, PHP, JavaScripts, MySQL
 
 ## Help
@@ -18,12 +20,11 @@ Any advise for common problems or issues.
 
 ## Authors
 
-Contributors names and contact info
-
-Tran The Huu Phuc
-<br/>Tran Thi Thuy Vy
-<br/>Le Thi Bich Tuyen
-<br/>Nguyen Thi Hong Lam
+Contributors names and contact info:
+Tran The Huu Phuc <a href="https://github.com/tranthehuuphuc">@tranthehuuphuc</a>
+<br/>Tran Thi Thuy Vy <a href="https://github.com/vytr09">@tranthehuuphuc</a>
+<br/>Le Thi Bich Tuyen <a href="https://github.com/tuyen2201">@tranthehuuphuc</a>
+<br/>Nguyen Thi Hong Lam <a href="https://github.com/HLAM131">@tranthehuuphuc</a>
 
 ## Version History
 
