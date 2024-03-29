@@ -24,9 +24,9 @@ updating...
 
 Contributors names and contact info:
 <br/>Tran The Huu Phuc <a href="https://github.com/tranthehuuphuc">@tranthehuuphuc</a>
-<br/>Tran Thi Thuy Vy <a href="https://github.com/vytr09">@tranthehuuphuc</a>
-<br/>Le Thi Bich Tuyen <a href="https://github.com/tuyen2201">@tranthehuuphuc</a>
-<br/>Nguyen Thi Hong Lam <a href="https://github.com/HLAM131">@tranthehuuphuc</a>
+<br/>Tran Thi Thuy Vy <a href="https://github.com/vytr09">@vytr09</a>
+<br/>Le Thi Bich Tuyen <a href="https://github.com/tuyen2201">@tuyen2201</a>
+<br/>Nguyen Thi Hong Lam <a href="https://github.com/HLAM131">@HLAM131</a>
 
 ## Version History
 
