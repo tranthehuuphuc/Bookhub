@@ -321,3 +321,66 @@ footer {
 .noti a:hover{
   color:#000000;
 }
+
+@media (max-width: 900px) {
+  .promotion-p {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .promotion-mobile h2 {
+    margin-left: 50px;
+  }
+
+  .promotion-mobile .promotionnav {
+    margin-left: 17px;
+  }
+
+  #best-seller .details span a {
+    font-size: 2vw;
+  }
+
+  #best-seller h2 {
+    margin-left: 50px;
+  }
+
+  #best-seller .details {
+    margin-left: 17px;
+  }
+
+  #post .postnav {
+    margin-left: 14px;
+  }
+
+  #post .post-mobile h2 {
+    margin-left: 50px;
+  }
+
+  #nomination .promotionnav .promotionnav-item img {
+    width: 40px;
+    height: 40px;
+    aspect-ratio: auto 40 / 40;
+  }
+
+  #nomination h2 {
+    margin-left: 50px;
+  }
+
+  #notification h2 {
+    margin-left: 50px;
+  }
+
+  #notification {
+    width: 85vw;
+  }
+
+  #notification .noti {
+    padding-left: 20px;
+    font-size: 10px;
+  }
+  
+  #notification .noti a {
+    padding-bottom: 5px;
+  }
+}
