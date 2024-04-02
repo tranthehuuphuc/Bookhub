@@ -1,3 +1,9 @@
+<?php
+require_once "php/config_session.php";
+require_once "php/signup_view.php";
+require_once "php/login_view.php";
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +17,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="../signin/favicon_io/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../signin/favicon_io/favicon-16x16.png">
     <link rel="manifest" href="../sigin/favicon_io/site.webmanifest">
+    
 </head>
 <body>
 
@@ -20,15 +27,15 @@
             <a class="globalnav-item" href="../Book_Store/bookstore.html">Bookstore</a>
             <a class="globalnav-item" href="../Bookhub.html">Thể loại</a>
             <a class="globalnav-item" href="../thao luan va chi tiet.html">Thảo luận</a>
-            <a class="globalnav-item" href="../signin/signin.html">Đăng nhập</a>
+            <a class="globalnav-item" href="../signin/signin.php">Đăng nhập</a>
             <a href="../search/search.html" style="width: 3vw; height: 3vw;"><img src="../assets/search.png" alt="Search" style="width: 3vw; height: 3vw; margin: 0px;"></a>
         </nav>
-        <button id="profile-button" onclick="window.location.href='../Account/AccountProfile.html'"><img id="profile-icon" src="../Account/AccountAssets/account.png" alt="Profile Icon"></button>
+        <button id="profile-button" onclick="window.location.href='signin.php'"><img id="profile-icon" src="../Account/AccountAssets/account.png" alt="Profile Icon"></button>
     </div>
 
     <div class="container" id="container" style="margin-bottom: 5vw;">
         <div class="form-container sign-up-container">
-            <form action="#">
+            <form action="php/signup.php" method="post">
                 <h1>Tạo tài khoản</h1>
                 <div class="social-container">
                     <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
@@ -36,22 +43,29 @@
                 </div>
                 <span>hoặc đăng ký bằng email của bạn</span>
                 <div class="infield">
-                    <input type="text" placeholder="Tên người dùng" />
+                    <input type="text" name="username" placeholder="Tên người dùng" />
                     <label></label>
                 </div>
                 <div class="infield">
-                    <input type="email" placeholder="Email" name="email"/>
+                    <input type="email" placeholder="email" name="email"/>
                     <label></label>
                 </div>
                 <div class="infield">
-                    <input type="password" placeholder="Mật khẩu" />
+                    <input type="password" name="pwd" placeholder="Mật khẩu" />
                     <label></label>
                 </div>
                 <button>Đăng ký</button>
             </form>
         </div>
+
+
         <div class="form-container sign-in-container">
-            <form action="#">
+            <form action="php/login.php" method="post">
+                <div style="text-align:center; margin:-1vw">
+                    <?php check_signup_errors();?>
+                    <?php check_login_errors();?>
+                </div>
+
                 <h1>Đăng nhập</h1>
                 <div class="social-container">
                     <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
@@ -59,11 +73,11 @@
                 </div>
                 <span>hoặc đăng nhập bằng tài khoản</span>
                 <div class="infield">
-                    <input type="email" placeholder="Email" name="email"/>
+                    <input type="text" placeholder="Tên người dùng" name="username"/>
                     <label></label>
                 </div>
                 <div class="infield">
-                    <input type="password" placeholder="Mật khẩu" />
+                    <input type="password" name="pwd" placeholder="Mật khẩu" />
                     <label></label>
                 </div>
                 <a href="#" class="forgot" style="    color: #141E30;
