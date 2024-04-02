@@ -425,3 +425,48 @@ footer {
     flex-direction: column;
   }
 }
+
+/* media trang thao luan va chi tiet sach */
+@media (max-width: 900px) {
+  .story-detail__list-chapter .row {
+    flex-direction: column;
+  }
+
+  .story-detail__list-chapter .row li {
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  #list-book .promotionnav {
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  #list-book h2 {
+    text-align: center;
+  }
+  
+  #list-book .promotionnav-item {
+    margin-left: 2.5vw;
+    margin-bottom: 3vw;
+    width: 150px;
+  }
+
+  #list-book .promotion-image {
+    width: 150px;
+  }
+
+  .customer-reviews label {
+    font-size: 30px;
+    font-weight: bold;
+  }
+
+  .customer-reviews textarea {
+    width: 75vw;
+    height: 40vw;
+  }
+
+  .customer-reviews button {
+    font-size: 35px;
+  }
+}
