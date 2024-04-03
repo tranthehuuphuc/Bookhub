@@ -244,3 +244,18 @@ button {
         width: 143.67px;
     }
 }
+@media (max-width:779px) {
+    .container{
+        width: 70vw;
+        height: 90vh;
+    }
+    .container::before{
+        display: none;
+    }
+    form{
+        width: 80%;
+    }
+    .overlay-container{
+        display: none;
+    }
+}
