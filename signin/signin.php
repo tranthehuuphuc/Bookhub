@@ -10,9 +10,11 @@ require_once "php/login_view.php";
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <title>Sign in | Bookhub</title>
-    <link rel="stylesheet" type="text/css" href="../style.css">
-    <link rel="stylesheet" type="text/css" href="./signin.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" type="text/css" href="../signin/signin.css">
+    <script
+      src="https://kit.fontawesome.com/64d58efce2.js"
+      crossorigin="anonymous"
+    ></script>
     <link rel="apple-touch-icon" sizes="180x180" href="../signin/favicon_io/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="../signin/favicon_io/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../signin/favicon_io/favicon-16x16.png">
@@ -33,101 +35,105 @@ require_once "php/login_view.php";
         <button id="profile-button" onclick="window.location.href='signin.php'"><img id="profile-icon" src="../Account/AccountAssets/account.png" alt="Profile Icon"></button>
     </div>
 
-    <div class="container" id="container" style="margin-bottom: 5vw;">
-        <div class="form-container sign-up-container">
-            <form action="php/signup.php" method="post">
-                <h1>Tạo tài khoản</h1>
-                <div class="social-container">
-                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social"><i class="fab fa-google"></i></a>
-                </div>
-                <span>hoặc đăng ký bằng email của bạn</span>
-                <div class="infield">
-                    <input type="text" name="username" placeholder="Tên người dùng" />
-                    <label></label>
-                </div>
-                <div class="infield">
-                    <input type="email" placeholder="email" name="email"/>
-                    <label></label>
-                </div>
-                <div class="infield">
-                    <input type="password" name="pwd" placeholder="Mật khẩu" />
-                    <label></label>
-                </div>
-                <button>Đăng ký</button>
-            </form>
-        </div>
-
-
-        <div class="form-container sign-in-container">
-            <form action="php/login.php" method="post">
-                <div style="text-align:center; margin:-1vw">
+    <div class="container">
+      <div class="forms-container">
+        <div class="signin-signup">
+        <div style="text-align:center; margin:-1vw">
                     <?php check_signup_errors();?>
                     <?php check_login_errors();?>
-                </div>
-
-                <h1>Đăng nhập</h1>
-                <div class="social-container">
-                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social"><i class="fab fa-google"></i></a>
-                </div>
-                <span>hoặc đăng nhập bằng tài khoản</span>
-                <div class="infield">
-                    <input type="text" placeholder="Tên người dùng" name="username"/>
-                    <label></label>
-                </div>
-                <div class="infield">
-                    <input type="password" name="pwd" placeholder="Mật khẩu" />
-                    <label></label>
-                </div>
-                <a href="#" class="forgot" style="    color: #141E30;
-                font-size: 14px;
-                text-decoration: none;
-                margin: 15px 0px;">Quên mật khẩu?</a>
-                <button>Đăng nhập</button>
-            </form>
         </div>
-        <div class="overlay-container" id="overlayCon">
-            <div class="overlay">
-                <div class="overlay-panel overlay-left">
-                    <h1>Xin chào!</h1>
-                    <p style="    font-size: 14px;
-                    font-weight: 300;
-                    line-height: 20px;
-                    letter-spacing: 0.5px;
-                    margin: 25px 0px 35px;
-                    color: #fff;">Đã có tài khoản? Đăng nhập và bắt đầu ngay bây giờ!</p>
-                    <button>Đăng nhập</button>
-                </div>
-                <div class="overlay-panel overlay-right">
-                    <h1>Xin chào!</h1>
-                    <p style="    font-size: 14px;
-                    font-weight: 300;
-                    line-height: 20px;
-                    letter-spacing: 0.5px;
-                    margin: 25px 0px 35px;
-                    color: white">Chưa có tài khoản? Đăng ký ngay để có thể tham gia cộng đồng nhé!</p>
-                    <button>Đăng ký</button>
-                </div>
+          <form action="./php/login.php" class="sign-in-form" method="post">
+            <h2 class="title">Sign in</h2>
+            <div class="input-field">
+              <i class="fas fa-user"></i>
+              <input type="text" placeholder="Username" name="username" required/>
             </div>
-            <button id="overlayBtn"></button>
+            <div class="input-field">
+              <i class="fas fa-lock"></i>
+              <input type="password" placeholder="Password" name="pwd" required/>
+            </div>
+            <input type="submit" value="Login" class="btn solid" />
+            <p class="social-text">Or Sign in with social platforms</p>
+            <div class="social-media">
+              <a href="#" class="social-icon">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="#" class="social-icon">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="#" class="social-icon">
+                <i class="fab fa-google"></i>
+              </a>
+              <a href="#" class="social-icon">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+            </div>
+          </form>
+          <form action="./php/signup.php" class="sign-up-form" method="post">
+            <h2 class="title">Sign up</h2>
+            <div class="input-field">
+              <i class="fas fa-user"></i>
+              <input type="text" placeholder="Username" name="username" />
+            </div>
+            <div class="input-field">
+              <i class="fas fa-envelope"></i>
+              <input type="email" placeholder="Email" name="email"/>
+            </div>
+            <div class="input-field">
+              <i class="fas fa-lock"></i>
+              <input type="password" placeholder="Password" name="pwd" />
+            </div>
+            <input type="submit" class="btn" value="Sign up" />
+            <p class="social-text">Or Sign up with social platforms</p>
+            <div class="social-media">
+              <a href="#" class="social-icon">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="#" class="social-icon">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="#" class="social-icon">
+                <i class="fab fa-google"></i>
+              </a>
+              <a href="#" class="social-icon">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+            </div>
+          </form>
         </div>
+      </div>
+
+      <div class="panels-container">
+        <div class="panel left-panel">
+          <div class="content">
+            <h3>New here ?</h3>
+            <p>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
+              ex ratione. Aliquid!
+            </p>
+            <button class="btn transparent" id="sign-up-btn">
+              Sign up
+            </button>
+          </div>
+          <img src="img/log.svg" class="image" alt="" />
+        </div>
+        <div class="panel right-panel">
+          <div class="content">
+            <h3>One of us ?</h3>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
+              laboriosam ad deleniti.
+            </p>
+            <button class="btn transparent" id="sign-in-btn">
+              Sign in
+            </button>
+          </div>
+          <img src="img/register.svg" class="image" alt="" />
+        </div>
+      </div>
     </div>
 
-    <script>
-        const container = document.getElementById('container');
-        const overlayCon = document.getElementById('overlayCon');
-        const overlayBtn = document.getElementById('overlayBtn');
-        overlayBtn.addEventListener('click', () => {
-            container.classList.toggle('right-panel-active');
-
-            overlayBtn.classList.remove('btnScaled');
-            window.requestAnimationFrame(() => {
-                overlayBtn.classList.add('btnScaled');
-            });
-        });
-    </script>
-
+    <script src="..\signin\app.js"></script>
     <footer>
         <div class="footer-content1" style="padding: 0.7vw;">
             <p style="font-size: 1vw;">&copy; 2024 BookHub. All rights reserved.</p>
