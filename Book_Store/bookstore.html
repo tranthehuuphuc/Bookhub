@@ -31,51 +31,23 @@
             </div>
         </div>
 
-        <div class="wrapper">
+        <div class="wrapper" style="margin-top: 5vw;margin-bottom: 5vw;">
             <div id="search-container">
-                <input type="search" id="search-input" placeholder="Search book name here" />
-                <button id="search">Search</button>
+                <input 
+                type="search" 
+                id="search-input" 
+                placeholder="Tìm kiếm sách.."
+                />
+                <button id="search">Tìm kiếm</button>
             </div>
-        </div>
-
-        <div class="books">
-            <div class="dropdown">
-                <div class="select">
-                    <span class="selected">Programming Language</span>
-                    <div class="caret"></div>
-                </div>
-                <ul class="menu">
-                    <li>C/C++</li>
-                    <li>Python</li>
-                    <li>Java</li>
-                    <li>Golang</li>
-                    <li>CSharp</li>
-                </ul>
+            <div id="buttons">
+                <button class="button-value" onclick="filterProduct('all')">All</button>
+                <button class="button-value" onclick="filterProduct('Sách')">Sách</button>
+                <button class="button-value" onclick="filterProduct('Thể loại')">Thể loại</button>
+                <button class="button-value" onclick="filterProduct('Tác giả')">Tác giả</button>
+                <button class="button-value" onclick="filterProduct('Thảo luận')">Thảo luận</button>
             </div>
-    
-            <div class="dropdown">
-                <div class="select">
-                    <span class="selected">Price</span>
-                    <div class="caret"></div>
-                </div>
-                <ul class="menu">
-                    <li>50.000d - 100.000d</li>
-                    <li>100.000d - 200.000d</li>
-                    <li>Trên 200.000d</li>
-                </ul>
-            </div>
-
-            <div class="dropdown">
-                <div class="select">
-                    <span class="selected">System Design</span>
-                    <div class="caret"></div>
-                </div>
-                <ul class="menu">
-                    <li>Design Tutorial</li>
-                    <li>Design Patterns</li>
-                    <li>Design Roadmap</li>
-                </ul>
-            </div>
+            <div id="products"></div>
         </div>
 
         <section id="product1" class="section-p1">

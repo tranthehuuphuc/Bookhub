@@ -1,3 +1,7 @@
+<?php
+include './php/connect.php';
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -28,7 +32,39 @@
         </div>
 
         <main id="main" style="margin-bottom: 2vw;">
-            <div id="list-header" style="font-size: 1.4vw; font-weight: 550;">
+            $sql = "SELECT * FROM your_table_name";
+            $result = $conn->query($sql);
+
+            echo "<h2>All Receipts</h2>";
+            echo "<table border='1'>";
+            echo "<tr><th>Book ID</th><th>Title</th><th>Author</th><th>Description</th><th>Category</th><th>Publication Year</th><th>Publisher</th><th>Price</th><th>Available Quantity</th><th>Cover Image</th><th>Rating</th></tr>";
+
+            if ($result->num_rows > 0) {
+                while($row = $result->fetch_assoc()) {
+                    echo "<tr>";
+                    echo "<td>" . $row["book_id"] . "</td>";
+                    echo "<td>" . $row["title"] . "</td>";
+                    echo "<td>" . $row["author"] . "</td>";
+                    echo "<td>" . $row["description"] . "</td>";
+                    echo "<td>" . $row["category_id"] . "</td>";
+                    echo "<td>" . $row["publication_year"] . "</td>";
+                    echo "<td>" . $row["publisher"] . "</td>";
+                    echo "<td>" . $row["price"] . "</td>";
+                    echo "<td>" . $row["available_quantity"] . "</td>";
+                    echo "<td>" . $row["cover_image"] . "</td>";
+                    echo "<td>" . $row["rating"] . "</td>";
+                    echo "</tr>";
+                }
+            } else {
+                echo "<tr><td colspan='11'>No books found.</td></tr>";
+            }
+            echo "</table>";
+
+            $conn->close();
+
+
+
+            <!-- <div id="list-header" style="font-size: 1.4vw; font-weight: 550;">
                 <a class="receipt-category" style="width: 15%; padding: 1vw 1vw;" href="https//apple.com">Mã đơn hàng</a>
                 <a class="receipt-category" style="width: 30%; padding: 1vw 1vw;">Tên khách hàng</a>
                 <a class="receipt-category" style="width: 15%; padding: 1vw 1vw;">Số điện thoại</a>
@@ -427,7 +463,7 @@
                 <a class="receipt-category" style="width: 15%;">0123456789</a>
                 <a class="receipt-category" style="width: 25%;">Hồ Chí Minh</a>
                 <a class="receipt-category" style="width: 15%;">Đang giao</a>
-            </div>
+            </div> -->
 
         </main>
 
@@ -467,3 +503,5 @@
         </footer>
     </body>
 </html>
+
+?>
