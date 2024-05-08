@@ -68,7 +68,7 @@
             <a class= "globalnav-item" href="../Book_Store/Bookstore.html">Bookstore</a>
             <a class="globalnav-item" href="../Bookhub.html">Thể loại</a>
             <a class="globalnav-item" href="../thao luan va chi tiet.html">Thảo luận</a>
-            <a class="globalnav-item" href="../signin/signin.html">Đăng nhập</a>
+            <a class="globalnav-item" href="../signin/signin.php">Đăng nhập</a>
             <a href="../search/search.html" style="width: 3vw; height: 3vw;"><img src="../assets/search.png" alt="Search" style="width: 3vw; height: 3vw; margin: 0px;"></a>
         </nav>
         <button id="profile-button" onclick="window.location.href='../Account/AccountProfile.html'"><img id="profile-icon" src="../Account/AccountAssets/account.png" alt="Profile Icon"></button>

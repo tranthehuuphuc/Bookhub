@@ -18,40 +18,6 @@
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
-        <script>
-        $(document).ready(function() {
-            // Fetch book data using Ajax
-            $.ajax({
-                url: 'fetch_products.php', // Adjust the URL to your PHP script
-                method: 'GET',
-                dataType: 'json',
-                success: function(response) {
-                    // Populate book data dynamically
-                    var bookContainer = $('#book-container');
-                    $.each(response, function(index, book) {
-                        var bookHtml = '<div class="book">' +
-                            '<img src="' + book.cover_image + '" alt="' + book.title + '">' +
-                            '<div class="book-details">' +
-                            '<h3>' + book.title + '</h3>' +
-                            '<p><strong>Author:</strong> ' + book.author + '</p>' +
-                            '<p><strong>Description:</strong> ' + book.description + '</p>' +
-                            '<p><strong>Category:</strong> ' + book.category + '</p>' +
-                            '<p><strong>Publication Year:</strong> ' + book.publication_year + '</p>' +
-                            '<p><strong>Publisher:</strong> ' + book.publisher + '</p>' +
-                            '<p><strong>Price:</strong> ' + book.price + ' VND</p>' +
-                            '<p><strong>Available Quantity:</strong> ' + book.available_quantity + '</p>' +
-                            '<p><strong>Rating:</strong> ' + book.rating + '</p>' +
-                            '</div>' +
-                            '</div>';
-                        bookContainer.append(bookHtml);
-                    });
-                },
-                error: function(xhr, status, error) {
-                    console.error('Error fetching book data:', error);
-                }
-            });
-        });
-    </script>
     </head>
     
     <body>
