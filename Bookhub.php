@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -20,7 +24,7 @@
             <nav id="globalnav">
                 <a class="globalnav-item" href="./Book_Store/bookstore.php">Bookstore</a>
                 <a class="globalnav-item" href="./Bookhub.html">Thể loại</a>
-                <a class="globalnav-item" href="./discussion/discussion.html">Thảo luận</a>
+                <a class="globalnav-item" href="./discuss/discuss.php">Thảo luận</a>
                 <a class="globalnav-item" href="./signin/signin.php">Đăng nhập</a>
                 <a href="./search/search.html" style="width: 3vw; height: 3vw;"><img src="./assets/search.png" alt="Search" style="width: 3vw; height: 3vw; margin: 0px;"></a>
             </nav>

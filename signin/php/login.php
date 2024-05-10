@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $_SESSION["last_regenerate"] = time();
 
-        header("Location: ../../Account/AccountSettings.html?login=success");
+        header("Location: ../../Account/AccountSettings.php?login=success");
 
         $pdo = null;
         $stmt = null;

@@ -1,7 +1,3 @@
-<?php
-    include 'dbh.php';
-    session_start();
-?>
 
 <!DOCTYPE html>
 <html>
@@ -21,65 +17,18 @@
     crossorigin="anonymous"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <style>
-        label.error {
-        font-weight: 700;
-        display: block;
-        color: #f85759;
-        font-size: 14px;
-        font-style: italic;
-    }
-    </style>
 
     <script>
-    $(document).ready(function(){
-        var commentCount = 2;
-        $("#loadBtn").click(function(){
-            commentCount = commentCount + 2;
-            $.ajax({
-                url: "load-comments.php",
-                method: "POST",
-                data: { commentNewCount: commentCount },
-                success: function(response) {
-                    $("#cmts").html(response);
-                },
-                error: function(xhr, status, error) {
-                    console.error(error);
-                }
+        $(document).ready(function(){
+            var commentCount = 2;
+            $("#loadBtn").click(function(){
+                commentCount = commentCount + 2;
+                $("#cmts").load("load-comments.php", {
+                    commentNewCount: commentCount
+                });
             });
         });
-    });
     </script>
-
-    <script>
-$(document).ready(function() {
-        // Gắn sự kiện submit cho form
-        $('#validateForm').submit(function(event) {
-            // Ngăn chặn hành động mặc định của form (tải lại trang)
-            event.preventDefault();
-            
-            // Lấy dữ liệu từ form
-            var formData = $(this).serialize();
-            
-            // Thực hiện AJAX request
-            $.ajax({
-                url: 'submit-comment.php', // Đường dẫn đến file xử lý dữ liệu
-                method: 'POST', // Phương thức gửi dữ liệu
-                data: formData, // Dữ liệu cần gửi đi, ở đây là dữ liệu từ form
-                success: function(response) {
-                    console.log('Dữ liệu đã được gửi thành công:', response);
-                    // Xóa dữ liệu trong form sau khi gửi đi
-                    $('#validateForm')[0].reset();
-                },
-                error: function(xhr, status, error) {
-                    console.error('Có lỗi xảy ra:', error);
-                }
-            });
-        });
-    });
-
-    </script>
-
 
     <script>
         $(document).ready(function() {
@@ -151,18 +100,17 @@ $(document).ready(function() {
                 </div>
 
                 <div id="postcmt" style="display: flex;">
-                    <form id="validateForm">
-                        <div>
-                            <textarea name="review" id="review" placeholder="Đăng bình luận" style="outline: none;width: 30vw;height: 3vw;border: 0.2vw solid #F08A5D;border-radius: 0.5vw;padding-bottom: 3vw; word-wrap: break-word;font-family: MavenPro;resize: none;" required></textarea>
-                            <br/>
-                        </div>
-                        <br/>
-                        <label for="rating">Nhập điểm đánh giá: </label>
-                        <input type="text" id="rating" name="rating" style="width: 2vw;height: 0.5vw;border: 0.1vw solid #F08A5D;border-radius: 1vw;padding: 1vw;margin-bottom: 0.5vw;"><br/>
-                        
-                        <br/>
-                        <button id="post_cmt" type="submit" style="background-color: #F08A5D; padding: 0.75rem 2rem; font-family: 'MavenPro'; color: #ffffff;cursor:pointer;border:none;border-radius:2rem">Đăng</button>
-                        <div id="responseMessage"></div>
+                    <form action="submit-comment.php" method="post">
+                        <textarea id="review" placeholder="  Đăng bình luận" style="outline: none;width: 30vw;height: 3vw;border: 0.2vw solid #F08A5D;border-radius: 1vw;padding-bottom: 3vw; word-wrap: break-word;font-family: MavenPro;resize: none;"></textarea>
+                        <br/><label for="rating">Chọn đánh giá: </label>
+                        <select id="rating" name="rating" style="width: 5vw;height: 3vw;border: 0.1vw solid #F08A5D;border-radius: 1vw;padding: 1vw;margin-bottom: 1vw;">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select><br/>
+                        <button type="submit" style="background-color: #F08A5D; padding: 0.75rem 2rem; font-family: 'MavenPro'; color: #ffffff;cursor:pointer;border:none;border-radius:2rem">Đăng</button>
                     </form>
                 </div>
 
@@ -248,36 +196,4 @@ $(document).ready(function() {
             </table>
         </div>
     </footer>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
-
-    <script>
-        // Add a custom validation method for number range from 0 to 5
-        $.validator.addMethod("range0to5", function(value, element) {
-            return this.optional(element) || (parseFloat(value) >= 0 && parseFloat(value) <= 5);
-        }, "Vui lòng nhập số từ 0 đến 5.");
-
-        $("#validateForm").validate({
-        rules: {
-            review: {
-                minlength: 2,
-                required: true // Added required rule
-            },
-            rating: {
-                required: true,
-                range0to5: true
-            }
-        },
-        messages: {
-            review: {
-                required: "Vui lòng nhập đánh giá",
-                minlength: "Đánh giá phải từ 2 ky tự trở lên."
-            },
-            rating: {
-                required: "Vui lòng nhập số điểm đánh giá.",
-                range0to5: "Vui lòng nhập số từ 0 đến 5."
-            }
-        },
-    });
-    </script>
 </body>

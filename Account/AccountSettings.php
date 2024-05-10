@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,7 +17,7 @@
         
         <div id="globalheader">
             <div style="display: flex;">
-                <a href="../Bookhub.html"><img id="BookHub" src="../assets/logo.png" alt="BookHub"></a>
+                <a href="../Bookhub.php"><img id="BookHub" src="../assets/logo.png" alt="BookHub"></a>
                 <button id="profile-button" onclick="window.location.href='./AccountProfile.html'"><img id="profile-icon" src="./AccountAssets/account.png" alt="Profile Icon"></button>
             </div>
             <div id="menu">
@@ -33,25 +37,32 @@
                 <div style="background-color: #d9d9d9; width: 100%; height: 0.1vw; margin: 0.5vw 0; padding: 0;"></div>
                 <div style="display: flex; margin-bottom: 2vw;">
                     <div class="container">
-                        <form>
+                        <form action="./php/userprofile.php" method="post">
                             <div class="form-group">
                                 <label for="name">Họ và tên:</label>
-                                <input type="text" id="name" name="name" value="Trần Thế Hữu Phúc" required>
+                                <input type="text" id="full_name" name="full_name" value="Trần Thế Hữu Phúc" required>
                             </div>
                             <div class="form-group">
                                 <label for="email">Email:</label>
                                 <input type="email" id="email" name="email" value="tranthehuuphuc@icloud.com" required>
                             </div>
                             <div class="form-group">
-                                <label for="phone-number">Số điện thoại:</label>
-                                <input type="text" id="phone-number" name="phone-number" value="0123456789" required>
+                                <label for="phone_number">Số điện thoại:</label>
+                                <input type="text" id="phone_number" name="phone_number" value="0123456789" required>
                             </div>
                             <div class="form-group">
                                 <label for="address">Địa chỉ:</label>
                                 <input type="text" id="address" name="address" value="Hồ Chí Minh" required>
                             </div>
                             <button type="submit">Lưu thay đổi</button>
-                        </form>
+                        </form><br/>
+                        <div style="color:#F08A5D; font-style:italic; font-weight:600">
+                                <?php 
+                                if (isset($_GET["userupdate"])) {
+                                    echo htmlspecialchars($_GET["userupdate"]);
+                                }
+                                ?>
+                            </div>
                     </div>
                     <div style="align-items: center; width: 60%; display: block; padding: 2vw">
                         <img src="./AccountAssets/avatar.jpeg" alt="Avatar" style="margin: auto; margin-left: 12vw; margin-top: 2vw; width: 10vw; height: 10vw; border-radius: 5vw;">
