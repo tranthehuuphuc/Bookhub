@@ -52,31 +52,31 @@
     </script>
 
     <script>
-$(document).ready(function() {
-        // Gắn sự kiện submit cho form
-        $('#validateForm').submit(function(event) {
-            // Ngăn chặn hành động mặc định của form (tải lại trang)
-            event.preventDefault();
-            
-            // Lấy dữ liệu từ form
-            var formData = $(this).serialize();
-            
-            // Thực hiện AJAX request
-            $.ajax({
-                url: 'submit-comment.php', // Đường dẫn đến file xử lý dữ liệu
-                method: 'POST', // Phương thức gửi dữ liệu
-                data: formData, // Dữ liệu cần gửi đi, ở đây là dữ liệu từ form
-                success: function(response) {
-                    console.log('Dữ liệu đã được gửi thành công:', response);
-                    // Xóa dữ liệu trong form sau khi gửi đi
-                    $('#validateForm')[0].reset();
-                },
-                error: function(xhr, status, error) {
-                    console.error('Có lỗi xảy ra:', error);
-                }
+    $(document).ready(function() {
+            // Gắn sự kiện submit cho form
+            $('#validateForm').submit(function(event) {
+                // Ngăn chặn hành động mặc định của form (tải lại trang)
+                event.preventDefault();
+                
+                // Lấy dữ liệu từ form
+                var formData = $(this).serialize();
+                
+                // Thực hiện AJAX request
+                $.ajax({
+                    url: 'submit-comment.php', // Đường dẫn đến file xử lý dữ liệu
+                    method: 'POST', // Phương thức gửi dữ liệu
+                    data: formData, // Dữ liệu cần gửi đi, ở đây là dữ liệu từ form
+                    success: function(response) {
+                        console.log('Dữ liệu đã được gửi thành công:', response);
+                        // Xóa dữ liệu trong form sau khi gửi đi
+                        $('#validateForm')[0].reset();
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Có lỗi xảy ra:', error);
+                    }
+                });
             });
         });
-    });
 
     </script>
 

@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=0.5, viewport-fit=cover">
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
         <title>Book Detail | BookHub</title>
         <link rel="stylesheet" type="text/css" href="../style.css">
         <link rel="stylesheet" type="text/css" href="./BookDetail.css">
@@ -11,7 +11,50 @@
         <link rel="icon" type="image/png" sizes="16x16" href="./favicon_io/favicon-16x16.png">
         <link rel="manifest" href="./favicon_io/site.webmanifest">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" />
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var book = document.querySelector('.book');
+                var footer = document.querySelector('footer');
+        
+                // Function to update the book position
+                var updateBookPosition = function() {
+                    var footerRect = footer.getBoundingClientRect();
+                    var bookRect = book.getBoundingClientRect();
+        
+                    if (footerRect.top <= window.innerHeight) {
+                        book.style.position = 'absolute';
+                        book.style.top = (window.scrollY + footerRect.top - bookRect.height - 20) + 'px';
+                    } else {
+                        book.style.position = 'fixed';
+                        book.style.top = '100px';
+                    }
+                };
+        
+                // Function to check the screen width and enable/disable script functionality
+                var checkScreenWidth = function() {
+                    var screenWidth = window.innerWidth;
+                    if (screenWidth > 768) { // Set your desired width here
+                        // Enable the script
+                        window.addEventListener('scroll', updateBookPosition);
+                        updateBookPosition(); // Initial check
+                    } else {
+                        // Disable the script
+                        window.removeEventListener('scroll', updateBookPosition);
+                        book.style.position = 'static'; // Reset to default
+                    }
+                };
+        
+                // Initial check on page load
+                checkScreenWidth();
+        
+                // Listen for resize events to enable/disable the script as needed
+                window.addEventListener('resize', checkScreenWidth);
+            });
+        </script>
+        
     </head>
+
     
     <body>
         <h1 class="visuallyhidden">BookHub</h1>
@@ -24,10 +67,12 @@
 
         <label id="overlay" for="sidebar-active"></label>
 
+        
         <div class="link-container">
             <label for="sidebar-active" class="close-sidebar-button">
                 <svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32" fill="#FFFFFF"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
             </label>
+            
             
             <a class="logo-link" href="Bookhub.html"><img id="BookHub" src="../assets/logo.png" alt="BookHub"></a>
             <a class="globalnav-item" href="../Book_Store/bookstore.php">Bookstore</a>
@@ -37,9 +82,195 @@
             <a class="globalnav-item" href="../search/search.html">Tìm kiếm</a>
             <button id="profile-button" onclick="window.location.href='../Account/AccountProfile.html'"><img id="profile-icon" src="../Account/AccountAssets/account.png" alt="Profile Icon"></button>
         </div>
+
+
     </nav>
 
-     
+    <main>
+        <div class="maindiv">
+            <div class="book">
+                <div class="book-image" style="display: flex; justify-content: center;">
+                    <img src="../assets/book3.jpg" alt="book1" style="width: auto; height: 400px;box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.4);">
+                </div>
+                <div style="text-align: center;">
+                    <a href="#" style="text-decoration: none;"><h3 style="background-color: #F08A5D; padding: 14px; color: #ffffff; border-radius: 30px;">Mua ngay</h3></a>
+                    <a href="#" style="text-decoration: none;"><h3 style="border: 3px solid #F08A5D; padding: 14px; border-radius: 30px; color: #F08A5D;">Thêm vào giỏ hàng</h3></a>
+                </div>
+            </div>
+    
+            <div class="book-detail" style="margin-left: 250px; margin-right: 100px;">
+                <h1 style="font-weight: 700;margin-bottom: 0;"><i>Cho tôi xin một vé đi tuổi thơ</i></h1>
+                
+                <div style="display: inline-flex">
+                    <h3 style="font-weight: 100">Tác giả:&#160</h3>
+                    <a class="author-name" href="#" style="text-decoration: none;"><h3 style="font-weight: 500;color: #F08A5D;">Nguyễn Nhật Ánh</h3></a>
+                </div>
+                <br/>
+                <hr>
+                <div>
+                    <h3 style="font-weight: 600;">Giới thiệu sách:</h3>
+                    <p style="font-weight: 100; text-align: justify;">"Cho tôi xin một vé đi tuổi thơ" là một trong những tác phẩm nổi tiếng của nhà văn Nguyễn Nhật Ánh. Sách kể về những kỷ niệm tuổi thơ của nhân vật chính - cậu bé Nguyên. 
+                        Câu chuyện đưa chúng ta trở lại với những kỷ niệm đẹp nhất của tuổi thơ, những kỷ niệm mà mỗi người đều muốn lưu giữ mãi trong lòng.</p>
+                    <br/>
+                    <div class="genres" style="display: inline-flex">
+                        <h3 style="font-weight: 600;">Thể loại:&#160</h3>
+                        <a href="#" style="text-decoration: none;"><h4 style="font-weight: 100; color: #ffffff;background-color: #F08A5D;border-radius: 10px;padding: 4px;">Văn học thiếu nhi</h4></a>
+                        <a href="#" style="text-decoration: none;"><h3>&#160</h3></a>
+                        <a href="#" style="text-decoration: none;"><h4 style="font-weight: 100; color: #ffffff;background-color: #F08A5D;border-radius: 10px;padding: 4px;">Tiểu thuyết</h4></a>
+                    </div>
+                    <h3 style="font-weight: 600;">Giới thiệu tác giả:</h3>
+                    <div class="author-detail" style="display: inline-flex; ">
+                        <img src="../assets/book2.jpg" alt="author1" style="width: 150px; height: 150px; border-radius: 50%; border: 5px solid #F08A5D;">
+                        <div style="margin-left: 20px;">
+                            <h3 style="font-weight: 500;">Nguyễn Nhật Ánh</h3>
+                            <p style="font-weight: 100; text-align: justify;">Nguyễn Nhật Ánh sinh ngày 7 tháng 5 năm 1955 tại Thái Bình, là một nhà văn nổi tiếng của Việt Nam. Ông được biết đến với những tác phẩm văn học dành cho thiếu nhi, nhưng cũng đã viết nhiều tác phẩm dành cho người lớn.</p>
+                        </div>
+                    </div>
+                    <br/><br/>
+                    <hr>
+                    <div class="product-info">
+                        <h3 style="font-weight: 600;">Thông tin sản phẩm:</h3>
+                        <div style="display: inline-flex; flex-wrap: wrap;">
+                            <table style="border-collapse: separate;margin-right: 100px;">
+                                <tr class="tr-book">
+                                    <td class="td-book"><h4 style="font-weight: 500;">Nhà xuất bản:&#160</h4></td>
+                                    <td class="td-book"><h4 style="font-weight: 100;">Nhà Xuất Bản Trẻ</h4></td>
+                                </tr>
+                                <tr class="tr-book">
+                                    <td class="td-book"><h4 style="font-weight: 500;">Ngày xuất bản:&#160</h4></td>
+                                    <td class="td-book"><h4 style="font-weight: 100;">20/10/2010</h4></td>
+                                </tr>
+                                <tr class="tr-book">
+                                    <td class="td-book"><h4 style="font-weight: 500;">Số trang:&#160</h4></td>
+                                    <td class="td-book"><h4 style="font-weight: 100;">207</h4></td>
+                                </tr>
+                                <tr class="tr-book">
+                                    <td class="td-book"><h4 style="font-weight: 500;">Giá:&#160</h4></td>
+                                    <td class="td-book"><h4 style="font-weight: 100;">100.000đ</h4></td>
+                                </tr>
+                            </table>
+                            <table style="border-collapse: separate;">
+                                <tr class="tr-book">
+                                    <td class="td-book"><h4 style="font-weight: 500;">Ngôn ngữ:&#160</h4></td>
+                                    <td class="td-book"><h4 style="font-weight: 100;">Tiếng Việt</h4></td>
+                                </tr>
+                                <tr class="tr-book">
+                                    <td class="td-book"><h4 style="font-weight: 500;">Hình thức:&#160</h4></td>
+                                    <td class="td-book"><h4 style="font-weight: 100;">Bìa mềm, Ebook</h4></td>
+                                </tr>
+                                <tr class="tr-book">
+                                    <td class="td-book"><h4 style="font-weight: 500;">ISBN:&#160</h4></td>
+                                    <td class="td-book"><h4 style="font-weight: 100;">9786041004757</h4></td>
+                                </tr>
+                                <tr class="tr-book">
+                                    <td class="td-book"><h4 style="font-weight: 500;"></h4></td>
+                                    <td class="td-book"><h4 style="font-weight: 100;"></h4></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <br/>
+                    <h3 style="font-weight: 600;">Danh sách chương:</h3>
+                    <ul>
+                        <li><h4 style="font-weight: 100;">Chương 1: Một ngày đẹp trời</h4></li>
+                        <li><h4 style="font-weight: 100;">Chương 2: Những kỷ niệm tuổi thơ</h4></li>
+                        <li><h4 style="font-weight: 100;">Chương 3: Hồi ức</h4></li>
+                        <li><h4 style="font-weight: 100;">Chương 4:...</h4></li>
+                        <a href="#" class="book-btn">
+                            <h4>Tất cả chương</h4>
+                        </a>
+                    </ul>
+                </div>
+                <hr>
+                <div class="same-author">
+                    <h3 style="font-weight: 600;">Sách cùng tác giả &#x203A;</h3>
+                    <nav class="promotionnav">
+                        <a class="promotionnav-item" href="./Bookhub.html">
+                            <img src="../assets/etc.jpg" class="promotion-image"><br/>
+                            <p style="margin: 0; padding: 0; font-weight: 500; font-size: 20px;">Python</p>
+                            <p style="margin: 0; padding: 0; font-size: 15px;">4/5 <img src="../assets/star.png"></p>
+                            <p style="margin: 0; padding: 0; font-weight: 500; font-size: 15px;">100.000 VND</p>
+                        </a>
+                    </nav>
+                </div>
+                <hr>
+                <a href="../discuss/discuss.php" style="text-decoration: none;color:black ;"><h3 style="font-weight: 600;">Đánh giá từ người dùng &#x203A;</h3></a>
+                <div>
+                    <div class="user-rating">
+                        <div id="cmts" style="display: inline-flex;">
+                            <img src="../assets/user.png" alt="User Image" style="width: 50px; height: 50px; border-radius: 50%; margin-right: 20px;">
+                            <div style="margin-top: -15px;">
+                                <p style="font-weight:800;font-size:1.5rem">Anh A</p>
+                                <div style="display: inline-flex;">
+                                    <p><i>Rating:&#160</i></p>
+                                    <p><i>Rating:</i></p>
+                                </div>
+                                <br/>
+                                <div style="display: inline-flex;">
+                                    <p>Review:&#160</p>
+                                    <p>Review:</p>
+                                </div>
+                                <div class="line-rating"></div>
+                            </div>
+                            <br/>
+                        </div>
+                    </div>
+                    <div class="user-rating">
+                        <div id="cmts" style="display: inline-flex;">
+                            <img src="../assets/user.png" alt="User Image" style="width: 50px; height: 50px; border-radius: 50%; margin-right: 20px;">
+                            <div style="margin-top: -15px;">
+                                <p style="font-weight:800;font-size:1.5rem">Anh A</p>
+                                <div style="display: inline-flex;">
+                                    <p><i>Rating:&#160</i></p>
+                                    <p><i>Rating:</i></p>
+                                </div>
+                                <br/>
+                                <div style="display: inline-flex;">
+                                    <p>Review:&#160</p>
+                                    <p>Review:</p>
+                                </div>
+                                <div class="line-rating"></div>
+                            </div>
+                            <br/>
+                        </div>
+                    </div>
+                    <div class="user-rating">
+                        <div id="cmts" style="display: inline-flex;">
+                            <img src="../assets/user.png" alt="User Image" style="width: 50px; height: 50px; border-radius: 50%; margin-right: 20px;">
+                            <div style="margin-top: -15px;">
+                                <p style="font-weight:800;font-size:1.5rem">Anh A</p>
+                                <div style="display: inline-flex;">
+                                    <p><i>Rating:&#160</i></p>
+                                    <p><i>Rating:</i></p>
+                                </div>
+                                <br/>
+                                <div style="display: inline-flex;">
+                                    <p>Review:&#160</p>
+                                    <p>Review:</p>
+                                </div>
+                                
+                            </div>
+                            <br/>
+                        </div>
+                    </div>
+                    <a href="../discuss/discuss.php" style="text-decoration: none;color: #F08A5D;font-style: italic;text-align: right;"><h3 style="font-weight: 600;">Xem tất cả đánh giá</h3></a>
+                </div>
+                <hr>
+                <div class="same-genre">
+                    <h3 style="font-weight: 600;">Sách cùng thể loại &#x203A;</h3>
+                    <nav class="promotionnav">
+                        <a class="promotionnav-item" href="./Bookhub.html">
+                            <img src="../assets/etc.jpg" class="promotion-image"><br/>
+                            <p style="margin: 0; padding: 0; font-weight: 500; font-size: 20px;">Python</p>
+                            <p style="margin: 0; padding: 0; font-size: 15px;">4/5 <img src="../assets/star.png"></p>
+                            <p style="margin: 0; padding: 0; font-weight: 500; font-size: 15px;">100.000 VND</p>
+                        </a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </main>
+    
 
     <footer>
         <div class="footer-section footer-content">
@@ -79,6 +310,5 @@
             <p class="copyright">&copy; 2024 BookHub. All rights reserved.</p>
         </div>
     </footer>
-
     </body>
 </html>

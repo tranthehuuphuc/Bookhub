@@ -1,0 +1,123 @@
+.td-book {
+    padding: 5px 10px; /* Adjust padding as needed */
+    margin: 0; /* Ensure no margin is applied */
+}
+.tr-book {
+    margin: 0; /* Ensure no margin is applied */
+}
+td h4 {
+    margin: 0; /* Remove margin from <h4> elements */
+}
+
+.book {
+    position: absolute;
+    margin-bottom: 20px; /* Space between elements */
+}
+
+main {
+    margin-left: 200px;
+    margin-top: 80px;
+}
+
+.book {
+    position: relative;
+    top: 100px; /* Adjust the top value as needed to align with your navbar */
+    left: 150px; /* Adjust the left value to position the book element as desired */
+}
+.book-detail {
+    margin-left: 100px;
+    margin-right: 0px;
+    margin-top: 90px;
+}
+
+.book-btn {
+    text-decoration: none;
+    color: #F08A5D;
+    font-style: italic;
+    font-weight: 200;
+}
+
+.same-author, .same-genre {
+    margin-bottom: 30px;
+}
+
+.mandiv {
+    display: flex;
+}
+
+.line-rating {
+    width: 300px; height: 0.5px; background-color: #F08A5D;margin-bottom: 1vw;
+}
+
+/* Responsive styles */
+@media (max-width: 1000px) {
+    main {
+        margin-left: 120px;
+        margin-top: 80px;
+    }
+    .book {
+        position: relative;
+        top: 100px; /* Adjust the top value as needed to align with your navbar */
+        left: 50px; /* Adjust the left value to position the book element as desired */
+    }
+    .book-detail {
+        margin-left: 100px;
+        margin-right: 0px;
+    }
+}
+
+@media (max-width: 767px) {
+    .book-detail {
+        margin-left: 30px !important;
+        margin-right: 10px !important;
+    }
+    .book {
+        top: 100;
+        left: 150;
+    }
+    main {
+        display: block;
+        margin-left: 20px;
+        margin-right: 0px;
+    }
+    .genres, .product-info {
+        display: block; /* Stack vertically */
+    }
+    .user-rating {
+        display: block;
+    }
+}
+
+@media (max-width: 696px){
+    .mandiv {
+        display: block;
+    }
+    .book {
+        flex: 1;
+        box-sizing: border-box;
+    }
+    .book-image {
+        display:block;
+    }
+    .book-detail {
+        flex: 1;
+        box-sizing: border-box;
+        margin-top: 0px;
+        margin-right: 100px !important;
+    }
+
+    .author-detail {
+        display: block !important;
+        margin-right: 30px;
+    }
+
+    .genres, .product-info {
+        display: block !important; /* Stack vertically */
+    }
+    .user-rating {
+        display: block;
+    }
+    .line-rating {
+        width: 200px; height: 0.5px; background-color: #F08A5D;margin-bottom: 1vw;
+    }
+}
