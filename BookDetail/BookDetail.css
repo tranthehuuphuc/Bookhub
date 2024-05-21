@@ -92,6 +92,7 @@ main {
     .mandiv {
         display: block;
     }
+
     .book {
         flex: 1;
         box-sizing: border-box;
@@ -103,7 +104,7 @@ main {
         flex: 1;
         box-sizing: border-box;
         margin-top: 0px;
-        margin-right: 100px !important;
+        margin-right: 40px !important;
     }
 
     .author-detail {
@@ -111,7 +112,7 @@ main {
         margin-right: 30px;
     }
 
-    .genres, .product-info {
+    .product-info {
         display: block !important; /* Stack vertically */
     }
     .user-rating {

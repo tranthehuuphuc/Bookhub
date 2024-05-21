@@ -37,7 +37,7 @@ body {
   height: 60px;
   background-color: #F08A5D;
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   align-items: center;
   z-index: 1000;
 }
@@ -64,6 +64,10 @@ nav svg {
 }
 
 #sidebar-active {
+  display: none;
+}
+
+#new-logo {
   display: none;
 }
 
@@ -135,10 +139,18 @@ nav svg {
   .open-sidebar-button, .close-sidebar-button {
     padding: 20px;
     display: block;
+    margin-left: auto;
   }
 
   #sidebar-active:checked ~ .link-container {
     right: 0;
+  }
+
+  /* Show the new logo and hide the original logo when the navbar is collapsed */
+  #new-logo {
+    display: block;
+    height: 50px; /* Adjust based on your design */
+    margin-left: 10px;
   }
 
   #sidebar-active:checked ~ #overlay {
