@@ -63,25 +63,19 @@ document.addEventListener('DOMContentLoaded', () => {
         renderPages();
     }
 
-function renderPages() {
-    const leftPage = bookText[currentPage];
-    const rightPage = bookText[currentPage + 1];
+    function renderPages() {
+        const leftPage = bookText[currentPage];
+        const rightPage = bookText[currentPage + 1];
 
-    pageLeft.innerHTML = leftPage ? `<p>${truncateText(leftPage.text)}</p><span class="page-number">${leftPage.page}</span>` : '';
-    pageRight.innerHTML = rightPage ? `<p>${truncateText(rightPage.text)}</p><span class="page-number">${rightPage.page}</span>` : '';
+        pageLeft.innerHTML = leftPage ? `<p>${leftPage.text}</p><span class="page-number">${leftPage.page}</span>` : '';
+        pageRight.innerHTML = rightPage ? `<p>${rightPage.text}</p><span class="page-number">${rightPage.page}</span>` : '';
 
-    bookList.style.display = 'none';
-    bookReader.style.display = 'block';
-}
+        pageLeft.scrollTop = 0; // Reset scroll position
+        pageRight.scrollTop = 0; // Reset scroll position
 
-function truncateText(text) {
-    const maxLength = 1000; // Maximum number of characters per page
-    if (text.length > maxLength) {
-        return text.substring(0, maxLength); // Truncate text with ellipsis
-    } else {
-        return text;
+        bookList.style.display = 'none';
+        bookReader.style.display = 'block';
     }
-}
 
     function turnPage(direction) {
         if (direction === 'next' && currentPage + 2 < bookText.length) {
@@ -134,6 +128,22 @@ function truncateText(text) {
         return brightness < 128;
     }
 
+    // Get references to your buttons (replace with actual IDs)
+    const nextButton = document.querySelector('#next-btn');
+    const prevButton = document.querySelector('#prev-btn');
+
+    // Add event listener for keydown
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'ArrowRight') {
+            // Right arrow key pressed, trigger next button click
+            nextButton.click();
+        } else if (event.key === 'ArrowLeft') {
+            // Left arrow key pressed, trigger prev button click
+            prevButton.click();
+        }
+    });
+
+
     prevBtn.addEventListener('click', () => turnPage('prev'));
     nextBtn.addEventListener('click', () => turnPage('next'));
     backBtn.addEventListener('click', () => displayBookList());
@@ -143,5 +153,4 @@ function truncateText(text) {
     backgroundColorSelect.addEventListener('change', updateSettings);
 
     displayBookList();
-    updateSettings();
 });

@@ -1,15 +1,12 @@
-/* BookReader.css */
-
 body {
     margin: 0;
     padding: 0;
-    
 }
 
 .container {
-    width: 70%; /* Decrease container width */
+    width: 70%;
     margin: 0 auto;
-    padding: 1em 0; /* Reduce top and bottom padding */
+    padding: 1em 0;
     padding-top: 5px;
 }
 
@@ -74,39 +71,35 @@ body {
 
 #book-view {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: calc(100vh - 150px); /* Adjusted height to leave space for footer */
-    margin: 20px 0;
-    background-color: #fff;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: calc(100vh - 150px);
+    margin: 25px 0;
     border: 1px solid #ddd;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     padding: 20px;
+    background-color: #fff;
 }
 
 .page {
-    width: 48%; /* Increase page width */
+    width: 48%;
     height: 100%;
-    margin: 0 1%; /* Adjust margin */
-    padding: 15px; /* Reduce padding */
+    padding: 0 15px 15px 15px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     background-color: #fafafa;
     text-align: justify;
-    font-size: 14px; /* Reduced font size */
-    line-height: 1.6; /* Adjusted line height */
-    max-height: 80vh; /* Limiting height of the page content */
-    overflow-y: auto; /* Adding vertical scrollbar when content exceeds height */
-    max-height: 80vh; /* Limiting height of the page content */
-    overflow:hidden;
-    position:relative; /* Relative positioning for page number */
+    font-size: 14px;
+    line-height: 1.6;
+    overflow-y: scroll;
+    position: relative;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .page p {
-    margin-bottom: 0; /* Remove bottom margin for paragraph */
+    margin-bottom: 0;
 }
-
 
 #controls {
     display: flex;
@@ -131,17 +124,13 @@ body {
     bottom: 10px;
     width: 100%;
     text-align: center;
-    font-size: 12px; /* Smaller font size for footer */
+    font-size: 12px;
     padding-top: 5px;
-}
-
-#page-left, #page-right {
-    padding-bottom: 30px; /* Adding space for footer */
 }
 
 .page-number {
     position: absolute;
     bottom: 5px;
     right: 5px;
-    font-size: 10px; /* Smaller font size for page number */
+    font-size: 10px;
 }
