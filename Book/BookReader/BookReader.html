@@ -58,31 +58,39 @@
         </div>
         
         <div class="container" id="book-reader" style="display: none;">
-            <button id="back-btn">Back to List</button>
-            <div id="settings">
-                <label for="font-size">Font Size:</label>
-                <select id="font-size">
-                    <option value="12px">12px</option>
-                    <option value="14px">14px</option>
-                    <option value="16px">16px</option>
-                    <option value="18px">18px</option>
-                </select>
-                <label for="font-family">Font Family:</label>
-                <select id="font-family">
-                    <option value="Arial, sans-serif">Arial</option>
-                    <option value="'Times New Roman', serif">Times New Roman</option>
-                    <option value="'Courier New', monospace">Courier New</option>
-                    <option value="'Comic Sans MS', cursive">Comic Sans MS</option>
-                    <option value="'MavenPro', sans-serif">Maven Pro</option>
-                </select>
-                <label for="background-color">Background Color:</label>
-                <select id="background-color">
-                    <option value="#ffffff">White</option>
-                    <option value="#f5f5dc">Beige</option>
-                    <option value="#000000">Black</option>
-                </select>
+            <div class="top-menu">
+                <button id="back-btn">Back to List</button>
+                <button id="fullscreen-btn">Fullscreen</button>
+                <div id="settings">
+                    <div class="settings-items">
+                        <label for="font-size">Font Size:</label>
+                        <select id="font-size">
+                            <option value="12px">12px</option>
+                            <option value="14px">14px</option>
+                            <option value="16px">16px</option>
+                            <option value="18px">18px</option>
+                        </select>
+                    </div>
+                    <div class="settings-items">
+                        <label for="font-family">Font Family:</label>
+                        <select id="font-family">
+                            <option value="Arial, sans-serif">Arial</option>
+                            <option value="'Times New Roman', serif">Times New Roman</option>
+                            <option value="'Courier New', monospace">Courier New</option>
+                            <option value="'Comic Sans MS', cursive">Comic Sans MS</option>
+                            <option value="'MavenPro', sans-serif">Maven Pro</option>
+                        </select>
+                    </div>
+                    <div class="settings-items">
+                        <label for="background-color">Background Color:</label>
+                        <select id="background-color">
+                            <option value="#ffffff">White</option>
+                            <option value="#f5f5dc">Beige</option>
+                            <option value="#000000">Black</option>
+                        </select>
+                    </div>
+                </div>
             </div>
-            <button id="fullscreen-btn">Fullscreen</button>
             <div id="book-view">
                 <div id="page-left" class="page"></div>
                 <div id="page-right" class="page"></div>

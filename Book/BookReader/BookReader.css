@@ -26,8 +26,23 @@ body {
     text-align: center;
 }
 
-#font-size, #font-family {
+#settings {
+    margin-bottom: 1px;
+    display: flex;
+    justify-content: center;
+}
+
+.settings-items {
+    margin: 0 10px;
+
+}
+
+#font-size, #font-family, #background-color {
     border-radius: 5px;
+}
+
+#font-size, #background-color {
+    font-family: MavenPro, sans-serif;
 }
 
 #fullscreen-btn {
@@ -133,4 +148,39 @@ body {
     bottom: 5px;
     right: 5px;
     font-size: 10px;
+}
+
+@media (max-width: 1140px) {
+    #page-right {
+        display: none;
+    }
+
+    #page-left {
+        width: 100%;
+    }
+    #fullscreen-btn, #back-btn {
+        position: relative;
+        margin-bottom: 20px;
+    }
+    .top-menu {
+        display: block;
+    }
+    #settings {
+        display: block;
+    }
+    #book-view {
+        height: 600px;
+        width: 90%;
+    }
+}
+
+@media (max-width: 400px) {
+    #book-view {
+        height: 500px;
+        width: 90%;
+    }
+    .container {
+        width: 70%;
+        justify-content: center;
+    }
 }

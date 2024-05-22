@@ -66,29 +66,45 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderPages() {
         const leftPage = bookText[currentPage];
         const rightPage = bookText[currentPage + 1];
-
-        pageLeft.innerHTML = leftPage ? `<p>${leftPage.text}</p><span class="page-number">${leftPage.page}</span>` : '';
-        pageRight.innerHTML = rightPage ? `<p>${rightPage.text}</p><span class="page-number">${rightPage.page}</span>` : '';
-
+    
+        if (window.innerWidth <= 1140) {
+            // Only render the left page and show its page number
+            pageLeft.innerHTML = leftPage ? `<p>${leftPage.text}</p><span class="page-number">${leftPage.page}</span>` : '';
+            pageRight.innerHTML = '';
+        } else {
+            // Render both pages and show their page numbers
+            pageLeft.innerHTML = leftPage ? `<p>${leftPage.text}</p><span class="page-number">${leftPage.page}</span>` : '';
+            pageRight.innerHTML = rightPage ? `<p>${rightPage.text}</p><span class="page-number">${rightPage.page}</span>` : '';
+        }
+    
         pageLeft.scrollTop = 0; // Reset scroll position
         pageRight.scrollTop = 0; // Reset scroll position
-
+    
         bookList.style.display = 'none';
         bookReader.style.display = 'block';
     }
-
+    
     function turnPage(direction) {
-        if (direction === 'next' && currentPage + 2 < bookText.length) {
-            currentPage += 2;
-        } else if (direction === 'prev' && currentPage - 2 >= 0) {
-            currentPage -= 2;
+        if (direction === 'next') {
+            if (window.innerWidth <= 1140 && currentPage + 1 < bookText.length) {
+                currentPage += 1;
+            } else if (currentPage + 2 < bookText.length) {
+                currentPage += 2;
+            }
+        } else if (direction === 'prev') {
+            if (window.innerWidth <= 1140 && currentPage - 1 >= 0) {
+                currentPage -= 1;
+            } else if (currentPage - 2 >= 0) {
+                currentPage -= 2;
+            }
         }
         renderPages();
     }
+    
 
     function toggleFullscreen() {
         if (!document.fullscreenElement) {
-            bookReader.requestFullscreen().catch(err => {
+            bookView.requestFullscreen().catch(err => {
                 alert(`Error attempting to enable fullscreen mode: ${err.message}`);
             });
         } else {
@@ -128,6 +144,38 @@ document.addEventListener('DOMContentLoaded', () => {
         return brightness < 128;
     }
 
+    // Swipe detection for mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    bookView.addEventListener('touchstart', (event) => {
+        touchStartX = event.changedTouches[0].screenX;
+    });
+
+    bookView.addEventListener('touchend', (event) => {
+        touchEndX = event.changedTouches[0].screenX;
+        handleSwipe();
+    });
+
+    function handleSwipe() {
+        const touchDiff = touchEndX - touchStartX;
+        const swipeThreshold = 80; // Minimum distance in pixels to be considered a swipe
+        const edgeThreshold = 20;  // Distance from the edge to consider as edge swipe
+
+        if (Math.abs(touchDiff) > swipeThreshold) {
+            if (touchStartX < window.innerWidth && touchDiff < 0) {
+                // Swipe right from center
+                turnPage('next');
+            } else if (touchStartX < window.innerWidth && touchDiff > 0) {
+                // Swipe left from center
+                turnPage('prev');
+            }
+        } else if (touchStartX < edgeThreshold || touchStartX > window.innerWidth - edgeThreshold) {
+            // Edge swipe
+            toggleFullscreen();
+        }
+    }
+
     // Get references to your buttons (replace with actual IDs)
     const nextButton = document.querySelector('#next-btn');
     const prevButton = document.querySelector('#prev-btn');
@@ -142,7 +190,6 @@ document.addEventListener('DOMContentLoaded', () => {
             prevButton.click();
         }
     });
-
 
     prevBtn.addEventListener('click', () => turnPage('prev'));
     nextBtn.addEventListener('click', () => turnPage('next'));
