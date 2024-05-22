@@ -39,15 +39,15 @@
         </div>
     </nav>
 
-    <div class="wrapper">
+    <!-- <div class="wrapper">
         <div id="search-container">
             <input type="search" id="search-input" placeholder="Search book name here" />
             <button id="search">Search</button>
         </div>
-    </div>
+    </div> -->
 
     <div class="books">
-        <div class="dropdown">
+        <!-- <div class="dropdown">
             <div class="select">
                 <span class="selected">Programming Language</span>
                 <div class="caret"></div>
@@ -83,7 +83,27 @@
                 <li>Design Patterns</li>
                 <li>Design Roadmap</li>
             </ul>
+        </div> -->
+        
+    </div>
+
+    <div class="wrapper" style="margin-top: 5vw;margin-bottom: 5vw;">
+        <div id="search-container">
+            <input 
+            type="search" 
+            id="search-input" 
+            placeholder="Tìm kiếm sách.."
+            />
+            <button id="search">Tìm kiếm</button>
         </div>
+        <div id="buttons">
+            <!-- <button class="button-value" onclick="filterProduct('all')">All</button> -->
+            <button class="button-value" onclick="filterProduct('Sách')">Sách</button>
+            <button class="button-value" onclick="filterProduct('Thể loại')">Thể loại</button>
+            <button class="button-value" onclick="filterProduct('Tác giả')">Tác giả</button>
+            <button class="button-value" onclick="filterProduct('Thảo luận')">Nhà xuất bản</button>
+        </div>
+        <div id="products"></div>
     </div>
 
     <section id="product1" class="section-p1">
@@ -198,9 +218,9 @@
             <button class="button-value" onclick="filterProduct('Thảo luận')">Thảo luận</button>
         </div>
         <div id="products"></div>
-    </div>
+    </div> -->
 
-    <script class="books" src="./search.js"></script> -->
+    <!-- <script class="books" src="./search.js"></script> -->
 
     <footer>
         <div class="footer-section footer-content">
