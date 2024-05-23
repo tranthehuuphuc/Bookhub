@@ -14,81 +14,177 @@ body {
     font-family: 'MavenPro', sans-serif;
 }
 
-#globalheader {
-background-color: #F08A5D;
-display: flex;
-top: 0;
-width: 100%;
-height: auto;
-position: relative;
-z-index: 99;
+/* start of navbar */
+/* start of navbar */
+/* start of navbar */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #F08A5D;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .link-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .globalnav-item:hover {
+    background-color: #f06326;
+    border-radius: 5px;
+  }
+  
+  .logo-link {
+    margin-right: auto;
+  }
+  
+  nav svg {
+    fill: #fff;
+  }
+  
+  #sidebar-active {
+    display: none;
+  }
+  
+  #new-logo {
+    display: none;
+  }
+  
+  .open-sidebar-button, .close-sidebar-button {
+    display: none;
+  }
+  
+  #BookHub {
+    width: 10vw;
+    height: auto;
+    margin: 30px;
+  }
+  
+  .globalnav-item {
+    font-size: 20px;
+    font-weight: 500;
+    height: 100%;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #fff;
+  }
+  
+  #profile-button {
+    background-color: transparent;
+    border-style: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-right: 5px;
+  }
+  
+  #profile-button:hover {
+    background-color: #f06326;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  
+  #profile-icon {
+    margin-top: 5px;
+    width: 30px;
+    height: auto;
+  }
+  
+  @media (max-width: 900px) {
+    .link-container {
+      flex-direction: column;
+      align-items: flex-start;
+  
+      position: fixed;
+      top: 0;
+      right: -100%;
+      z-index: 10;
+      width: 300px;
+  
+      background-color: #F08A5D;
+      box-shadow: -5px 0 5px rgba(0, 0, 0, 0.25);
+      transition: 0.75s ease-out;
+    }
+  
+    .globalnav-item {
+      box-sizing: border-box;
+      height: auto;
+      width: 100%;
+      padding: 20px 30px;
+      justify-content: flex-start;
+    }
+  
+    .open-sidebar-button, .close-sidebar-button {
+      padding: 20px;
+      display: block;
+      margin-left: auto;
+    }
+  
+    #sidebar-active:checked ~ .link-container {
+      right: 0;
+    }
+  
+    /* Show the new logo and hide the original logo when the navbar is collapsed */
+    #new-logo {
+      display: block;
+      height: 50px; /* Adjust based on your design */
+      margin-left: 10px;
+    }
+  
+    #sidebar-active:checked ~ #overlay {
+      height: 100%;
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 9;
+    }
+  
+    #BookHub {
+      width: 150px;
+    }
+  
+    #profile-button {
+      background-color: transparent;
+      border-style: none;
+      border-radius: 10px;
+      cursor: pointer;
+      margin: 20px;
+    }
+  }
+  
+  /*end of navbar*/
+  /*end of navbar*/
+  /*end of navbar*/
+
+/* start of footer */
+/* start of footer */
+/* start of footer */
+
+footer {
+    display: flex;
+    flex-wrap: wrap;
+    background-image: url('../assets/footer.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: #fff;
+    padding: 20px;
 }
 
-#BookHub {
-width: 12vw;
-height: auto;
-margin: 1vw;
-padding: 0px;
-margin-left: 3vw;
-}
-
-#globalnav {
-background-color: #ffffff;
-color: #F08A5D;
-padding: 0.2vw;
-text-align: center;
-display: flex;
-margin: auto;
-margin-right: 0vw;
-border-radius: 3vw;
-}
-
-.globalnav-item {
-cursor: pointer;
-font-size: 1.2vw;
-font-family: MavenPro;
-font-weight: 500;
-text-decoration: none;
-color: #F08A5D;
-margin: auto 2vw;
-}
-
-#profile-button {
-background-color: transparent;
-border-style: none;
-border-radius: 1vw;
-padding: 0;
-width: 3.5vw;
-height: 3.5vw;
-margin: auto;
-margin-left: 1.5vw;
-margin-right: 1.5vw;
-cursor: pointer;
-touch-action: manipulation;
-transition: background-color 0.3s ease;
-}
-
-#profile-button:hover {
-background-color: #f06326;
-border-radius: 1vw;
-padding: 0;
-width: 3.5vw;
-height: 3.5vw;
-margin: auto;
-margin-left: 1.5vw;
-margin-right: 1.5vw;
-cursor: pointer;
-touch-action: manipulation;
-}
-
-#profile-icon {
-width: 2.5vw;
-height: auto;
-padding: 0;
-margin: 0.5vw;
-}
-
-
+/* end of footer */
+/* end of footer */
+/* end of footer */
+/* end of footer */
 
 .container {
 position: relative;
@@ -96,6 +192,7 @@ width: 100%;
 background-color: #fff;
 min-height: 84vh;
 overflow: hidden;
+margin-top: 60px;
 }
 
 .forms-container {
@@ -247,10 +344,16 @@ width: 2000px;
 top: -10%;
 right: 48%;
 transform: translateY(-50%);
-background-image: linear-gradient(-45deg, #f19670 0%, #f3540f 100%);
 transition: 1.8s ease-in-out;
 border-radius: 50%;
 z-index: 6;
+background-color: #F08A5D;
+background-image: url(../assets/clay-banks-z_DkoUqgx6M-unsplash.jpg);
+background-size: cover; /* Ensure the background image covers the pseudo-element */
+background-position: center; /* Center the background image */
+background-blend-mode:darken;
+filter: blur(2.5px);
+
 }
 
 .image {
@@ -291,7 +394,7 @@ font-size: 1.5rem;
 }
 
 .panel p {
-font-size: 0.95rem;
+font-size: 1rem;
 padding: 0.7rem 0;
 }
 
@@ -380,6 +483,7 @@ pointer-events: all;
 }
 
 .right-panel {
+    margin-bottom: 10px;
     grid-row: 3 / 4;
 }
 
@@ -399,12 +503,7 @@ pointer-events: all;
     transition-delay: 0.8s;
 }
 
-.panel h3 {
-    font-size: 1.2rem;
-}
-
 .panel p {
-    font-size: 0.7rem;
     padding: 0.5rem 0;
 }
 
@@ -477,29 +576,3 @@ form {
     left: 50%;
 }
 }
-
-footer {
-    display: flex;
-    background-image: url('../assets/footer.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-    color: #fff;
-  }
-  
-  .footer-content {
-    padding: 1vw;
-    padding-left: 10vw;
-    padding-top: 1vw;
-    padding-bottom: 8vw;
-  }
-  
-  .link_contact {
-    padding: 3.25vw;
-    padding-left: 10vw;
-  }
-  
-  .contact {
-    display: flex;
-    padding: 3.25vw;
-    padding-left: 10vw;
-  }

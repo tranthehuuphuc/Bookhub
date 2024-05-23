@@ -23,17 +23,35 @@ require_once "php/login_view.php";
 </head>
 <body>
 
-    <div id="globalheader">
-        <a href="../Bookhub.html"><img id="BookHub" src="../assets/logo.png" alt="BookHub"></a>
-        <nav id="globalnav">
-            <a class="globalnav-item" href="../Book_Store/bookstore.html">Bookstore</a>
-            <a class="globalnav-item" href="../Bookhub.html">Thể loại</a>
-            <a class="globalnav-item" href="../thao luan va chi tiet.html">Thảo luận</a>
-            <a class="globalnav-item" href="../signin/signin.php">Đăng nhập</a>
-            <a href="../search/search.html" style="width: 3vw; height: 3vw;"><img src="../assets/search.png" alt="Search" style="width: 3vw; height: 3vw; margin: 0px;"></a>
+    <nav class="navbar">
+            <input type="checkbox" id="sidebar-active">
+
+            <!-- New logo image that only appears when the navbar is collapsed -->
+            <img id="new-logo" src="../assets/BookHub.png" alt="New Logo">
+
+            <label for="sidebar-active" class="open-sidebar-button">
+                <svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32" fill="#FFFFFF"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg>
+            </label>
+
+            <label id="overlay" for="sidebar-active"></label>
+
+            
+            <div class="link-container">
+                <label for="sidebar-active" class="close-sidebar-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32" fill="#FFFFFF"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
+                </label>
+                
+                
+                <a class="logo-link" href="../Bookhub.html"><img id="BookHub" src="../assets/logo.png" alt="BookHub"></a>
+                <a class="globalnav-item" href="../Book_Store/bookstore.php">Bookstore</a>
+                <a class="globalnav-item" href="../discuss/discuss.php">Thảo luận</a>
+                <a class="globalnav-item" href="../signin/signin.php">Đăng nhập</a>
+                <a class="globalnav-item" href="../search/search.html">Tìm kiếm</a>
+                <button id="profile-button" onclick="window.location.href='../Account/AccountProfile.html'"><img id="profile-icon" src="../Account/AccountAssets/account.png" alt="Profile Icon"></button>
+            </div>
+
+
         </nav>
-        <button id="profile-button" onclick="window.location.href='signin.php'"><img id="profile-icon" src="../Account/AccountAssets/account.png" alt="Profile Icon"></button>
-    </div>
 
     <div class="container">
       <div class="forms-container">
@@ -106,7 +124,7 @@ require_once "php/login_view.php";
       <div class="panels-container">
         <div class="panel left-panel">
           <div class="content">
-            <h3>Chưa có tài khoản?</h3>
+            <h2>Chưa có tài khoản?</h2>
             <p>
               Đăng ký và tham gia ngay với chúng tôi!
             </p>
@@ -117,7 +135,7 @@ require_once "php/login_view.php";
         </div>
         <div class="panel right-panel">
           <div class="content">
-            <h3>Đã có tài khoản?</h3>
+            <h2>Đã có tài khoản?</h2>
             <p>
               Đăng nhập ngay bây giờ!
             </p>
@@ -131,8 +149,9 @@ require_once "php/login_view.php";
 
     <script src="..\signin\app.js"></script>
     <footer>
-        <div class="footer-content1" style="padding: 0.7vw;">
-            <p style="font-size: 1vw;">&copy; 2024 BookHub. All rights reserved.</p>
+        <div class="footer-bottom">
+            <p class="copyright">&copy; 2024 BookHub. All rights reserved.</p>
+        </div>
     </footer>
     
 </body>

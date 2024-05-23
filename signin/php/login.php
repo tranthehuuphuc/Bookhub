@@ -41,6 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $_SESSION["user_id"] = $result["user_id"];
         $_SESSION["user_username"] = htmlspecialchars($result["username"]);
+        $_SESSION["user_role"] = $result["role"]; // Save the user role in the session
 
         $_SESSION["last_regenerate"] = time();
 
@@ -52,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
     catch (PDOException $e) {
-       die("Query failed: ". $e->getMessage());
+        die("Query failed: ". $e->getMessage());
     }
 }
 else {
