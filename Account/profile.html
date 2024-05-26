@@ -3,14 +3,21 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-        <link rel="stylesheet" type="text/css" href="./AccountStyle.css">
         <title>Profile</title>
-        <link rel="icon" type="image/x-icon" href="./AccountAssets/account.png">
+        <link rel="stylesheet" type="text/css" href="./AccountStyle.css">
+        <link rel="stylesheet" type="text/css" href="../navbar.css">
+        <link rel="stylesheet" type="text/css" href="../footer.css">
+        <link rel="apple-touch-icon" sizes="180x180" href="../favicon_io/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="../favicon_io/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="../favicon_io/favicon-16x16.png">
+        <link rel="manifest" href="../favicon_io/site.webmanifest">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" />
     </head>
 
     <body>
         <h1 class="visuallyhidden">Profile</h1>
 
+        <!-- Navbar -->
         <nav class="navbar">
             <input type="checkbox" id="sidebar-active">
                 <!-- New logo image that only appears when the navbar is collapsed -->
@@ -27,7 +34,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32" fill="#FFFFFF"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
                 </label>
                 
-                <a class="logo-link" href="Bookhub.html"><img id="BookHub" src="../assets/logo.png" alt="BookHub"></a>
+                <a class="logo-link" href="../Bookhub.html"><img id="BookHub" src="../assets/logo.png" alt="BookHub"></a>
                 <a class="globalnav-item" href="../Book_Store/bookstore.php">Bookstore</a>
                 <a class="globalnav-item" href="../discuss/discuss.php">Thảo luận</a>
                 <a class="globalnav-item" href="../signin/signin.php">Đăng nhập</a>
@@ -36,21 +43,20 @@
                 <a class="globalnav-item-show" href="./AccountCart.html">Mục đã lưu</a>
                 <a class="globalnav-item-show" href="./AccountSettings.html">Tài khoản</a>
                 <a class="globalnav-item-show" href="./AccountAssets/join.png">Đăng xuất</a>
-                <button id="profile-button"><img id="profile-icon" src="./AccountAssets/account.png" alt="Profile Icon"></button>
+                <button id="profile-button"><img id="profile-icon" src="../assets/account.png" alt="Profile Icon"></button>
             </div>
         </nav>
-        
-        
 
+        <!-- Account options -->
         <div id="blur-overlay" class="hidden"></div>
         <div id="account-options" class="hidden">
             <p id="myprofile">Hồ sơ của tôi</p>
             <div style="background-color: #d9d9d9; width: 25%; height: 0.05vw; margin: 0; padding: 0;"></div>
             <ul>
-                <li><img class="option-icons" src="./AccountAssets/orders.png"><a href="./AccountReceipts.html">Đơn hàng</a></li>
-                <li><img class="option-icons" src="./AccountAssets/saves.png"><a href="./AccountCart.html">Mục đã lưu</a></li>
-                <li><img class="option-icons" src="./AccountAssets/setting.png"><a href="./AccountSettings.html">Tài khoản</a></li>
-                <li><img class="option-icons" src="./AccountAssets/join.png"><a href="../Bookhub.html">Đăng xuất</a></li>
+                <li><img class="option-icons" src="../assets/orders.png"><a href="./orders.html">Đơn hàng</a></li>
+                <li><img class="option-icons" src="../assets/saves.png"><a href="./saves.html">Mục đã lưu</a></li>
+                <li><img class="option-icons" src="../assets/setting.png"><a href="./profile.html">Tài khoản</a></li>
+                <li><img class="option-icons" src="../assets/join.png"><a href="../Bookhub.html">Đăng xuất</a></li>
             </ul>
         </div>
         <script>
@@ -77,8 +83,6 @@
                 setTimeout(() => accountOptions.classList.add("hidden"), 500);
             }
 
-            
-            
             document.addEventListener("DOMContentLoaded", () => {
                 var profileButton = document.getElementById("profile-button");
                 var overlay = document.getElementById("blur-overlay");
@@ -92,6 +96,7 @@
                 });
             });
         </script>
+        <!-- End of Account options -->
 
         <main id="main">
             <div id="profile-header">

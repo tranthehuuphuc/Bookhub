@@ -1,0 +1,268 @@
+/* START OF NAVBAR */
+/* START OF NAVBAR */
+/* START OF NAVBAR */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #F08A5D;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .link-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .globalnav-item:hover {
+    background-color: #f06326;
+    border-radius: 5px;
+  }
+  
+  .globalnav-item-show:hover {
+    background-color: #f06326;
+    border-radius: 5px;
+  }
+  
+  .logo-link {
+    margin-right: auto;
+  }
+  
+  nav svg {
+    fill: #fff;
+  }
+  
+  #sidebar-active {
+    display: none;
+  }
+  
+  #new-logo {
+    display: none;
+  }
+  
+  .open-sidebar-button, .close-sidebar-button {
+    display: none;
+  }
+  
+  #BookHub {
+    width: 10vw;
+    height: auto;
+    margin: 30px;
+  }
+  
+  .globalnav-item {
+    font-size: 18px;
+    font-weight: 500;
+    height: 100%;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #fff;
+    transition: background-color 0.2s ease-out;
+  }
+  
+  .globalnav-item-show {
+    font-size: 18px;
+    font-weight: 500;
+    height: 100%;
+    padding: 0 20px;
+    align-items: center;
+    text-decoration: none;
+    color: #fff;
+    transition: background-color 0.2s ease-out;
+    display: none;
+  }
+  
+  #profile-button {
+    background-color: transparent;
+    border-style: none;
+    border-radius: 20px;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    margin: auto 40px auto 10px;
+    cursor: pointer;
+    touch-action: manipulation;
+    transition: background-color 0.2s ease-out;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+  
+  #profile-button:hover {
+    background-color: #f06326;
+    border-radius: 20px;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    margin: auto 40px auto 10px;
+    cursor: pointer;
+    touch-action: manipulation;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+  
+  #profile-icon {
+    margin-top: 0;
+    width: 30px;
+    height: auto;
+  }
+  
+  @media (max-width: 900px) {
+    .link-container {
+      flex-direction: column;
+      align-items: flex-start;
+  
+      position: fixed;
+      top: 0;
+      right: -100%;
+      z-index: 10;
+      width: 300px;
+  
+      background-color: #F08A5D;
+      box-shadow: -5px 0 5px rgba(0, 0, 0, 0.25);
+      transition: 0.75s ease-out;
+    }
+  
+    .globalnav-item {
+      box-sizing: border-box;
+      height: auto;
+      width: 100%;
+      padding: 20px 30px;
+      justify-content: flex-start;
+    }
+  
+    .globalnav-item-show {
+        box-sizing: border-box;
+        height: auto;
+        width: 100%;
+        padding: 20px 30px;
+        justify-content: flex-start;
+        display: flex;
+    }
+  
+    
+  
+    .open-sidebar-button, .close-sidebar-button {
+      padding: 20px;
+      display: block;
+      margin-left: auto;
+    }
+  
+    #sidebar-active:checked ~ .link-container {
+      right: 0;
+    }
+  
+    /* Show the new logo and hide the original logo when the navbar is collapsed */
+    #new-logo {
+      display: block;
+      height: 50px; /* Adjust based on your design */
+      margin-left: 10px;
+    }
+  
+    #sidebar-active:checked ~ #overlay {
+      height: 100%;
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 9;
+    }
+  
+    #BookHub {
+      width: 150px;
+    }
+  
+    #profile-button {
+        display: none;
+        background-color: transparent;
+        border-style: none;
+        border-radius: 10px;
+        cursor: pointer;
+        margin: 20px;
+    }
+  }
+  
+  /* END OF NAVBAR */
+  /* END OF NAVBAR */
+  /* END OF NAVBAR */
+  
+  /* BEGIN OF ACCOUNT OPTIONS */
+  /* BEGIN OF ACCOUNT OPTIONS */
+  /* BEGIN OF ACCOUNT OPTIONS */
+  
+  #blur-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(20px);
+    z-index: 1;
+  }
+  
+  #account-options {
+    position: fixed;
+    top: -100%;
+    width: 100%;
+    background: white;
+    padding: 100px 150px 80px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.25);
+    z-index: 2;
+    transition: top 0.5s ease;
+    margin: 0;
+  }
+  
+  #account-options.show {
+    top: 0;
+  }
+  
+  #myprofile {
+    font-size: 18px;
+    color: #6f6f6f;
+    margin: 20px 0 0;
+  }
+  
+  .option-icons {
+    margin: 0;
+    height: auto;
+    width: 20px;
+  }
+  
+  #account-options ul {
+    list-style: none;
+    margin: 20px 0 0;
+    padding: 0;
+  }
+  
+  #account-options ul li {
+    margin: 20px 0;
+    padding: 0;
+    align-items: center;
+    display: flex;
+  }
+  #account-options ul li a {
+    font-size: 20px;
+    color: #000;
+    text-decoration: none;
+    margin: 0 15px;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  /* END OF ACCOUNT OPTIONS */
+  /* END OF ACCOUNT OPTIONS */
+  /* END OF ACCOUNT OPTIONS */
