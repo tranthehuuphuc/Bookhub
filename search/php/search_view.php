@@ -159,7 +159,7 @@ $conn->close();
     <div class="wrapper" style="margin-top: 5vw;margin-bottom: 5vw;">
         <div id="search-container">
             <form action="./php/search_view.php" method="GET">
-                <input type="search" id="search-input" placeholder="Tìm kiếm sách.." />
+                <input type="search" id="search-input" name="search" placeholder="Tìm kiếm sách.." />
                 <button id="search">Tìm kiếm</button>
             </form>
         </div>
@@ -175,7 +175,18 @@ $conn->close();
     <section id="product1" class="section-p1">
         <div class="pro-container">
             <?php require_once 'search_model.php' ?>
-            <?php if (!empty($books)): ?>
+            <?php require_once 'search_contr.php' ?>
+
+            <?php 
+            // Giả sử $pdo là đối tượng PDO đã được khởi tạo và kết nối thành công
+            // và $title là tiêu đề được nhập từ ô tìm kiếm.
+            $title = $_GET['search'] ?? ''; // Lấy giá trị từ ô tìm kiếm (GET parameter)
+            $dsn = "mysql:host=localhost;dbname=bookhub;charset=utf8mb4";
+            $pdo = new PDO($dsn, 'root', '');
+            $books = get_books($pdo, $title);
+            ?>
+
+            <?php if (check_input($books)): ?>
                 <?php foreach ($books as $book): ?>
                     <!-- <li>
                         <h2><?php echo $book['title']; ?></h2>
