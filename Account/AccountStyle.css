@@ -20,13 +20,98 @@ html, body {
     border: 0;
 }
 
-#main {
-    font-family: 'MavenPro';
-    margin: 0 14vw;
+#title-bar {
+    background-color: #fafafa;
+    color: #000;
+    margin: 0;
     padding: 0;
-    padding-top: 10vw;
-    position: relative; ;
-    z-index: 0;
+    padding: 80px 200px;
+    padding-bottom: 10px;
+}
+
+#title {
+    font-size: 23px;
+    font-weight: 500;
+    margin: 0;
+    text-align: left;
+}
+
+#helo {
+    font-size: 35px;
+    font-weight: 600;
+    margin: 20px 0;
+    margin-top: 60px;
+}
+
+
+.heading {
+    font-size: 32px;
+    font-weight: 600;
+    margin: 20px 0;
+    margin-top: 80px;
+}
+
+.slider-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    margin: auto;
+    padding: 20px 80px;
+}
+
+main div button {
+    position: absolute;
+    background-color: #f06326;
+    border: none;
+    border-radius: 20px;
+    color: #fff;
+    cursor: pointer;
+    height: 40px;
+    margin: 0;
+    padding: 0;
+    width: 40px;
+    transition: background-color 0.2s ease-out;
+}
+
+main div button.pre {
+    left: 0px;
+}
+
+main div button.next {
+    right: 10px;
+}
+
+#book-slider {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.book-container {
+    border: #000 solid 0.5px;
+    display: grid;
+    margin: 0 30px;
+    padding: 0;
+    width: 250px;
+    height: auto;
+    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.2);
+    transition: transform 0.5s ease-in-out;
+}
+
+.book-thumb {
+    width: 250px;
+    height: auto;
+}
+
+.book-container:hover {
+    width: 250px;
+    height: auto;
+    box-shadow: 0px 0px 15px 2px rgba(0, 0, 0, 0.4);
+}
+
+.book-thumb:hover {
+    cursor: pointer;
+    width: 250px;
+    height: auto;
 }
 
 
