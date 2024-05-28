@@ -120,6 +120,8 @@ $conn->close();
     <title>Search | Bookhub</title>
     <link rel="stylesheet" type="text/css" href="../../style.css">
     <link rel="stylesheet" type="text/css" href="../search.css">
+    <link rel="stylesheet" type="text/css" href="../../footer.css">
+    <link rel="stylesheet" type="text/css" href="../../navbar.css">
     <link rel="apple-touch-icon" sizes="180x180" href="../search/favicon_io/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="../search/favicon_io/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../search/favicon_io/favicon-16x16.png">
