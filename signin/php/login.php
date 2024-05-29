@@ -45,7 +45,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $_SESSION["last_regenerate"] = time();
 
-        header("Location: ../../Account/AccountSettings.php?login=success");
+        if ($result["role"] == "admin") {
+            header("Location: ../../admin/admin.php");
+        } else {
+            header("Location: ../../Account/AccountSettings.html");
+        }
 
         $pdo = null;
         $stmt = null;

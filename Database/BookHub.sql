@@ -2,14 +2,14 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Apr 01, 2024 at 08:29 PM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Host: 127.0.0.1
+-- Generation Time: May 29, 2024 at 09:37 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
-SET time_zone = "+07:00";
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -18,43 +18,37 @@ SET time_zone = "+07:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `BookHub`
+-- Database: `bookhub`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Account`
+-- Table structure for table `authors`
 --
 
-CREATE TABLE `Account` (
-  `account_id` int(11) NOT NULL,
-  `username` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `Author`
---
-
-CREATE TABLE `Author` (
+CREATE TABLE `authors` (
   `author_id` int(11) NOT NULL,
   `author_name` varchar(255) NOT NULL,
   `birth_date` date DEFAULT NULL,
   `nationality` varchar(100) DEFAULT NULL,
   `biography` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+
+--
+-- Dumping data for table `authors`
+--
+
+INSERT INTO `authors` (`author_id`, `author_name`, `birth_date`, `nationality`, `biography`) VALUES
+(22, 'Nguyễn Nhật Ánh', '1955-05-07', 'Việt Nam', 'Nguyễn Nhật Ánh (sinh ngày 7 tháng 5 năm 1955)[1] là một nam nhà văn người Việt Nam. Được xem là một trong những nhà văn hiện đại xuất sắc nhất Việt Nam hiện nay, ông được biết đến qua nhiều tác phẩm văn học về đề tài tuổi trẻ. Nhiều tác phẩm của ông được độc giả và giới chuyên môn đánh giá cao, đa số đều đã được chuyển thể thành phim.\n\nÔng lần lượt viết về sân khấu, phụ trách mục tiểu phẩm, phụ trách trang thiếu nhi và hiện nay là bình luận viên thể thao trên báo Sài Gòn Giải phóng Chủ nhật với bút danh Chu Đình Ngạn. Ngoài ra, ông còn có những bút danh khác như Anh Bồ Câu, Lê Duy Cật, Đông Phương Sóc, Sóc Phương Đông.');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Book`
+-- Table structure for table `books`
 --
 
-CREATE TABLE `Book` (
+CREATE TABLE `books` (
   `book_id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `author_id` int(11) DEFAULT NULL,
@@ -65,225 +59,337 @@ CREATE TABLE `Book` (
   `price` decimal(10,2) DEFAULT NULL,
   `available_quantity` int(11) DEFAULT NULL,
   `cover_image` varchar(255) DEFAULT NULL,
-  `rating` float DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
+  `rating` float DEFAULT NULL,
+  `author` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Category`
+-- Table structure for table `book_categories`
 --
 
-CREATE TABLE `Category` (
+CREATE TABLE `book_categories` (
+  `book_id` int(11) NOT NULL,
+  `category_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `book_chapters`
+--
+
+CREATE TABLE `book_chapters` (
+  `chapter_id` int(11) NOT NULL,
+  `book_id` int(11) NOT NULL,
+  `chapter_title` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `book_information`
+--
+
+CREATE TABLE `book_information` (
+  `book_id` int(11) NOT NULL,
+  `number_of_pages` int(11) DEFAULT NULL,
+  `language` varchar(50) DEFAULT NULL,
+  `format` varchar(50) DEFAULT NULL,
+  `ISBN` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `categories`
+--
+
+CREATE TABLE `categories` (
   `category_id` int(11) NOT NULL,
   `category_name` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`category_id`, `category_name`) VALUES
+(21, 'Khoa học viễn tưởng'),
+(22, 'Kinh dị');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `OrderDetail`
+-- Table structure for table `orderdetails`
 --
 
-CREATE TABLE `OrderDetail` (
+CREATE TABLE `orderdetails` (
   `order_detail_id` int(11) NOT NULL,
   `order_id` int(11) DEFAULT NULL,
   `book_id` int(11) DEFAULT NULL,
   `quantity` int(11) DEFAULT NULL,
   `price` decimal(10,2) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Orders`
+-- Table structure for table `orders`
 --
 
-CREATE TABLE `Orders` (
+CREATE TABLE `orders` (
   `order_id` int(11) NOT NULL,
-  `account_id` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
   `order_date` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Profile`
+-- Table structure for table `ratings`
 --
 
-CREATE TABLE `Profile` (
+CREATE TABLE `ratings` (
+  `rating_id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `book_id` int(11) DEFAULT NULL,
+  `rating` decimal(3,2) DEFAULT NULL,
+  `review` text DEFAULT NULL,
+  `rating_date` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `userprofiles`
+--
+
+CREATE TABLE `userprofiles` (
   `profile_id` int(11) NOT NULL,
-  `account_id` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
   `full_name` varchar(255) DEFAULT NULL,
   `address` varchar(255) DEFAULT NULL,
   `phone_number` varchar(20) DEFAULT NULL,
   `bio` text DEFAULT NULL,
   `avatar_url` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Rating`
+-- Table structure for table `users`
 --
 
-CREATE TABLE `Rating` (
-  `rating_id` int(11) NOT NULL,
-  `account_id` int(11) DEFAULT NULL,
-  `book_id` int(11) DEFAULT NULL,
-  `rating` decimal(3,2) DEFAULT NULL,
-  `review` text DEFAULT NULL,
-  `rating_date` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
+CREATE TABLE `users` (
+  `user_id` int(11) NOT NULL,
+  `username` varchar(255) DEFAULT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `role` varchar(20) NOT NULL DEFAULT 'user'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`user_id`, `username`, `email`, `password`, `role`) VALUES
+(1, 'vy', '22521709@gm.uit.edu.vn', '$2y$12$mMwhp9prqP7HMJBjkyj61egQIOqpBodoVYqA5IPrcoK.VXGS4qmxq', 'admin');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `Account`
+-- Indexes for table `authors`
 --
-ALTER TABLE `Account`
-  ADD PRIMARY KEY (`account_id`);
-
---
--- Indexes for table `Author`
---
-ALTER TABLE `Author`
+ALTER TABLE `authors`
   ADD PRIMARY KEY (`author_id`);
 
 --
--- Indexes for table `Book`
+-- Indexes for table `books`
 --
-ALTER TABLE `Book`
+ALTER TABLE `books`
   ADD PRIMARY KEY (`book_id`),
   ADD KEY `author_id` (`author_id`),
   ADD KEY `category_id` (`category_id`);
 
 --
--- Indexes for table `Category`
+-- Indexes for table `book_categories`
 --
-ALTER TABLE `Category`
+ALTER TABLE `book_categories`
+  ADD PRIMARY KEY (`book_id`,`category_id`),
+  ADD KEY `fk_book_cat_cat_id` (`category_id`);
+
+--
+-- Indexes for table `book_chapters`
+--
+ALTER TABLE `book_chapters`
+  ADD PRIMARY KEY (`chapter_id`),
+  ADD KEY `fk_book_chapter_id` (`book_id`);
+
+--
+-- Indexes for table `book_information`
+--
+ALTER TABLE `book_information`
+  ADD PRIMARY KEY (`book_id`);
+
+--
+-- Indexes for table `categories`
+--
+ALTER TABLE `categories`
   ADD PRIMARY KEY (`category_id`);
 
 --
--- Indexes for table `OrderDetail`
+-- Indexes for table `orderdetails`
 --
-ALTER TABLE `OrderDetail`
+ALTER TABLE `orderdetails`
   ADD PRIMARY KEY (`order_detail_id`),
   ADD KEY `order_id` (`order_id`),
-  ADD KEY `book_id` (`book_id`);
+  ADD KEY `orderdetails_ibfk_2` (`book_id`);
 
 --
--- Indexes for table `Orders`
+-- Indexes for table `orders`
 --
-ALTER TABLE `Orders`
+ALTER TABLE `orders`
   ADD PRIMARY KEY (`order_id`),
-  ADD KEY `account_id` (`account_id`);
+  ADD KEY `user_id` (`user_id`);
 
 --
--- Indexes for table `Profile`
+-- Indexes for table `ratings`
 --
-ALTER TABLE `Profile`
-  ADD PRIMARY KEY (`profile_id`),
-  ADD KEY `account_id` (`account_id`);
-
---
--- Indexes for table `Rating`
---
-ALTER TABLE `Rating`
+ALTER TABLE `ratings`
   ADD PRIMARY KEY (`rating_id`),
-  ADD KEY `account_id` (`account_id`),
-  ADD KEY `book_id` (`book_id`);
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `ratings_ibfk_2` (`book_id`);
+
+--
+-- Indexes for table `userprofiles`
+--
+ALTER TABLE `userprofiles`
+  ADD PRIMARY KEY (`profile_id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`user_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `Account`
+-- AUTO_INCREMENT for table `authors`
 --
-ALTER TABLE `Account`
-  MODIFY `account_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `authors`
+  MODIFY `author_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
--- AUTO_INCREMENT for table `Author`
+-- AUTO_INCREMENT for table `books`
 --
-ALTER TABLE `Author`
-  MODIFY `author_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `books`
+  MODIFY `book_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
--- AUTO_INCREMENT for table `Book`
+-- AUTO_INCREMENT for table `book_chapters`
 --
-ALTER TABLE `Book`
-  MODIFY `book_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `book_chapters`
+  MODIFY `chapter_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `Category`
+-- AUTO_INCREMENT for table `categories`
 --
-ALTER TABLE `Category`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `categories`
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
--- AUTO_INCREMENT for table `OrderDetail`
+-- AUTO_INCREMENT for table `orderdetails`
 --
-ALTER TABLE `OrderDetail`
+ALTER TABLE `orderdetails`
   MODIFY `order_detail_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `Orders`
+-- AUTO_INCREMENT for table `orders`
 --
-ALTER TABLE `Orders`
+ALTER TABLE `orders`
   MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `Profile`
+-- AUTO_INCREMENT for table `ratings`
 --
-ALTER TABLE `Profile`
-  MODIFY `profile_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `ratings`
+  MODIFY `rating_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 
 --
--- AUTO_INCREMENT for table `Rating`
+-- AUTO_INCREMENT for table `userprofiles`
 --
-ALTER TABLE `Rating`
-  MODIFY `rating_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `userprofiles`
+  MODIFY `profile_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `Book`
+-- Constraints for table `books`
 --
-ALTER TABLE `Book`
-  ADD CONSTRAINT `book_ibfk_1` FOREIGN KEY (`author_id`) REFERENCES `Author` (`author_id`),
-  ADD CONSTRAINT `book_ibfk_2` FOREIGN KEY (`category_id`) REFERENCES `Category` (`category_id`);
+ALTER TABLE `books`
+  ADD CONSTRAINT `books_ibfk_1` FOREIGN KEY (`author_id`) REFERENCES `authors` (`author_id`),
+  ADD CONSTRAINT `books_ibfk_2` FOREIGN KEY (`category_id`) REFERENCES `categories` (`category_id`);
 
 --
--- Constraints for table `OrderDetail`
+-- Constraints for table `book_categories`
 --
-ALTER TABLE `OrderDetail`
-  ADD CONSTRAINT `orderdetail_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `Orders` (`order_id`),
-  ADD CONSTRAINT `orderdetail_ibfk_2` FOREIGN KEY (`book_id`) REFERENCES `Book` (`book_id`);
+ALTER TABLE `book_categories`
+  ADD CONSTRAINT `fk_book_cat_book_id` FOREIGN KEY (`book_id`) REFERENCES `books` (`book_id`),
+  ADD CONSTRAINT `fk_book_cat_cat_id` FOREIGN KEY (`category_id`) REFERENCES `categories` (`category_id`);
 
 --
--- Constraints for table `Orders`
+-- Constraints for table `book_chapters`
 --
-ALTER TABLE `Orders`
-  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `Account` (`account_id`);
+ALTER TABLE `book_chapters`
+  ADD CONSTRAINT `fk_book_chapter_id` FOREIGN KEY (`book_id`) REFERENCES `books` (`book_id`);
 
 --
--- Constraints for table `Profile`
+-- Constraints for table `book_information`
 --
-ALTER TABLE `Profile`
-  ADD CONSTRAINT `profile_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `Account` (`account_id`);
+ALTER TABLE `book_information`
+  ADD CONSTRAINT `fk_book_info_id` FOREIGN KEY (`book_id`) REFERENCES `books` (`book_id`);
 
 --
--- Constraints for table `Rating`
+-- Constraints for table `orderdetails`
 --
-ALTER TABLE `Rating`
-  ADD CONSTRAINT `rating_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `Account` (`account_id`),
-  ADD CONSTRAINT `rating_ibfk_2` FOREIGN KEY (`book_id`) REFERENCES `Book` (`book_id`);
+ALTER TABLE `orderdetails`
+  ADD CONSTRAINT `orderdetails_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`),
+  ADD CONSTRAINT `orderdetails_ibfk_2` FOREIGN KEY (`book_id`) REFERENCES `books` (`book_id`);
+
+--
+-- Constraints for table `orders`
+--
+ALTER TABLE `orders`
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
+
+--
+-- Constraints for table `ratings`
+--
+ALTER TABLE `ratings`
+  ADD CONSTRAINT `ratings_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
+  ADD CONSTRAINT `ratings_ibfk_2` FOREIGN KEY (`book_id`) REFERENCES `books` (`book_id`);
+
+--
+-- Constraints for table `userprofiles`
+--
+ALTER TABLE `userprofiles`
+  ADD CONSTRAINT `userprofiles_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

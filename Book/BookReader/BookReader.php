@@ -1,5 +1,9 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +13,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <title>Book Detail | BookHub</title>
     <link rel="stylesheet" type="text/css" href="../../style.css">
+    <link rel="stylesheet" type="text/css" href="../../navbar.css">
+    <link rel="stylesheet" type="text/css" href="../../footer.css">
     <link rel="stylesheet" type="text/css" href="./BookDetail.css">
     <link rel="apple-touch-icon" sizes="180x180" href="../../favicon_io/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="../../favicon_io/favicon-32x32.png">
@@ -44,7 +50,7 @@
             <a class="globalnav-item" href="../../discuss/discuss.php">Thảo luận</a>
             <a class="globalnav-item" href="../../signin/signin.php">Đăng nhập</a>
             <a class="globalnav-item" href="../../search/search.html">Tìm kiếm</a>
-            <button id="profile-button" onclick="window.location.href='../../Account/AccountProfile.html'"><img id="profile-icon" src="../../Account/AccountAssets/account.png" alt="Profile Icon"></button>
+            <button id="profile-button" onclick="window.location.href='../../Account/AccountProfile.html'"><img id="profile-icon" src="../../assets/account.png" alt="Profile Icon"></button>
         </div>
 
 
