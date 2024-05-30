@@ -60,6 +60,46 @@ html, body {
     padding: 0;
 }
 
+.gray-bar {
+    background-color: #f9f9f9;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0 200px;
+}
+
+.pretty-box {
+    justify-content: left;
+    background-color: #ffffff;
+    border-radius: 25px;;
+    display: block;
+    margin: 40px 0;
+    padding: 30px 50px;
+    width: 38%;
+    min-height: 200px;
+}
+
+.box-link {
+    font-size: 17px;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+    color: #007bff;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.box-link:hover {
+    text-decoration: underline;
+}
+
+.header-box {
+    font-size: 32px;
+    font-weight: 500;
+    margin: 0;
+}
+
 .row {
     display: flex;
     flex-wrap: wrap;
@@ -182,9 +222,9 @@ html, body {
     align-items: center;
     justify-content: center;
     margin: 0;
-    padding: 40px;
+    padding: 30px 50px;
     z-index: 1001;
-    width: 45%;
+    width: auto;
 }
 
 #shipping-settings.show, #payment-settings.show, #account-settings.show {
@@ -202,7 +242,7 @@ html, body {
     justify-content: left;
     align-items: center;
     height: 50px;
-    width: 500px;
+    width: auto;
     display: block;
     margin: 10px 0;
     padding: 10px 0 0 25px;
@@ -224,7 +264,7 @@ html, body {
     display: block;
     margin: 5px 0 0 0;
     padding: 0;
-    width: 95%;
+    width: auto;
     height: auto;
 }
 
@@ -294,6 +334,20 @@ html, body {
         font-size: 20px;
     }
 
+    .gray-bar {
+        padding: 0 20px;
+        width: fit-content;
+    }
+
+    .pretty-box {
+        margin: 20px 0;
+        min-width: 290px;
+    }
+
+    .box-link {
+        font-size: 15px;
+    }
+
     .row {
         padding-left: 20px;
         padding-bottom: 20px;
@@ -321,7 +375,7 @@ html, body {
     }
 
     .book-thumb {
-        width: 80%;
+        width: 75%;
         margin: 15px;
     }
 
@@ -330,19 +384,19 @@ html, body {
     }
 
     #shipping-settings, #payment-settings, #account-settings {
-        border-radius: 0;
         padding: 20px;
-        width: auto;
+        width: 85%;
     }
 
     #shipping-settings.show, #payment-settings.show, #account-settings.show {
         top: 50%;
-        left: 0;
-        transform: translate(0, -50%);
+        left: 50%;
+        transform: translate(-50%, -50%);
     }
 
     .input-field {
-        width: 250px;
+        margin: 5px 0;
+        padding: 10px 0 0 15px;
     }
 
     .field-label {
@@ -350,20 +404,13 @@ html, body {
     }
 
     .input-box {
-        width: 200px;
+        font-size: 15px;
+        margin: 5px 0 0 0;
     }
 
     .submit-button {
         font-size: 15px;
         width: 20%;
         height: 5%;
-    }
-
-    .input-field {
-        width: 100%;
-    }
-
-    .input-box {
-        width: 100%;
     }
 }
