@@ -24,7 +24,6 @@ html, body {
     background-color: #f9f9f9;
     color: #000;
     margin: 0;
-    padding: 0;
     padding: 80px 200px;
     padding-bottom: 10px;
 }
@@ -39,8 +38,7 @@ html, body {
 .sub-title {
     font-size: 35px;
     font-weight: 600;
-    margin: 20px 0;
-    margin-top: 60px;
+    margin: 60px 0 20px;
 }
 
 .header {
@@ -265,4 +263,73 @@ html, body {
 
 .cancel-button:hover {
     background-color: #8f8f8f;
+}
+
+@media (max-width: 450px) {
+    .title-bar {
+        padding: 80px 20px 20px;
+    }
+
+    .title {
+        font-size: 20px;
+    }
+
+    .sub-title {
+        font-size: 30px;
+        margin: 30px 0 10px;
+    }
+
+    .header {
+        font-size: 28px;
+        margin-top: 50px;
+        margin-bottom: 10px;
+    }
+
+    .main {
+        padding: 0 20px;
+    }
+
+    .row {
+        display: flex;
+    }
+
+    .col1 {
+        width: 100px;
+    }
+
+    .col2 {
+        width: 100%;
+    }
+
+    .col3 {
+        width: 100%;
+    }
+
+    .book-list {
+        width: 100%;
+    }
+
+    .book-thumb {
+        width: 100%;
+    }
+
+    .slider-button {
+        font-size: 15px;
+        width: 20px;
+        height: 20px;
+    }
+
+    .submit-button {
+        font-size: 15px;
+        width: 20%;
+        height: 5%;
+    }
+
+    .input-field {
+        width: 100%;
+    }
+
+    .input-box {
+        width: 100%;
+    }
 }
