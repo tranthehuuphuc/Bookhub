@@ -20,8 +20,8 @@ html, body {
     border: 0;
 }
 
-#title-bar {
-    background-color: #fafafa;
+.title-bar {
+    background-color: #f9f9f9;
     color: #000;
     margin: 0;
     padding: 0;
@@ -29,242 +29,240 @@ html, body {
     padding-bottom: 10px;
 }
 
-#title {
+.title {
     font-size: 23px;
     font-weight: 500;
     margin: 0;
     text-align: left;
 }
 
-#helo {
+.sub-title {
     font-size: 35px;
     font-weight: 600;
     margin: 20px 0;
     margin-top: 60px;
 }
 
-
-.heading {
+.header {
     font-size: 32px;
     font-weight: 600;
-    margin: 20px 0;
+    margin: 0px;
     margin-top: 80px;
+    margin-bottom: 20px;
 }
 
-.slider-container {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-    margin: auto;
-    padding: 20px 80px;
-}
-
-main div button {
-    position: absolute;
-    background-color: #f06326;
-    border: none;
-    border-radius: 20px;
-    color: #fff;
-    cursor: pointer;
-    height: 40px;
+.small-header {
+    font-size: 24px;
+    font-weight: 500;
     margin: 0;
     padding: 0;
-    width: 40px;
-    transition: background-color 0.2s ease-out;
 }
 
-main div button.pre {
-    left: 0px;
-}
-
-main div button.next {
-    right: 10px;
-}
-
-#book-slider {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-}
-
-.book-container {
-    border: #000 solid 0.5px;
-    display: grid;
-    margin: 0 30px;
+.bullet {
+    font-size: 17px;
+    font-weight: 500;
+    margin: 7px 0;
     padding: 0;
-    width: 250px;
-    height: auto;
-    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.2);
-    transition: transform 0.5s ease-in-out;
+}
+.row {
+    display: inline-flex;
+    padding-bottom: 50px;
+}
+
+.col1 {
+    display: block;
+    align-items: top;
+    justify-content: left;
+    width: 400px
+}
+
+.col2 {
+    display: block;
+    align-items: top;
+    justify-content: left;
+    width: 300px;
+}
+
+.col3 {
+    display: block;
+    align-items: top;
+    justify-content: left;
+    width: 300px;
+
+}
+
+.properties {
+    font-size: 17px;
+    font-weight: 400;
+    margin: 7px 0;
+}
+
+.edit {
+    font-size: 17px;
+    font-weight: 400;
+    margin: 7px 0;
+    padding: 0;
+    color: #007bff;
+    cursor: pointer;
+}
+
+.edit:hover {
+    text-decoration: underline;
+}
+
+.main {
+    padding: 0 200px;
+}
+
+.book-slider {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+.slider-button {
+    background-color: #f0f0f0;
+    border-radius: 30px;
+    cursor: pointer;
+    display: flex; 
+    font-size: 20px;
+    padding: 5px;
+    top: 50%;
+    transition: 0.2s;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    justify-content: center;
+    align-items: center;
+}
+
+.slider-button:hover {
+    background-color: #dadada;
+}
+
+.prev-button {
+    left: 0;
+}
+
+.next-button {
+    right: 0;
+}
+
+.book-list {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding: 0 25px 0 0;
+    margin: 0;
+    width: 900px;
 }
 
 .book-thumb {
     width: 250px;
     height: auto;
-}
-
-.book-container:hover {
-    width: 250px;
-    height: auto;
-    box-shadow: 0px 0px 15px 2px rgba(0, 0, 0, 0.4);
+    margin: 25px;
+    padding: 0;
+    box-shadow: 0px 0px 5px 1px gray;
 }
 
 .book-thumb:hover {
-    cursor: pointer;
-    width: 250px;
-    height: auto;
+    box-shadow: 0px 0px 10px 1px gray;
+    transition: 0.2s;
 }
 
-
-#profile-header {
-    align-items: center;
-    display: flex;
-    margin: 0;
-    margin-top: 4vw;
-    padding: 0;
-}
-
-#profile-avatar {
-    border: solid 0.4vw #f08a5d;
-    border-radius: 50%;
-    width: 14vw;
-    height: auto;
-    margin: 0;
-    padding: 0;
-}
-
-#profile-name {
-    color: #000000;
-    font-size: 3vw;
-    font-weight: 500;
-    margin: 0;
-    margin-bottom: 0.5vw;
-    padding: 0;
-}
-
-#profile-content {
-    margin: 0;
-    margin-top: 1vw;
-    padding: 0;
-}
-
-#profile-intro {
-    color: #000000;
-    background-color: #f9f9f9;
-    border-radius: 1vw;
-    font-size: 1.3vw;
-    max-height: fit-content;
-    margin: 0;
-    padding: 1vw 2vw;
-}
-
-.intro {
-    background-color: #ffffff;
-    border: solid 0.1vw #000000;
-    border-radius: 2vw;
-    display: flex;
-    margin: auto;
-    padding: 0.5vw 1vw;
-}
-
-#profile-posts {
-    color: #000000;
-    font-size: 1.5vw;
-    width: 100%;
-    height: auto;
-    margin: 2vw 0;
-    padding: 0;
-}
-
-.post {
-    color: #000000;
-    background-color: #f9f9f9;
-    border-radius: 1vw;
-    width: 28%;
-    height: fit-content;
-    margin: auto;
-    padding: 1.5vw;
-    margin-bottom: 2vw;
-}
-
-.post-image {
-    width: 100%;
-    height: auto;
-    margin: auto;
-    padding: 0;
-}
-
-#list-header {
-    align-items: center;
-    background-color: #f9f9f9;
-    border-radius: 0.5vw;
-    display: flex;
-    font-size: 1.25vw;
-    font-weight: 400;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    position: sticky;
-}
-
-.receipt {
-    align-items: center;
-    background-color: #f9f9f9;
-    border-radius: 0.5vw;
-    display: flex;
-    font-size: 1.25vw;
-    font-weight: 400;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-}
-
-.receipt-category {
+#shipping-settings, #payment-settings, #account-settings{
+    border-radius: 25px;
+    position: fixed;
+    background-color: rgb(255, 255, 255);
     color: #000;
-    margin: auto;
-    padding: 2vw 1vw;
-    text-align: center;
-    text-decoration: none;
-    
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 40px;
+    z-index: 1001;
+    width: 45%;
 }
 
-.container {
-    margin: auto;
-    margin-left: 0;
-    background-color: #fff;
-    padding: 2vw;
-    width: 30%;
+#shipping-settings.show, #payment-settings.show, #account-settings.show {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
 }
 
-.form-group {
-    margin-bottom: 1vw;
-}
-
-label {
-    font-weight: 500;
-    font-size: 1.25vw;
-}
-
-input[type="text"],
-input[type="email"],
-input[type="password"] {
-    width: 100%;
-    padding: 0.5vw;
-    border: 0.1vw solid #ccc;
-    border-radius: 4px;
-}
-
-button {
+.input-field {
+    border-radius: 15px;
+    background-color: #ffffff;
+    border: solid 1px rgb(0, 0, 0);
+    color: #000;
+    justify-content: left;
+    align-items: center;
+    height: 50px;
+    width: 500px;
     display: block;
-    width: 40%;
-    padding: 0.5vw;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 0.4vw;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    margin: 10px 0;
+    padding: 10px 0 0 25px;
 }
 
-button:hover {
+.field-label {
+    color: gray;
+    font-size: 15px;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+}
+
+.input-box {
+    border: none;
+    color: #000000;
+    font-weight: 400;
+    font-size: 18px;
+    display: block;
+    margin: 5px 0 0 0;
+    padding: 0;
+    width: 95%;
+    height: auto;
+}
+
+.input-box:focus {
+    outline: none;
+}
+
+.submit-field {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.submit-button {
+    background-color: #007bff;
+    border-radius: 20px;
+    color: #ffffff;
+    cursor: pointer;
+    display: flex;
+    font-size: 20px;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    padding: 10px 20px;
+    transition: 0.2s;
+    width: 10%;
+    height: 5%;
+}
+
+.submit-button:hover {
     background-color: #0056b3;
+}
+
+.cancel-button {
+    background-color: #afafaf;
+}
+
+.cancel-button:hover {
+    background-color: #8f8f8f;
 }
