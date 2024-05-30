@@ -7,6 +7,11 @@
     justify-content: center;
 }
 
+@font-face {
+    font-family: 'MavenPro';
+    src: url('../fonts/MavenPro-VariableFont_wght.ttf');
+}
+
 h2 {
     color: #333;
     margin-bottom: 20px;

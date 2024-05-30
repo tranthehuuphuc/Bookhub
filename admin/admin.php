@@ -1,6 +1,8 @@
 <?php
+require_once '../signin/php/config_session.php';
 session_start();
-if (!isset($_SESSION['user_username'])) {
+
+if (!isset($_SESSION['user_username']) || $_SESSION['user_role'] != 'admin') {
     header("Location: ../signin/signin.php");
     exit();
 }
@@ -67,10 +69,10 @@ require '../admin/dbh.php';
                 <a class="globalnav-item" href="../discuss/discuss.php">Thảo luận</a>
                 <a class="globalnav-item" href="../signin/signin.php">Đăng nhập</a>
                 <a class="globalnav-item" href="../search/search.html">Tìm kiếm</a>
-                <a class="globalnav-item-show" href="../Account/AccountReceipts.html">Đơn hàng</a>
-                <a class="globalnav-item-show" href="../Account/AccountCart.html">Mục đã lưu</a>
-                <a class="globalnav-item-show" href="../Account/AccountSettings.html">Tài khoản</a>
-                <a class="globalnav-item-show" href="../Account/AccountAssets/join.png">Đăng xuất</a>
+                <a class="globalnav-item-show" href="../account/AccountReceipts.html">Đơn hàng</a>
+                <a class="globalnav-item-show" href="../account/AccountCart.html">Mục đã lưu</a>
+                <a class="globalnav-item-show" href="../account/AccountSettings.html">Tài khoản</a>
+                <a class="globalnav-item-show" href="../account/AccountAssets/join.png">Đăng xuất</a>
                 <button id="profile-button"><img id="profile-icon" src="../assets/account.png" alt="Profile Icon"></button>
             </div>
         </nav>
@@ -81,9 +83,9 @@ require '../admin/dbh.php';
             <p id="myprofile">Hồ sơ của tôi</p>
             <div style="background-color: #d9d9d9; width: 25%; height: 0.05vw; margin: 0; padding: 0;"></div>
             <ul>
-                <li><img class="option-icons" src="../assets/orders.png"><a href="../Account/orders.html">Đơn hàng</a></li>
-                <li><img class="option-icons" src="../assets/saves.png"><a href="../Account/saves.html">Mục đã lưu</a></li>
-                <li><img class="option-icons" src="../assets/setting.png"><a href="../Account/profile.html">Tài khoản</a></li>
+                <li><img class="option-icons" src="../assets/orders.png"><a href="../account/orders.html">Đơn hàng</a></li>
+                <li><img class="option-icons" src="../assets/saves.png"><a href="../account/saves.html">Mục đã lưu</a></li>
+                <li><img class="option-icons" src="../assets/setting.png"><a href="../account/profile.html">Tài khoản</a></li>
                 <li><img class="option-icons" src="../assets/join.png"><a href="../index.html">Đăng xuất</a></li>
             </ul>
         </div>
@@ -228,7 +230,7 @@ require '../admin/dbh.php';
                     <label for="chapters">Danh sách chương:</label>
                     <textarea rows="5" id="chapters" name="chapters" required></textarea>
                 </div>
-                <button type="submit">Thêm sách</button>
+                <button type="submit"><p>Thêm sách</p></button>
             </form>
         </div>
 
@@ -239,7 +241,7 @@ require '../admin/dbh.php';
                     <label for="category_name">Tên thể loại:</label>
                     <input type="text" id="category_name" name="category_name" required>
                 </div>
-                <button type="submit">Thêm thể loại</button>
+                <button type="submit"><p>Thêm thể loại</p></button>
             </form>
         </div>
 
@@ -262,7 +264,7 @@ require '../admin/dbh.php';
                     <label for="biography">Tiểu sử:</label>
                     <textarea rows="5" id="biography" name="biography"></textarea>
                 </div>
-                <button type="submit">Thêm tác giả</button>
+                <button type="submit"><p>Thêm tác giả</p></button>
             </form>
         </div>
     </div>

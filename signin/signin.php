@@ -47,10 +47,10 @@ require_once "php/login_view.php";
           <a class="globalnav-item" href="../discuss/discuss.php">Thảo luận</a>
           <a class="globalnav-item" href="../signin/signin.php">Đăng nhập</a>
           <a class="globalnav-item" href="../search/search.html">Tìm kiếm</a>
-          <a class="globalnav-item-show" href="../Account/AccountReceipts.html">Đơn hàng</a>
-          <a class="globalnav-item-show" href="../Account/AccountCart.html">Mục đã lưu</a>
-          <a class="globalnav-item-show" href="../Account/AccountSettings.html">Tài khoản</a>
-          <a class="globalnav-item-show" href="../Account/AccountAssets/join.png">Đăng xuất</a>
+          <a class="globalnav-item-show" href="../account/AccountReceipts.html">Đơn hàng</a>
+          <a class="globalnav-item-show" href="../account/AccountCart.html">Mục đã lưu</a>
+          <a class="globalnav-item-show" href="../account/AccountSettings.html">Tài khoản</a>
+          <a class="globalnav-item-show" href="../account/AccountAssets/join.png">Đăng xuất</a>
           <button id="profile-button"><img id="profile-icon" src="../assets/account.png" alt="Profile Icon"></button>
       </div>
   </nav>
