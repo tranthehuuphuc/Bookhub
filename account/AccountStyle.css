@@ -25,7 +25,7 @@ html, body {
 }
 
 .title-bar {
-    background-color: #f9f9f9;
+    background-color: #f8f8f8;
     color: #000;
     margin: 0;
     padding: 80px 200px;
@@ -61,7 +61,7 @@ html, body {
 }
 
 .gray-bar {
-    background-color: #f9f9f9;
+    background-color: #f8f8f8;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -306,6 +306,43 @@ html, body {
     background-color: #8f8f8f;
 }
 
+
+/* START OF SAVES PAGE */
+.saves-intro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+}
+
+.intro-header {
+    font-size: 48px;
+    font-weight: 500;
+    margin: 30px 0 0;
+    padding: 0;
+}
+
+.intro-icon {
+    margin: 20px 0;
+    padding: 0;
+    width: 40px;
+    height: auto;
+}
+
+.intro-properties {
+    font-size: 24px;
+    font-weight: 400;
+    margin: 0 0 30px;
+    padding: 0;
+    text-align: center;
+}
+/* END OF SAVES PAGE */
+
+
+
+/* START OF RESPONSIVE DESIGN */
 @media (max-width: 767px) {
     .main {
         padding: 0 20px;
@@ -335,13 +372,15 @@ html, body {
     }
 
     .gray-bar {
-        padding: 0 20px;
-        width: fit-content;
+        justify-content: center;
+        padding: 10px;
+        width: auto;
     }
 
     .pretty-box {
-        margin: 20px 0;
-        min-width: 290px;
+        padding: 40px 50px;
+        margin: 10px;
+        min-width: 260px;
     }
 
     .box-link {
@@ -413,4 +452,22 @@ html, body {
         width: 20%;
         height: 5%;
     }
+
+    .saves-intro {
+        padding: 0 20px;
+    }
+
+    .intro-header {
+        font-size: 40px;
+    }
+
+    .intro-icon {
+        width: 30px;
+        margin: 10px 0;
+    }
+
+    .intro-properties {
+        font-size: 20px;
+    }
 }
+
