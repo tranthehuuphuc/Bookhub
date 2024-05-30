@@ -10,7 +10,9 @@ require_once "php/login_view.php";
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <title>Sign in | Bookhub</title>
-    <link rel="stylesheet" type="text/css" href="../signin/signin.css">
+    <link rel="stylesheet" type="text/css" href="./signin.css">
+    <link rel="stylesheet" type="text/css" href="../navbar.css">
+    <link rel="stylesheet" type="text/css" href="../footer.css">
     <script
       src="https://kit.fontawesome.com/64d58efce2.js"
       crossorigin="anonymous"
@@ -23,35 +25,87 @@ require_once "php/login_view.php";
 </head>
 <body>
 
-    <nav class="navbar">
-            <input type="checkbox" id="sidebar-active">
+  <!-- Navbar -->
+  <nav class="navbar">
+      <input type="checkbox" id="sidebar-active">
+          <!-- New logo image that only appears when the navbar is collapsed -->
+      <a href="../Bookhub.html"><img id="new-logo" src="../assets/BookHub.png" alt="New Logo"></a>
 
-            <!-- New logo image that only appears when the navbar is collapsed -->
-            <img id="new-logo" src="../assets/BookHub.png" alt="New Logo">
+      <label for="sidebar-active" class="open-sidebar-button">
+          <svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32" fill="#FFFFFF"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg>
+      </label>
 
-            <label for="sidebar-active" class="open-sidebar-button">
-                <svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32" fill="#FFFFFF"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg>
-            </label>
+      <label id="overlay" for="sidebar-active"></label>
 
-            <label id="overlay" for="sidebar-active"></label>
+      <div class="link-container">
+          <label for="sidebar-active" class="close-sidebar-button">
+              <svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32" fill="#FFFFFF"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
+          </label>
+          
+          <a class="logo-link" href="../Bookhub.html"><img id="BookHub" src="../assets/logo.png" alt="BookHub"></a>
+          <a class="globalnav-item" href="../Book_Store/bookstore.php">Bookstore</a>
+          <a class="globalnav-item" href="../discuss/discuss.php">Thảo luận</a>
+          <a class="globalnav-item" href="../signin/signin.php">Đăng nhập</a>
+          <a class="globalnav-item" href="../search/search.html">Tìm kiếm</a>
+          <a class="globalnav-item-show" href="../Account/AccountReceipts.html">Đơn hàng</a>
+          <a class="globalnav-item-show" href="../Account/AccountCart.html">Mục đã lưu</a>
+          <a class="globalnav-item-show" href="../Account/AccountSettings.html">Tài khoản</a>
+          <a class="globalnav-item-show" href="../Account/AccountAssets/join.png">Đăng xuất</a>
+          <button id="profile-button"><img id="profile-icon" src="../assets/account.png" alt="Profile Icon"></button>
+      </div>
+  </nav>
 
-            
-            <div class="link-container">
-                <label for="sidebar-active" class="close-sidebar-button">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32" fill="#FFFFFF"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
-                </label>
-                
-                
-                <a class="logo-link" href="../Bookhub.html"><img id="BookHub" src="../assets/logo.png" alt="BookHub"></a>
-                <a class="globalnav-item" href="../Book_Store/bookstore.php">Bookstore</a>
-                <a class="globalnav-item" href="../discuss/discuss.php">Thảo luận</a>
-                <a class="globalnav-item" href="../signin/signin.php">Đăng nhập</a>
-                <a class="globalnav-item" href="../search/search.html">Tìm kiếm</a>
-                <button id="profile-button" onclick="window.location.href='../Account/AccountProfile.html'"><img id="profile-icon" src="../Account/AccountAssets/account.png" alt="Profile Icon"></button>
-            </div>
+    <!-- Account options -->
+    <div id="blur-overlay" class="hidden"></div>
+    <div id="account-options" class="hidden">
+        <p id="myprofile">Hồ sơ của tôi</p>
+        <div style="background-color: #d9d9d9; width: 25%; height: 0.05vw; margin: 0; padding: 0;"></div>
+        <ul>
+            <li><img class="option-icons" src="../assets/orders.png"><a href="../account/orders.html">Đơn hàng</a></li>
+            <li><img class="option-icons" src="../assets/saves.png"><a href="../account/saves.html">Mục đã lưu</a></li>
+            <li><img class="option-icons" src="../assets/setting.png"><a href="../account/profile.html">Tài khoản</a></li>
+            <li><img class="option-icons" src="../assets/join.png"><a href="../Bookhub.html">Đăng xuất</a></li>
+        </ul>
+    </div>
+    <script>
+        function ShowAccountOptions() {
+            var overlay = document.getElementById("blur-overlay");
+            var accountOptions = document.getElementById("account-options");
+            overlay.classList.toggle("hidden");
 
+            if (overlay.classList.contains('hidden')) {
+                accountOptions.classList.remove("show");
+                setTimeout(() => accountOptions.classList.add("hidden"), 500);
+            } else {
+                accountOptions.classList.remove("hidden");
+                setTimeout(() => accountOptions.classList.add("show"), 0);
+            }
+        }
 
-        </nav>
+        function CloseAccountOptions() {
+            var overlay = document.getElementById("blur-overlay");
+            var accountOptions = document.getElementById("account-options");
+
+            overlay.classList.toggle("hidden");
+            accountOptions.classList.remove("show");
+            setTimeout(() => accountOptions.classList.add("hidden"), 500);
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            var profileButton = document.getElementById("profile-button");
+            var overlay = document.getElementById("blur-overlay");
+
+            profileButton.addEventListener("click", ShowAccountOptions);
+            overlay.addEventListener("click", CloseAccountOptions);
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape') {
+                    CloseAccountOptions();
+                }
+            });
+        });
+    </script>
+    <!-- End of Account options -->
+  
 
     <div class="container">
       <div class="forms-container">
