@@ -1,102 +1,19 @@
 <?php
 
-// Kết nối tới cơ sở dữ liệu
-// $servername = "localhost";
-// $username = "root"; // Thay bằng username của bạn
-// $password = ""; // Thay bằng password của bạn
-// $dbname = "bookhub";
-
-// $conn = new mysqli($servername, $username, $password, $dbname);
-
-// // Kiểm tra kết nối
-// if ($conn->connect_error) {
-//     die("Kết nối thất bại: " . $conn->connect_error);
-// }
-
-// if (isset($_GET['query'])) {
-//     $search = $conn->real_escape_string($_GET['query']);
-
-//     // Câu truy vấn tìm kiếm sách theo tiêu đề
-//     $sql = "SELECT * FROM books WHERE title LIKE '%$search%'";
-//     $result = $conn->query($sql);
-
-//     if ($result->num_rows > 0) {
-//         // Hiển thị kết quả tìm kiếm
-//         while ($row = $result->fetch_assoc()) {
-//             echo "<div class='pro' onclick=\"window.location.href='../thao luan va chi tiet.html';\">";
-//             echo "<img src='" . $row['cover_image'] . "' alt=''>";
-//             echo "<div class='des'>";
-//             echo "<span>Technology</span>";
-//             echo "<h5>" . $row['title'] . "</h5>";
-//             echo "<div class='star'>";
-//             echo "<i class='fas fa-star'></i>";
-//             echo "<i class='fas fa-star'></i>";
-//             echo "<i class='fas fa-star'></i>";
-//             echo "<i class='fas fa-star'></i>";
-//             echo "<i class='fas fa-star'></i>";
-//             echo "</div>";
-//             echo "<h4>" . $row['price'] . " VND</h4>";
-//             echo "</div>";
-//             echo "</div>";
-//         }
-//     } else {
-//         echo "Không tìm thấy kết quả nào.";
-//     }
-// }
-
-// $conn->close();
-
-// Kết nối tới cơ sở dữ liệu
-// $servername = "localhost";
-// $username = "root"; // Thay bằng username của bạn
-// $password = ""; // Thay bằng password của bạn
-// $dbname = "bookhub";
-
-// $conn = new mysqli($servername, $username, $password, $dbname);
-
-// // Kiểm tra kết nối
-// if ($conn->connect_error) {
-//     die("Kết nối thất bại: " . $conn->connect_error);
-// }
-
-// // Truy vấn dữ liệu từ bảng books
-// $sql = "SELECT books.title, categories.category_name, books.price, books.cover_image FROM books JOIN categories ON books.category_id = categories.category_id";
-// $result = $conn->query($sql);
-
-// if ($result->num_rows > 0) {
-//     // Tạo các thẻ div chứa sản phẩm
-//     while ($row = $result->fetch_assoc()) {
-//         echo "<div class='card " . strtolower(str_replace(' ', '_', $row['category_name'])) . " hide'>";
-//         echo "<div class='image-container'>";
-//         echo "<img src='" . $row['cover_image'] . "' alt=''>";
-//         echo "</div>";
-//         echo "<div class='container'>";
-//         echo "<h4 class='product-name'>" . strtoupper($row['title']) . "</h4>";
-//         echo "<h3>" . number_format($row['price'], 0, ',', '.') . "đ</h3>";
-//         echo "</div>";
-//         echo "</div>";
-//     }
-// } else {
-//     echo "Không có sản phẩm nào.";
-// }
-
-// $conn->close();
-//
-
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "bookhub";
 
-// Tao ket noi
+// Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Kiem tra ket noi database
+// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$search_query = $_GET['query'];
+$search_query = isset($_GET['query']) ? $_GET['query'] : '';
 $sql = "SELECT * FROM books WHERE title LIKE '%$search_query%' OR author LIKE '%$search_query%' OR publisher LIKE '%$search_query%'";
 
 $result = $conn->query($sql);
@@ -160,7 +77,7 @@ $conn->close();
 
     <div class="wrapper" style="margin-top: 5vw;margin-bottom: 5vw;">
         <div id="search-container">
-            <form action="./php/search_view.php" method="GET">
+            <form action="./search_view.php" method="GET">
                 <input type="search" id="search-input" name="search" placeholder="Tìm kiếm sách.." />
                 <button id="search">Tìm kiếm</button>
             </form>
@@ -177,6 +94,7 @@ $conn->close();
     <section id="product1" class="section-p1">
         <div class="pro-container">
             <?php require_once 'search_model.php' ?>
+            <?php require_once 'search_model.php' ?>
             <?php require_once 'search_contr.php' ?>
 
             <?php 
@@ -188,21 +106,13 @@ $conn->close();
             $books = get_books($pdo, $title);
             ?>
 
-            <?php if (check_input($books)): ?>
+            <?php if (!empty($books)): ?>
                 <?php foreach ($books as $book): ?>
-                    <!-- <li>
-                        <h2><?php echo $book['title']; ?></h2>
-                        <p><?php echo $book['description']; ?></p>
-                        <p>Author: <?php echo $book['author']; ?></p>
-                        <p>Publisher: <?php echo $book['publisher']; ?></p>
-                        <p>Price: $<?php echo $book['price']; ?></p>
-                        <img src="<?php echo $book['cover_image']; ?>" alt="Cover Image">
-                    </li> -->
                     <div class="pro">
-                        <img src="<?php echo $book['cover_image']; ?>" alt="">
+                        <img src="<?php echo '../../admin/uploads/' . $book['cover_image']; ?>" alt="<?php echo htmlspecialchars($book['title']); ?>">
                         <div class="des">
-                            <span><?php echo $book['publisher']; ?></span>
-                            <h5><?php echo $book['title']; ?></h5>
+                            <span><?php echo htmlspecialchars($book['publisher']); ?></span>
+                            <h5><?php echo htmlspecialchars($book['title']); ?></h5>
                             <div class="star">
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
@@ -212,7 +122,6 @@ $conn->close();
                             </div>
                         </div>
                     </div>
-
                 <?php endforeach; ?>
             <?php else: ?>
                 <p>No books found.</p>

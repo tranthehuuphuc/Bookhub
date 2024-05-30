@@ -26,8 +26,6 @@ body {
   border: 0;
 }
 
-
-
 #topimg {
   padding: auto;
   padding: 0px;
@@ -72,7 +70,6 @@ body {
   height: auto;
 
 }
-
 
 #promotion {
   background-color: #ffffff;
@@ -305,9 +302,4 @@ body {
     font-size: 7px;
     font-weight: bold;
   }
-}
-
-/* media trang thao luan va chi tiet sach */
-@media (max-width: 900px) {
-
 }
