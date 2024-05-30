@@ -129,8 +129,8 @@ require '../admin/dbh.php';
 
     <main class="form-class">
     <div class="container">
-        <h2>Admin Dashboard</h2>
-        <p>Xin chào, <?php echo htmlspecialchars($_SESSION["user_username"]); ?>!</p>
+        <h1>Admin Dashboard</h1>
+        <h3>Xin chào, <?php echo htmlspecialchars($_SESSION["user_username"]); ?>!</h3>
         <?php
         // Check if success parameter is present in URL
         if (isset($_GET['success']) && $_GET['success'] == 1) {
