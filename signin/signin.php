@@ -29,7 +29,7 @@ require_once "php/login_view.php";
   <nav class="navbar">
       <input type="checkbox" id="sidebar-active">
           <!-- New logo image that only appears when the navbar is collapsed -->
-      <a href="../Bookhub.html"><img id="new-logo" src="../assets/BookHub.png" alt="New Logo"></a>
+      <a href="../index.html"><img id="new-logo" src="../assets/BookHub.png" alt="New Logo"></a>
 
       <label for="sidebar-active" class="open-sidebar-button">
           <svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32" fill="#FFFFFF"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg>
@@ -42,7 +42,7 @@ require_once "php/login_view.php";
               <svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32" fill="#FFFFFF"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
           </label>
           
-          <a class="logo-link" href="../Bookhub.html"><img id="BookHub" src="../assets/logo.png" alt="BookHub"></a>
+          <a class="logo-link" href="../index.html"><img id="BookHub" src="../assets/logo.png" alt="BookHub"></a>
           <a class="globalnav-item" href="../Book_Store/bookstore.php">Bookstore</a>
           <a class="globalnav-item" href="../discuss/discuss.php">Thảo luận</a>
           <a class="globalnav-item" href="../signin/signin.php">Đăng nhập</a>
@@ -64,7 +64,7 @@ require_once "php/login_view.php";
             <li><img class="option-icons" src="../assets/orders.png"><a href="../account/orders.html">Đơn hàng</a></li>
             <li><img class="option-icons" src="../assets/saves.png"><a href="../account/saves.html">Mục đã lưu</a></li>
             <li><img class="option-icons" src="../assets/setting.png"><a href="../account/profile.html">Tài khoản</a></li>
-            <li><img class="option-icons" src="../assets/join.png"><a href="../Bookhub.html">Đăng xuất</a></li>
+            <li><img class="option-icons" src="../assets/join.png"><a href="../index.html">Đăng xuất</a></li>
         </ul>
     </div>
     <script>
