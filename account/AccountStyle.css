@@ -1,0 +1,369 @@
+@font-face {
+    font-family: 'MavenPro';
+    src: url('../fonts/MavenPro-VariableFont_wght.ttf');
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'MavenPro';
+}
+
+.main {
+    padding: 0 200px;
+}
+
+.visuallyhidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+.title-bar {
+    background-color: #f9f9f9;
+    color: #000;
+    margin: 0;
+    padding: 80px 200px;
+    padding-bottom: 10px;
+}
+
+.title {
+    font-size: 23px;
+    font-weight: 500;
+    margin: 0;
+    text-align: left;
+}
+
+.sub-title {
+    font-size: 35px;
+    font-weight: 600;
+    margin: 60px 0 20px;
+}
+
+.header {
+    font-size: 32px;
+    font-weight: 600;
+    margin: 0px;
+    margin-top: 80px;
+    margin-bottom: 20px;
+}
+
+.small-header {
+    font-size: 24px;
+    font-weight: 500;
+    margin: 0;
+    padding: 0;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    padding-bottom: 50px;
+}
+
+.col1 {
+    display: block;
+    align-items: top;
+    justify-content: left;
+    width: 400px;
+}
+
+.col2 {
+    display: block;
+    align-items: top;
+    justify-content: left;
+    width: 300px;
+}
+
+.col3 {
+    display: block;
+    align-items: top;
+    justify-content: left;
+    width: 300px;
+}
+
+.bullet {
+    font-size: 17px;
+    font-weight: 500;
+    margin: 7px 0;
+    padding: 0;
+}
+
+.properties {
+    font-size: 17px;
+    font-weight: 400;
+    margin: 7px 0;
+}
+
+.edit {
+    font-size: 17px;
+    font-weight: 400;
+    margin: 7px 0;
+    padding: 0;
+    color: #007bff;
+    cursor: pointer;
+}
+
+.edit:hover {
+    text-decoration: underline;
+}
+
+.book-slider {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+.slider-button {
+    background-color: #f0f0f0;
+    border-radius: 30px;
+    cursor: pointer;
+    display: flex; 
+    font-size: 20px;
+    padding: 5px;
+    top: 50%;
+    transition: 0.2s;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    justify-content: center;
+    align-items: center;
+}
+
+.slider-button:hover {
+    background-color: #dadada;
+}
+
+.prev-button {
+    left: 0;
+}
+
+.next-button {
+    right: 0;
+}
+
+.book-list {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding: 0 25px 0 0;
+    margin: 0;
+    width: 900px;
+}
+
+.book-thumb {
+    width: 250px;
+    height: auto;
+    margin: 25px;
+    padding: 0;
+    box-shadow: 0px 0px 5px 1px gray;
+}
+
+.book-thumb:hover {
+    box-shadow: 0px 0px 10px 1px gray;
+    transition: 0.2s;
+}
+
+#shipping-settings, #payment-settings, #account-settings{
+    border-radius: 25px;
+    position: fixed;
+    background-color: rgb(255, 255, 255);
+    color: #000;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 40px;
+    z-index: 1001;
+    width: 45%;
+}
+
+#shipping-settings.show, #payment-settings.show, #account-settings.show {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+}
+
+.input-field {
+    border-radius: 15px;
+    background-color: #ffffff;
+    border: solid 1px rgb(0, 0, 0);
+    color: #000;
+    justify-content: left;
+    align-items: center;
+    height: 50px;
+    width: 500px;
+    display: block;
+    margin: 10px 0;
+    padding: 10px 0 0 25px;
+}
+
+.field-label {
+    color: gray;
+    font-size: 15px;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+}
+
+.input-box {
+    border: none;
+    color: #000000;
+    font-weight: 400;
+    font-size: 18px;
+    display: block;
+    margin: 5px 0 0 0;
+    padding: 0;
+    width: 95%;
+    height: auto;
+}
+
+.input-box:focus {
+    outline: none;
+}
+
+.submit-field {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.submit-button {
+    background-color: #007bff;
+    border-radius: 20px;
+    color: #ffffff;
+    cursor: pointer;
+    display: flex;
+    font-size: 20px;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    padding: 10px 20px;
+    transition: 0.2s;
+    width: 10%;
+    height: 5%;
+}
+
+.submit-button:hover {
+    background-color: #0056b3;
+}
+
+.cancel-button {
+    background-color: #afafaf;
+}
+
+.cancel-button:hover {
+    background-color: #8f8f8f;
+}
+
+@media (max-width: 767px) {
+    .main {
+        padding: 0 20px;
+    }
+
+    .title-bar {
+        padding: 80px 20px 20px;
+    }
+
+    .title {
+        font-size: 20px;
+    }
+
+    .sub-title {
+        font-size: 30px;
+        margin: 30px 0 10px;
+    }
+
+    .header {
+        font-size: 28px;
+        margin-top: 50px;
+        margin-bottom: 10px;
+    }
+
+    .small-header {
+        font-size: 20px;
+    }
+
+    .row {
+        padding-left: 20px;
+        padding-bottom: 20px;
+    }
+
+    .col1, .col2, .col3 {
+        margin-top: 7px;
+        width: 100%;
+    }
+
+    .bullet {
+        font-size: 15px;
+    }
+
+    .properties {
+        font-size: 15px;
+    }
+
+    .edit {
+        font-size: 15px;
+    }
+
+    .book-list {
+        width: 100%;
+    }
+
+    .book-thumb {
+        width: 80%;
+        margin: 15px;
+    }
+
+    .slider-button {
+        display: none;
+    }
+
+    #shipping-settings, #payment-settings, #account-settings {
+        border-radius: 0;
+        padding: 20px;
+        width: auto;
+    }
+
+    #shipping-settings.show, #payment-settings.show, #account-settings.show {
+        top: 50%;
+        left: 0;
+        transform: translate(0, -50%);
+    }
+
+    .input-field {
+        width: 250px;
+    }
+
+    .field-label {
+        font-size: 13px;
+    }
+
+    .input-box {
+        width: 200px;
+    }
+
+    .submit-button {
+        font-size: 15px;
+        width: 20%;
+        height: 5%;
+    }
+
+    .input-field {
+        width: 100%;
+    }
+
+    .input-box {
+        width: 100%;
+    }
+}

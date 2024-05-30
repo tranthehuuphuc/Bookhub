@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+        <link rel="stylesheet" type="text/css" href="./AccountStyle.css">
+        <title>Profile</title>
+        <link rel="icon" type="image/x-icon" href="./AccountAssets/account.png">
+    </head>
+
+    <body>
+        <h1 class="visuallyhidden">Receipts</h1>
+        
+        <div id="globalheader">
+            <div style="display: flex;">
+                <a href="../Bookhub.html"><img id="BookHub" src="../assets/logo.png" alt="BookHub"></a>
+                <button id="profile-button" onclick="window.location.href='./AccountProfile.html'"><img id="profile-icon" src="./AccountAssets/account.png" alt="Profile Icon"></button>
+            </div>
+            <div id="menu">
+                <nav id="menu-list">
+                    <a class="menu-item" href="./AccountProfile.html" style="margin-left: 0;text-decoration: none; color: #F08A5D;"><span>Trang cá nhân</span></a>
+                    <a class="menu-item" href="./AccountReceipts.html" style="border-bottom: solid 0.1vw #F08A5D; text-decoration: none; color: #f16529;"><span>Quản lý đơn hàng</span></a>
+                    <a class="menu-item" href="./AccountCart.html" style="text-decoration: none; color: #F08A5D;"><span>Giỏ hàng</span></a>
+                    <a class="menu-item" href="./AccountBought.html" style="text-decoration: none; color: #F08A5D;"><span>Đã mua</span></a>
+                    <a class="menu-item" href="./AccountSettings.html" style="margin-right: 0; text-decoration: none; color: #F08A5D;"><span>Cài đặt</span></a>
+                </nav>
+            </div>
+        </div>
+
+        <main id="main" style="margin-bottom: 2vw;">
+            $sql = "SELECT * FROM your_table_name";
+            $result = $conn->query($sql);
+
+            echo "<h2>All Receipts</h2>";
+            echo "<table border='1'>";
+            echo "<tr><th>Book ID</th><th>Title</th><th>Author</th><th>Description</th><th>Category</th><th>Publication Year</th><th>Publisher</th><th>Price</th><th>Available Quantity</th><th>Cover Image</th><th>Rating</th></tr>";
+
+            if ($result->num_rows > 0) {
+                while($row = $result->fetch_assoc()) {
+                    echo "<tr>";
+                    echo "<td>" . $row["book_id"] . "</td>";
+                    echo "<td>" . $row["title"] . "</td>";
+                    echo "<td>" . $row["author"] . "</td>";
+                    echo "<td>" . $row["description"] . "</td>";
+                    echo "<td>" . $row["category_id"] . "</td>";
+                    echo "<td>" . $row["publication_year"] . "</td>";
+                    echo "<td>" . $row["publisher"] . "</td>";
+                    echo "<td>" . $row["price"] . "</td>";
+                    echo "<td>" . $row["available_quantity"] . "</td>";
+                    echo "<td>" . $row["cover_image"] . "</td>";
+                    echo "<td>" . $row["rating"] . "</td>";
+                    echo "</tr>";
+                }
+            } else {
+                echo "<tr><td colspan='11'>No books found.</td></tr>";
+            }
+            echo "</table>";
+
+            $conn->close();
+
+
+
+            <!-- <div id="list-header" style="font-size: 1.4vw; font-weight: 550;">
+                <a class="receipt-category" style="width: 15%; padding: 1vw 1vw;" href="https//apple.com">Mã đơn hàng</a>
+                <a class="receipt-category" style="width: 30%; padding: 1vw 1vw;">Tên khách hàng</a>
+                <a class="receipt-category" style="width: 15%; padding: 1vw 1vw;">Số điện thoại</a>
+                <a class="receipt-category" style="width: 25%; padding: 1vw 1vw;">Địa chỉ</a>
+                <a class="receipt-category" style="width: 15%; padding: 1vw 1vw;">Trạng thái</a>
+            </div>
+
+            <div class="receipt" style="background-color: #ffffff;">
+                <a class="receipt-category" style="width: 15%;" href="https://apple.com">#ABCDEF</a>
+                <a class="receipt-category" style="width: 30%;">Trần Thế Hữu Phúc</a>
+                <a class="receipt-category" style="width: 15%;">0977983302</a>
+                <a class="receipt-category" style="width: 25%;">Dĩ An, Bình Dương</a>
+                <a class="receipt-category" style="width: 15%;">Chưa giao</a>
+            </div>
+            <div class="receipt">
+                <a class="receipt-category" style="width: 15%;" href="https://apple.com">#GHIJKLMN</a>
+                <a class="receipt-category" style="width: 30%;">Trần Thị Thuý Vy</a>
+                <a class="receipt-category" style="width: 15%;">0123456789</a>
+                <a class="receipt-category" style="width: 25%;">Hồ Chí Minh</a>
+                <a class="receipt-category" style="width: 15%;">Đang giao</a>
+            </div>
+            <div class="receipt" style="background-color: #ffffff;">
+                <a class="receipt-category" style="width: 15%;" href="https://apple.com">#ABCDEF</a>
+                <a class="receipt-category" style="width: 30%;">Trần Thế Hữu Phúc</a>
+                <a class="receipt-category" style="width: 15%;">0977983302</a>
+                <a class="receipt-category" style="width: 25%;">Dĩ An, Bình Dương</a>
+                <a class="receipt-category" style="width: 15%;">Chưa giao</a>
+            </div>
+            <div class="receipt">
+                <a class="receipt-category" style="width: 15%;" href="https://apple.com">#GHIJKLMN</a>
+                <a class="receipt-category" style="width: 30%;">Trần Thị Thuý Vy</a>
+                <a class="receipt-category" style="width: 15%;">0123456789</a>
+                <a class="receipt-category" style="width: 25%;">Hồ Chí Minh</a>
+                <a class="receipt-category" style="width: 15%;">Đang giao</a>
+            </div>
+            <div class="receipt" style="background-color: #ffffff;">
+                <a class="receipt-category" style="width: 15%;" href="https://apple.com">#ABCDEF</a>
+                <a class="receipt-category" style="width: 30%;">Trần Thế Hữu Phúc</a>
+                <a class="receipt-category" style="width: 15%;">0977983302</a>
+                <a class="receipt-category" style="width: 25%;">Dĩ An, Bình Dương</a>
+                <a class="receipt-category" style="width: 15%;">Chưa giao</a>
+            </div>
+            <div class="receipt">
+                <a class="receipt-category" style="width: 15%;" href="https://apple.com">#GHIJKLMN</a>
+                <a class="receipt-category" style="width: 30%;">Trần Thị Thuý Vy</a>
+                <a class="receipt-category" style="width: 15%;">0123456789</a>
+                <a class="receipt-category" style="width: 25%;">Hồ Chí Minh</a>
+                <a class="receipt-category" style="width: 15%;">Đang giao</a>
+            </div>
+            <div class="receipt" style="background-color: #ffffff;">
+                <a class="receipt-category" style="width: 15%;" href="https://apple.com">#ABCDEF</a>
+                <a class="receipt-category" style="width: 30%;">Trần Thế Hữu Phúc</a>
+                <a class="receipt-category" style="width: 15%;">0977983302</a>
+                <a class="receipt-category" style="width: 25%;">Dĩ An, Bình Dương</a>
+                <a class="receipt-category" style="width: 15%;">Chưa giao</a>
+            </div>
+            <div class="receipt">
+                <a class="receipt-category" style="width: 15%;" href="https://apple.com">#GHIJKLMN</a>
+                <a class="receipt-category" style="width: 30%;">Trần Thị Thuý Vy</a>
+                <a class="receipt-category" style="width: 15%;">0123456789</a>
+                <a class="receipt-category" style="width: 25%;">Hồ Chí Minh</a>
+                <a class="receipt-category" style="width: 15%;">Đang giao</a>
+            </div>
+            <div class="receipt" style="background-color: #ffffff;">
+                <a class="receipt-category" style="width: 15%;" href="https://apple.com">#ABCDEF</a>
+                <a class="receipt-category" style="width: 30%;">Trần Thế Hữu Phúc</a>
+                <a class="receipt-category" style="width: 15%;">0977983302</a>
+                <a class="receipt-category" style="width: 25%;">Dĩ An, Bình Dương</a>
+                <a class="receipt-category" style="width: 15%;">Chưa giao</a>
+            </div>
+            <div class="receipt">
+                <a class="receipt-category" style="width: 15%;" href="https://apple.com">#GHIJKLMN</a>
+                <a class="receipt-category" style="width: 30%;">Trần Thị Thuý Vy</a>
+                <a class="receipt-category" style="width: 15%;">0123456789</a>
+                <a class="receipt-category" style="width: 25%;">Hồ Chí Minh</a>
+                <a class="receipt-category" style="width: 15%;">Đang giao</a>
+            </div>
+            <div class="receipt" style="background-color: #ffffff;">
+                <a class="receipt-category" style="width: 15%;" href="https://apple.com">#ABCDEF</a>
+                <a class="receipt-category" style="width: 30%;">Trần Thế Hữu Phúc</a>
+                <a class="receipt-category" style="width: 15%;">0977983302</a>
+                <a class="receipt-category" style="width: 25%;">Dĩ An, Bình Dương</a>
+                <a class="receipt-category" style="width: 15%;">Chưa giao</a>
+            </div>
+            <div class="receipt">
+                <a class="receipt-category" style="width: 15%;" href="https://apple.com">#GHIJKLMN</a>
+                <a class="receipt-category" style="width: 30%;">Trần Thị Thuý Vy</a>
+                <a class="receipt-category" style="width: 15%;">0123456789</a>
+                <a class="receipt-category" style="width: 25%;">Hồ Chí Minh</a>
+                <a class="receipt-category" style="width: 15%;">Đang giao</a>
+            </div>
+            <div class="receipt" style="background-color: #ffffff;">
+                <a class="receipt-category" style="width: 15%;" href="https://apple.com">#ABCDEF</a>
+                <a class="receipt-category" style="width: 30%;">Trần Thế Hữu Phúc</a>
+                <a class="receipt-category" style="width: 15%;">0977983302</a>
+                <a class="receipt-category" style="width: 25%;">Dĩ An, Bình Dương</a>
+                <a class="receipt-category" style="width: 15%;">Chưa giao</a>
+            </div>
+            <div class="receipt">
+                <a class="receipt-category" style="width: 15%;" href="https://apple.com">#GHIJKLMN</a>
+                <a class="receipt-category" style="width: 30%;">Trần Thị Thuý Vy</a>
+                <a class="receipt-category" style="width: 15%;">0123456789</a>
+                <a class="receipt-category" style="width: 25%;">Hồ Chí Minh</a>
+                <a class="receipt-category" style="width: 15%;">Đang giao</a>
+            </div>
+            <div class="receipt" style="background-color: #ffffff;">
+                <a class="receipt-category" style="width: 15%;" href="https://apple.com">#ABCDEF</a>
+                <a class="receipt-category" style="width: 30%;">Trần Thế Hữu Phúc</a>
+                <a class="receipt-category" style="width: 15%;">0977983302</a>
+                <a class="receipt-category" style="width: 25%;">Dĩ An, Bình Dương</a>
+                <a class="receipt-category" style="width: 15%;">Chưa giao</a>
+            </div>
+            <div class="receipt">
+                <a class="receipt-category" style="width: 15%;" href="https://apple.com">#GHIJKLMN</a>
+                <a class="receipt-category" style="width: 30%;">Trần Thị Thuý Vy</a>
+                <a class="receipt-category" style="width: 15%;">0123456789</a>
+                <a class="receipt-category" style="width: 25%;">Hồ Chí Minh</a>
+                <a class="receipt-category" style="width: 15%;">Đang giao</a>
+            </div>
+            <div class="receipt" style="background-color: #ffffff;">
+                <a class="receipt-category" style="width: 15%;" href="https://apple.com">#ABCDEF</a>
+                <a class="receipt-category" style="width: 30%;">Trần Thế Hữu Phúc</a>
+                <a class="receipt-category" style="width: 15%;">0977983302</a>
+                <a class="receipt-category" style="width: 25%;">Dĩ An, Bình Dương</a>
+                <a class="receipt-category" style="width: 15%;">Chưa giao</a>
+            </div>
+            <div class="receipt">
+                <a class="receipt-category" style="width: 15%;" href="https://apple.com">#GHIJKLMN</a>
+                <a class="receipt-category" style="width: 30%;">Trần Thị Thuý Vy</a>
+                <a class="receipt-category" style="width: 15%;">0123456789</a>
+                <a class="receipt-category" style="width: 25%;">Hồ Chí Minh</a>
+                <a class="receipt-category" style="width: 15%;">Đang giao</a>
+            </div>
+            <div class="receipt" style="background-color: #ffffff;">
+                <a class="receipt-category" style="width: 15%;" href="https://apple.com">#ABCDEF</a>
+                <a class="receipt-category" style="width: 30%;">Trần Thế Hữu Phúc</a>
+                <a class="receipt-category" style="width: 15%;">0977983302</a>
+                <a class="receipt-category" style="width: 25%;">Dĩ An, Bình Dương</a>
+                <a class="receipt-category" style="width: 15%;">Chưa giao</a>
+            </div>
+            <div class="receipt">
+                <a class="receipt-category" style="width: 15%;" href="https://apple.com">#GHIJKLMN</a>
+                <a class="receipt-category" style="width: 30%;">Trần Thị Thuý Vy</a>
+                <a class="receipt-category" style="width: 15%;">0123456789</a>
+                <a class="receipt-category" style="width: 25%;">Hồ Chí Minh</a>
+                <a class="receipt-category" style="width: 15%;">Đang giao</a>
+            </div>
+            <div class="receipt" style="background-color: #ffffff;">
+                <a class="receipt-category" style="width: 15%;" href="https://apple.com">#ABCDEF</a>
+                <a class="receipt-category" style="width: 30%;">Trần Thế Hữu Phúc</a>
+                <a class="receipt-category" style="width: 15%;">0977983302</a>
+                <a class="receipt-category" style="width: 25%;">Dĩ An, Bình Dương</a>
+                <a class="receipt-category" style="width: 15%;">Chưa giao</a>
+            </div>
+            <div class="receipt">
+                <a class="receipt-category" style="width: 15%;" href="https://apple.com">#GHIJKLMN</a>
+                <a class="receipt-category" style="width: 30%;">Trần Thị Thuý Vy</a>
+                <a class="receipt-category" style="width: 15%;">0123456789</a>
+                <a class="receipt-category" style="width: 25%;">Hồ Chí Minh</a>
+                <a class="receipt-category" style="width: 15%;">Đang giao</a>
+            </div>
+            <div class="receipt" style="background-color: #ffffff;">
+                <a class="receipt-category" style="width: 15%;" href="https://apple.com">#ABCDEF</a>
+                <a class="receipt-category" style="width: 30%;">Trần Thế Hữu Phúc</a>
+                <a class="receipt-category" style="width: 15%;">0977983302</a>
+                <a class="receipt-category" style="width: 25%;">Dĩ An, Bình Dương</a>
+                <a class="receipt-category" style="width: 15%;">Chưa giao</a>
+            </div>
+            <div class="receipt">
+                <a class="receipt-category" style="width: 15%;" href="https://apple.com">#GHIJKLMN</a>
+                <a class="receipt-category" style="width: 30%;">Trần Thị Thuý Vy</a>
+                <a class="receipt-category" style="width: 15%;">0123456789</a>
+                <a class="receipt-category" style="width: 25%;">Hồ Chí Minh</a>
+                <a class="receipt-category" style="width: 15%;">Đang giao</a>
+            </div>
+            <div class="receipt" style="background-color: #ffffff;">
+                <a class="receipt-category" style="width: 15%;" href="https://apple.com">#ABCDEF</a>
+                <a class="receipt-category" style="width: 30%;">Trần Thế Hữu Phúc</a>
+                <a class="receipt-category" style="width: 15%;">0977983302</a>
+                <a class="receipt-category" style="width: 25%;">Dĩ An, Bình Dương</a>
+                <a class="receipt-category" style="width: 15%;">Chưa giao</a>
+            </div>
+            <div class="receipt">
+                <a class="receipt-category" style="width: 15%;" href="https://apple.com">#GHIJKLMN</a>
+                <a class="receipt-category" style="width: 30%;">Trần Thị Thuý Vy</a>
+                <a class="receipt-category" style="width: 15%;">0123456789</a>
+                <a class="receipt-category" style="width: 25%;">Hồ Chí Minh</a>
+                <a class="receipt-category" style="width: 15%;">Đang giao</a>
+            </div>
+            <div class="receipt" style="background-color: #ffffff;">
+                <a class="receipt-category" style="width: 15%;" href="https://apple.com">#ABCDEF</a>
+                <a class="receipt-category" style="width: 30%;">Trần Thế Hữu Phúc</a>
+                <a class="receipt-category" style="width: 15%;">0977983302</a>
+                <a class="receipt-category" style="width: 25%;">Dĩ An, Bình Dương</a>
+                <a class="receipt-category" style="width: 15%;">Chưa giao</a>
+            </div>
+            <div class="receipt">
+                <a class="receipt-category" style="width: 15%;" href="https://apple.com">#GHIJKLMN</a>
+                <a class="receipt-category" style="width: 30%;">Trần Thị Thuý Vy</a>
+                <a class="receipt-category" style="width: 15%;">0123456789</a>
+                <a class="receipt-category" style="width: 25%;">Hồ Chí Minh</a>
+                <a class="receipt-category" style="width: 15%;">Đang giao</a>
+            </div>
+            <div class="receipt" style="background-color: #ffffff;">
+                <a class="receipt-category" style="width: 15%;" href="https://apple.com">#ABCDEF</a>
+                <a class="receipt-category" style="width: 30%;">Trần Thế Hữu Phúc</a>
+                <a class="receipt-category" style="width: 15%;">0977983302</a>
+                <a class="receipt-category" style="width: 25%;">Dĩ An, Bình Dương</a>
+                <a class="receipt-category" style="width: 15%;">Chưa giao</a>
+            </div>
+            <div class="receipt">
+                <a class="receipt-category" style="width: 15%;" href="https://apple.com">#GHIJKLMN</a>
+                <a class="receipt-category" style="width: 30%;">Trần Thị Thuý Vy</a>
+                <a class="receipt-category" style="width: 15%;">0123456789</a>
+                <a class="receipt-category" style="width: 25%;">Hồ Chí Minh</a>
+                <a class="receipt-category" style="width: 15%;">Đang giao</a>
+            </div>
+            <div class="receipt" style="background-color: #ffffff;">
+                <a class="receipt-category" style="width: 15%;" href="https://apple.com">#ABCDEF</a>
+                <a class="receipt-category" style="width: 30%;">Trần Thế Hữu Phúc</a>
+                <a class="receipt-category" style="width: 15%;">0977983302</a>
+                <a class="receipt-category" style="width: 25%;">Dĩ An, Bình Dương</a>
+                <a class="receipt-category" style="width: 15%;">Chưa giao</a>
+            </div>
+            <div class="receipt">
+                <a class="receipt-category" style="width: 15%;" href="https://apple.com">#GHIJKLMN</a>
+                <a class="receipt-category" style="width: 30%;">Trần Thị Thuý Vy</a>
+                <a class="receipt-category" style="width: 15%;">0123456789</a>
+                <a class="receipt-category" style="width: 25%;">Hồ Chí Minh</a>
+                <a class="receipt-category" style="width: 15%;">Đang giao</a>
+            </div>
+            <div class="receipt" style="background-color: #ffffff;">
+                <a class="receipt-category" style="width: 15%;" href="https://apple.com">#ABCDEF</a>
+                <a class="receipt-category" style="width: 30%;">Trần Thế Hữu Phúc</a>
+                <a class="receipt-category" style="width: 15%;">0977983302</a>
+                <a class="receipt-category" style="width: 25%;">Dĩ An, Bình Dương</a>
+                <a class="receipt-category" style="width: 15%;">Chưa giao</a>
+            </div>
+            <div class="receipt">
+                <a class="receipt-category" style="width: 15%;" href="https://apple.com">#GHIJKLMN</a>
+                <a class="receipt-category" style="width: 30%;">Trần Thị Thuý Vy</a>
+                <a class="receipt-category" style="width: 15%;">0123456789</a>
+                <a class="receipt-category" style="width: 25%;">Hồ Chí Minh</a>
+                <a class="receipt-category" style="width: 15%;">Đang giao</a>
+            </div>
+            <div class="receipt" style="background-color: #ffffff;">
+                <a class="receipt-category" style="width: 15%;" href="https://apple.com">#ABCDEF</a>
+                <a class="receipt-category" style="width: 30%;">Trần Thế Hữu Phúc</a>
+                <a class="receipt-category" style="width: 15%;">0977983302</a>
+                <a class="receipt-category" style="width: 25%;">Dĩ An, Bình Dương</a>
+                <a class="receipt-category" style="width: 15%;">Chưa giao</a>
+            </div>
+            <div class="receipt">
+                <a class="receipt-category" style="width: 15%;" href="https://apple.com">#GHIJKLMN</a>
+                <a class="receipt-category" style="width: 30%;">Trần Thị Thuý Vy</a>
+                <a class="receipt-category" style="width: 15%;">0123456789</a>
+                <a class="receipt-category" style="width: 25%;">Hồ Chí Minh</a>
+                <a class="receipt-category" style="width: 15%;">Đang giao</a>
+            </div>
+            <div class="receipt" style="background-color: #ffffff;">
+                <a class="receipt-category" style="width: 15%;" href="https://apple.com">#ABCDEF</a>
+                <a class="receipt-category" style="width: 30%;">Trần Thế Hữu Phúc</a>
+                <a class="receipt-category" style="width: 15%;">0977983302</a>
+                <a class="receipt-category" style="width: 25%;">Dĩ An, Bình Dương</a>
+                <a class="receipt-category" style="width: 15%;">Chưa giao</a>
+            </div>
+            <div class="receipt">
+                <a class="receipt-category" style="width: 15%;" href="https://apple.com">#GHIJKLMN</a>
+                <a class="receipt-category" style="width: 30%;">Trần Thị Thuý Vy</a>
+                <a class="receipt-category" style="width: 15%;">0123456789</a>
+                <a class="receipt-category" style="width: 25%;">Hồ Chí Minh</a>
+                <a class="receipt-category" style="width: 15%;">Đang giao</a>
+            </div>
+            <div class="receipt" style="background-color: #ffffff;">
+                <a class="receipt-category" style="width: 15%;" href="https://apple.com">#ABCDEF</a>
+                <a class="receipt-category" style="width: 30%;">Trần Thế Hữu Phúc</a>
+                <a class="receipt-category" style="width: 15%;">0977983302</a>
+                <a class="receipt-category" style="width: 25%;">Dĩ An, Bình Dương</a>
+                <a class="receipt-category" style="width: 15%;">Chưa giao</a>
+            </div>
+            <div class="receipt">
+                <a class="receipt-category" style="width: 15%;" href="https://apple.com">#GHIJKLMN</a>
+                <a class="receipt-category" style="width: 30%;">Trần Thị Thuý Vy</a>
+                <a class="receipt-category" style="width: 15%;">0123456789</a>
+                <a class="receipt-category" style="width: 25%;">Hồ Chí Minh</a>
+                <a class="receipt-category" style="width: 15%;">Đang giao</a>
+            </div>
+            <div class="receipt" style="background-color: #ffffff;">
+                <a class="receipt-category" style="width: 15%;" href="https://apple.com">#ABCDEF</a>
+                <a class="receipt-category" style="width: 30%;">Trần Thế Hữu Phúc</a>
+                <a class="receipt-category" style="width: 15%;">0977983302</a>
+                <a class="receipt-category" style="width: 25%;">Dĩ An, Bình Dương</a>
+                <a class="receipt-category" style="width: 15%;">Chưa giao</a>
+            </div>
+            <div class="receipt">
+                <a class="receipt-category" style="width: 15%;" href="https://apple.com">#GHIJKLMN</a>
+                <a class="receipt-category" style="width: 30%;">Trần Thị Thuý Vy</a>
+                <a class="receipt-category" style="width: 15%;">0123456789</a>
+                <a class="receipt-category" style="width: 25%;">Hồ Chí Minh</a>
+                <a class="receipt-category" style="width: 15%;">Đang giao</a>
+            </div>
+            <div class="receipt" style="background-color: #ffffff;">
+                <a class="receipt-category" style="width: 15%;" href="https://apple.com">#ABCDEF</a>
+                <a class="receipt-category" style="width: 30%;">Trần Thế Hữu Phúc</a>
+                <a class="receipt-category" style="width: 15%;">0977983302</a>
+                <a class="receipt-category" style="width: 25%;">Dĩ An, Bình Dương</a>
+                <a class="receipt-category" style="width: 15%;">Chưa giao</a>
+            </div>
+            <div class="receipt">
+                <a class="receipt-category" style="width: 15%;" href="https://apple.com">#GHIJKLMN</a>
+                <a class="receipt-category" style="width: 30%;">Trần Thị Thuý Vy</a>
+                <a class="receipt-category" style="width: 15%;">0123456789</a>
+                <a class="receipt-category" style="width: 25%;">Hồ Chí Minh</a>
+                <a class="receipt-category" style="width: 15%;">Đang giao</a>
+            </div>
+            <div class="receipt" style="background-color: #ffffff;">
+                <a class="receipt-category" style="width: 15%;" href="https://apple.com">#ABCDEF</a>
+                <a class="receipt-category" style="width: 30%;">Trần Thế Hữu Phúc</a>
+                <a class="receipt-category" style="width: 15%;">0977983302</a>
+                <a class="receipt-category" style="width: 25%;">Dĩ An, Bình Dương</a>
+                <a class="receipt-category" style="width: 15%;">Chưa giao</a>
+            </div>
+            <div class="receipt">
+                <a class="receipt-category" style="width: 15%;" href="https://apple.com">#GHIJKLMN</a>
+                <a class="receipt-category" style="width: 30%;">Trần Thị Thuý Vy</a>
+                <a class="receipt-category" style="width: 15%;">0123456789</a>
+                <a class="receipt-category" style="width: 25%;">Hồ Chí Minh</a>
+                <a class="receipt-category" style="width: 15%;">Đang giao</a>
+            </div>
+            <div class="receipt" style="background-color: #ffffff;">
+                <a class="receipt-category" style="width: 15%;" href="https://apple.com">#ABCDEF</a>
+                <a class="receipt-category" style="width: 30%;">Trần Thế Hữu Phúc</a>
+                <a class="receipt-category" style="width: 15%;">0977983302</a>
+                <a class="receipt-category" style="width: 25%;">Dĩ An, Bình Dương</a>
+                <a class="receipt-category" style="width: 15%;">Chưa giao</a>
+            </div>
+            <div class="receipt">
+                <a class="receipt-category" style="width: 15%;" href="https://apple.com">#GHIJKLMN</a>
+                <a class="receipt-category" style="width: 30%;">Trần Thị Thuý Vy</a>
+                <a class="receipt-category" style="width: 15%;">0123456789</a>
+                <a class="receipt-category" style="width: 25%;">Hồ Chí Minh</a>
+                <a class="receipt-category" style="width: 15%;">Đang giao</a>
+            </div>
+            <div class="receipt" style="background-color: #ffffff;">
+                <a class="receipt-category" style="width: 15%;" href="https://apple.com">#ABCDEF</a>
+                <a class="receipt-category" style="width: 30%;">Trần Thế Hữu Phúc</a>
+                <a class="receipt-category" style="width: 15%;">0977983302</a>
+                <a class="receipt-category" style="width: 25%;">Dĩ An, Bình Dương</a>
+                <a class="receipt-category" style="width: 15%;">Chưa giao</a>
+            </div>
+            <div class="receipt">
+                <a class="receipt-category" style="width: 15%;" href="https://apple.com">#GHIJKLMN</a>
+                <a class="receipt-category" style="width: 30%;">Trần Thị Thuý Vy</a>
+                <a class="receipt-category" style="width: 15%;">0123456789</a>
+                <a class="receipt-category" style="width: 25%;">Hồ Chí Minh</a>
+                <a class="receipt-category" style="width: 15%;">Đang giao</a>
+            </div>
+            <div class="receipt" style="background-color: #ffffff;">
+                <a class="receipt-category" style="width: 15%;" href="https://apple.com">#ABCDEF</a>
+                <a class="receipt-category" style="width: 30%;">Trần Thế Hữu Phúc</a>
+                <a class="receipt-category" style="width: 15%;">0977983302</a>
+                <a class="receipt-category" style="width: 25%;">Dĩ An, Bình Dương</a>
+                <a class="receipt-category" style="width: 15%;">Chưa giao</a>
+            </div>
+            <div class="receipt">
+                <a class="receipt-category" style="width: 15%;" href="https://apple.com">#GHIJKLMN</a>
+                <a class="receipt-category" style="width: 30%;">Trần Thị Thuý Vy</a>
+                <a class="receipt-category" style="width: 15%;">0123456789</a>
+                <a class="receipt-category" style="width: 25%;">Hồ Chí Minh</a>
+                <a class="receipt-category" style="width: 15%;">Đang giao</a>
+            </div>
+            <div class="receipt" style="background-color: #ffffff;">
+                <a class="receipt-category" style="width: 15%;" href="https://apple.com">#ABCDEF</a>
+                <a class="receipt-category" style="width: 30%;">Trần Thế Hữu Phúc</a>
+                <a class="receipt-category" style="width: 15%;">0977983302</a>
+                <a class="receipt-category" style="width: 25%;">Dĩ An, Bình Dương</a>
+                <a class="receipt-category" style="width: 15%;">Chưa giao</a>
+            </div>
+            <div class="receipt">
+                <a class="receipt-category" style="width: 15%;" href="https://apple.com">#GHIJKLMN</a>
+                <a class="receipt-category" style="width: 30%;">Trần Thị Thuý Vy</a>
+                <a class="receipt-category" style="width: 15%;">0123456789</a>
+                <a class="receipt-category" style="width: 25%;">Hồ Chí Minh</a>
+                <a class="receipt-category" style="width: 15%;">Đang giao</a>
+            </div>
+            <div class="receipt" style="background-color: #ffffff;">
+                <a class="receipt-category" style="width: 15%;" href="https://apple.com">#ABCDEF</a>
+                <a class="receipt-category" style="width: 30%;">Trần Thế Hữu Phúc</a>
+                <a class="receipt-category" style="width: 15%;">0977983302</a>
+                <a class="receipt-category" style="width: 25%;">Dĩ An, Bình Dương</a>
+                <a class="receipt-category" style="width: 15%;">Chưa giao</a>
+            </div>
+            <div class="receipt">
+                <a class="receipt-category" style="width: 15%;" href="https://apple.com">#GHIJKLMN</a>
+                <a class="receipt-category" style="width: 30%;">Trần Thị Thuý Vy</a>
+                <a class="receipt-category" style="width: 15%;">0123456789</a>
+                <a class="receipt-category" style="width: 25%;">Hồ Chí Minh</a>
+                <a class="receipt-category" style="width: 15%;">Đang giao</a>
+            </div> -->
+
+        </main>
+
+        <footer>
+            <div class="footer-content">
+                <p style="font-size: 1vw;">&copy; 2024 BookHub. All rights reserved.</p>
+                <p style="font-size:2vw;font-weight:700;margin-bottom:1.1vw;">VỀ BOOKHUB</p>
+                <div style="width: 100%; height: 0.1vw; background-color: #ffffff;margin-bottom: 1vw;"></div>
+                <p style="font-size:1vw ; font-weight: 500;margin-bottom: 1vw;">BookHub là nền tảng kết nối những người
+                <br/>có niềm yêu thích sách lại với nhau.</p>
+                <a href="https://facebook.com" target="_blank" style="margin-right: 1vw;"><img src="../assets/facebook.png" alt="facebook" style="height: auto;width: 3vw;"></a>
+                <a href="https://instagram.com" target="_blank"><img src="../assets/instagram.png" alt="instagram" style="height: auto;width: 3vw;"></a>
+            </div>
+            <div class="link_contact">
+                <p style="font-size:2vw;font-weight:700; margin-bottom:1vw ;">ĐƯỜNG DẪN</p>
+                <div style="width: 100%; height: 0.1vw; background-color: #ffffff;margin-bottom: 0vw;"></div>
+                <ul style="list-style-type: none; font-size: 1.5vw;text-align: center;padding-left: 0;font-weight: 500;">
+                    <li style="margin-bottom: 0.7vw;"><a href="Bookhub.html" style="color: white; text-decoration: none;" id="myLink">Trang chủ</a></li>
+                    <li style="margin-bottom: 0.7vw;"><a href="Bookhub.html" style="color: white; text-decoration: none;" id="myLink">Sản phẩm</a></li>
+                    <li style="margin-bottom: 0.7vw;"><a href="Bookhub.html" style="color: white; text-decoration: none;" id="myLink">Đăng nhập</a></li>
+                    <li style="margin-bottom: 0.7vw;"><a href="Bookhub.html" style="color: white; text-decoration: none;" id="myLink">Đăng ký</a></li>
+                </ul>
+            </div>
+            <div class="contact" style="display:block">
+                <p style="font-size:2vw;font-weight:700;margin-bottom:1vw;">LIÊN HỆ</p>
+                <div style="width: 100%; height: 0.1vw; background-color: #ffffff;margin-bottom: 1vw;"></div>
+                <table>
+                    <tr>
+                        <td style="padding-right: 1vw;"><img src="../assets/phone-call.png" alt="phone" style="height: auto;width: 2vw;"></td>
+                        <td style="font-size: 1.5vw;font-weight: 500;vertical-align: middle;">016.161.6161</td>
+                    </tr>
+                    <tr>
+                        <td style="padding-right: 1vw;"><img src="../assets/email.png" alt="mail" style="height: auto;width: 2vw;"></td>
+                        <td style="font-size: 1.5vw;font-weight: 500;vertical-align: middle;">group16@gmail.com</td>
+                </table>
+            </div>
+        </footer>
+    </body>
+</html>
