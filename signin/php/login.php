@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($result["role"] == "admin") {
             header("Location: ../../admin/admin.php");
         } else {
-            header("Location: ../../Account/profile.html");
+            header("Location: ../../account/profile.html");
         }
 
         $pdo = null;

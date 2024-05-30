@@ -1,14 +1,10 @@
 <?php
-require_once '../signin/php/config_session.php';
 session_start();
-
+include 'dbh.php';
 if (!isset($_SESSION['user_username']) || $_SESSION['user_role'] != 'admin') {
     header("Location: ../signin/signin.php");
     exit();
 }
-
-// Database connection
-require '../admin/dbh.php';
 ?>
 
 <!DOCTYPE html>
