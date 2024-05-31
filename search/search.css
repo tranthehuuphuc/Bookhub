@@ -311,8 +311,9 @@
     padding: 10px 20px;
   }
 
-  #search-container button {
-    padding: 0.25em 2em;
+  #search-container button{
+    padding: 0.5em 2em;
+    margin-top: 2em;
   }
 
   #search-container {
