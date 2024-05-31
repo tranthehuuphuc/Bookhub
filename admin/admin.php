@@ -1,11 +1,14 @@
 <?php
 session_start();
-include 'dbh.php';
-if (!isset($_SESSION['user_username']) || $_SESSION['user_role'] != 'admin') {
+
+if ($_SESSION['user_role'] !== 'admin') {
     header("Location: ../signin/signin.php");
     exit();
 }
+
+include 'dbh.php';
 ?>
+
 
 <!DOCTYPE html>
 <html lang="vi">
@@ -63,12 +66,11 @@ if (!isset($_SESSION['user_username']) || $_SESSION['user_role'] != 'admin') {
                 <a class="logo-link" href="../index.html"><img id="BookHub" src="../assets/logo.png" alt="BookHub"></a>
                 <a class="globalnav-item" href="../Book_Store/bookstore.php">Bookstore</a>
                 <a class="globalnav-item" href="../discuss/discuss.php">Thảo luận</a>
-                <a class="globalnav-item" href="../signin/signin.php">Đăng nhập</a>
                 <a class="globalnav-item" href="../search/search.html">Tìm kiếm</a>
                 <a class="globalnav-item-show" href="../account/AccountReceipts.html">Đơn hàng</a>
                 <a class="globalnav-item-show" href="../account/AccountCart.html">Mục đã lưu</a>
                 <a class="globalnav-item-show" href="../account/AccountSettings.html">Tài khoản</a>
-                <a class="globalnav-item-show" href="../account/AccountAssets/join.png">Đăng xuất</a>
+                <a class="globalnav-item-show" href="../signin/logout.php">Đăng xuất</a>
                 <button id="profile-button"><img id="profile-icon" src="../assets/account.png" alt="Profile Icon"></button>
             </div>
         </nav>
@@ -82,7 +84,7 @@ if (!isset($_SESSION['user_username']) || $_SESSION['user_role'] != 'admin') {
                 <li><img class="option-icons" src="../assets/orders.png"><a href="../account/orders.html">Đơn hàng</a></li>
                 <li><img class="option-icons" src="../assets/saves.png"><a href="../account/saves.html">Mục đã lưu</a></li>
                 <li><img class="option-icons" src="../assets/setting.png"><a href="../account/profile.html">Tài khoản</a></li>
-                <li><img class="option-icons" src="../assets/join.png"><a href="../index.html">Đăng xuất</a></li>
+                <li><img class="option-icons" src="../assets/join.png"><a href="../signin/logout.php">Đăng xuất</a></li>
             </ul>
         </div>
         <script>
@@ -126,144 +128,148 @@ if (!isset($_SESSION['user_username']) || $_SESSION['user_role'] != 'admin') {
         <!-- End of Account options -->
 
     <main class="form-class">
-    <div class="container">
-        <h1>Admin Dashboard</h1>
-        <h3>Xin chào, <?php echo htmlspecialchars($_SESSION["user_username"]); ?>!</h3>
-        <?php
-        // Check if success parameter is present in URL
-        if (isset($_GET['success']) && $_GET['success'] == 1) {
-            // Show JavaScript alert for success message
-            echo '<script>alert("Thao tác thành công!");</script>';
-        }
-        ?>
-        <p>Đây là trang quản trị của BookHub. Bạn có thể thực hiện các thao tác quản trị ở đây.</p>
-        <!-- Panels -->
-        <div class="tabs">
-            <button class="tab active" data-target="#addBookPanel">Thêm sách</button>
-            <button class="tab" data-target="#addCategoryPanel">Thêm thể loại</button>
-            <button class="tab" data-target="#addAuthorPanel">Thêm tác giả</button>
-        </div>
-        <div id="addBookPanel" class="panel active">
-            <!-- Form for adding a book -->
-            <h3>Thêm sách</h3>
-            <form action="publish_book.php" method="post" enctype="multipart/form-data">
-                <!-- Form fields for adding a book -->
-                <div class="form-group">
-                    <label for="title">Tên sách:</label>
-                    <input type="text" id="title" name="title" required>
-                </div>
-                <div class="form-group">
-                    <label for="author">Tác giả:</label>
-                    <select id="author" name="author_id" required>
-                        <!-- Options fetched from the database -->
-                        <?php
-                        require '../admin/dbh.php';
-                        $result = $conn->query("SELECT author_id, author_name FROM authors");
-                        if ($result->num_rows > 0) {
-                            while ($row = $result->fetch_assoc()) {
-                                echo "<option value='{$row['author_id']}'>{$row['author_name']}</option>";
+        <div class="container">
+            <h1>Admin Dashboard</h1>
+            <h3>Xin chào, <?php echo htmlspecialchars($_SESSION["user_username"]); ?>!</h3>
+            <?php
+            // Check if success parameter is present in URL
+            if (isset($_GET['success']) && $_GET['success'] == 1) {
+                // Show JavaScript alert for success message
+                echo '<script>alert("Thao tác thành công!");</script>';
+            }
+            ?>
+            <p>Đây là trang quản trị của BookHub. Bạn có thể thực hiện các thao tác quản trị ở đây.</p>
+            <!-- Panels -->
+            <div class="tabs">
+                <button class="tab active" data-target="#addBookPanel">Thêm sách</button>
+                <button class="tab" data-target="#addCategoryPanel">Thêm thể loại</button>
+                <button class="tab" data-target="#addAuthorPanel">Thêm tác giả</button>
+            </div>
+            <div id="addBookPanel" class="panel active">
+                <!-- Form for adding a book -->
+                <h3>Thêm sách</h3>
+                <form action="publish_book.php" method="post" enctype="multipart/form-data">
+                    <!-- Form fields for adding a book -->
+                    <div class="form-group">
+                        <label for="title">Tên sách:</label>
+                        <input type="text" id="title" name="title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="author">Tác giả:</label>
+                        <select id="author" name="author_id" required>
+                            <!-- Options fetched from the database -->
+                            <?php
+                            require '../admin/dbh.php';
+                            $result = $conn->query("SELECT author_id, author_name FROM authors");
+                            if ($result->num_rows > 0) {
+                                while ($row = $result->fetch_assoc()) {
+                                    echo "<option value='{$row['author_id']}'>{$row['author_name']}</option>";
+                                }
+                            } else {
+                                echo "<option value=''>Không có tác giả nào</option>";
                             }
-                        } else {
-                            echo "<option value=''>Không có tác giả nào</option>";
-                        }
-                        ?>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="categories">Thể loại:</label>
-                    <select id="categories" name="categories[]" multiple required>
-                        <!-- Options fetched from the database -->
-                        <?php
-                        $result = $conn->query("SELECT category_id, category_name FROM categories");
-                        if ($result->num_rows > 0) {
-                            while ($row = $result->fetch_assoc()) {
-                                echo "<option value='{$row['category_id']}'>{$row['category_name']}</option>";
+                            ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="categories">Thể loại:</label>
+                        <select id="categories" name="categories[]" multiple required>
+                            <!-- Options fetched from the database -->
+                            <?php
+                            $result = $conn->query("SELECT category_id, category_name FROM categories");
+                            if ($result->num_rows > 0) {
+                                while ($row = $result->fetch_assoc()) {
+                                    echo "<option value='{$row['category_id']}'>{$row['category_name']}</option>";
+                                }
+                            } else {
+                                echo "<option value=''>Không có thể loại nào</option>";
                             }
-                        } else {
-                            echo "<option value=''>Không có thể loại nào</option>";
-                        }
-                        ?>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="publication_year">Năm xuất bản:</label>
-                    <input type="number" id="publication_year" name="publication_year" required>
-                </div>
-                <div class="form-group">
-                    <label for="price">Giá:</label>
-                    <input type="number" step="0.01" id="price" name="price" required>
-                </div>
-                <div class="form-group">
-                    <label for="quantity">Số lượng còn lại:</label>
-                    <input type="number" id="quantity" name="quantity" required>
-                </div>
-                <div class="form-group">
-                    <label for="cover_image">Bìa sách:</label>
-                    <input type="file" id="cover_image" name="cover_image" required>
-                </div>
-                <div class="form-group">
-                    <label for="description">Mô tả sách:</label>
-                    <textarea rows="10" id="description" name="description" required></textarea>
-                </div>
-                <!-- Additional book information -->
-                <div class="form-group">
-                    <label for="pages">Số trang:</label>
-                    <input type="number" id="pages" name="pages" required>
-                </div>
-                <div class="form-group">
-                    <label for="language">Ngôn ngữ:</label>
-                    <input type="text" id="language" name="language" required>
-                </div>
-                <div class="form-group">
-                    <label for="format">Hình thức:</label>
-                    <input type="text" id="format" name="format" required>
-                </div>
-                <div class="form-group">
-                    <label for="isbn">ISBN:</label>
-                    <input type="text" id="isbn" name="isbn" required>
-                </div>
-                <div class="form-group">
-                    <label for="chapters">Danh sách chương:</label>
-                    <textarea rows="5" id="chapters" name="chapters" required></textarea>
-                </div>
-                <button type="submit"><p>Thêm sách</p></button>
-            </form>
-        </div>
+                            ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="publication_year">Năm xuất bản:</label>
+                        <input type="number" id="publication_year" name="publication_year" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="publisher">Nhà xuất bản:</label>
+                        <input type="text" id="publisher" name="publisher" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Giá:</label>
+                        <input type="number" step="0.01" id="price" name="price" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="quantity">Số lượng còn lại:</label>
+                        <input type="number" id="quantity" name="quantity" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cover_image">Bìa sách:</label>
+                        <input type="file" id="cover_image" name="cover_image" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Mô tả sách:</label>
+                        <textarea rows="10" id="description" name="description" required></textarea>
+                    </div>
+                    <!-- Additional book information -->
+                    <div class="form-group">
+                        <label for="pages">Số trang:</label>
+                        <input type="number" id="pages" name="pages" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="language">Ngôn ngữ:</label>
+                        <input type="text" id="language" name="language" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="format">Hình thức:</label>
+                        <input type="text" id="format" name="format" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="isbn">ISBN:</label>
+                        <input type="text" id="isbn" name="isbn" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="chapters">Danh sách chương:</label>
+                        <textarea rows="5" id="chapters" name="chapters" required></textarea>
+                    </div>
+                    <button type="submit"><p>Thêm sách</p></button>
+                </form>
+            </div>
 
-        <div id="addCategoryPanel" class="panel">
-            <h3>Thêm thể loại</h3>
-            <form action="publish_category.php" method="post">
-                <div class="form-group">
-                    <label for="category_name">Tên thể loại:</label>
-                    <input type="text" id="category_name" name="category_name" required>
-                </div>
-                <button type="submit"><p>Thêm thể loại</p></button>
-            </form>
-        </div>
+            <div id="addCategoryPanel" class="panel">
+                <h3>Thêm thể loại</h3>
+                <form action="publish_category.php" method="post">
+                    <div class="form-group">
+                        <label for="category_name">Tên thể loại:</label>
+                        <input type="text" id="category_name" name="category_name" required>
+                    </div>
+                    <button type="submit"><p>Thêm thể loại</p></button>
+                </form>
+            </div>
 
-        <div id="addAuthorPanel" class="panel">
-            <h3>Thêm tác giả</h3>
-            <form action="publish_author.php" method="post">
-                <div class="form-group">
-                    <label for="author_name">Tên tác giả:</label>
-                    <input type="text" id="author_name" name="author_name" required>
-                </div>
-                <div class="form-group">
-                    <label for="birth_date">Ngày sinh:</label>
-                    <input type="date" id="birth_date" name="birth_date">
-                </div>
-                <div class="form-group">
-                    <label for="nationality">Quốc tịch:</label>
-                    <input type="text" id="nationality" name="nationality">
-                </div>
-                <div class="form-group">
-                    <label for="biography">Tiểu sử:</label>
-                    <textarea rows="5" id="biography" name="biography"></textarea>
-                </div>
-                <button type="submit"><p>Thêm tác giả</p></button>
-            </form>
+            <div id="addAuthorPanel" class="panel">
+                <h3>Thêm tác giả</h3>
+                <form action="publish_author.php" method="post">
+                    <div class="form-group">
+                        <label for="author_name">Tên tác giả:</label>
+                        <input type="text" id="author_name" name="author_name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="birth_date">Ngày sinh:</label>
+                        <input type="date" id="birth_date" name="birth_date">
+                    </div>
+                    <div class="form-group">
+                        <label for="nationality">Quốc tịch:</label>
+                        <input type="text" id="nationality" name="nationality">
+                    </div>
+                    <div class="form-group">
+                        <label for="biography">Tiểu sử:</label>
+                        <textarea rows="5" id="biography" name="biography"></textarea>
+                    </div>
+                    <button type="submit"><p>Thêm tác giả</p></button>
+                </form>
+            </div>
         </div>
-    </div>
     </main>
 
 

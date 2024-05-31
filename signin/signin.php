@@ -47,64 +47,8 @@ require_once "php/login_view.php";
           <a class="globalnav-item" href="../discuss/discuss.php">Thảo luận</a>
           <a class="globalnav-item" href="../signin/signin.php">Đăng nhập</a>
           <a class="globalnav-item" href="../search/search.html">Tìm kiếm</a>
-          <a class="globalnav-item-show" href="../account/AccountReceipts.html">Đơn hàng</a>
-          <a class="globalnav-item-show" href="../account/AccountCart.html">Mục đã lưu</a>
-          <a class="globalnav-item-show" href="../account/AccountSettings.html">Tài khoản</a>
-          <a class="globalnav-item-show" href="../account/AccountAssets/join.png">Đăng xuất</a>
-          <button id="profile-button"><img id="profile-icon" src="../assets/account.png" alt="Profile Icon"></button>
       </div>
   </nav>
-
-    <!-- Account options -->
-    <div id="blur-overlay" class="hidden"></div>
-    <div id="account-options" class="hidden">
-        <p id="myprofile">Hồ sơ của tôi</p>
-        <div style="background-color: #d9d9d9; width: 25%; height: 0.05vw; margin: 0; padding: 0;"></div>
-        <ul>
-            <li><img class="option-icons" src="../assets/orders.png"><a href="../account/orders.html">Đơn hàng</a></li>
-            <li><img class="option-icons" src="../assets/saves.png"><a href="../account/saves.html">Mục đã lưu</a></li>
-            <li><img class="option-icons" src="../assets/setting.png"><a href="../account/profile.html">Tài khoản</a></li>
-            <li><img class="option-icons" src="../assets/join.png"><a href="../index.html">Đăng xuất</a></li>
-        </ul>
-    </div>
-    <script>
-        function ShowAccountOptions() {
-            var overlay = document.getElementById("blur-overlay");
-            var accountOptions = document.getElementById("account-options");
-            overlay.classList.toggle("hidden");
-
-            if (overlay.classList.contains('hidden')) {
-                accountOptions.classList.remove("show");
-                setTimeout(() => accountOptions.classList.add("hidden"), 500);
-            } else {
-                accountOptions.classList.remove("hidden");
-                setTimeout(() => accountOptions.classList.add("show"), 0);
-            }
-        }
-
-        function CloseAccountOptions() {
-            var overlay = document.getElementById("blur-overlay");
-            var accountOptions = document.getElementById("account-options");
-
-            overlay.classList.toggle("hidden");
-            accountOptions.classList.remove("show");
-            setTimeout(() => accountOptions.classList.add("hidden"), 500);
-        }
-
-        document.addEventListener("DOMContentLoaded", () => {
-            var profileButton = document.getElementById("profile-button");
-            var overlay = document.getElementById("blur-overlay");
-
-            profileButton.addEventListener("click", ShowAccountOptions);
-            overlay.addEventListener("click", CloseAccountOptions);
-            document.addEventListener('keydown', (event) => {
-                if (event.key === 'Escape') {
-                    CloseAccountOptions();
-                }
-            });
-        });
-    </script>
-    <!-- End of Account options -->
   
 
     <div class="container">

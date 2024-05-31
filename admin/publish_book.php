@@ -4,23 +4,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Include the database connection file
     require_once "../admin/dbh.php";
 
-    // Get the form data
-    $title = $_POST['title'];
-    $author_id = $_POST['author_id'];
-    $categories = $_POST['categories']; // Array of category IDs
-    $publication_year = $_POST['publication_year'];
-    $price = $_POST['price'];
-    $quantity = $_POST['quantity'];
-    $description = $_POST['description'];
-    $pages = $_POST['pages'];
-    $language = $_POST['language'];
-    $format = $_POST['format'];
-    $isbn = $_POST['isbn'];
-    $chapters = $_POST['chapters'];
+    // Validate and get the form data
+    $title = trim($_POST['title']);
+    $author_id = (int)$_POST['author_id'];
+    $categories = $_POST['categories'] ?? []; // Array of category IDs
+    $publication_year = trim($_POST['publication_year']);
+    $publisher = trim($_POST['publisher']);
+    $price = (float)$_POST['price'];
+    $quantity = (int)$_POST['quantity'];
+    $description = trim($_POST['description']);
+    $pages = (int)$_POST['pages'];
+    $language = trim($_POST['language']);
+    $format = trim($_POST['format']);
+    $isbn = trim($_POST['isbn']);
+    $chapters = trim($_POST['chapters']);
 
     // Upload the cover image
     $cover_image = $_FILES['cover_image']['name'];
-    $target_dir = "./uploads/";
+    $target_dir = "../uploads/";
     $target_file = $target_dir . basename($cover_image);
 
     // Check if image file is a actual image or fake image
@@ -28,44 +29,68 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($check !== false) {
         move_uploaded_file($_FILES["cover_image"]["tmp_name"], $target_file);
     } else {
-        echo "File is not an image.";
+        echo "<script>alert('File is not an image.'); window.location.href = 'admin.php';</script>";
         exit;
     }
+  // Check if the book already exists
+    $sql_check = "SELECT * FROM books WHERE title = ? AND author_id = ?";
+    $stmt_check = $conn->prepare($sql_check);
+    $stmt_check->bind_param("si", $title, $author_id);
+    $stmt_check->execute();
+    $result_check = $stmt_check->get_result();
 
-    // Insert book details into the database
-    $sql = "INSERT INTO books (title, author_id, publication_year, price, available_quantity, description, cover_image, rating)
-            VALUES ('$title', '$author_id', '$publication_year', '$price', '$quantity', '$description', '$cover_image', 0)";
-    if ($conn->query($sql) === TRUE) {
-        // Get the ID of the inserted book
-        $book_id = $conn->insert_id;
-
-        // Insert additional book information into the database
-        $sql_info = "INSERT INTO book_information (book_id, number_of_pages, language, format, isbn, chapters)
-                     VALUES ('$book_id', '$pages', '$language', '$format', '$isbn', '$chapters')";
-        $conn->query($sql_info);
-
-        // Insert book-category associations into the database
-        foreach ($categories as $category_id) {
-            $sql_category = "INSERT INTO book_categories (book_id, category_id) VALUES ('$book_id', '$category_id')";
-            $conn->query($sql_category);
-        }
-
-        // Parse chapters and insert each chapter into the book_chapters table
-        $chapter_list = explode("\n", $chapters);
-        foreach ($chapter_list as $chapter_title) {
-            $chapter_title = trim($chapter_title); // Remove any extra whitespace
-            if (!empty($chapter_title)) {
-                $sql_chapter = "INSERT INTO book_chapters (book_id, chapter_title) VALUES ('$book_id', '$chapter_title')";
-                $conn->query($sql_chapter);
-            }
-        }
-
-        // Redirect to the dashboard with success message
-        header("Location: admin.php?success=1");
+    if ($result_check->num_rows > 0) {
+        echo "<script>alert('Failed. Book already exists.'); window.location.href = 'admin.php';</script>";
+        exit;
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        // Insert new book
+        $sql = "INSERT INTO books (title, author_id, publication_year, publisher, price, available_quantity, description, cover_image, rating)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, 0)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("sissdiss", $title, $author_id, $publication_year, $publisher, $price, $quantity, $description, $cover_image);
+        if ($stmt->execute()) {
+            $book_id = $stmt->insert_id;
+
+            // Insert additional book information
+            $sql_info = "INSERT INTO book_information (book_id, number_of_pages, language, format, isbn, chapters)
+                         VALUES (?, ?, ?, ?, ?, ?)";
+            $stmt_info = $conn->prepare($sql_info);
+            $stmt_info->bind_param("iissss", $book_id, $pages, $language, $format, $isbn, $chapters);
+            $stmt_info->execute();
+
+            // Insert chapters
+            if (!empty($chapters)) {
+                $chaptersArray = explode("\n", $chapters);
+                foreach ($chaptersArray as $chapter) {
+                    $chapter = trim($chapter);
+                    if (!empty($chapter)) {
+                        $sql_insert_chapter = "INSERT INTO book_chapters (book_id, chapter_title) VALUES (?, ?)";
+                        $stmt_insert_chapter = $conn->prepare($sql_insert_chapter);
+                        $stmt_insert_chapter->bind_param("is", $book_id, $chapter);
+                        $stmt_insert_chapter->execute();
+                    }
+                }
+            }
+
+            // Insert book-category associations
+            foreach ($categories as $category_id) {
+                $sql_category = "INSERT INTO book_categories (book_id, category_id) VALUES (?, ?)";
+                $stmt_category = $conn->prepare($sql_category);
+                $stmt_category->bind_param("ii", $book_id, $category_id);
+                $stmt_category->execute();
+            }
+
+            echo "<script>alert('Book added successfully.'); window.location.href = 'admin.php';</script>";
+            exit();
+        } else {
+            echo "Error: " . $stmt->error;
+        }
     }
 
-    // Close the database connection
+    // Close the statements and database connection
+    $stmt_check->close();
+    $stmt->close();
+    $stmt_info->close();
+    $stmt_category->close();
     $conn->close();
 }

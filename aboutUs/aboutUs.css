@@ -1,0 +1,136 @@
+/* Mission section */
+
+body {
+text-align: justify;
+}
+
+.container{
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.hero {
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.mission {
+    background-color: #e9f5fc;
+    padding: 50px 0;
+}
+
+.mission h2 {
+    font-size: 24px;
+    color: #333;
+}
+
+.mission p {
+    font-size: 16px;
+    color: #666;
+}
+
+/* Values section */
+.values {
+    padding: 50px 0;
+}
+
+.values h2 {
+    font-size: 24px;
+    color: #333;
+}
+
+.values-list {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.value {
+    flex-basis: 30%;
+}
+
+.value h3 {
+    font-size: 20px;
+    color: #333;
+}
+
+.value p {
+    font-size: 16px;
+    color: #666;
+}
+
+/* Testimonials section */
+.testimonials {
+    background-color: #f7f7f7;
+    padding: 50px 0;
+}
+
+.testimonials h2 {
+    font-size: 24px;
+    color: #333;
+}
+
+.testimonial {
+    margin-top: 30px;
+}
+
+.testimonial p {
+    font-size: 16px;
+    color: #666;
+}
+
+.testimonial cite {
+    display: block;
+    font-style: italic;
+    margin-top: 10px;
+    color: #999;
+}
+
+/* Additions to existing styles */
+
+/* History section */
+.history {
+    background-color: #f7f7f7;
+    padding: 50px 0;
+}
+
+.history h2 {
+    font-size: 24px;
+    color: #333;
+}
+
+.history p {
+    font-size: 16px;
+    color: #666;
+}
+
+/* Team section */
+.team {
+    padding: 50px 0;
+}
+
+.team h2 {
+    font-size: 24px;
+    color: #333;
+}
+
+.team p {
+    font-size: 16px;
+    color: #666;
+}
+
+/* Community Involvement section */
+.community {
+    background-color: #e9f5fc;
+    padding: 50px 0;
+}
+
+.community h2 {
+    font-size: 24px;
+    color: #333;
+}
+
+.community p {
+    font-size: 16px;
+    color: #666;
+}
