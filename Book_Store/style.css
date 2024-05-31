@@ -122,6 +122,8 @@
     -webkit-overflow-srcolling:touch;
     justify-content: space-between;
     padding-top: 20px;
+    overflow-x: auto; /* Cho phép trượt ngang khi cần thiết */
+    white-space: nowrap;
     flex-wrap: nowrap;  /* cac phan tu con se tu dong xuong dong moi neu khong du khong gian tren mot dong */
 }
 
@@ -143,6 +145,7 @@
     flex: 1 1 auto;
     overflow-x:auto; 
     display: inline-block;
+    box-sizing: border-box;
 }
 
 #product1 .pro:hover {
