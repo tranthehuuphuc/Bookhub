@@ -1,6 +1,6 @@
-# Project Title
+# BookHub
 
-Bookhub - A website for book lovers.
+A website for book lovers.
 
 ## Description
 Features:
@@ -8,27 +8,43 @@ Features:
 
 
 This is a web application project of Group 16, from subject Web Application - NT208, of University of Information Technology - Vietnam National University.<br/>
-This web is to buy, sell and discuss about books.
+This web is to buy and discuss about books.
 
 ## Getting Started
 
-### Dependencies
+### Prerequisites
 
+#### Windows: Xampp, Wamp64
+#### MacOS: Mamp
+
+### Installation
+#### For Windows:
+  1. Install Xampp: https://www.apachefriends.org/download.html
+  2. Set up and download Apache and MySQL.
+  3. Install xampp in an easy to remember folder. Example: C:/xampp.
+  4. Find htdocs folder in xampp, paste all your codes there.
+  5. Open xampp, start both Apache server and MySQL server.
+  6. Click admin next to MySQL to open phpMyAdmin and create a database named bookhub and import .sql file there.
+  7. Now you can navigate to the website by clicking in the Apache's server.
+
+#### For MacOS:
+  1.
+   
 ### Programming languages, frameworks, database
 HTML, CSS, PHP, JavaScripts, MySQL
-updating...
 
 ## Help
 
 ## Authors
 
 Contributors names and contact info:
-<br/>Tran The Huu Phuc <a href="https://github.com/tranthehuuphuc">@tranthehuuphuc</a>
-<br/>Tran Thi Thuy Vy <a href="https://github.com/vytr09">@vytr09</a>
-<br/>Le Thi Bich Tuyen <a href="https://github.com/tuyen2201">@tuyen2201</a>
-<br/>Nguyen Thi Hong Lam <a href="https://github.com/HLAM131">@HLAM131</a>
+<br/>Tran The Huu Phuc 22521143 <a href="https://github.com/tranthehuuphuc">@tranthehuuphuc</a>
+<br/>Tran Thi Thuy Vy 22521709 <a href="https://github.com/vytr09">@vytr09</a>
+<br/>Le Thi Bich Tuyen 22521630 <a href="https://github.com/tuyen2201">@tuyen2201</a>
+<br/>Nguyen Thi Hong Lam 20521518 <a href="https://github.com/HLAM131">@HLAM131</a>
 
 ## Version History
+  v0.1: First deployment
 
 ## License
 
