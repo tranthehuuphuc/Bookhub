@@ -268,7 +268,7 @@ html, body {
     display: block;
     margin: 5px 0 0 0;
     padding: 0;
-    width: auto;
+    min-width: 450px;
     height: auto;
 }
 
@@ -285,6 +285,7 @@ html, body {
 .submit-button {
     background-color: #007bff;
     border-radius: 20px;
+    border: none;
     color: #ffffff;
     cursor: pointer;
     display: flex;
@@ -292,9 +293,9 @@ html, body {
     justify-content: center;
     align-items: center;
     margin: 10px;
-    padding: 10px 20px;
+    padding: 10px 30px;
     transition: 0.2s;
-    width: 10%;
+    width: 80px;
     height: 5%;
 }
 
@@ -304,6 +305,19 @@ html, body {
 
 .cancel-button {
     background-color: #afafaf;
+    border-radius: 20px;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    display: flex;
+    font-size: 20px;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    padding: 10px 30px;
+    transition: 0.2s;
+    width: 20px;
+    height: 5%;
 }
 
 .cancel-button:hover {
@@ -480,7 +494,7 @@ html, body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    overflow-y:scroll;
+    overflow-y: auto;
     max-height: 80vh;
 }
 
@@ -613,6 +627,7 @@ html, body {
     .input-box {
         font-size: 15px;
         margin: 5px 0 0 0;
+        min-width: 300px;
     }
 
     .submit-button {
@@ -713,4 +728,3 @@ html, body {
         font-size: 18px;
     }
 }
-
