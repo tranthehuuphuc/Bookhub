@@ -142,26 +142,256 @@
         </div>
 
         <section id="product1" class="section-p1">
-            <div class="pro-container">
-                <div class="pro" onclick="window.location.href='../thao luan va chi tiet.html';">
-                    <img src="assets/etc.jpg" alt="">
-                    <div class="des">
-                        <span>Technology</span>
-                        <h5>C/C++ Programming</h5>
-                        <div class="star">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <h4>100.000 VND</h4>
+        <h4 class="section-title"><a href="#">>Technology Books</a></h4>
+        <div class="pro-container">
+            <div class="pro" onclick="window.location.href='../thao luan va chi tiet.html';">
+                <img src="../assets/etc.jpg" alt="">
+                <div class="des">
+                    <span>Technology</span>
+                    <h5>C/C++ Programming</h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
                     </div>
-                    <a href="#"><i class="fa fa-shopping-cart cart"></i></a>
+                    <h4>100.000 VND</h4>
                 </div>
+                <a href="#"><i class="fa fa-shopping-cart cart"></i></a>
             </div>
-        </section>
-    
+
+            <div class="pro" onclick="window.location.href='../thao luan va chi tiet.html';">
+                <img src="../assets/etc.jpg" alt="">
+                <div class="des">
+                    <span>Technology</span>
+                    <h5>C/C++ Programming</h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h4>100.000 VND</h4>
+                </div>
+                <a href="#"><i class="fa fa-shopping-cart cart"></i></a>
+            </div>
+
+            <div class="pro" onclick="window.location.href='../thao luan va chi tiet.html';">
+                <img src="../assets/etc.jpg" alt="">
+                <div class="des">
+                    <span>Technology</span>
+                    <h5>C/C++ Programming</h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h4>100.000 VND</h4>
+                </div>
+                <a href="#"><i class="fa fa-shopping-cart cart"></i></a>
+            </div>
+
+            <div class="pro" onclick="window.location.href='../thao luan va chi tiet.html';">
+                <img src="../assets/etc.jpg" alt="">
+                <div class="des">
+                    <span>Technology</span>
+                    <h5>C/C++ Programming</h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h4>100.000 VND</h4>
+                </div>
+                <a href="#"><i class="fa fa-shopping-cart cart"></i></a>
+            </div>
+
+            <div class="pro" onclick="window.location.href='../thao luan va chi tiet.html';">
+                <img src="../assets/etc.jpg" alt="">
+                <div class="des">
+                    <span>Technology</span>
+                    <h5>C/C++ Programming</h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h4>100.000 VND</h4>
+                </div>
+                <a href="#"><i class="fa fa-shopping-cart cart"></i></a>
+            </div>
+
+            <div class="pro" onclick="window.location.href='../thao luan va chi tiet.html';">
+                <img src="../assets/etc.jpg" alt="">
+                <div class="des">
+                    <span>Technology</span>
+                    <h5>C/C++ Programming</h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h4>100.000 VND</h4>
+                </div>
+                <a href="#"><i class="fa fa-shopping-cart cart"></i></a>
+            </div>
+
+            <div class="pro" onclick="window.location.href='../thao luan va chi tiet.html';">
+                <img src="../assets/etc.jpg" alt="">
+                <div class="des">
+                    <span>Technology</span>
+                    <h5>C/C++ Programming</h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h4>100.000 VND</h4>
+                </div>
+                <a href="#"><i class="fa fa-shopping-cart cart"></i></a>
+            </div>
+
+        </div>
+
+    </section>
+
+    <section id="product1" class="section-p1">
+        <h4 class="section-title"><a href="#">>Tình Cảm</a></h4>
+        <div class="pro-container">
+            <div class="pro" onclick="window.location.href='../thao luan va chi tiet.html';">
+                <img src="../assets/etc.jpg" alt="">
+                <div class="des">
+                    <span>Technology</span>
+                    <h5>C/C++ Programming</h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h4>100.000 VND</h4>
+                </div>
+                <a href="#"><i class="fa fa-shopping-cart cart"></i></a>
+            </div>
+
+            <div class="pro" onclick="window.location.href='../thao luan va chi tiet.html';">
+                <img src="../assets/etc.jpg" alt="">
+                <div class="des">
+                    <span>Technology</span>
+                    <h5>C/C++ Programming</h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h4>100.000 VND</h4>
+                </div>
+                <a href="#"><i class="fa fa-shopping-cart cart"></i></a>
+            </div>
+
+            <div class="pro" onclick="window.location.href='../thao luan va chi tiet.html';">
+                <img src="../assets/etc.jpg" alt="">
+                <div class="des">
+                    <span>Technology</span>
+                    <h5>C/C++ Programming</h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h4>100.000 VND</h4>
+                </div>
+                <a href="#"><i class="fa fa-shopping-cart cart"></i></a>
+            </div>
+
+            <div class="pro" onclick="window.location.href='../thao luan va chi tiet.html';">
+                <img src="../assets/etc.jpg" alt="">
+                <div class="des">
+                    <span>Technology</span>
+                    <h5>C/C++ Programming</h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h4>100.000 VND</h4>
+                </div>
+                <a href="#"><i class="fa fa-shopping-cart cart"></i></a>
+            </div>
+
+            <div class="pro" onclick="window.location.href='../thao luan va chi tiet.html';">
+                <img src="../assets/etc.jpg" alt="">
+                <div class="des">
+                    <span>Technology</span>
+                    <h5>C/C++ Programming</h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h4>100.000 VND</h4>
+                </div>
+                <a href="#"><i class="fa fa-shopping-cart cart"></i></a>
+            </div>
+
+            <div class="pro" onclick="window.location.href='../thao luan va chi tiet.html';">
+                <img src="../assets/etc.jpg" alt="">
+                <div class="des">
+                    <span>Technology</span>
+                    <h5>C/C++ Programming</h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h4>100.000 VND</h4>
+                </div>
+                <a href="#"><i class="fa fa-shopping-cart cart"></i></a>
+            </div>
+
+            <div class="pro" onclick="window.location.href='../thao luan va chi tiet.html';">
+                <img src="../assets/etc.jpg" alt="">
+                <div class="des">
+                    <span>Technology</span>
+                    <h5>C/C++ Programming</h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h4>100.000 VND</h4>
+                </div>
+                <a href="#"><i class="fa fa-shopping-cart cart"></i></a>
+            </div>
+
+        </div>
+
+    </section>
         <footer>
             <div class="footer-content">
                 <p style="font-size: 1vw;">&copy; 2024 BookHub. All rights reserved.</p>
