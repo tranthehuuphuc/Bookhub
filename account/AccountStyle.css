@@ -153,6 +153,8 @@ html, body {
     text-decoration: underline;
 }
 
+
+
 .book-slider {
     display: flex;
     align-items: center;
@@ -214,7 +216,7 @@ html, body {
     transition: 0.2s;
 }
 
-#shipping-settings, #payment-settings, #account-settings{
+#shipping-settings, #payment-settings, #account-settings {
     border-radius: 25px;
     position: fixed;
     background-color: rgb(255, 255, 255);
@@ -232,6 +234,8 @@ html, body {
     left: 50%;
     transform: translate(-50%, -50%);
     display: flex;
+    overflow-y: auto;
+    max-height: 80vh;
 }
 
 .input-field {
@@ -338,6 +342,170 @@ html, body {
     padding: 0;
     text-align: center;
 }
+
+.saved {
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: top;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.scaled-book {
+    width: 200px;
+    height: auto;
+    margin: 25px;
+    padding: 0;
+    box-shadow: 0px 0px 5px 1px gray;
+}
+
+.book-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    width: 75%;
+}
+
+.book-row {
+    display: flex; 
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 0; 
+    padding: 0;
+}
+
+.book-price {
+    font-size: 32px;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+}
+
+.quantity-selector {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.quantity-button {
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 20px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.quantity-button:hover {
+    background-color: #0056b3;
+}
+
+.quantity {
+    width: 50px;
+    height: 30px;
+    text-align: center;
+    border: none;
+    margin: 0 10px;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.total {
+    display: inline-flex;
+    font-size: 32px;
+    font-weight: 500;
+    justify-content: right;
+    padding-top: 30px;
+}
+
+.total p {
+    margin: 0; 
+}
+
+.pay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    padding-bottom: 100px;
+}
+
+#checkout-button {
+    background-color: #007bff;
+    border: none;
+    border-radius: 10px;
+    color: #ffffff;
+    cursor: pointer;
+    display: flex;
+    font-size: 20px;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    padding: 10px 20px;
+    transition: 0.2s;
+    width: 20%;
+    height: 50px;
+}
+
+#checkout-button:hover {
+    background-color: #0056b3;
+}
+
+#payment {
+    border-radius: 25px;
+    position: fixed;
+    background-color: rgb(255, 255, 255);
+    color: #000;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0 50px 20px;
+    z-index: 1001;
+    width: 30%;
+}
+
+#payment.show {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow-y:scroll;
+    max-height: 80vh;
+}
+
+.payment-header {
+    font-size: 32px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.cancel-label {
+    display: flex;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+}
+
+.cancel-label:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
 /* END OF SAVES PAGE */
 
 
@@ -422,12 +590,12 @@ html, body {
         display: none;
     }
 
-    #shipping-settings, #payment-settings, #account-settings {
+    #shipping-settings, #payment-settings, #account-settings, #payment {
         padding: 20px;
         width: 85%;
     }
 
-    #shipping-settings.show, #payment-settings.show, #account-settings.show {
+    #shipping-settings.show, #payment-settings.show, #account-settings.show, #payment.show {
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
@@ -468,6 +636,81 @@ html, body {
 
     .intro-properties {
         font-size: 20px;
+    }
+
+    .saved {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .scaled-book {
+        width: 150px;
+        margin: 15px;
+    }
+
+    .book-info {
+        width: auto;
+    }
+
+    .book-row {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .book-price {
+        font-size: 28px;
+        margin: 0;
+
+    }
+
+    .quantity-selector {
+        margin: 0;
+    }
+
+    .quantity-button {
+        font-size: 15px;
+        width: 25px;
+        height: 25px;
+    }
+
+    .quantity {
+        width: 40px;
+        height: 25px;
+        font-size: 20px;
+        margin: auto 0;
+    }
+
+    .total {
+        display: block;
+        flex-wrap: wrap;
+        font-size: 22px;
+        text-align: left;
+    }
+
+    .pay {
+        flex-direction: column;
+        padding-bottom: 50px;
+    }
+
+    #checkout-button {
+        font-size: 15px;
+        width: 40%;
+        height: 5%;
+    }
+
+    #payment {
+        width: 85%;
+        padding: 0 20px 20px;
+        height: auto;
+    }
+
+    .payment-header {
+        font-size: 28px;
+    }
+
+    .cancel-label {
+        font-size: 18px;
     }
 }
 
