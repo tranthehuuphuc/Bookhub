@@ -8,7 +8,7 @@
   html, body {
     margin: 0;
     padding: 0;
-    font-family: 'MavenPro';
+    font-family: Arial, sans-serif;
     width: 100%;
     margin-left: auto;
     margin-right: auto;
@@ -19,7 +19,7 @@
 }
 
 *{
-    font-family: 'MavenPro', sans-serif;
+    font-family: 'MavenPro', Arial, sans-serif;
     box-sizing: border-box;
     outline: none;
     border: none;
@@ -351,24 +351,6 @@
   margin-left: 420px;
 }
 
-footer {
-  background-color: #f8f8f8; /* Màu nền */
-  padding: 20px; /* Khoảng cách bên trong */
-  display: flex;
-  flex-wrap: wrap; /* Đảm bảo responsive */
-  justify-content: flex-start; /* Căn sang trái */
-  align-items: flex-start;
-}
-
-.footer-section {
-  flex: 1;
-  min-width: 200px; /* Đảm bảo kích thước tối thiểu */
-  margin-bottom: 20px;
-}
-
-.footer-content, .link_contact, .contact {
-  margin-right: 20px; /* Khoảng cách giữa các phần tử */
-}
 
 
 
@@ -400,9 +382,7 @@ footer {
     transition: 0.3s;
   }
 
-  .link-container {
-    display: none; /* Ẩn các link khi kích thước màn hình nhỏ hơn 768px */
-}
+ 
 #profile-button {
     margin-left: auto; /* Di chuyển nút profile vào phải khi kích thước màn hình nhỏ hơn 768px */
 }
@@ -435,7 +415,11 @@ footer {
     flex-direction: column;
   }
 
-  #product1 .pro-container {
+  .section-p1 {
+    padding: 10px 20px;
+  }
+  
+  /* #product1 .pro-container {
     justify-content: center;
     display: flex;
     flex-direction: column;
@@ -443,26 +427,38 @@ footer {
     overflow-x: auto;
     gap: 20px;
     -webkit-overflow-scrolling: touch;
+  } */
+
+  #product1 .pro-container {
+    justify-content: center;
+    display:flex;
+    flex-wrap: nowrap;
   }
 
-  #product1 .pro {
+  /* #product1 .pro {
     margin: 15px;
     min-width: 20%;
     overflow-x:auto;
+  } */
+
+  #product1 .pro-container .pro {
+    margin: 15px;
+    flex: 1 1 200px;
+    max-width: 200px;
   }
 
-  footer {
+  /* footer {
     align-items: center;
     flex-direction: column;
   }
   .footer-content, .link_contact, .contact {
     min-width: 100%;
     padding: 10px;
-}
+} */
 
-.links-list {
+/* .links-list {
     text-align: left;
-}
+} */
 
   .wrapper #search-container {
     display: flex;
