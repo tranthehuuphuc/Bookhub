@@ -78,8 +78,29 @@
     width: 80%; /* Thu nhỏ bề ngang của section */
     margin-left: auto;
     margin-right: auto;
+    position:relative;
 }
 
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.left-arrow {
+  left: 10px;
+}
+
+.right-arrow {
+  right: 10px;
+}
 .section-title {
   font-size: 24px;
   margin-bottom: 20px;
@@ -96,7 +117,7 @@
 
 #product1 .pro-container {
     display: flex;
-    overflow-x: auto;
+    overflow-x: hidden;
     scroll-behavior: smooth;
     -webkit-overflow-srcolling:touch;
     justify-content: space-between;
@@ -105,7 +126,7 @@
 }
 
 #product1 .pro {
-    width: 23%;
+    width: 20%;
     min-width: 200px;
     padding: 10px;
     border: 1px solid #cce7d0;
@@ -120,6 +141,7 @@
     white-space: normal;
     text-align: center;
     flex: 1 1 auto;
+    overflow-x:auto; 
 }
 
 #product1 .pro:hover {
@@ -329,6 +351,27 @@
   margin-left: 420px;
 }
 
+footer {
+  background-color: #f8f8f8; /* Màu nền */
+  padding: 20px; /* Khoảng cách bên trong */
+  display: flex;
+  flex-wrap: wrap; /* Đảm bảo responsive */
+  justify-content: flex-start; /* Căn sang trái */
+  align-items: flex-start;
+}
+
+.footer-section {
+  flex: 1;
+  min-width: 200px; /* Đảm bảo kích thước tối thiểu */
+  margin-bottom: 20px;
+}
+
+.footer-content, .link_contact, .contact {
+  margin-right: 20px; /* Khoảng cách giữa các phần tử */
+}
+
+
+
 @keyframes textFade {
   0% {
     transform: translateX(-1em);
@@ -398,12 +441,14 @@
     flex-direction: column;
     flex-wrap: nowrap;
     overflow-x: auto;
+    gap: 20px;
     -webkit-overflow-scrolling: touch;
   }
 
   #product1 .pro {
     margin: 15px;
-    min-width: 80%;
+    min-width: 20%;
+    overflow-x:auto;
   }
 
   footer {
