@@ -142,6 +142,7 @@
     text-align: center;
     flex: 1 1 auto;
     overflow-x:auto; 
+    display: inline-block;
 }
 
 #product1 .pro:hover {
