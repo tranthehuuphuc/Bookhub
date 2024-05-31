@@ -25,7 +25,61 @@
     <body>
         <h1 class="visuallyhidden">BookHub</h1>
 
-        <div id="globalheader">
+        <nav class="navbar">
+        <!-- <input type="checkbox" id="sidebar-active">
+            <label for="sidebar-active" class="open-sidebar-button">
+                <svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32" fill="#FFFFFF"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg>
+            </label>
+
+            <label id="overlay" for="sidebar-active"></label>
+
+            <div class="link-container">
+                <label for="sidebar-active" class="close-sidebar-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32" fill="#FFFFFF"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
+                </label>
+                
+                <a class="logo-link" href="Bookhub.html"><img id="BookHub" src="../assets/logo.png" alt="BookHub"></a>
+                <a class="globalnav-item" href="./Book_Store/bookstore.php">Bookstore</a>
+                <a class="globalnav-item" href="./Bookhub.html">Thể loại</a>
+                <a class="globalnav-item" href="./discuss/discuss.php">Thảo luận</a>
+                <a class="globalnav-item" href="./signin/signin.php">Đăng nhập</a>
+                <a class="globalnav-item" href="./search/search.html">Tìm kiếm</a>
+                <button id="profile-button" onclick="window.location.href='./Account/AccountProfile.html'"><img id="profile-icon" src="../assets/account.png" alt="Profile Icon"></button>
+            </div> -->
+        <input type="checkbox" id="sidebar-active">
+        <!-- New logo image that only appears when the navbar is collapsed -->
+        <a href="../index.html"><img id="new-logo" src="../assets/BookHub.png" alt="New Logo"></a>
+
+        <label for="sidebar-active" class="open-sidebar-button">
+            <svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32" fill="#FFFFFF">
+                <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z" />
+            </svg>
+        </label>
+
+        <label id="overlay" for="sidebar-active"></label>
+
+        <div class="link-container">
+            <label for="sidebar-active" class="close-sidebar-button">
+                <svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32" fill="#FFFFFF">
+                    <path
+                        d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+                </svg>
+            </label>
+
+            <a class="logo-link" href="../index.html"><img id="BookHub" src="../assets/logo.png" alt="BookHub"></a>
+            <a class="globalnav-item" href="../Book_Store/bookstore.php">Bookstore</a>
+            <a class="globalnav-item" href="../discuss/discuss.php">Thảo luận</a>
+            <a class="globalnav-item" href="../signin/signin.php">Đăng nhập</a>
+            <a class="globalnav-item" href="../search/search.html">Tìm kiếm</a>
+            <a class="globalnav-item-show" href="../account/AccountReceipts.html">Đơn hàng</a>
+            <a class="globalnav-item-show" href="../account/AccountCart.html">Mục đã lưu</a>
+            <a class="globalnav-item-show" href="../account/AccountSettings.html">Tài khoản</a>
+            <a class="globalnav-item-show" href="../account/AccountAssets/join.png">Đăng xuất</a>
+            <button id="profile-button"><img id="profile-icon" src="../assets/account.png" alt="Profile Icon"></button>
+        </div>
+    </nav>
+
+        <!-- <div id="globalheader">
             <a href="../Bookhub.html"><img id="BookHub" src="../assets/logo.png" alt="BookHub"></a>
             <nav id="globalnav">
                 <a class="globalnav-item" href="./bookstore.html">Bookstore</a>
@@ -38,7 +92,7 @@
             <div id="mobile">
                 <i id="bar" class="fa fa-bars"></i>
             </div>
-        </div>
+        </div> -->
 
         <div class="wrapper">
             <div id="search-container">
