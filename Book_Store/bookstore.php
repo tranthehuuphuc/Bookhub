@@ -392,40 +392,43 @@
         </div>
 
     </section>
-        <footer>
-            <div class="footer-content">
-                <p style="font-size: 1vw;">&copy; 2024 BookHub. All rights reserved.</p>
-                <p style="font-size:2vw;font-weight:700;margin-bottom:1.1vw;">VỀ BOOKHUB</p>
-                <div style="width: 100%; height: 0.1vw; background-color: #ffffff;margin-bottom: 1vw;"></div>
-                <p style="font-size:1vw ; font-weight: 500;margin-bottom: 1vw;">BookHub là nền tảng kết nối những người
-                <br/>có niềm yêu thích sách lại với nhau.</p>
-                <a href="https://facebook.com" target="_blank" style="margin-right: 1vw;"><img src="./assets/facebook.png" alt="facebook" style="height: auto;width: 3vw;"></a>
-                <a href="https://instagram.com" target="_blank"><img src="./assets/instagram.png" alt="instagram" style="height: auto;width: 3vw;"></a>
+    <footer>
+        <div class="footer-section footer-content">
+            <p class="section-title">VỀ BOOKHUB</p>
+            <div class="divider short-divider"></div>
+            <p class="description">BookHub là nền tảng kết nối những người<br/>có niềm yêu thích sách lại với nhau.</p>
+            <div class="social-links">
+                <a href="https://facebook.com" target="_blank"><img src="../assets/facebook.png" alt="facebook" class="social-icon"></a>
+                <a href="https://instagram.com" target="_blank"><img src="../assets/instagram.png" alt="instagram" class="social-icon"></a>
             </div>
-            <div class="link_contact">
-                <p style="font-size:2vw;font-weight:700;margin-bottom:1vw ;">ĐƯỜNG DẪN</p>
-                <div style="width: 100%; height: 0.1vw; background-color: #ffffff;margin-bottom: 0vw;"></div>
-                <ul style="list-style-type: none; font-size: 1.5vw;text-align: center;padding-left: 0;font-weight: 500;">
-                    <li style="margin-bottom: 0.7vw;"><a href="Bookhub.html" style="color: white; text-decoration: none;" class="myLink">Trang chủ</a></li>
-                    <li style="margin-bottom: 0.7vw;"><a href="Bookhub.html" style="color: white; text-decoration: none;" class="myLink">Thể loại</a></li>
-                    <li style="margin-bottom: 0.7vw;"><a href="Bookhub.html" style="color: white; text-decoration: none;" class="myLink">Thảo luận</a></li>
-                    <li style="margin-bottom: 0.7vw;"><a href="Bookhub.html" style="color: white; text-decoration: none;" class="myLink">Đăng nhập</a></li>
-                </ul>
-            </div>
-            <div class="contact" style="display:block">
-                <p style="font-size:2vw;font-weight:700;margin-bottom:1vw;">LIÊN HỆ</p>
-                <div style="width: 100%; height: 0.1vw; background-color: #ffffff;margin-bottom: 1vw;"></div>
-                <table>
-                    <tr>
-                        <td style="padding-right: 1vw;"><img src="./assets/phone-call.png" alt="phone" style="height: auto;width: 2vw;"></td>
-                        <td style="font-size: 1.5vw;font-weight: 500;vertical-align: middle;">016.161.6161</td>
-                    </tr>
-                    <tr>
-                        <td style="padding-right: 1vw;"><img src="./assets/email.png" alt="mail" style="height: auto;width: 2vw;"></td>
-                        <td style="font-size: 1.5vw;font-weight: 500;vertical-align: middle;"><a alt="mail" href="https://gmail.com" target="_blank" 
-                            style="text-decoration: none;color: #ffffff;">group16@gmail.com</td>
-                </table>
-            </div>
-        </footer>
+        </div>
+        <div class="footer-section link_contact">
+            <p class="section-title">ĐƯỜNG DẪN</p>
+            <div class="divider"></div>
+            <ul class="links-list">
+                <li><a href="" class="myLink">Bookstore</a></li>
+                <li><a href="" class="myLink">Thể loại</a></li>
+                <li><a href="" class="myLink">Thảo luận</a></li>
+                <li><a href="" class="myLink">Tìm kiếm</a></li>
+            </ul>
+        </div>
+        <div class="footer-section contact">
+            <p class="section-title">LIÊN HỆ</p>
+            <div class="divider"></div>
+            <table>
+                <tr>
+                    <td><img src="../assets/phone-call.png" alt="phone" class="contact-icon"></td>
+                    <td class="contact-info">016.161.6161</td>
+                </tr>
+                <tr>
+                    <td><img src="../assets/email.png" alt="mail" class="contact-icon"></td>
+                    <td class="contact-info"><a href="mailto:group16@gmail.com" class="email-link">group16@gmail.com</a></td>
+                </tr>
+            </table>
+        </div>
+        <div class="footer-bottom">
+            <p class="copyright">&copy; 2024 BookHub. All rights reserved.</p>
+        </div>
+    </footer>
     </body>
 </html>
