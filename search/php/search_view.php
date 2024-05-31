@@ -50,7 +50,7 @@ $conn->close();
         <nav class="navbar">
             <input type="checkbox" id="sidebar-active">
                 <!-- New logo image that only appears when the navbar is collapsed -->
-            <a href="../../index.html"><img id="new-logo" src="../../assets/BookHub.png" alt="New Logo"></a>
+            <a href="../../index.php"><img id="new-logo" src="../../assets/BookHub.png" alt="New Logo"></a>
 
             <label for="sidebar-active" class="open-sidebar-button">
                 <svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32" fill="#FFFFFF"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg>
@@ -63,14 +63,14 @@ $conn->close();
                     <svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32" fill="#FFFFFF"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
                 </label>
                 
-                <a class="logo-link" href="../../index.html"><img id="BookHub" src="../../assets/logo.png" alt="BookHub"></a>
+                <a class="logo-link" href="../../index.php"><img id="BookHub" src="../../assets/logo.png" alt="BookHub"></a>
                 <a class="globalnav-item" href="../../Book_Store/bookstore.php">Bookstore</a>
                 <a class="globalnav-item" href="../../discuss/discuss.php">Thảo luận</a>
                 <a class="globalnav-item" href="../../signin/signin.php">Đăng nhập</a>
-                <a class="globalnav-item" href="../../search/search.html">Tìm kiếm</a>
-                <a class="globalnav-item-show" href="../../account/AccountReceipts.html">Đơn hàng</a>
-                <a class="globalnav-item-show" href="../../account/AccountCart.html">Mục đã lưu</a>
-                <a class="globalnav-item-show" href="../../account/AccountSettings.html">Tài khoản</a>
+                <a class="globalnav-item" href="../../search/search.php">Tìm kiếm</a>
+                <a class="globalnav-item-show" href="../../account/AccountReceipts.php">Đơn hàng</a>
+                <a class="globalnav-item-show" href="../../account/AccountCart.php">Mục đã lưu</a>
+                <a class="globalnav-item-show" href="../../account/AccountSettings.php">Tài khoản</a>
                 <a class="globalnav-item-show" href="../../account/AccountAssets/join.png">Đăng xuất</a>
                 <button id="profile-button"><img id="profile-icon" src="../../assets/account.png" alt="Profile Icon"></button>
             </div>
@@ -82,10 +82,10 @@ $conn->close();
             <p id="myprofile">Hồ sơ của tôi</p>
             <div style="background-color: #d9d9d9; width: 25%; height: 0.05vw; margin: 0; padding: 0;"></div>
             <ul>
-                <li><img class="option-icons" src="../../assets/orders.png"><a href="../../account/orders.html">Đơn hàng</a></li>
-                <li><img class="option-icons" src="../../assets/saves.png"><a href="../../account/saves.html">Mục đã lưu</a></li>
-                <li><img class="option-icons" src="../../assets/setting.png"><a href="../../account/profile.html">Tài khoản</a></li>
-                <li><img class="option-icons" src="../../assets/join.png"><a href="../../index.html">Đăng xuất</a></li>
+                <li><img class="option-icons" src="../../assets/orders.png"><a href="../../account/orders.php">Đơn hàng</a></li>
+                <li><img class="option-icons" src="../../assets/saves.png"><a href="../../account/saves.php">Mục đã lưu</a></li>
+                <li><img class="option-icons" src="../../assets/setting.png"><a href="../../account/profile.php">Tài khoản</a></li>
+                <li><img class="option-icons" src="../../assets/join.png"><a href="../../index.php">Đăng xuất</a></li>
             </ul>
         </div>
         <script>
@@ -201,7 +201,7 @@ $conn->close();
                 <li><a href="../../Book_Store/bookstore.php" class="myLink">Bookstore</a></li>
                 <li><a href="../../discuss/discuss.php" class="myLink">Thảo luận</a></li>
                 <li><a href="../../signin/signin.php" class="myLink">Đăng nhập</a></li>
-                <li><a href="../../search/search.html" class="myLink">Tìm kiếm</a></li>
+                <li><a href="../../search/search.php" class="myLink">Tìm kiếm</a></li>
             </ul>
         </div>
         <div class="footer-section contact">
