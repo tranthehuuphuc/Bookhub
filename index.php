@@ -104,18 +104,17 @@ session_start();
         
     
         <main>
-            <div id="topimg">
-                <img src="./assets/topimg.png" alt="Top Image" style="width: 100%;">
+        <div id="topimg">
                 <div class="text">
-                    <p>Mua bán, trao đổi, thảo luận và cùng chia<br/>
-                    sẻ về những cuốn sách mà bạn yêu thích.</p>
-                    <nav class="btn">
-                        <a href="./signin/signin.php" alt="a" style="color: #ffffff;text-decoration: none;">Đăng ký ngay</a>
-                        <a href="./signin/signin.php" alt="alt" style="width: 4vw; height: 3vw;"><img src="./assets/next.png" alt="arrow" style="width: 3.5vw;padding-left:37vw;padding-top:5.8vw ;"></a>
-                    </nav>
-                    <a href="" style="color: white;font-weight: 300;font-size: 1.5vw;">Tìm hiểu thêm</a>
+                    <h2>Mua bán, trao đổi, thảo luận và cùng chia sẻ về những cuốn sách mà bạn yêu thích.</h2>
+                    <div class="button-top">
+                        <a href="./signin/signin.php" class="topbtn">Đăng ký ngay&nbsp;&#x276F;</a>
+                        <a href="./aboutUs/aboutUs.html" class="more">Tìm hiểu thêm</a>
+                    </div>
                 </div>
             </div>
+
+            <div style="margin-top: 2vw; margin-left:8vw;width: 85%; height: 1px; background-color: #F08A5D;"></div>
         
             <div id="promotion" style="display: flex;">
                 <div class="promotion-p">
