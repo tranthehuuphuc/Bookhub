@@ -39,7 +39,6 @@
                 <a class="logo-link" href="../index.php"><img id="BookHub" src="../assets/logo.png" alt="BookHub"></a>
                 <a class="globalnav-item" href="../Book_Store/bookstore.php">Bookstore</a>
                 <a class="globalnav-item" href="../discuss/discuss.php">Thảo luận</a>
-                <a class="globalnav-item" href="../signin/signin.php">Đăng nhập</a>
                 <a class="globalnav-item" href="../search/search.php">Tìm kiếm</a>
                 <a class="globalnav-item-show" href="./orders.php">Đơn hàng</a>
                 <a class="globalnav-item-show" href="./saves.php">Mục đã lưu</a>

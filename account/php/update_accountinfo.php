@@ -6,34 +6,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     require_once "connect.php";
 
     $user_id = $_SESSION["user_id"];
-    $payment_email = $_POST["payment_email"];
-    $payment_phone = $_POST["payment_phone"];
+    $email = $_POST["email"];
+    $phone = $_POST["phone"];
+    $birthday = $_POST["birthday"];
 
     try {
-        // Check if the payment information already exists for the user
-        $sql_check = "SELECT * FROM payment WHERE user_id = :user_id";
+        // Check if the account_info information already exists for the user
+        $sql_check = "SELECT * FROM users WHERE user_id = :user_id";
         $stmt_check = $pdo->prepare($sql_check);
         $stmt_check->bindParam(':user_id', $user_id, PDO::PARAM_INT);
         $stmt_check->execute();
         $result = $stmt_check->fetch(PDO::FETCH_ASSOC);
 
         if ($result) {
-            // Update the existing payment information
-            $sql = "UPDATE payment SET payment_email = :payment_email, payment_phone = :payment_phone WHERE user_id = :user_id";
+            // Update the existing account_info information
+            $sql = "UPDATE users SET email = :email, phone = :phone, birthday = :birthday WHERE user_id = :user_id";
         } else {
-            // Insert new payment information
-            $sql = "INSERT INTO payment (user_id, payment_email, payment_phone) VALUES (:user_id, :payment_email, :payment_phone)";
+            // Insert new account_info information
+            $sql = "INSERT INTO users (user_id, email, phone, birthday) VALUES (:user_id, :email, :phone, :birthday)";
         }
 
         $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt->bindParam(':phone', $phone, PDO::PARAM_STR);
+        $stmt->bindParam(':birthday', $birthday, PDO::PARAM_STR);
         $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
-        $stmt->bindParam(':payment_email', $payment_email, PDO::PARAM_STR);
-        $stmt->bindParam(':payment_phone', $payment_phone, PDO::PARAM_STR);
 
         $stmt->execute(); // Execute the query
         $stmt_check->closeCursor(); // Close the cursor
 
-        echo json_encode(['status' => 'success', 'message' => 'Cập nhật thông tin thanh toán thành công']);
+        echo json_encode(['status' => 'success', 'message' => 'Cập nhật thông tin tài khoản thành công']);
         exit();
     } 
     catch (PDOException $e) {

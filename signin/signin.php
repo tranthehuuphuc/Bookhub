@@ -21,7 +21,6 @@ require_once "php/login_view.php";
     <link rel="icon" type="image/png" sizes="32x32" href="../signin/favicon_io/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../signin/favicon_io/favicon-16x16.png">
     <link rel="manifest" href="../sigin/favicon_io/site.webmanifest">
-    
 </head>
 <body>
 
@@ -69,22 +68,8 @@ require_once "php/login_view.php";
               <input type="password" placeholder="Password" name="pwd" required/>
             </div>
             <input type="submit" value="Đăng nhập" class="btn solid" />
-            <p class="social-text">Hoặc đăng nhập bằng: </p>
-            <div class="social-media">
-              <a href="#" class="social-icon">
-                <i class="fab fa-facebook-f"></i>
-              </a>
-              <a href="#" class="social-icon">
-                <i class="fab fa-twitter"></i>
-              </a>
-              <a href="#" class="social-icon">
-                <i class="fab fa-google"></i>
-              </a>
-              <a href="#" class="social-icon">
-                <i class="fab fa-linkedin-in"></i>
-              </a>
-            </div>
           </form>
+
           <form action="./php/signup.php" class="sign-up-form" method="post">
             <h2 class="title">Đăng ký</h2>
             <div class="input-field">
@@ -100,25 +85,9 @@ require_once "php/login_view.php";
               <input type="password" placeholder="Password" name="pwd" required/>
             </div>
             <input type="submit" class="btn" value="Đăng ký" />
-            <p class="social-text">Hoặc đăng nhập bằng: </p>
-            <div class="social-media">
-              <a href="#" class="social-icon">
-                <i class="fab fa-facebook-f"></i>
-              </a>
-              <a href="#" class="social-icon">
-                <i class="fab fa-twitter"></i>
-              </a>
-              <a href="#" class="social-icon">
-                <i class="fab fa-google"></i>
-              </a>
-              <a href="#" class="social-icon">
-                <i class="fab fa-linkedin-in"></i>
-              </a>
-            </div>
           </form>
         </div>
       </div>
-
       <div class="panels-container">
         <div class="panel left-panel">
           <div class="content">

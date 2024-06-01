@@ -216,7 +216,7 @@ html, body {
     transition: 0.2s;
 }
 
-#shipping-settings, #payment-settings, #account-settings {
+#shipping-settings, #payment-settings, #account-settings, #password-settings {
     border-radius: 25px;
     position: fixed;
     background-color: rgb(255, 255, 255);
@@ -229,7 +229,7 @@ html, body {
     width: auto;
 }
 
-#shipping-settings.show, #payment-settings.show, #account-settings.show {
+#shipping-settings.show, #payment-settings.show, #account-settings.show, #password-settings.show {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -268,7 +268,8 @@ html, body {
     display: block;
     margin: 5px 0 0 0;
     padding: 0;
-    min-width: 450px;
+    min-width: 400px;
+    max-width: 450px;
     height: auto;
 }
 
@@ -293,9 +294,9 @@ html, body {
     justify-content: center;
     align-items: center;
     margin: 10px;
-    padding: 10px 30px;
+    padding: 10px 0;
     transition: 0.2s;
-    width: 80px;
+    width: 100px;
     height: 5%;
 }
 
@@ -314,9 +315,9 @@ html, body {
     justify-content: center;
     align-items: center;
     margin: 10px;
-    padding: 10px 30px;
+    padding: 10px 0;
     transition: 0.2s;
-    width: 20px;
+    width: 100px;
     height: 5%;
 }
 
@@ -604,12 +605,12 @@ html, body {
         display: none;
     }
 
-    #shipping-settings, #payment-settings, #account-settings, #payment {
+    #shipping-settings, #payment-settings, #account-settings, #password-settings, #payment {
         padding: 20px;
         width: 85%;
     }
 
-    #shipping-settings.show, #payment-settings.show, #account-settings.show, #payment.show {
+    #shipping-settings.show, #payment-settings.show, #account-settings.show, #password-settings.show, #payment.show {
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
@@ -727,4 +728,31 @@ html, body {
     .cancel-label {
         font-size: 18px;
     }
+}
+
+#loading-spinner {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.spinner {
+    border: 12px solid #f3f3f3;
+    border-top: 12px solid #3498db;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
