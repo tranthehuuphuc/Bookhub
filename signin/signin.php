@@ -9,6 +9,7 @@ require_once "php/login_view.php";
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="description" content="Đăng nhập hoặc đăng ký để trở thành thành viên của BookHub. Tham gia cộng đồng yêu sách và khám phá những cuốn sách mới mỗi ngày.">
     <title>Sign in | Bookhub</title>
     <link rel="stylesheet" type="text/css" href="./signin.css">
     <link rel="stylesheet" type="text/css" href="../navbar.css">
@@ -44,8 +45,8 @@ require_once "php/login_view.php";
           <a class="logo-link" href="../index.php"><img id="BookHub" src="../assets/logo.png" alt="BookHub"></a>
           <a class="globalnav-item" href="../Book_Store/bookstore.php">Bookstore</a>
           <a class="globalnav-item" href="../aboutUs/aboutUs.php">Về Chúng Tôi</a>
-          <a class="globalnav-item" href="../signin/signin.php">Đăng nhập</a>
           <a class="globalnav-item" href="../search/search.php">Tìm kiếm</a>
+          <a class="globalnav-item" href="../signin/signin.php">Đăng nhập</a>
       </div>
   </nav>
   

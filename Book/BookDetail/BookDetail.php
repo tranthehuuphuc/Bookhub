@@ -90,6 +90,12 @@
         <link rel="stylesheet" type="text/css" href="../../navbar.css">
         <link rel="stylesheet" type="text/css" href="../../footer.css">
 
+        <style>
+            .hidden-chapter {
+                display: none;
+            }
+        </style>
+
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 var book = document.querySelector('.book');
@@ -314,11 +320,12 @@
                         $counter = 0;
                         while ($chapter = $chapters_result->fetch_assoc()) {
                             $counter++;
-                            if ($counter <= 5) {
+                            $hidden_class = ($counter > 5) ? 'hidden-chapter' : '';
                         ?>
-                                <li><h4 style="font-weight: 100;"><?php echo $counter . '. ' . $chapter['chapter_title']; ?></h4></li>
+                            <li class="<?php echo $hidden_class; ?>">
+                                <h4 style="font-weight: 100;"><?php echo $counter . '. ' . $chapter['chapter_title']; ?></h4>
+                            </li>
                         <?php
-                            }
                         }
                         ?>
                         <?php if ($counter > 5) { ?>
@@ -327,6 +334,7 @@
                             </li>
                         <?php } ?>
                     </ul>
+
 
                     <script>
                         function showMoreChapters() {
@@ -338,17 +346,11 @@
                         }
                     </script>
 
-                    <style>
-                        .hidden-chapter {
-                            display: none;
-                        }
-                    </style>
-
                 </div>
                 <hr>
                 <div class="same-author">
                     <h3 style="font-weight: 600;">Sách cùng tác giả &#x203A;</h3>
-                    <div class="row">
+                    <div class="row" style="display:flex;" >
                         <?php
                         // Assuming $author_id holds the ID of the current author
                         $author_id = $book['author_id'];
@@ -368,7 +370,7 @@
                                 $url = 'BookDetail.php?book_id=' . $book_id;
                                 ?>
                                 <a href="<?php echo $url; ?>">
-                                    <img src="<?php echo '../../admin/uploads/' . htmlspecialchars($same_author_book['cover_image']); ?>" alt="Book Cover" class="book-cover" height="20%">
+                                    <img src="<?php echo '../../admin/uploads/' . htmlspecialchars($same_author_book['cover_image']); ?>" alt="Book Cover" class="book-cover" height="80%">
                                 </a>
                             </div>
                             <?php

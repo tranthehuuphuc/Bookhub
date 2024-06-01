@@ -35,6 +35,7 @@ function renderfooterLinks($isLoggedIn) {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="description" content="Sử dụng công cụ tìm kiếm của BookHub để tìm các cuốn sách theo tựa đề, tác giả hoặc chủ đề. Khám phá và đọc những cuốn sách bạn yêu thích.">
     <title>Search | Bookhub</title>
     <link rel="stylesheet" type="text/css" href="../style.css">
     <link rel="stylesheet" type="text/css" href="./search.css">

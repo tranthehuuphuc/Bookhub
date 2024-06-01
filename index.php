@@ -36,6 +36,7 @@ function renderfooterLinks($isLoggedIn) {
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+        <meta name="description" content="Explore, purchase, and engage in vibrant discussions about your favorite books on BookHub. Discover new reads and connect with fellow book lovers on our platform dedicated to fostering a thriving literary community.">
         <title>Home | BookHub</title>
         <link rel="stylesheet" type="text/css" href="./style.css">
         <link rel="stylesheet" type="text/css" href="./navbar.css">

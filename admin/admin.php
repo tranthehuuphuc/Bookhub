@@ -230,6 +230,10 @@ include 'dbh.php';
                         <label for="chapters">Danh sách chương:</label>
                         <textarea rows="5" id="chapters" name="chapters" required></textarea>
                     </div>
+                    <div class="form-group">
+                        <label for="book_file">File sách:</label>
+                        <input type="file" id="book_file" name="book_file" required>
+                    </div>
                     <button type="submit"><p>Thêm sách</p></button>
                 </form>
             </div>

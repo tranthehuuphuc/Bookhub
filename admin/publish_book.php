@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $target_dir = "../admin/uploads/";
     $target_file = $target_dir . basename($cover_image);
 
-    // Check if image file is a actual image or fake image
+    // Check if image file is an actual image or fake image
     $check = getimagesize($_FILES["cover_image"]["tmp_name"]);
     if ($check !== false) {
         move_uploaded_file($_FILES["cover_image"]["tmp_name"], $target_file);
@@ -32,7 +32,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "<script>alert('File is not an image.'); window.location.href = 'admin.php';</script>";
         exit;
     }
-  // Check if the book already exists
+
+    // Upload the book file
+    $target_dir = "../admin/files/";
+    $book_file = $_FILES['book_file']['name'];
+    $target_book_file = $target_dir . basename($book_file);
+
+    if (move_uploaded_file($_FILES["book_file"]["tmp_name"], $target_book_file)) {
+        // File uploaded successfully
+    } else {
+        echo "<script>alert('Failed to upload book file.'); window.location.href = 'admin.php';</script>";
+        exit;
+    }
+
+    // Check if the book already exists
     $sql_check = "SELECT * FROM books WHERE title = ? AND author_id = ?";
     $stmt_check = $conn->prepare($sql_check);
     $stmt_check->bind_param("si", $title, $author_id);
@@ -44,10 +57,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     } else {
         // Insert new book
-        $sql = "INSERT INTO books (title, author_id, publication_year, publisher, price, available_quantity, description, cover_image, rating)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, 0)";
+        $sql = "INSERT INTO books (title, author_id, publication_year, publisher, price, available_quantity, description, cover_image, book_file, rating)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 0)";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("sissdiss", $title, $author_id, $publication_year, $publisher, $price, $quantity, $description, $cover_image);
+        $stmt->bind_param("sissdisss", $title, $author_id, $publication_year, $publisher, $price, $quantity, $description, $cover_image, $book_file);
         if ($stmt->execute()) {
             $book_id = $stmt->insert_id;
 

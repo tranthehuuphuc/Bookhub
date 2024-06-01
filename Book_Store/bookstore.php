@@ -36,7 +36,8 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=0.5, viewport-fit=cover">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+        <meta name="description" content="Khám phá và mua sắm hàng ngàn đầu sách tại BookHub. Tìm kiếm những cuốn sách mới nhất và các tác phẩm kinh điển được yêu thích.">
         <title>BookStore | BookHub</title>
         <link rel="stylesheet" type="text/css" href="./style.css">
         <link rel="stylesheet" type="text/css" href="../style.css">
