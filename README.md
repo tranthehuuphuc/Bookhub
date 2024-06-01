@@ -2,6 +2,22 @@
 
 A website for book lovers.
 
+## Table of Contents
+- [Description](#description)
+- [Features](#features)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+    - [For Windows](#for-windows)
+    - [For MacOS](#for-macos)
+    - [For MacOS using XAMPP](#for-macos-using-xampp)
+- [Programming Languages, Frameworks, and Database](#programming-languages-frameworks-and-database)
+- [Help](#help)
+- [Authors](#authors)
+- [Version History](#version-history)
+- [License](#license)
+- [Acknowledgments](#acknowledgments)
+
 ## Description
 ![BookHub](https://github.com/tranthehuuphuc/Bookhub/assets/152999205/05958863-33f6-4fb2-807b-91348db58c5d)
 
@@ -16,7 +32,7 @@ This is a web application project of Group 16, from the subject Web Application 
 
 ### Prerequisites
 - **Windows**: Xampp, Wamp64
-- **MacOS**: Mamp
+- **MacOS**: Mamp, Xampp
 
 ### Installation
 
@@ -38,23 +54,7 @@ This is a web application project of Group 16, from the subject Web Application 
 6. **Access the Website**:
    - Open your browser and navigate to `http://localhost/[your_project_folder]` to view the website.
 
-#### For MacOS (using Xampp):
-1. **Install Xampp**: Download from [Xampp](https://www.apachefriends.org/index.html).
-2. **Setup Xampp**:
-   - Follow the installation instructions to set up Xampp.
-3. **Prepare the Code**:
-   - Locate the `htdocs` folder in your Xampp installation directory.
-   - Copy and paste all your project files into the `htdocs` folder.
-4. **Start Servers**:
-   - In Xampp, start both Apache and MySQL servers.
-5. **Database Setup**:
-   - Open your browser and go to `http://localhost/phpmyadmin`.
-   - Create a database named `bookhub`.
-   - Import the provided `.sql` file into the `bookhub` database.
-6. **Access the Website**:
-   - Open your browser and navigate to `http://localhost/[your_project_folder]` to view the website.
-     
-#### For MacOS (using Mamp):
+#### For MacOS:
 1. **Install Mamp**: Download from [Mamp](https://www.mamp.info/en/downloads/).
 2. **Setup Mamp**:
    - Follow the installation instructions to set up Mamp.
@@ -70,6 +70,24 @@ This is a web application project of Group 16, from the subject Web Application 
    - Import the provided `.sql` file into the `bookhub` database.
 6. **Access the Website**:
    - Open your browser and navigate to `http://localhost:8888/[your_project_folder]` to view the website.
+
+#### For MacOS using XAMPP:
+1. **Install XAMPP**: Download from [XAMPP official website](https://www.apachefriends.org/download.html).
+2. **Setup XAMPP**:
+   - Once downloaded, open the `.dmg` file and drag the XAMPP folder to your Applications directory.
+   - Navigate to your Applications folder and open the XAMPP folder.
+   - Double-click on the "xampp-control" application to launch the XAMPP Control Panel.
+3. **Prepare the Code**:
+   - Locate the `htdocs` folder within the XAMPP installation directory. By default, it's located at `/Applications/XAMPP/htdocs`.
+   - Copy and paste all your BookHub project files into the `htdocs` folder.
+4. **Start Servers**:
+   - In the XAMPP Control Panel, start both Apache and MySQL servers by clicking the "Start" button next to each service.
+5. **Database Setup**:
+   - Open your web browser and go to `http://localhost/phpmyadmin`.
+   - Create a new database named `bookhub`.
+   - Import the provided `.sql` file into the `bookhub` database.
+6. **Access the Website**:
+   - Open your web browser and navigate to `http://localhost/[your_project_folder]` to view the BookHub website.
 
 ### Programming Languages, Frameworks, and Database
 - **Frontend**: HTML, CSS, JavaScript
@@ -91,6 +109,7 @@ Contributors names and contact info:
 - v0.1: First deployment
 
 ## License
+This project is licensed under the MIT License.
 
 ## Acknowledgments
 We would like to thank our instructors and classmates for their support and contributions to this project.
