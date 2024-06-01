@@ -226,7 +226,7 @@ html, body {
     margin: 0;
     padding: 30px 50px;
     z-index: 1001;
-    width: auto;
+    width: fit-content;
 }
 
 #shipping-settings.show, #payment-settings.show, #account-settings.show, #password-settings.show {
@@ -266,10 +266,10 @@ html, body {
     font-weight: 400;
     font-size: 18px;
     display: block;
-    margin: 5px 0 0 0;
+    margin: 5px 5px 0 0;
     padding: 0;
+    width: 95%;
     min-width: 400px;
-    max-width: 450px;
     height: auto;
 }
 

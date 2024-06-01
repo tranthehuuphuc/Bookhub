@@ -110,13 +110,27 @@
         </script>
         <!-- End of Account options -->
 
-        
+        <?php
+            $user_id = $_SESSION["user_id"];
+            $sql = "SELECT * FROM users WHERE user_id = :user_id";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        ?>
 
        <main>
             <div class="title-bar">
                 <p class="title">Tài khoản</p>
                 <div style="background-color: #d9d9d9; width: 100%; height: 1px; margin: 5px 0 0 0; padding: 0;"></div>
-                <p class="sub-title">Xin chào <?php echo $_SESSION["user_username"];?>!</p>
+                <?php
+                    if ($result["fullname"]) {
+                        echo "<p class='sub-title'>Xin chào " . $result["fullname"] . "!</p>";
+                    }
+                    else {
+                        echo "<p class='sub-title'>Xin chào " . $_SESSION["user_username"] . "!</p>";
+                    }
+                ?>
             </div>
 
             <!-- Start of My Books -->
@@ -549,6 +563,7 @@
                             $stmt->execute();
                             $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
+                            echo "<p class='properties'>Họ tên: " . $result['fullname'] . "</p>";
                             echo "<p class='properties'>Email: " . $result['email'] . "</p>";
                             echo "<p class='properties'>Số điện thoại: " . $result['phone'] . "</p>";
                             echo "<p class='properties'>Ngày sinh: " . $result['birthday'] . "</p>";
@@ -562,16 +577,24 @@
                         <div style="display: block; align-items: center; margin: 0; padding: 0;">
                             <p class="header" style="justify-content: center; display: flex; margin-top: 0; text-align: center;">Chỉnh sửa thông tin cá nhân</p>
                             <div class="input-field">
+                                <p class="field-label">Họ tên</p>
+                                <input type='text' class='input-box max-width' id='fullname' name='fullname' value='<?php echo $result['fullname']; ?>'>
+                            </div>
+                            <div class="input-field">
+                                <p class="field-label">Tên người dùng</p>
+                                <input type='text' class='input-box max-width' id='username' name='username' value='<?php echo $_SESSION["user_username"]; ?>'>
+                            </div>
+                            <div class="input-field">
                                 <p class="field-label">Email</p>
-                                <input type='text' class='input-box' id='email' name='email' value='<?php echo $result['email']; ?>'>
+                                <input type='text' class='input-box max-width' id='email' name='email' value='<?php echo $result['email']; ?>'>
                             </div>
                             <div class="input-field">
                                 <p class="field-label">Số điện thoại</p>
-                                <input type='text' class='input-box' id='phone' name='phone' value='<?php echo $result['phone']; ?>'>
+                                <input type='text' class='input-box max-width' id='phone' name='phone' value='<?php echo $result['phone']; ?>'>
                             </div>
                             <div class="input-field">
                                 <p class="field-label">Ngày sinh</p>
-                                <input type='text' class='input-box' id='birthday' name='birthday' value='<?php echo $result['birthday']; ?>'>
+                                <input type='text' class='input-box max-width' id='birthday' name='birthday' value='<?php echo $result['birthday']; ?>'>
                             </div>
                             <div class="submit-field">
                                 <input type="submit" class="submit-button" value="Lưu">
@@ -583,44 +606,52 @@
 
                 <script>
                     document.getElementById("update-accountinfo").addEventListener("submit", function(event) {
-                        event.preventDefault();
-                        var email = document.getElementById("email").value;
-                        var phone = document.getElementById("phone").value;
-                        var birthday = document.getElementById("birthday").value;
+                    event.preventDefault();
+                    var fullname = document.getElementById("fullname").value;
+                    var username = document.getElementById("username").value;
+                    var email = document.getElementById("email").value;
+                    var phone = document.getElementById("phone").value;
+                    var birthday = document.getElementById("birthday").value;
 
-                        var data = {
-                            email: email,
-                            phone: phone,
-                            birthday: birthday
-                        };
+                    if (fullname === "" || username === "" || email === "" || phone === "" || birthday === "") {
+                        alert("Vui lòng điền đầy đủ thông tin");
+                        return;
+                    }
 
-                        document.getElementById("loading-spinner").style.display = "flex";
+                    var data = {
+                        fullname: fullname,
+                        username: username,
+                        email: email,
+                        phone: phone,
+                        birthday: birthday
+                    };
 
-                        fetch("./php/update_accountinfo.php", {
-                            method: "POST",
-                            headers: {
-                                "Content-Type": "application/x-www-form-urlencoded"
-                            },
-                            body: new URLSearchParams(data)
-                        })
-                        .then(response => response.json())
-                        .then(data => {
-                            document.getElementById("loading-spinner").style.display = "none";
+                    document.getElementById("loading-spinner").style.display = "flex";
 
-                            if (data.status === "success") {
-                                alert(data.message);
-                                window.location.reload();
-                            } else {
-                                alert(data.message);
-                            }
-                        })
-                        .catch((error) => {
-                            document.getElementById("loading-spinner").style.display = "none";
+                    fetch("./php/update_accountinfo.php", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/x-www-form-urlencoded"
+                        },
+                        body: new URLSearchParams(data)
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById("loading-spinner").style.display = "none";
 
-                            console.error("Error:", error);
-                        });
+                        if (data.status === "success") {
+                            alert(data.message);
+                            window.location.reload();
+                        } else {
+                            alert(data.message);
+                        }
+                    })
+                    .catch((error) => {
+                        document.getElementById("loading-spinner").style.display = "none";
+                        console.error("Error:", error);
                     });
-                </script>
+                });
+</script>
 
                 <script>
                     function EditAccountSettings() {
