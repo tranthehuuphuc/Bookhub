@@ -1,5 +1,9 @@
 <?php
 session_start();
+if (!isset($_SESSION['user_id'])) {
+    header('Location: ../../signin/signin.php');
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -45,13 +49,12 @@ session_start();
             
             <a class="logo-link" href="../../index.php"><img id="BookHub" src="../../assets/logo.png" alt="BookHub"></a>
             <a class="globalnav-item" href="../../Book_Store/bookstore.php">Bookstore</a>
-            <a class="globalnav-item" href="../../discuss/discuss.php">Thảo luận</a>
-            <a class="globalnav-item" href="../../signin/signin.php">Đăng nhập</a>
+            <a class="globalnav-item" href="../../discuss/discuss.php">Về Chúng Tôi</a>
             <a class="globalnav-item" href="../../search/search.php">Tìm kiếm</a>
-            <a class="globalnav-item-show" href="../../account/AccountReceipts.php">Đơn hàng</a>
-            <a class="globalnav-item-show" href="../../account/AccountCart.php">Mục đã lưu</a>
-            <a class="globalnav-item-show" href="../../account/AccountSettings.php">Tài khoản</a>
-            <a class="globalnav-item-show" href="../../account/AccountAssets/join.png">Đăng xuất</a>
+            <a class="globalnav-item-show" href="../../account/orders.php">Đơn hàng</a>
+            <a class="globalnav-item-show" href="../../account/saves.php">Mục đã lưu</a>
+            <a class="globalnav-item-show" href="../../account/profile.php">Tài khoản</a>
+            <a class="globalnav-item-show" href="../../signin/logout">Đăng xuất</a>
             <button id="profile-button"><img id="profile-icon" src="../../assets/account.png" alt="Profile Icon"></button>
         </div>
     </nav>
@@ -179,8 +182,9 @@ session_start();
             <div class="divider"></div>
             <ul class="links-list">
                 <li><a href="../../Book_Store/bookstore.php" class="myLink">Bookstore</a></li>
-                <li><a href="../../discuss/discuss.php" class="myLink">Thảo luận</a></li>
-                <li><a href="../../signin/signin.php" class="myLink">Đăng nhập</a></li>
+                <li><a href="../../discuss/discuss.php" class="myLink">Về Chúng Tôi</a></li>
+                <li><a class="myLink" href="../../account/profile.php">Tài khoản</a></li>;
+                <li><a class="myLink" href="../../signin/logout.php">Đăng xuất</a></li>;
                 <li><a href="../../search/search.php" class="myLink">Tìm kiếm</a></li>
             </ul>
         </div>

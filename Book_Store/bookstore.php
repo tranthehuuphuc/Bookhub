@@ -1,5 +1,35 @@
 <?php
+    session_start();
     include '../discuss/dbh.php';
+
+    
+    // Check if the user is logged in
+    $isLoggedIn = isset($_SESSION['user_id']);
+
+    // Function to render the navbar links based on user authentication status
+    function renderNavbarLinks($isLoggedIn) {
+        if ($isLoggedIn) {
+            // User is logged in
+            echo '<a class="globalnav-item-show" href="../account/orders.php">Đơn hàng</a>';
+            echo '<a class="globalnav-item-show" href="../account/saves.php">Mục đã lưu</a>';
+            echo '<a class="globalnav-item-show" href="../account/profile.php">Tài khoản</a>';
+            echo '<a class="globalnav-item-show" href="../signin/logout.php">Đăng xuất</a>';
+            echo '<button id="profile-button"><img id="profile-icon" src="../assets/account.png" alt="Profile Icon"></button>';
+        } else {
+            // User is not logged in
+            echo '<a class="globalnav-item" href="../signin/signin.php">Đăng nhập</a>';
+        }
+    }
+
+    function renderfooterLinks($isLoggedIn) {
+        if ($isLoggedIn) {
+            echo '<li><a class="myLink" href="../account/profile.php">Tài khoản</a></li>';
+            echo '<li><a class="myLink" href="../signin/logout.php">Đăng xuất</a></li>';
+        } else {
+            // User is not logged in
+            echo '<li><a class="myLink" href="../signin/signin.php">Đăng nhập</a></li>';
+        }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -26,26 +56,6 @@
         <h1 class="visuallyhidden">BookHub</h1>
 
         <nav class="navbar">
-        <!-- <input type="checkbox" id="sidebar-active">
-            <label for="sidebar-active" class="open-sidebar-button">
-                <svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32" fill="#FFFFFF"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg>
-            </label>
-
-            <label id="overlay" for="sidebar-active"></label>
-
-            <div class="link-container">
-                <label for="sidebar-active" class="close-sidebar-button">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32" fill="#FFFFFF"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
-                </label>
-                
-                <a class="logo-link" href="Bookhub.php"><img id="BookHub" src="../assets/logo.png" alt="BookHub"></a>
-                <a class="globalnav-item" href="./Book_Store/bookstore.php">Bookstore</a>
-                <a class="globalnav-item" href="./Bookhub.php">Thể loại</a>
-                <a class="globalnav-item" href="./discuss/discuss.php">Thảo luận</a>
-                <a class="globalnav-item" href="./signin/signin.php">Đăng nhập</a>
-                <a class="globalnav-item" href="./search/search.php">Tìm kiếm</a>
-                <button id="profile-button" onclick="window.location.href='./Account/AccountProfile.php'"><img id="profile-icon" src="../assets/account.png" alt="Profile Icon"></button>
-            </div> -->
         <input type="checkbox" id="sidebar-active">
         <!-- New logo image that only appears when the navbar is collapsed -->
         <a href="../index.php"><img id="new-logo" src="../assets/BookHub.png" alt="New Logo"></a>
@@ -68,31 +78,63 @@
 
             <a class="logo-link" href="../index.php"><img id="BookHub" src="../assets/logo.png" alt="BookHub"></a>
             <a class="globalnav-item" href="../Book_Store/bookstore.php">Bookstore</a>
-            <a class="globalnav-item" href="../discuss/discuss.php">Thảo luận</a>
-            <a class="globalnav-item" href="../signin/signin.php">Đăng nhập</a>
+            <a class="globalnav-item" href="../aboutUs/aboutUs.php">Về Chúng Tôi</a>
             <a class="globalnav-item" href="../search/search.php">Tìm kiếm</a>
-            <a class="globalnav-item-show" href="../account/AccountReceipts.php">Đơn hàng</a>
-            <a class="globalnav-item-show" href="../account/AccountCart.php">Mục đã lưu</a>
-            <a class="globalnav-item-show" href="../account/AccountSettings.php">Tài khoản</a>
-            <a class="globalnav-item-show" href="../account/AccountAssets/join.png">Đăng xuất</a>
-            <button id="profile-button"><img id="profile-icon" src="../assets/account.png" alt="Profile Icon"></button>
+            <?php renderNavbarLinks($isLoggedIn); ?>
         </div>
     </nav>
 
-        <!-- <div id="globalheader">
-            <a href="../Bookhub.php"><img id="BookHub" src="../assets/logo.png" alt="BookHub"></a>
-            <nav id="globalnav">
-                <a class="globalnav-item" href="./bookstore.php">Bookstore</a>
-                <a class="globalnav-item" href="../Bookhub.php">Thể loại</a>
-                <a class="globalnav-item" href="../thao luan va chi tiet.php">Thảo luận</a>
-                <a class="globalnav-item" href="../signin/signin.php">Đăng nhập</a>
-                <a href="../search/search.php" style="width: 3vw; height: 3vw;"><img src="../assets/search.png" alt="Search" style="width: 3vw; height: 3vw; margin: 0px;"></a>
-            </nav>
-            <button id="profile-button" onclick="window.location.href='../Account/AccountProfile.php'"><img id="profile-icon" src="../Account/AccountAssets/account.png" alt="Profile Icon"></button>
-            <div id="mobile">
-                <i id="bar" class="fa fa-bars"></i>
-            </div>
-        </div> -->
+            <!-- Account options -->
+            <div id="blur-overlay" class="hidden"></div>
+        <div id="account-options" class="hidden">
+            <p id="myprofile">Hồ sơ của tôi</p>
+            <div style="background-color: #d9d9d9; width: 25%; height: 0.05vw; margin: 0; padding: 0;"></div>
+            <ul>
+                <li><img class="option-icons" src="../assets/orders.png"><a href="./orders.php">Đơn hàng</a></li>
+                <li><img class="option-icons" src="../assets/saves.png"><a href="./saves.php">Mục đã lưu</a></li>
+                <li><img class="option-icons" src="../assets/setting.png"><a href="./profile.php">Tài khoản</a></li>
+                <li><img class="option-icons" src="../assets/join.png"><a href="../index.php">Đăng xuất</a></li>
+            </ul>
+        </div>
+        <script>
+            function ShowAccountOptions() {
+                var overlay = document.getElementById("blur-overlay");
+                var accountOptions = document.getElementById("account-options");
+                overlay.classList.toggle("hidden");
+
+                if (overlay.classList.contains("hidden")) {
+                    accountOptions.classList.remove("show");
+                    setTimeout(() => accountOptions.classList.add("hidden"), 0);
+                } else {
+                    accountOptions.classList.remove("hidden");
+                    setTimeout(() => accountOptions.classList.add("show"), 0);
+                }
+            }
+
+            function CloseAccountOptions() {
+                var overlay = document.getElementById("blur-overlay");
+                var accountOptions = document.getElementById("account-options");
+
+                overlay.classList.remove("show");
+                overlay.classList.add("hidden");
+                accountOptions.classList.remove("show");
+                accountOptions.classList.add("hidden");
+            }
+
+            document.addEventListener("DOMContentLoaded", () => {
+                var profileButton = document.getElementById("profile-button");
+                var overlay = document.getElementById("blur-overlay");
+
+                profileButton.addEventListener("click", ShowAccountOptions);
+                overlay.addEventListener("click", CloseAccountOptions);
+                document.addEventListener('keydown', (event) => {
+                    if (event.key === 'Escape') {
+                        CloseAccountOptions();
+                    }
+                });
+            });
+        </script>
+        <!-- End of Account options -->
 
         <div class="wrapper">
             <div id="search-container">
@@ -408,7 +450,8 @@
             <ul class="links-list">
                 <li><a href="" class="myLink">Bookstore</a></li>
                 <li><a href="" class="myLink">Thể loại</a></li>
-                <li><a href="" class="myLink">Thảo luận</a></li>
+                <li><a href="" class="myLink">Về Chúng Tôi</a></li>
+                <?php renderfooterLinks($isLoggedIn); ?>
                 <li><a href="" class="myLink">Tìm kiếm</a></li>
             </ul>
         </div>

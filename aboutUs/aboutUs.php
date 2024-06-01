@@ -1,3 +1,37 @@
+<?php
+session_start();
+
+require_once '../admin/dbh.php';
+
+// Check if the user is logged in
+$isLoggedIn = isset($_SESSION['user_id']);
+
+// Function to render the navbar links based on user authentication status
+function renderNavbarLinks($isLoggedIn) {
+    if ($isLoggedIn) {
+        // User is logged in
+        echo '<a class="globalnav-item-show" href="../account/orders.php">Đơn hàng</a>';
+        echo '<a class="globalnav-item-show" href="../account/saves.php">Mục đã lưu</a>';
+        echo '<a class="globalnav-item-show" href="../account/profile.php">Tài khoản</a>';
+        echo '<a class="globalnav-item-show" href="../signin/logout.php">Đăng xuất</a>';
+        echo '<button id="profile-button"><img id="profile-icon" src="../assets/account.png" alt="Profile Icon"></button>';
+    } else {
+        // User is not logged in
+        echo '<a class="globalnav-item" href="../signin/signin.php">Đăng nhập</a>';
+    }
+}
+
+function renderfooterLinks($isLoggedIn) {
+    if ($isLoggedIn) {
+        echo '<li><a class="myLink" href="../account/profile.php">Tài khoản</a></li>';
+        echo '<li><a class="myLink" href="../signin/logout.php">Đăng xuất</a></li>';
+    } else {
+        // User is not logged in
+        echo '<li><a class="myLink" href="../signin/signin.php">Đăng nhập</a></li>';
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -37,14 +71,9 @@
                 
                 <a class="logo-link" href="../index.php"><img id="BookHub" src="../assets/logo.png" alt="BookHub"></a>
                 <a class="globalnav-item" href="../Book_Store/bookstore.php">Bookstore</a>
-                <a class="globalnav-item" href="../discuss/discuss.php">Thảo luận</a>
-                <a class="globalnav-item" href="../signin/signin.php">Đăng nhập</a>
+                <a class="globalnav-item" href="../aboutUs/aboutUs.php">Về Chúng Tôi</a>
                 <a class="globalnav-item" href="../search/search.php">Tìm kiếm</a>
-                <a class="globalnav-item-show" href="./orders.php">Đơn hàng</a>
-                <a class="globalnav-item-show" href="./saves.php">Mục đã lưu</a>
-                <a class="globalnav-item-show" href="./profile.php">Tài khoản</a>
-                <a class="globalnav-item-show" href="../signin/signin.php">Đăng xuất</a>
-                <button id="profile-button"><img id="profile-icon" src="../assets/account.png" alt="Profile Icon"></button>
+                <?php renderNavbarLinks($isLoggedIn); ?>
             </div>
         </nav>
 
@@ -139,9 +168,6 @@
                 </div>
             </section>
         </main>
-        
-        
-        
 
         <footer style="background-image: url('../assets/footer.png')">
             <div class="footer-section footer-content">
@@ -159,8 +185,8 @@
                 <div class="divider"></div>
                 <ul class="links-list">
                     <li><a href="../Book_Store/bookstore.php" class="myLink">Bookstore</a></li>
-                    <li><a href="../discuss/discuss.php" class="myLink">Thảo luận</a></li>
-                    <li><a href="../signin/signin.php" class="myLink">Đăng nhập</a></li>
+                    <li><a href="../aboutUs/aboutUs.php" class="myLink">Về Chúng Tôi</a></li>
+                    <?php renderfooterLinks($isLoggedIn); ?>
                     <li><a href="../search/search.php" class="myLink">Tìm kiếm</a></li>
                 </ul>
             </div>

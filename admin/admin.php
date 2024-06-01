@@ -63,7 +63,7 @@ include 'dbh.php';
                 
                 <a class="logo-link" href="../index.php"><img id="BookHub" src="../assets/logo.png" alt="BookHub"></a>
                 <a class="globalnav-item" href="../Book_Store/bookstore.php">Bookstore</a>
-                <a class="globalnav-item" href="../discuss/discuss.php">Thảo luận</a>
+                <a class="globalnav-item" href="../discuss/discuss.php">Về Chúng Tôi</a>
                 <a class="globalnav-item" href="../search/search.php">Tìm kiếm</a>
                 <a class="globalnav-item-show" href="../account/AccountReceipts.php">Đơn hàng</a>
                 <a class="globalnav-item-show" href="../account/AccountCart.php">Mục đã lưu</a>
@@ -289,8 +289,9 @@ include 'dbh.php';
             <div class="divider"></div>
             <ul class="links-list">
                 <li><a href="../Book_Store/bookstore.php" class="myLink">Bookstore</a></li>
-                <li><a href="../discuss/discuss.php" class="myLink">Thảo luận</a></li>
-                <li><a href="../signin/signin.php" class="myLink">Đăng nhập</a></li>
+                <li><a href="../aboutUs/aboutUs.php" class="myLink">Về Chúng Tôi</a></li>
+                <li><a href="../account/profile.php" class="myLink">Tài khoản</a></li>
+                <li><a href="../signin/logout.php" class="myLink">Đăng xuất</a></li>
                 <li><a href="../search/search.php" class="myLink">Tìm kiếm</a></li>
             </ul>
         </div>

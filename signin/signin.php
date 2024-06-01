@@ -43,7 +43,7 @@ require_once "php/login_view.php";
           
           <a class="logo-link" href="../index.php"><img id="BookHub" src="../assets/logo.png" alt="BookHub"></a>
           <a class="globalnav-item" href="../Book_Store/bookstore.php">Bookstore</a>
-          <a class="globalnav-item" href="../discuss/discuss.php">Thảo luận</a>
+          <a class="globalnav-item" href="../aboutUs/aboutUs.php">Về Chúng Tôi</a>
           <a class="globalnav-item" href="../signin/signin.php">Đăng nhập</a>
           <a class="globalnav-item" href="../search/search.php">Tìm kiếm</a>
       </div>

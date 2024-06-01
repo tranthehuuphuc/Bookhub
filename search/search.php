@@ -19,6 +19,15 @@ function renderNavbarLinks($isLoggedIn) {
         echo '<a class="globalnav-item" href="../signin/signin.php">Đăng nhập</a>';
     }
 }
+function renderfooterLinks($isLoggedIn) {
+    if ($isLoggedIn) {
+        echo '<li><a class="myLink" href="../account/profile.php">Tài khoản</a></li>';
+        echo '<li><a class="myLink" href="../signin/logout.php">Đăng xuất</a></li>';
+    } else {
+        // User is not logged in
+        echo '<li><a class="myLink" href="../signin/signin.php">Đăng nhập</a></li>';
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -57,7 +66,7 @@ function renderNavbarLinks($isLoggedIn) {
                 
                 <a class="logo-link" href="../index.php"><img id="BookHub" src="../assets/logo.png" alt="BookHub"></a>
                 <a class="globalnav-item" href="../Book_Store/bookstore.php">Bookstore</a>
-                <a class="globalnav-item" href="../discuss/discuss.php">Thảo luận</a>
+                <a class="globalnav-item" href="../aboutUs/aboutUs.php">Về Chúng Tôi</a>
                 <a class="globalnav-item" href="../search/search.php">Tìm kiếm</a>
                 <?php renderNavbarLinks($isLoggedIn); ?>
             </div>
@@ -260,11 +269,11 @@ function renderNavbarLinks($isLoggedIn) {
             <p class="section-title">ĐƯỜNG DẪN</p>
             <div class="divider"></div>
             <ul class="links-list">
-                <li><a href="../Book_Store/bookstore.php" class="myLink">Bookstore</a></li>
-                <li><a href="../discuss/discuss.php" class="myLink">Thảo luận</a></li>
-                <li><a href="../signin/signin.php" class="myLink">Đăng nhập</a></li>
-                <li><a href="../search/search.php" class="myLink">Tìm kiếm</a></li>
-            </ul>
+                    <li><a href="../Book_Store/bookstore.php" class="myLink">Bookstore</a></li>
+                    <li><a href="../aboutUs/aboutUs.php" class="myLink">Về Chúng Tôi</a></li>
+                    <?php renderfooterLinks($isLoggedIn); ?>
+                    <li><a href="../search/search.php" class="myLink">Tìm kiếm</a></li>
+                </ul>
         </div>
         <div class="footer-section contact">
             <p class="section-title">LIÊN HỆ</p>
