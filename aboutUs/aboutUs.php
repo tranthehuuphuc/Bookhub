@@ -86,7 +86,7 @@ function renderfooterLinks($isLoggedIn) {
                 <li><img class="option-icons" src="../assets/orders.png"><a href="./orders.php">Đơn hàng</a></li>
                 <li><img class="option-icons" src="../assets/saves.png"><a href="./saves.php">Mục đã lưu</a></li>
                 <li><img class="option-icons" src="../assets/setting.png"><a href="./profile.php">Tài khoản</a></li>
-                <li><img class="option-icons" src="../assets/join.png"><a href="../index.php">Đăng xuất</a></li>
+                <li><img class="option-icons" src="../assets/join.png"><a href="../signin/logout.php">Đăng xuất</a></li>
             </ul>
         </div>
         <script>
