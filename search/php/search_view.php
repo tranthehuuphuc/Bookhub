@@ -1,34 +1,3 @@
-<?php
-
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "bookhub";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-$search_query = isset($_GET['query']) ? $_GET['query'] : '';
-$sql = "SELECT * FROM books WHERE title LIKE '%$search_query%' OR author LIKE '%$search_query%' OR publisher LIKE '%$search_query%'";
-
-$result = $conn->query($sql);
-
-$books = array();
-
-if ($result->num_rows > 0) {
-    while($row = $result->fetch_assoc()) {
-        $books[] = $row;
-    }
-}
-
-$conn->close();
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
