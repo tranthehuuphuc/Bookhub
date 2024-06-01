@@ -5,6 +5,46 @@
     // Check if the user is logged in
     $isLoggedIn = isset($_SESSION['user_id']);
 
+    if (isset($_SESSION['book_id'])) {
+        $book_id = $_SESSION['book_id'];
+        $book_query = "SELECT * FROM books WHERE book_id = $book_id";
+        $book_result = $conn->query($book_query);
+        $book = $book_result->fetch_assoc();
+        
+        // Fetch author details
+        $author_id = $book['author_id'];
+        $author_query = "SELECT * FROM authors WHERE author_id = $author_id";
+        $author_result = $conn->query($author_query);
+        $author = $author_result->fetch_assoc();
+
+        // Fetch ratings
+        $ratings_query = "SELECT * FROM ratings WHERE book_id = $book_id";
+        $ratings_result = $conn->query($ratings_query);
+        $num_ratings = $ratings_result->num_rows;
+
+        function calculateAverageRating($conn, $book_id)
+        {
+            // Query to calculate average rating
+            $average_query = "SELECT AVG(rating) AS average_rating FROM ratings WHERE book_id = $book_id";
+            
+            // Execute the query
+            $average_result = $conn->query($average_query);
+            
+            // Check if query executed successfully
+            if ($average_result && $average_result->num_rows > 0) {
+                // Fetch the average rating
+                $row = $average_result->fetch_assoc();
+                $average_rating = $row['average_rating'];
+                
+                // Return the average rating
+                return $average_rating;
+            } else {
+                // Return 0 if no ratings found
+                return 0;
+            }
+        }
+        $average_rating = calculateAverageRating($conn, $book_id);
+
     // Function to render the navbar links based on user authentication status
     function renderNavbarLinks($isLoggedIn) {
         if ($isLoggedIn) {
@@ -18,6 +58,12 @@
             // User is not logged in
             echo '<a class="globalnav-item" href="../signin/signin.php">Đăng nhập</a>';
         }
+    }
+
+    }else {
+        // Handle the case where book_id is not set
+        echo "No book ID provided.";
+        header("Location: ../index.php");
     }
 ?>
 
@@ -35,6 +81,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="../favicon_io/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../favicon_io/favicon-16x16.png">
     <link rel="manifest" href="../favicon_io/site.webmanifest">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" />
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" 
     integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" 
@@ -274,28 +321,54 @@
     <main>
     <div class="maindiv">
         <div class="book">
-                <div class="book-image" style="display: flex; justify-content: center;">
-                    <img src="../assets/book3.jpg" alt="book1" style="width: auto; height: 400px;box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.4);">
-                </div>
-                <div style="text-align: center;">
-                    <a href="#" style="text-decoration: none;"><h3 style="background-color: #F08A5D; padding: 14px; color: #ffffff; border-radius: 30px;">Tìm hiểu thêm</h3></a>
-                    <a href="#" style="text-decoration: none;"><h3 style="border: 3px solid #F08A5D; padding: 14px; border-radius: 30px; color: #F08A5D;">Thêm vào giỏ hàng</h3></a>
-                </div>
+            <div class="book-image" style="display: flex; justify-content: center;">
+            <img src="<?php echo  '../admin/uploads/' .  $book['cover_image']; ?>" alt="<?php echo $book['title']; ?>" style="width: auto; height: 400px; box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.4);">
             </div>
+            <div style="text-align: center;">
+                <a href="#" style="text-decoration: none;"><h3 style="background-color: #F08A5D; padding: 14px; color: #ffffff; border-radius: 30px;">Thêm vào giỏ hàng</h3></a>
+            </div>
+        </div>
     
         <div class="book-detail" style="margin-left: 300px; margin-right: 50px;">
-            <h1 style="font-weight: 800;margin-bottom: -1vw;">Thảo luận và đánh giá</h1>
-            <h1 style="font-weight: 300;"><i>Cho tôi xin một vé đi tuổi thơ</i></h1>
-            <h3 style="font-weight: 500; margin-top: -1vw;">Tác giả: Nguyễn Nhật Ánh</h3>
-            <div class="rating">
-                <div style="display: flex;">
-                    <h3 style="font-weight: 500;margin-right: 2vw;">Đánh giá:</h3><h4 style="font-weight: 200;"><i>(100 lượt đánh giá)</i></h4>
+                <h1 style="font-weight: 800;margin-bottom: -1vw;">Thảo luận và đánh giá</h1>
+                <h1 style="font-weight: 300;"><i><?php echo $book['title']; ?></i></h1>
+                <h3 style="font-weight: 500; margin-top: -1vw;">Tác giả: <?php echo $author['author_name']; ?></h3>
+                <div class="rating">
+                    <div style="display: flex;">
+                        <h3 style="font-weight: 500;margin-right: 2vw;">Đánh giá:</h3><h4 style="font-weight: 200;"><i>(<?php echo $num_ratings; ?> lượt đánh giá)</i></h4>
+                    </div>
+                    <div class="star" style="margin: 10px 0;display:flex;align-items:center;">
+                        <div style="padding-right:10px">
+                            <?php
+                            // Calculate the number of filled stars
+                            $filled_stars = floor($average_rating);
+
+                            // Calculate the number of half-filled stars
+                            $half_star = $average_rating - $filled_stars >= 0.5 ? 1 : 0;
+
+                            // Calculate the number of empty stars
+                            $empty_stars = 5 - $filled_stars - $half_star;
+
+                            // Output the filled stars
+                            for ($i = 0; $i < $filled_stars; $i++) {
+                                echo '<i class="fas fa-star" style="color: gold"></i>';
+                            }
+
+                            // Output the half-filled star
+                            if ($half_star) {
+                                echo '<i class="fas fa-star-half-alt" style="color: gold"></i>';
+                            }
+
+                            // Output the empty stars
+                            for ($i = 0; $i < $empty_stars; $i++) {
+                                echo '<i class="far fa-star" style="color: gold"></i>';
+                            }
+                            ?>
+                        </div>
+                        <h4 style="font-weight: 500"><i><?php echo number_format($average_rating, 2); ?>/5.00</i></h4>
+                    </div>
+
                 </div>
-                <div class="star" style="margin-top: -7vw;display: flex;">
-                    <div><img src="./d_assets/stars.png" alt="star" style="width: auto;height: 16vw;"></div>
-                    <div><h1 style="margin-top: 7vw;padding-left: 1vw;">5.00/5.00</h1></div>
-                </div>
-            </div>
 
             <div id="postcmt" style="display: flex;">
                 <form id="validateForm">
@@ -329,18 +402,24 @@
             <br/>
 
             <div id="cmts">
-                <?php    
+            <?php    
                 $sql = "SELECT ratings.*, users.username
-                FROM ratings 
-                INNER JOIN users ON ratings.user_id = users.user_id 
-                LIMIT 5";
+                        FROM ratings 
+                        INNER JOIN users ON ratings.user_id = users.user_id 
+                        WHERE ratings.book_id = $book_id
+                        LIMIT 5";
 
                 $result = mysqli_query($conn, $sql);
 
                 if (mysqli_num_rows($result) > 0) {
                     while ($row = mysqli_fetch_assoc($result)) {
                         echo "<div>";
-                        echo "<img src='".'./d_assets/user.png'."' alt='User Image' style='width: 50px; height: 50px; border-radius: 50%; margin-right: 10px;'>"; // Display user image
+                        // Display user avatar if available, else use default avatar
+                        if (!empty($row['avatar'])) {
+                            echo "<img src='" . htmlspecialchars($row['avatar']) . "' alt='User Avatar' style='width: 50px; height: 50px; border-radius: 50%; margin-right: 10px;'>";
+                        } else {
+                            echo "<img src='./d_assets/user.png' alt='User Avatar' style='width: 50px; height: 50px; border-radius: 50%; margin-right: 10px;'>";
+                        }
                         echo "<p style='font-weight:800;font-size:1.5rem'>@".$row['username']."</p>";
                         echo "<p><i>Rating: ".$row['rating'].'/5.00'."</i></p>";
                         echo "<p>Review: ".$row['review']."</p>";
@@ -350,10 +429,12 @@
                 } else {
                     echo "Không có bình luận nào.";
                 }
-                ?>
+            ?>
+
+
             </div>
 
-            <button id="loadBtn">
+            <button id="loadBtn" style="margin:10px 0">
                 Xem thêm
             </button>
 

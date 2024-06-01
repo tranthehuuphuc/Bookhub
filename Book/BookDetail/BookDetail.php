@@ -1,3 +1,68 @@
+<?php
+    session_start();
+    require_once '../../admin/dbh.php';
+
+    if (isset($_GET['book_id'])) {
+        $_SESSION['book_id'] = $_GET['book_id'];
+        $book_id = $_SESSION['book_id'];
+        $book_query = "SELECT * FROM books WHERE book_id = $book_id";
+        $book_result = $conn->query($book_query);
+        $book = $book_result->fetch_assoc();
+        
+        // Fetch author details
+        $author_id = $book['author_id'];
+        $author_query = "SELECT * FROM authors WHERE author_id = $author_id";
+        $author_result = $conn->query($author_query);
+        $author = $author_result->fetch_assoc();
+        
+        // Fetch book chapters
+        $chapters_query = "SELECT * FROM book_chapters WHERE book_id = $book_id";
+        $chapters_result = $conn->query($chapters_query);
+
+        $bookinf_query = "SELECT * FROM book_information WHERE book_id = $book_id";
+        $bookinf_result = $conn->query($bookinf_query);
+        $bookinf = $bookinf_result->fetch_assoc();
+        
+        // Fetch categories
+        $categories_query = "SELECT c.category_name FROM categories c
+                             JOIN book_categories bc ON c.category_id = bc.category_id
+                             WHERE bc.book_id = $book_id";
+        $categories_result = $conn->query($categories_query);
+        
+        // Fetch ratings
+        $ratings_query = "
+        SELECT r.*, u.username
+        FROM ratings r
+        JOIN users u ON r.user_id = u.user_id
+        WHERE r.book_id = $book_id
+        LIMIT 3";
+        $ratings_result = $conn->query($ratings_query);
+    
+
+        // Check if the user is logged in
+        $isLoggedIn = isset($_SESSION['user_id']);
+
+        // Function to render the navbar links based on user authentication status
+        function renderNavbarLinks($isLoggedIn) {
+            if ($isLoggedIn) {
+                // User is logged in
+                echo '<a class="globalnav-item-show" href="../../account/orders.php">Đơn hàng</a>';
+                echo '<a class="globalnav-item-show" href="../../account/saves.php">Mục đã lưu</a>';
+                echo '<a class="globalnav-item-show" href="../../account/profile.php">Tài khoản</a>';
+                echo '<a class="globalnav-item-show" href="../../signin/logout.php">Đăng xuất</a>';
+                echo '<button id="profile-button"><img id="profile-icon" src="../../assets/account.png" alt="Profile Icon"></button>';
+            } else {
+                // User is not logged in
+                echo '<a class="globalnav-item" href="../signin/signin.php">Đăng nhập</a>';
+            }
+        }
+    } else {
+        // Handle the case where book_id is not set
+        echo "No book ID provided.";
+        header("Location: ../../index.php");
+    }
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -83,13 +148,8 @@
             <a class="logo-link" href="../../index.php"><img id="BookHub" src="../../assets/logo.png" alt="BookHub"></a>
             <a class="globalnav-item" href="../../Book_Store/bookstore.php">Bookstore</a>
             <a class="globalnav-item" href="../../discuss/discuss.php">Thảo luận</a>
-            <a class="globalnav-item" href="../../signin/signin.php">Đăng nhập</a>
             <a class="globalnav-item" href="../../search/search.php">Tìm kiếm</a>
-            <a class="globalnav-item-show" href="../../account/AccountReceipts.php">Đơn hàng</a>
-            <a class="globalnav-item-show" href="../../account/AccountCart.php">Mục đã lưu</a>
-            <a class="globalnav-item-show" href="../../account/AccountSettings.php">Tài khoản</a>
-            <a class="globalnav-item-show" href="../../account/AccountAssets/join.png">Đăng xuất</a>
-            <button id="profile-button"><img id="profile-icon" src="../../assets/account.png" alt="Profile Icon"></button>
+            <?php renderNavbarLinks($isLoggedIn); ?>
         </div>
     </nav>
 
@@ -149,40 +209,50 @@
         <div class="maindiv">
             <div class="book">
                 <div class="book-image" style="display: flex; justify-content: center;">
-                    <img src="../../assets/book3.jpg" alt="book1" style="width: auto; height: 400px;box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.4);">
+                    <img src="<?php echo  '../../admin/uploads/' .  $book['cover_image']; ?>" alt="<?php echo $book['title']; ?>" style="width: auto; height: 400px; box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.4);">
                 </div>
                 <div style="text-align: center;">
-                    <a href="#" style="text-decoration: none;"><h3 style="background-color: #F08A5D; padding: 14px; color: #ffffff; border-radius: 30px;">Tìm hiểu thêm</h3></a>
-                    <a href="#" style="text-decoration: none;"><h3 style="border: 3px solid #F08A5D; padding: 14px; border-radius: 30px; color: #F08A5D;">Thêm vào giỏ hàng</h3></a>
+                    <!-- <a href="#" style="text-decoration: none;">
+                        <h3 style="background-color: #F08A5D; padding: 14px; color: #ffffff; border-radius: 30px;">Tìm hiểu thêm</h3>
+                    </a> -->
+                    <a href="#" style="text-decoration: none;">
+                        <h3 style="background-color: #F08A5D; padding: 14px; color: #ffffff; border-radius: 30px;">Thêm vào giỏ hàng</h3>
+                    </a>
                 </div>
             </div>
-    
+
             <div class="book-detail" style="margin-left: 250px; margin-right: 100px;">
-                <h1 style="font-weight: 700;margin-bottom: 0;"><i>Cho tôi xin một vé đi tuổi thơ</i></h1>
+                <h1 style="font-weight: 700; margin-bottom: 0;"><i><?php echo $book['title']; ?></i></h1>
                 
                 <div style="display: inline-flex">
                     <h3 style="font-weight: 100">Tác giả:&#160</h3>
-                    <a class="author-name" href="#" style="text-decoration: none;"><h3 style="font-weight: 500;color: #F08A5D;">Nguyễn Nhật Ánh</h3></a>
+                    <a class="author-name" href="#" style="text-decoration: none;">
+                        <h3 style="font-weight: 500; color: #F08A5D;"><?php echo $author['author_name']; ?></h3>
+                    </a>
                 </div>
                 <br/>
                 <hr>
                 <div>
                     <h3 style="font-weight: 600;">Giới thiệu sách:</h3>
-                    <p style="font-weight: 100; text-align: justify;">"Cho tôi xin một vé đi tuổi thơ" là một trong những tác phẩm nổi tiếng của nhà văn Nguyễn Nhật Ánh. Sách kể về những kỷ niệm tuổi thơ của nhân vật chính - cậu bé Nguyên. 
-                        Câu chuyện đưa chúng ta trở lại với những kỷ niệm đẹp nhất của tuổi thơ, những kỷ niệm mà mỗi người đều muốn lưu giữ mãi trong lòng.</p>
+                    <p style="font-weight: 100; text-align: justify;"><?php echo $book['description']; ?></p>
                     <br/>
                     <div class="genres" style="display: inline-flex">
                         <h3 style="font-weight: 600;">Thể loại:&#160</h3>
-                        <a href="#" style="text-decoration: none;"><h4 style="font-weight: 100; color: #ffffff;background-color: #F08A5D;border-radius: 10px;padding: 4px;">Văn học thiếu nhi</h4></a>
-                        <a href="#" style="text-decoration: none;"><h3>&#160</h3></a>
-                        <a href="#" style="text-decoration: none;"><h4 style="font-weight: 100; color: #ffffff;background-color: #F08A5D;border-radius: 10px;padding: 4px;">Tiểu thuyết</h4></a>
+                        <?php while ($category = $categories_result->fetch_assoc()) { ?>
+                            <a href="#" style="text-decoration: none;">
+                                <h4 style="font-weight: 100; color: #ffffff; background-color: #F08A5D; border-radius: 10px; padding: 4px;">
+                                    <?php echo $category['category_name']; ?>
+                                </h4>
+                            </a>
+                            <a href="#" style="text-decoration: none;"><h3>&#160</h3></a>
+                        <?php } ?>
                     </div>
                     <h3 style="font-weight: 600;">Giới thiệu tác giả:</h3>
-                    <div class="author-detail" style="display: inline-flex; ">
-                        <img src="../../assets/book2.jpg" alt="author1" style="width: 150px; height: 150px; border-radius: 50%; border: 5px solid #F08A5D;">
+                    <div class="author-detail" style="display: inline-flex;">
+                        <!-- <img src="path_to_author_image" alt="author1" style="width: 150px; height: 150px; border-radius: 50%; border: 5px solid #F08A5D;"> -->
                         <div style="margin-left: 20px;">
-                            <h3 style="font-weight: 500;">Nguyễn Nhật Ánh</h3>
-                            <p style="font-weight: 100; text-align: justify;">Nguyễn Nhật Ánh sinh ngày 7 tháng 5 năm 1955 tại Thái Bình, là một nhà văn nổi tiếng của Việt Nam. Ông được biết đến với những tác phẩm văn học dành cho thiếu nhi, nhưng cũng đã viết nhiều tác phẩm dành cho người lớn.</p>
+                            <h3 style="font-weight: 500;"><?php echo $author['author_name']; ?></h3>
+                            <p style="font-weight: 100; text-align: justify;"><?php echo $author['biography']; ?></p>
                         </div>
                     </div>
                     <br/><br/>
@@ -190,36 +260,36 @@
                     <div class="product-info">
                         <h3 style="font-weight: 600;">Thông tin sản phẩm:</h3>
                         <div style="display: inline-flex; flex-wrap: wrap;">
-                            <table style="border-collapse: separate;margin-right: 100px;">
+                            <table style="border-collapse: separate; margin-right: 100px;">
                                 <tr class="tr-book">
                                     <td class="td-book"><h4 style="font-weight: 500;">Nhà xuất bản:&#160</h4></td>
-                                    <td class="td-book"><h4 style="font-weight: 100;">Nhà Xuất Bản Trẻ</h4></td>
+                                    <td class="td-book"><h4 style="font-weight: 100;"><?php echo $book['publisher']; ?></h4></td>
                                 </tr>
                                 <tr class="tr-book">
                                     <td class="td-book"><h4 style="font-weight: 500;">Ngày xuất bản:&#160</h4></td>
-                                    <td class="td-book"><h4 style="font-weight: 100;">20/10/2010</h4></td>
+                                    <td class="td-book"><h4 style="font-weight: 100;"><?php echo $book['publication_year']; ?></h4></td>
                                 </tr>
                                 <tr class="tr-book">
                                     <td class="td-book"><h4 style="font-weight: 500;">Số trang:&#160</h4></td>
-                                    <td class="td-book"><h4 style="font-weight: 100;">207</h4></td>
+                                    <td class="td-book"><h4 style="font-weight: 100;"><?php echo $bookinf['number_of_pages']; ?></h4></td>
                                 </tr>
                                 <tr class="tr-book">
                                     <td class="td-book"><h4 style="font-weight: 500;">Giá:&#160</h4></td>
-                                    <td class="td-book"><h4 style="font-weight: 100;">100.000đ</h4></td>
+                                    <td class="td-book"><h4 style="font-weight: 100;"><?php echo $book['price']; ?>.000đ</h4></td>
                                 </tr>
                             </table>
                             <table style="border-collapse: separate;">
                                 <tr class="tr-book">
                                     <td class="td-book"><h4 style="font-weight: 500;">Ngôn ngữ:&#160</h4></td>
-                                    <td class="td-book"><h4 style="font-weight: 100;">Tiếng Việt</h4></td>
+                                    <td class="td-book"><h4 style="font-weight: 100;"><?php echo $bookinf['language']; ?></h4></td>
                                 </tr>
                                 <tr class="tr-book">
                                     <td class="td-book"><h4 style="font-weight: 500;">Hình thức:&#160</h4></td>
-                                    <td class="td-book"><h4 style="font-weight: 100;">Bìa mềm, Ebook</h4></td>
+                                    <td class="td-book"><h4 style="font-weight: 100;"><?php echo $bookinf['format']; ?></h4></td>
                                 </tr>
                                 <tr class="tr-book">
                                     <td class="td-book"><h4 style="font-weight: 500;">ISBN:&#160</h4></td>
-                                    <td class="td-book"><h4 style="font-weight: 100;">9786041004757</h4></td>
+                                    <td class="td-book"><h4 style="font-weight: 100;"><?php echo $bookinf['ISBN']; ?></h4></td>
                                 </tr>
                                 <tr class="tr-book">
                                     <td class="td-book"><h4 style="font-weight: 500;"></h4></td>
@@ -230,102 +300,105 @@
                     </div>
                     <br/>
                     <h3 style="font-weight: 600;">Danh sách chương:</h3>
-                    <ul>
-                        <li><h4 style="font-weight: 100;">Chương 1: Một ngày đẹp trời</h4></li>
-                        <li><h4 style="font-weight: 100;">Chương 2: Những kỷ niệm tuổi thơ</h4></li>
-                        <li><h4 style="font-weight: 100;">Chương 3: Hồi ức</h4></li>
-                        <li><h4 style="font-weight: 100;">Chương 4:...</h4></li>
-                        <a href="#" class="book-btn">
-                            <h4>Tất cả chương</h4>
-                        </a>
+                    <ul style="list-style-type:none">
+                        <?php
+                        $counter = 0;
+                        while ($chapter = $chapters_result->fetch_assoc()) {
+                            $counter++;
+                            if ($counter <= 5) {
+                        ?>
+                                <li><h4 style="font-weight: 100;"><?php echo $counter . '. ' . $chapter['chapter_title']; ?></h4></li>
+                        <?php
+                            }
+                        }
+                        ?>
+                        <?php if ($counter > 5) { ?>
+                            <li>
+                                <button id="showMoreChapters" onclick="showMoreChapters()">Show More Chapters</button>
+                            </li>
+                        <?php } ?>
                     </ul>
+
+                    <script>
+                        function showMoreChapters() {
+                            var hiddenChapters = document.querySelectorAll('.hidden-chapter');
+                            hiddenChapters.forEach(function(chapter) {
+                                chapter.classList.remove('hidden-chapter');
+                            });
+                            document.getElementById('showMoreChapters').style.display = 'none';
+                        }
+                    </script>
+
+                    <style>
+                        .hidden-chapter {
+                            display: none;
+                        }
+                    </style>
+
                 </div>
                 <hr>
                 <div class="same-author">
                     <h3 style="font-weight: 600;">Sách cùng tác giả &#x203A;</h3>
-                    <nav class="promotionnav">
-                        <a class="promotionnav-item" href="#">
-                            <img src="../../assets/etc.jpg" class="promotion-image"><br/>
-                            <p style="margin: 0; padding: 0; font-weight: 500; font-size: 20px;">Python</p>
-                            <p style="margin: 0; padding: 0; font-size: 15px;">4/5 <img src="../../assets/star.png"></p>
-                            <p style="margin: 0; padding: 0; font-weight: 500; font-size: 15px;">100.000 VND</p>
-                        </a>
-                    </nav>
+                    <div class="row">
+                        <?php
+                        // Assuming $author_id holds the ID of the current author
+                        $author_id = $book['author_id'];
+                        $current_book_id = $book['book_id']; // Assuming 'id' is the primary key of the books table
+
+                        // Query to fetch books with the same author excluding the current book
+                        $same_author_query = "SELECT * FROM books WHERE author_id = $author_id AND book_id != $current_book_id LIMIT 4";
+                        $same_author_result = $conn->query($same_author_query);
+
+                        // Loop through the result set and display cover images
+                        while ($same_author_book = $same_author_result->fetch_assoc()) {
+                            ?>
+                            <div class="col-md-3">
+                                <?php
+                                // Generating the URL with the book_id as a parameter
+                                $book_id = $same_author_book['book_id'];
+                                $url = 'BookDetail.php?book_id=' . $book_id;
+                                ?>
+                                <a href="<?php echo $url; ?>">
+                                    <img src="<?php echo '../../admin/uploads/' . htmlspecialchars($same_author_book['cover_image']); ?>" alt="Book Cover" class="book-cover" height="20%">
+                                </a>
+                            </div>
+                            <?php
+                        }
+                        ?>
+                    </div>
                 </div>
+
+
+
                 <hr>
-                <a href="../../discuss/discuss.php" style="text-decoration: none;color:black ;"><h3 style="font-weight: 600;">Đánh giá từ người dùng &#x203A;</h3></a>
-                <div>
-                    <div class="user-rating">
-                        <div id="cmts" style="display: inline-flex;">
-                            <img src="../../assets/user.png" alt="User Image" style="width: 50px; height: 50px; border-radius: 50%; margin-right: 20px;">
-                            <div style="margin-top: -15px;">
-                                <p style="font-weight:800;font-size:1.5rem">Anh A</p>
-                                <div style="display: inline-flex;">
-                                    <p><i>Rating:&#160</i></p>
-                                    <p><i>Rating:</i></p>
-                                </div>
-                                <br/>
-                                <div style="display: inline-flex;">
-                                    <p>Review:&#160</p>
-                                    <p>Review:</p>
-                                </div>
-                                <div class="line-rating"></div>
+                <div class="rating-book">
+                    <h3 style="font-weight: 600;">Đánh giá:</h3>
+                    <?php 
+                    while ($rating = $ratings_result->fetch_assoc()) { 
+                        // Assuming you have a column named 'avatar' in your ratings table
+                        // and it stores the path to the user's avatar image
+                        $avatar_path = !empty($rating['avatar']) ? htmlspecialchars($rating['avatar']) : "../../discuss/d_assets/user.png"; 
+                    ?>
+                        <div class="rating">
+                            <div class="user">
+                                <img src="<?php echo $avatar_path; ?>" alt="User Avatar" class="avatar" width="50px">
+                                <h4 class="user-name">@<?php echo htmlspecialchars($rating['username']); ?></h4>
+                                <h4 class="rating-time"><?php echo htmlspecialchars($rating['rating_date']); ?></h4>
                             </div>
-                            <br/>
-                        </div>
-                    </div>
-                    <div class="user-rating">
-                        <div id="cmts" style="display: inline-flex;">
-                            <img src="../../assets/user.png" alt="User Image" style="width: 50px; height: 50px; border-radius: 50%; margin-right: 20px;">
-                            <div style="margin-top: -15px;">
-                                <p style="font-weight:800;font-size:1.5rem">Anh A</p>
-                                <div style="display: inline-flex;">
-                                    <p><i>Rating:&#160</i></p>
-                                    <p><i>Rating:</i></p>
-                                </div>
-                                <br/>
-                                <div style="display: inline-flex;">
-                                    <p>Review:&#160</p>
-                                    <p>Review:</p>
-                                </div>
-                                <div class="line-rating"></div>
+                            <div class="star">
+                                <h4 style="font-weight: 100;"><?php echo str_repeat('★', (int)$rating['rating']) . str_repeat('☆', 5 - (int)$rating['rating']); ?></h4>
                             </div>
-                            <br/>
-                        </div>
-                    </div>
-                    <div class="user-rating">
-                        <div id="cmts" style="display: inline-flex;">
-                            <img src="../../assets/user.png" alt="User Image" style="width: 50px; height: 50px; border-radius: 50%; margin-right: 20px;">
-                            <div style="margin-top: -15px;">
-                                <p style="font-weight:800;font-size:1.5rem">Anh A</p>
-                                <div style="display: inline-flex;">
-                                    <p><i>Rating:&#160</i></p>
-                                    <p><i>Rating:</i></p>
-                                </div>
-                                <br/>
-                                <div style="display: inline-flex;">
-                                    <p>Review:&#160</p>
-                                    <p>Review:</p>
-                                </div>
-                                
+                            <div class="rating-comment">
+                                <p style="font-weight: 100;"><?php echo htmlspecialchars($rating['review']); ?></p>
                             </div>
-                            <br/>
                         </div>
-                    </div>
-                    <a href="../../discuss/discuss.php" style="text-decoration: none;color: #F08A5D;font-style: italic;text-align: right;"><h3 style="font-weight: 600;">Xem tất cả đánh giá</h3></a>
+                        <hr />
+                    <?php } ?>
                 </div>
-                <hr>
-                <div class="same-genre">
-                    <h3 style="font-weight: 600;">Sách cùng thể loại &#x203A;</h3>
-                    <nav class="promotionnav">
-                        <a class="promotionnav-item" href="#">
-                            <img src="../../assets/etc.jpg" class="promotion-image"><br/>
-                            <p style="margin: 0; padding: 0; font-weight: 500; font-size: 20px;">Python</p>
-                            <p style="margin: 0; padding: 0; font-size: 15px;">4/5 <img src="../../assets/star.png"></p>
-                            <p style="margin: 0; padding: 0; font-weight: 500; font-size: 15px;">100.000 VND</p>
-                        </a>
-                    </nav>
-                </div>
+
+
+                <a href="../../discuss/discuss.php" style="text-decoration: none;color: #F08A5D;font-style: italic;text-align: right;"><h3 style="font-weight: 600;">Xem tất cả đánh giá</h3></a>
+
             </div>
         </div>
     </main>

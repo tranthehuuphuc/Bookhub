@@ -145,28 +145,43 @@ function renderNavbarLinks($isLoggedIn) {
                             data-author="<?php echo htmlspecialchars($book['author_id']); ?>" 
                             data-publisher="<?php echo htmlspecialchars($book['publisher']); ?>">
 
-                            <img src="<?php echo '../admin/uploads/' . htmlspecialchars($book['cover_image']); ?>" alt="<?php echo htmlspecialchars($book['title']); ?>">
-                            <div class="des">
-                                <span><?php echo htmlspecialchars($book['publisher']); ?></span>
-                                <h5><?php echo htmlspecialchars($book['price']); ?>.000đ</h5>
-                                <div class="star">
-                                    <?php 
-                                    $rating = floor($book['rating']);
-                                    for ($i = 0; $i < 5; $i++): 
-                                        if ($i < $rating): ?>
-                                            <i class="fas fa-star"></i>
-                                        <?php else: ?>
-                                            <i class="far fa-star"></i>
-                                        <?php endif; 
-                                    endfor; 
-                                    ?>
+                            <a href="#" class="save-book-link" data-book-id="<?php echo $book['book_id']; ?>">
+                                <img src="<?php echo '../admin/uploads/' . htmlspecialchars($book['cover_image']); ?>" alt="<?php echo htmlspecialchars($book['title']); ?>">
+                                <div class="des">
+                                    <span><?php echo htmlspecialchars($book['publisher']); ?></span>
+                                    <h5><?php echo htmlspecialchars($book['price']); ?>.000đ</h5>
+                                    <div class="star">
+                                        <?php 
+                                        $rating = floor($book['rating']);
+                                        for ($i = 0; $i < 5; $i++): 
+                                            if ($i < $rating): ?>
+                                                <i class="fas fa-star"></i>
+                                            <?php else: ?>
+                                                <i class="far fa-star"></i>
+                                            <?php endif; 
+                                        endfor; 
+                                        ?>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                     <?php endforeach; ?>
                 <?php else: ?>
                     <p>No books found.</p>
                 <?php endif; ?>
+
+                <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    document.querySelectorAll('.save-book-link').forEach(function(link) {
+                        link.addEventListener('click', function(event) {
+                            event.preventDefault();
+                            var bookId = this.getAttribute('data-book-id');
+                            window.location.href = '../Book/BookDetail/BookDetail.php?book_id=' + bookId;
+                        });
+                    });
+                });
+                </script>
+
 
             </div>
         </section>
