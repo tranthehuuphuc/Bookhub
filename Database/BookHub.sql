@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 29, 2024 at 09:37 PM
+-- Generation Time: Jun 01, 2024 at 05:37 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -53,15 +53,25 @@ CREATE TABLE `books` (
   `title` varchar(255) NOT NULL,
   `author_id` int(11) DEFAULT NULL,
   `description` text DEFAULT NULL,
-  `category_id` int(11) DEFAULT NULL,
   `publication_year` int(11) DEFAULT NULL,
   `publisher` varchar(255) DEFAULT NULL,
   `price` decimal(10,2) DEFAULT NULL,
   `available_quantity` int(11) DEFAULT NULL,
   `cover_image` varchar(255) DEFAULT NULL,
-  `rating` float DEFAULT NULL,
-  `author` varchar(255) DEFAULT NULL
+  `rating` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+
+--
+-- Dumping data for table `books`
+--
+
+INSERT INTO `books` (`book_id`, `title`, `author_id`, `description`, `publication_year`, `publisher`, `price`, `available_quantity`, `cover_image`, `rating`) VALUES
+(50, 'a', 22, 'aaaaaaaa', 1999, 'NXB Trẻ', 100.00, 99, 'etc.jpg', 0),
+(51, 'b', 22, 'n', 1999, 'NXB Trẻ', 100.00, 99, 'clay-banks-z_DkoUqgx6M-unsplash.jpg', 0),
+(52, 'Cho tôi xin một vé đi tuổi thơ', 22, 'AAAAAAAAA', 1111, 'NXB Trẻ', 100.00, 99, 'etc.jpg', 0),
+(53, 'Cho', 22, 'a', 1111, 'NXB Trẻ', 100.00, 99, 'book2.jpg', 0),
+(54, 'b b', 22, 'aaaaaaaa', 1111, 'NXB Trẻ', 100.00, 99, 'book3.jpg', 0),
+(55, 'b b b b', 22, 'aaaaaaaa', 1111, 'NXB Trẻ', 100.00, 99, 'book2.jpg', 0);
 
 -- --------------------------------------------------------
 
@@ -73,6 +83,20 @@ CREATE TABLE `book_categories` (
   `book_id` int(11) NOT NULL,
   `category_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+
+--
+-- Dumping data for table `book_categories`
+--
+
+INSERT INTO `book_categories` (`book_id`, `category_id`) VALUES
+(50, 21),
+(50, 22),
+(51, 21),
+(52, 21),
+(53, 21),
+(53, 22),
+(54, 21),
+(55, 23);
 
 -- --------------------------------------------------------
 
@@ -86,6 +110,18 @@ CREATE TABLE `book_chapters` (
   `chapter_title` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
+--
+-- Dumping data for table `book_chapters`
+--
+
+INSERT INTO `book_chapters` (`chapter_id`, `book_id`, `chapter_title`) VALUES
+(7, 50, 'aaaaaaaa'),
+(8, 51, 'n'),
+(9, 52, 'a'),
+(10, 53, 'b'),
+(11, 54, 'aaaaaaaaaa'),
+(12, 55, 'aaaaaa');
+
 -- --------------------------------------------------------
 
 --
@@ -97,8 +133,21 @@ CREATE TABLE `book_information` (
   `number_of_pages` int(11) DEFAULT NULL,
   `language` varchar(50) DEFAULT NULL,
   `format` varchar(50) DEFAULT NULL,
-  `ISBN` varchar(50) DEFAULT NULL
+  `ISBN` varchar(50) DEFAULT NULL,
+  `chapters` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+
+--
+-- Dumping data for table `book_information`
+--
+
+INSERT INTO `book_information` (`book_id`, `number_of_pages`, `language`, `format`, `ISBN`, `chapters`) VALUES
+(50, 12, 'a', 'a', 'a', 'aaaaaaaa'),
+(51, 12, 'a', 'a', 'a', 'n'),
+(52, 12, 'a', 'a', 'a', 'a'),
+(53, 12, 'a', 'a', 'a', 'b'),
+(54, 12, 'a', 'a', 'a', 'aaaaaaaaaa'),
+(55, 12, 'a', 'a', 'a', 'aaaaaa');
 
 -- --------------------------------------------------------
 
@@ -117,7 +166,8 @@ CREATE TABLE `categories` (
 
 INSERT INTO `categories` (`category_id`, `category_name`) VALUES
 (21, 'Khoa học viễn tưởng'),
-(22, 'Kinh dị');
+(22, 'Kinh dị'),
+(23, 'Lãng mạn');
 
 -- --------------------------------------------------------
 
@@ -195,7 +245,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `username`, `email`, `password`, `role`) VALUES
-(1, 'vy', '22521709@gm.uit.edu.vn', '$2y$12$mMwhp9prqP7HMJBjkyj61egQIOqpBodoVYqA5IPrcoK.VXGS4qmxq', 'admin');
+(1, 'vy', '22521709@gm.uit.edu.vn', '$2y$12$mMwhp9prqP7HMJBjkyj61egQIOqpBodoVYqA5IPrcoK.VXGS4qmxq', 'admin'),
+(35, 'user', 'a@a.com', '$2y$12$yWx8nJ/xLP.7N03kfIort.wOGkXehNaKLwsmVoweEFmgRXZ8lqs0O', 'user'),
+(36, 'b', 'b@gmail.com', '$2y$12$/0eU084jAHG8wy7tGEYclueBscyM3CLwpoSvzkVHCmhuwuoT32sRS', 'user');
 
 --
 -- Indexes for dumped tables
@@ -212,8 +264,7 @@ ALTER TABLE `authors`
 --
 ALTER TABLE `books`
   ADD PRIMARY KEY (`book_id`),
-  ADD KEY `author_id` (`author_id`),
-  ADD KEY `category_id` (`category_id`);
+  ADD KEY `author_id` (`author_id`);
 
 --
 -- Indexes for table `book_categories`
@@ -291,19 +342,19 @@ ALTER TABLE `authors`
 -- AUTO_INCREMENT for table `books`
 --
 ALTER TABLE `books`
-  MODIFY `book_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `book_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `book_chapters`
 --
 ALTER TABLE `book_chapters`
-  MODIFY `chapter_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `chapter_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `orderdetails`
@@ -321,7 +372,7 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT for table `ratings`
 --
 ALTER TABLE `ratings`
-  MODIFY `rating_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
+  MODIFY `rating_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 
 --
 -- AUTO_INCREMENT for table `userprofiles`
@@ -333,7 +384,7 @@ ALTER TABLE `userprofiles`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- Constraints for dumped tables
@@ -343,8 +394,7 @@ ALTER TABLE `users`
 -- Constraints for table `books`
 --
 ALTER TABLE `books`
-  ADD CONSTRAINT `books_ibfk_1` FOREIGN KEY (`author_id`) REFERENCES `authors` (`author_id`),
-  ADD CONSTRAINT `books_ibfk_2` FOREIGN KEY (`category_id`) REFERENCES `categories` (`category_id`);
+  ADD CONSTRAINT `books_ibfk_1` FOREIGN KEY (`author_id`) REFERENCES `authors` (`author_id`);
 
 --
 -- Constraints for table `book_categories`
