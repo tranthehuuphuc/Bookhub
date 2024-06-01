@@ -2,7 +2,7 @@
 
 $dsn = "mysql:host=localhost;dbname=bookhub";
 $dbusername = "root";
-$dbpassword = "";
+$dbpassword = "root";
 
 try {
     $pdo = new PDO($dsn, $dbusername, $dbpassword);
