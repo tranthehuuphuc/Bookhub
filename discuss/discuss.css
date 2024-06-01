@@ -1,0 +1,167 @@
+.td-book {
+    padding: 5px 10px; /* Adjust padding as needed */
+    margin: 0; /* Ensure no margin is applied */
+}
+.tr-book {
+    margin: 0; /* Ensure no margin is applied */
+}
+td h4 {
+    margin: 0; /* Remove margin from <h4> elements */
+}
+
+.book {
+    position: absolute;
+    margin-bottom: 20px; /* Space between elements */
+}
+
+main {
+    margin-left: 200px;
+    margin-top: 80px;
+}
+
+.book {
+    position: relative;
+    top: 100px; /* Adjust the top value as needed to align with your navbar */
+    left: 150px; /* Adjust the left value to position the book element as desired */
+}
+.book-detail {
+    margin-left: 100px;
+    margin-right: 0px;
+    margin-top: 90px;
+}
+
+.book-btn {
+    text-decoration: none;
+    color: #F08A5D;
+    font-style: italic;
+    font-weight: 200;
+}
+
+.same-author, .same-genre {
+    margin-bottom: 30px;
+}
+
+.mandiv {
+    display: flex;
+}
+
+.line-rating {
+    width: 300px; height: 0.5px; background-color: #F08A5D;margin-bottom: 1vw;
+}
+
+#review {
+    outline: none;width: 50vw;height: 5vw;border: 0.2vw solid #F08A5D;
+    border-radius: 0.5vw;padding-bottom: 10vw; 
+    word-wrap: break-word;font-family: MavenPro;resize: none;
+    font-size: 20px;
+}
+
+#rating {
+    width: 2vw;height: 0.5vw;border: 0.1vw solid #F08A5D;
+    border-radius: 1vw;padding: 1vw;margin-bottom: 0.5vw;
+}
+
+#searchInput {
+    outline: none;width: 30vw;height: 3vw;border: 0.2vw solid #F08A5D;
+    border-radius: 2vw;padding: 1vw;
+}
+
+#loadBtn {
+    background-color: #F08A5D; padding: 0.75rem 2rem; 
+    font-family: 'MavenPro'; color: #ffffff;
+    border-radius: 2rem;border: none; font-size: 1rem; 
+    font-weight: 500; cursor: pointer;
+    align-items: center !important; justify-content: center;
+    margin-bottom: 2vw;
+}
+
+/* Responsive styles */
+@media (max-width: 1000px) {
+    main {
+        margin-left: 100px;
+        margin-top: 80px;
+    }
+    .book {
+        position: relative;
+        top: 100px; /* Adjust the top value as needed to align with your navbar */
+        left: 50px; /* Adjust the left value to position the book element as desired */
+    }
+    .book-detail {
+        margin-left: 100px;
+        margin-right: 0px;
+    }
+    #review {
+        width: 50vw;height: 10vw;
+        border: 0.5vw solid #F08A5D;border-radius: 1vw;
+    }
+    #rating {
+        width: 5vw;height: 2vw;border: 0.1vw solid #F08A5D;
+        border-radius: 1vw;
+    }
+    #searchInput {
+        width: 50vw;height: 10vw;border: 0.2vw solid #F08A5D;
+        border-radius: 5vw;
+    }
+}
+
+@media (max-width: 767px) {
+    .book-detail {
+        margin-left: 30px !important;
+        margin-right: 10px !important;
+    }
+    .book {
+        top: 100;
+        left: 150;
+    }
+    main {
+        display: block;
+        margin-left: 20px;
+        margin-right: 0px;
+    }
+    .genres, .product-info {
+        display: block; /* Stack vertically */
+    }
+    #review {
+        width: 80vw;height: 10vw;
+        border: 0.5vw solid #F08A5D;border-radius: 1vw;
+    }
+    #rating {
+        width: 5vw;height: 2vw;border: 0.1vw solid #F08A5D;
+        border-radius: 1vw;
+    }
+}
+
+@media (max-width: 696px){
+    .mandiv {
+        display: block;
+    }
+
+    .book {
+        flex: 1;
+        box-sizing: border-box;
+    }
+    .book-image {
+        display:block;
+    }
+    .book-detail {
+        flex: 1;
+        box-sizing: border-box;
+        margin-top: 0px;
+        margin-right: 40px !important;
+    }
+
+    .author-detail {
+        display: block !important;
+        margin-right: 30px;
+    }
+
+    .product-info {
+        display: block !important; /* Stack vertically */
+    }
+    .user-rating {
+        display: block;
+    }
+    .line-rating {
+        width: 200px; height: 0.5px; background-color: #F08A5D;margin-bottom: 1vw;
+    }
+}

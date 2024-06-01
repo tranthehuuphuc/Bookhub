@@ -40,8 +40,6 @@ include 'dbh.php';
         });
     </script>
 
-
-
 </head>
 <body>
     <h1 class="visuallyhidden">BookHub</h1>

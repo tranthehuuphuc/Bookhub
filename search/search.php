@@ -1,3 +1,26 @@
+<?php
+include './php/connectdb.php';
+session_start();
+
+// Check if the user is logged in
+$isLoggedIn = isset($_SESSION['user_id']);
+
+// Function to render the navbar links based on user authentication status
+function renderNavbarLinks($isLoggedIn) {
+    if ($isLoggedIn) {
+        // User is logged in
+        echo '<a class="globalnav-item-show" href="../account/orders.php">Đơn hàng</a>';
+        echo '<a class="globalnav-item-show" href="../account/saves.php">Mục đã lưu</a>';
+        echo '<a class="globalnav-item-show" href="../account/profile.php">Tài khoản</a>';
+        echo '<a class="globalnav-item-show" href="../signin/logout.php">Đăng xuất</a>';
+        echo '<button id="profile-button"><img id="profile-icon" src="../assets/account.png" alt="Profile Icon"></button>';
+    } else {
+        // User is not logged in
+        echo '<a class="globalnav-item" href="../signin/signin.php">Đăng nhập</a>';
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,13 +58,8 @@
                 <a class="logo-link" href="../index.php"><img id="BookHub" src="../assets/logo.png" alt="BookHub"></a>
                 <a class="globalnav-item" href="../Book_Store/bookstore.php">Bookstore</a>
                 <a class="globalnav-item" href="../discuss/discuss.php">Thảo luận</a>
-                <a class="globalnav-item" href="../signin/signin.php">Đăng nhập</a>
                 <a class="globalnav-item" href="../search/search.php">Tìm kiếm</a>
-                <a class="globalnav-item-show" href="../account/orders.php">Đơn hàng</a>
-                <a class="globalnav-item-show" href="../account/saves.php">Mục đã lưu</a>
-                <a class="globalnav-item-show" href="../account/profile.php">Tài khoản</a>
-                <a class="globalnav-item-show" href="../signin/logout.php">Đăng xuất</a>
-                <button id="profile-button"><img id="profile-icon" src="../assets/account.png" alt="Profile Icon"></button>
+                <?php renderNavbarLinks($isLoggedIn); ?>
             </div>
         </nav>
 
@@ -120,7 +138,6 @@
                 require_once './php/search_model.php'; 
                 require_once './php/search_contr.php';
                 ?>
-
                 <?php if (!empty($books)): ?>
                     <?php foreach ($books as $index => $book): ?>
                         <div class="pro" 
@@ -131,13 +148,18 @@
                             <img src="<?php echo '../admin/uploads/' . htmlspecialchars($book['cover_image']); ?>" alt="<?php echo htmlspecialchars($book['title']); ?>">
                             <div class="des">
                                 <span><?php echo htmlspecialchars($book['publisher']); ?></span>
-                                <h5><?php echo htmlspecialchars($book['title']); ?></h5>
+                                <h5><?php echo htmlspecialchars($book['price']); ?>.000đ</h5>
                                 <div class="star">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
+                                    <?php 
+                                    $rating = floor($book['rating']);
+                                    for ($i = 0; $i < 5; $i++): 
+                                        if ($i < $rating): ?>
+                                            <i class="fas fa-star"></i>
+                                        <?php else: ?>
+                                            <i class="far fa-star"></i>
+                                        <?php endif; 
+                                    endfor; 
+                                    ?>
                                 </div>
                             </div>
                         </div>
@@ -145,6 +167,7 @@
                 <?php else: ?>
                     <p>No books found.</p>
                 <?php endif; ?>
+
             </div>
         </section>
 

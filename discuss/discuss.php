@@ -1,6 +1,24 @@
 <?php
     include 'dbh.php';
     session_start();
+
+    // Check if the user is logged in
+    $isLoggedIn = isset($_SESSION['user_id']);
+
+    // Function to render the navbar links based on user authentication status
+    function renderNavbarLinks($isLoggedIn) {
+        if ($isLoggedIn) {
+            // User is logged in
+            echo '<a class="globalnav-item-show" href="../account/orders.php">Đơn hàng</a>';
+            echo '<a class="globalnav-item-show" href="../account/saves.php">Mục đã lưu</a>';
+            echo '<a class="globalnav-item-show" href="../account/profile.php">Tài khoản</a>';
+            echo '<a class="globalnav-item-show" href="../signin/logout.php">Đăng xuất</a>';
+            echo '<button id="profile-button"><img id="profile-icon" src="../assets/account.png" alt="Profile Icon"></button>';
+        } else {
+            // User is not logged in
+            echo '<a class="globalnav-item" href="../signin/signin.php">Đăng nhập</a>';
+        }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -34,10 +52,51 @@
     </style>
 
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var book = document.querySelector('.book');
+            var footer = document.querySelector('footer');
+    
+            // Function to update the book position
+            var updateBookPosition = function() {
+                var footerRect = footer.getBoundingClientRect();
+                var bookRect = book.getBoundingClientRect();
+    
+                if (footerRect.top <= window.innerHeight) {
+                    book.style.position = 'absolute';
+                    book.style.top = (window.scrollY + footerRect.top - bookRect.height - 20) + 'px';
+                } else {
+                    book.style.position = 'fixed';
+                    book.style.top = '100px';
+                }
+            };
+    
+            // Function to check the screen width and enable/disable script functionality
+            var checkScreenWidth = function() {
+                var screenWidth = window.innerWidth;
+                if (screenWidth > 768) { // Set your desired width here
+                    // Enable the script
+                    window.addEventListener('scroll', updateBookPosition);
+                    updateBookPosition(); // Initial check
+                } else {
+                    // Disable the script
+                    window.removeEventListener('scroll', updateBookPosition);
+                    book.style.position = 'static'; // Reset to default
+                }
+            };
+    
+            // Initial check on page load
+            checkScreenWidth();
+    
+            // Listen for resize events to enable/disable the script as needed
+            window.addEventListener('resize', checkScreenWidth);
+        });
+    </script>
+
+    <script>
     $(document).ready(function(){
-        var commentCount = 2;
+        var commentCount = 5;
         $("#loadBtn").click(function(){
-            commentCount = commentCount + 2;
+            commentCount = commentCount + 5;
             $.ajax({
                 url: "load-comments.php",
                 method: "POST",
@@ -53,35 +112,55 @@
     });
     </script>
 
-    <script>
-    $(document).ready(function() {
-            // Gắn sự kiện submit cho form
-            $('#validateForm').submit(function(event) {
-                // Ngăn chặn hành động mặc định của form (tải lại trang)
-                event.preventDefault();
-                
-                // Lấy dữ liệu từ form
-                var formData = $(this).serialize();
-                
-                // Thực hiện AJAX request
-                $.ajax({
-                    url: 'submit-comment.php', // Đường dẫn đến file xử lý dữ liệu
-                    method: 'POST', // Phương thức gửi dữ liệu
-                    data: formData, // Dữ liệu cần gửi đi, ở đây là dữ liệu từ form
-                    success: function(response) {
-                        console.log('Dữ liệu đã được gửi thành công:', response);
-                        // Xóa dữ liệu trong form sau khi gửi đi
-                        $('#validateForm')[0].reset();
-                    },
-                    error: function(xhr, status, error) {
-                        console.error('Có lỗi xảy ra:', error);
-                    }
+    <?php
+        if ($isLoggedIn) {
+            echo '<script>
+            $(document).ready(function() {
+                // Gắn sự kiện submit cho form
+                $("#validateForm").submit(function(event) {
+                    // Ngăn chặn hành động mặc định của form (tải lại trang)
+                    event.preventDefault();
+                    
+                    // Lấy dữ liệu từ form
+                    var formData = $(this).serialize();
+                    
+                    // Thực hiện AJAX request
+                    $.ajax({
+                        url: "submit-comment.php", // Đường dẫn đến file xử lý dữ liệu
+                        method: "POST", // Phương thức gửi dữ liệu
+                        data: formData, // Dữ liệu cần gửi đi, ở đây là dữ liệu từ form
+                        success: function(response) {
+                            console.log("Dữ liệu đã được gửi thành công:", response);
+                            // Xóa dữ liệu trong form sau khi gửi đi
+                            $("#validateForm")[0].reset();
+                        },
+                        error: function(xhr, status, error) {
+                            console.error("Có lỗi xảy ra:", error);
+                        }
+                    });
                 });
             });
-        });
+            </script>';
+        }
+        else {
+            echo '<script>
+            $(document).ready(function() {
+                // Gắn sự kiện submit cho form
+                $("#validateForm").submit(function(event) {
+                    // Ngăn chặn hành động mặc định của form (tải lại trang)
+                    event.preventDefault();
+                    
+                    // Thông báo người dùng cần đăng nhập
+                    alert("You need to log in to submit the form.");
+        
+                    // Xóa dữ liệu trong form
+                    $("#validateForm")[0].reset();
+                });
+            });
+            </script>';
+        }
 
-    </script>
-
+    ?>
 
     <script>
         $(document).ready(function() {
@@ -106,6 +185,8 @@
             });
         });
     </script>
+
+
 
 </head>
 </html>
@@ -132,13 +213,9 @@
                 <a class="logo-link" href="../index.php"><img id="BookHub" src="../assets/logo.png" alt="BookHub"></a>
                 <a class="globalnav-item" href="../Book_Store/bookstore.php">Bookstore</a>
                 <a class="globalnav-item" href="../discuss/discuss.php">Thảo luận</a>
-                <a class="globalnav-item" href="../signin/signin.php">Đăng nhập</a>
                 <a class="globalnav-item" href="../search/search.php">Tìm kiếm</a>
-                <a class="globalnav-item-show" href="../account/orders.php">Đơn hàng</a>
-                <a class="globalnav-item-show" href="../account/saves.php">Mục đã lưu</a>
-                <a class="globalnav-item-show" href="../account/profile.php">Tài khoản</a>
-                <a class="globalnav-item-show" href="../assets/join.png">Đăng xuất</a>
-                <button id="profile-button"><img id="profile-icon" src="../assets/account.png" alt="Profile Icon"></button>
+                <?php renderNavbarLinks($isLoggedIn); ?>
+                
             </div>
         </nav>
 
@@ -151,7 +228,7 @@
                 <li><img class="option-icons" src="../assets/orders.png"><a href="../account/orders.php">Đơn hàng</a></li>
                 <li><img class="option-icons" src="../assets/saves.png"><a href="../account/saves.php">Mục đã lưu</a></li>
                 <li><img class="option-icons" src="../assets/setting.png"><a href="../account/profile.php">Tài khoản</a></li>
-                <li><img class="option-icons" src="../assets/join.png"><a href="../index.php">Đăng xuất</a></li>
+                <li><img class="option-icons" src="../assets/join.png"><a href="../signin/logout.php">Đăng xuất</a></li>
             </ul>
         </div>
         <script>
@@ -194,94 +271,93 @@
         </script>
         <!-- End of Account options -->
 
-    <main style="margin: 7vw 7vw;">
-        <div style="display: flex;">
-            <div class="book">
-                <div class="book-image">
-                    <a href="#"><img src="../assets/book3.jpg" alt="book1" style="width: auto;height: 30vw;"></a>
+    <main>
+    <div class="maindiv">
+        <div class="book">
+                <div class="book-image" style="display: flex; justify-content: center;">
+                    <img src="../assets/book3.jpg" alt="book1" style="width: auto; height: 400px;box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.4);">
                 </div>
-
                 <div style="text-align: center;">
-                    <a href="#" style="text-decoration: none;"><h3 style="background-color: #F08A5D; padding: 1vw; color: #ffffff;border-radius: 2vw;">Mua ngay</h3></a>
-                    <a href="#" style="text-decoration: none;"><h3 style="border: 0.3vw solid #F08A5D;padding: 1vw;border-radius: 2vw;color: #F08A5D;">Thêm vào giỏ hàng</h3></a>
+                    <a href="#" style="text-decoration: none;"><h3 style="background-color: #F08A5D; padding: 14px; color: #ffffff; border-radius: 30px;">Tìm hiểu thêm</h3></a>
+                    <a href="#" style="text-decoration: none;"><h3 style="border: 3px solid #F08A5D; padding: 14px; border-radius: 30px; color: #F08A5D;">Thêm vào giỏ hàng</h3></a>
                 </div>
-
+            </div>
+    
+        <div class="book-detail" style="margin-left: 300px; margin-right: 50px;">
+            <h1 style="font-weight: 800;margin-bottom: -1vw;">Thảo luận và đánh giá</h1>
+            <h1 style="font-weight: 300;"><i>Cho tôi xin một vé đi tuổi thơ</i></h1>
+            <h3 style="font-weight: 500; margin-top: -1vw;">Tác giả: Nguyễn Nhật Ánh</h3>
+            <div class="rating">
+                <div style="display: flex;">
+                    <h3 style="font-weight: 500;margin-right: 2vw;">Đánh giá:</h3><h4 style="font-weight: 200;"><i>(100 lượt đánh giá)</i></h4>
+                </div>
+                <div class="star" style="margin-top: -7vw;display: flex;">
+                    <div><img src="./d_assets/stars.png" alt="star" style="width: auto;height: 16vw;"></div>
+                    <div><h1 style="margin-top: 7vw;padding-left: 1vw;">5.00/5.00</h1></div>
+                </div>
             </div>
 
-            <div class="disucss" style="margin-left: 8vw;margin-top: -2vw;">
-                <h1 style="font-weight: 800;margin-bottom: -1vw;">Thảo luận và đánh giá</h1>
-                <h1 style="font-weight: 300;"><i>Cho tôi xin một vé đi tuổi thơ</i></h1>
-                <h3 style="font-weight: 500; margin-top: -1vw;">Tác giả: Nguyễn Nhật Ánh</h3>
-                <div class="rating">
-                    <div style="display: flex;">
-                        <h3 style="font-weight: 500;margin-right: 2vw;">Đánh giá:</h3><h4 style="font-weight: 200;"><i>(100 lượt đánh giá, 100 bàn luận)</i></h4>
-                    </div>
-                    <div class="star" style="margin-top: -7vw;display: flex;">
-                        <div><img src="./d_assets/stars.png" alt="star" style="width: auto;height: 16vw;"></div>
-                        <div><h1 style="margin-top: 7vw;padding-left: 1vw;">5.00/5.00</h1></div>
-                    </div>
-                </div>
-
-                <div id="postcmt" style="display: flex;">
-                    <form id="validateForm">
-                        <div>
-                            <textarea name="review" id="review" placeholder="Đăng bình luận" style="outline: none;width: 30vw;height: 3vw;border: 0.2vw solid #F08A5D;border-radius: 0.5vw;padding-bottom: 3vw; word-wrap: break-word;font-family: MavenPro;resize: none;" required></textarea>
-                            <br/>
-                        </div>
+            <div id="postcmt" style="display: flex;">
+                <form id="validateForm">
+                    <div>
+                        <textarea name="review" id="review" placeholder="Đăng bình luận"required></textarea>
                         <br/>
-                        <label for="rating">Nhập điểm đánh giá: </label>
-                        <input type="text" id="rating" name="rating" style="width: 2vw;height: 0.5vw;border: 0.1vw solid #F08A5D;border-radius: 1vw;padding: 1vw;margin-bottom: 0.5vw;"><br/>
-                        
-                        <br/>
-                        <button id="post_cmt" type="submit" style="background-color: #F08A5D; padding: 0.75rem 2rem; font-family: 'MavenPro'; color: #ffffff;cursor:pointer;border:none;border-radius:2rem">Đăng</button>
-                        <div id="responseMessage"></div>
-                    </form>
-                </div>
-
-                <div style='width: 48vw; height: 0.75vw; background-color: #F08A5D;margin-bottom: 1vw; margin-top: 2vw;'></div>
-
-                <div id="searchcmt" style="display: flex;">
-                    <form>
-                        <input type="search" id="searchInput" placeholder="Tìm kiếm bình luận" style="outline: none;width: 30vw;height: 3vw;border: 0.2vw solid #F08A5D;border-radius: 2vw;padding: 1vw;">
-                        <button type="submit" style="background-color: #F08A5D; padding: 0.75rem 2rem; font-family: 'MavenPro'; color: #ffffff;cursor:pointer;border:none;border-radius:2rem">Tìm kiếm</button>
-                    </form>
-                </div>
-
-                <p><i>Kết quả tìm kiếm</i></p>
-                <div id="searchResults"></div>
-                <div style='width: 48vw; height: 0.75vw; background-color: #F08A5D;margin-bottom: 1vw;'></div>
-                <p><i>Tất cả đánh giá</i></p>
-                <br/>
-
-                <div id="cmts">
-                    <?php
-                            $sql = "SELECT ratings.*, userprofiles.full_name
-                            FROM ratings 
-                            INNER JOIN userprofiles ON ratings.user_id = userprofiles.user_id 
-                            LIMIT 2";
-                        $result = mysqli_query($conn, $sql);
-                        if (mysqli_num_rows($result) > 0) {
-                            while ($row = mysqli_fetch_assoc($result)) {
-                                echo "<div>";
-                                echo "<img src='".'./d_assets/user.png'."' alt='User Image' style='width: 50px; height: 50px; border-radius: 50%; margin-right: 10px;'>";
-                                echo "<p style='font-weight:800;font-size:1.5rem'>".$row['full_name']."</p>";
-                                echo "<p><i>Rating: ".$row['rating'].'/5.00'."</i></p>";
-                                echo "<p>Review: ".$row['review']."</p>";
-                                echo "</div>";
-                                echo "<div style='width: 48vw; height: 0.1vw; background-color: #F08A5D;margin-bottom: 1vw;'></div>";
-                            }
-                        } else {
-                                echo "Không có bình luận nào.";
-                        }
-                    ?>
-                </div>
-
-                <button id="loadBtn" style="background-color: #F08A5D; padding: 0.75rem 2rem; font-family: 'MavenPro'; color: #ffffff;
-                border-radius: 2rem;border: none; font-size: 1rem; font-weight: 500; margin-left: 18rem;cursor: pointer;">
-                    Xem thêm
-                </button>
-
+                    </div>
+                    <br/>
+                    <label for="rating">Nhập điểm đánh giá: </label>
+                    <input type="text" id="rating" name="rating"><br/>
+                    
+                    <br/>
+                    <button id="post_cmt" type="submit" style="background-color: #F08A5D; padding: 0.75rem 2rem; font-family: 'MavenPro'; color: #ffffff;cursor:pointer;border:none;border-radius:2rem">Đăng</button>
+                    <div id="responseMessage"></div>
+                </form>
             </div>
+
+            <div style='width: 100%; height: 0.75vw; background-color: #F08A5D;margin-bottom: 1vw; margin-top: 2vw;'></div>
+
+            <div id="searchcmt" style="display: flex;">
+                <form>
+                    <input type="search" id="searchInput" placeholder="Tìm kiếm bình luận" style="">
+                    <button type="submit" style="background-color: #F08A5D; padding: 0.75rem 2rem; font-family: 'MavenPro'; color: #ffffff;cursor:pointer;border:none;border-radius:2rem">Tìm kiếm</button>
+                </form>
+            </div>
+
+            <p><i>Kết quả tìm kiếm</i></p>
+            <div id="searchResults"></div>
+            <div style='width: 100%; height: 0.75vw; background-color: #F08A5D;margin-bottom: 1vw;'></div>
+            <p><i>Tất cả đánh giá</i></p>
+            <br/>
+
+            <div id="cmts">
+                <?php    
+                $sql = "SELECT ratings.*, users.username
+                FROM ratings 
+                INNER JOIN users ON ratings.user_id = users.user_id 
+                LIMIT 5";
+
+                $result = mysqli_query($conn, $sql);
+
+                if (mysqli_num_rows($result) > 0) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo "<div>";
+                        echo "<img src='".'./d_assets/user.png'."' alt='User Image' style='width: 50px; height: 50px; border-radius: 50%; margin-right: 10px;'>"; // Display user image
+                        echo "<p style='font-weight:800;font-size:1.5rem'>@".$row['username']."</p>";
+                        echo "<p><i>Rating: ".$row['rating'].'/5.00'."</i></p>";
+                        echo "<p>Review: ".$row['review']."</p>";
+                        echo "</div>";
+                        echo "<div style='width: 100%; height: 0.1vw; background-color: #F08A5D;margin-bottom: 1vw;'></div>";
+                    }
+                } else {
+                    echo "Không có bình luận nào.";
+                }
+                ?>
+            </div>
+
+            <button id="loadBtn">
+                Xem thêm
+            </button>
+
+        </div>
         </div>
     </main>
 

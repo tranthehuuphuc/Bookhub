@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $rating_date = date("Y-m-d H:i:s");
 
     // Temporary book_id value
-    $book_id = 20;
+    $book_id = 57;
 
     // Prepare SQL statement
     $sql = "INSERT INTO ratings (user_id, book_id, review, rating, rating_date) VALUES (?, ?, ?, ?, ?)";
