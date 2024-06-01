@@ -165,27 +165,48 @@ session_start();
                 <div id="promotion" class="promotion-mobile">
                     <div style="margin-top: 2vw; margin-left: 3vw; width: 50vw; height: 0.3vw; background-color: #F08A5D;"></div>
                     <h2><a class="promotion-title" style="margin-left: 3vw;" href="./index.php">SẢN PHẨM ĐANG GIẢM GIÁ ></a></h2>
-                    <nav class="promotionnav">
+                    <nav class="promotionnav promotionnav1">
                         <a class="promotionnav-item" href="./index.php" style="margin-left: 5vw;">
-                            <img src="./assets/etc.jpg" class="promotion-image"><br/>
+                            <div class="promotionnav-item-1">
+                                <img src="./assets/etc.jpg" class="promotion-image"><br/>
+                                <p style="margin: 0; padding: 0; font-weight: 500; font-size: 1.75vw;">Book 1</p>
+                                <p style="margin: 0; padding: 0; font-size: 1vw; font-size: 1.25vw;">4/5 <img src="./assets/star.png"></p>
+                                <p style="margin: 0; padding: 0; font-weight: 400; font-size: 1.5vw; text-decoration-line: line-through; font-style: italic;">150.000 VND</p>
+                                <p style="margin: 0; padding: 0; font-weight: 500; font-size: 2vw;">110.000 VND</p>
+                            </div>
+                            <!-- <img src="./assets/etc.jpg" class="promotion-image"><br/>
                             <p style="margin: 0; padding: 0; font-weight: 500; font-size: 1.75vw;">Book 1</p>
                             <p style="margin: 0; padding: 0; font-size: 1vw; font-size: 1.25vw;">4/5 <img src="./assets/star.png"></p>
                             <p style="margin: 0; padding: 0; font-weight: 400; font-size: 1.5vw; text-decoration-line: line-through; font-style: italic;">150.000 VND</p>
-                            <p style="margin: 0; padding: 0; font-weight: 500; font-size: 2vw;">110.000 VND</p>
+                            <p style="margin: 0; padding: 0; font-weight: 500; font-size: 2vw;">110.000 VND</p> -->
                         </a>
                         <a class="promotionnav-item" href="./index.php">
-                            <img src="./assets/etc.jpg" class="promotion-image"><br/>
+                            <div class="promotionnav-item-1">
+                                <img src="./assets/etc.jpg" class="promotion-image"><br/>
+                                <p style="margin: 0; padding: 0; font-weight: 500; font-size: 1.75vw;">Book 1</p>
+                                <p style="margin: 0; padding: 0; font-size: 1vw; font-size: 1.25vw;">4/5 <img src="./assets/star.png"></p>
+                                <p style="margin: 0; padding: 0; font-weight: 400; font-size: 1.5vw; text-decoration-line: line-through; font-style: italic;">200.000 VND</p>
+                                <p style="margin: 0; padding: 0; font-weight: 500; font-size: 2vw;">135.000 VND</p>
+                            </div>
+                            <!-- <img src="./assets/etc.jpg" class="promotion-image"><br/>
                             <p style="margin: 0; padding: 0; font-weight: 500; font-size: 1.75vw;">Book 1</p>
                             <p style="margin: 0; padding: 0; font-size: 1vw; font-size: 1.25vw;">4/5 <img src="./assets/star.png"></p>
                             <p style="margin: 0; padding: 0; font-weight: 400; font-size: 1.5vw; text-decoration-line: line-through; font-style: italic;">200.000 VND</p>
-                            <p style="margin: 0; padding: 0; font-weight: 500; font-size: 2vw;">135.000 VND</p>
+                            <p style="margin: 0; padding: 0; font-weight: 500; font-size: 2vw;">135.000 VND</p> -->
                         </a>
                         <a class="promotionnav-item" href="./index.php">
-                            <img src="./assets/etc.jpg" class="promotion-image"><br/>
+                            <div class="promotionnav-item-1">
+                                <img src="./assets/etc.jpg" class="promotion-image"><br/>
+                                <p style="margin: 0; padding: 0; font-weight: 500; font-size: 1.75vw;">Book 1</p>
+                                <p style="margin: 0; padding: 0; font-size: 1vw; font-size: 1.25vw;">4/5 <img src="./assets/star.png"></p>
+                                <p style="margin: 0; padding: 0; font-weight: 400; font-size: 1.5vw; text-decoration-line: line-through; font-style: italic;">100.000 VND</p>
+                                <p style="margin: 0; padding: 0; font-weight: 500; font-size: 2vw;">80.000 VND</p>
+                            </div>
+                            <!-- <img src="./assets/etc.jpg" class="promotion-image"><br/>
                             <p style="margin: 0; padding: 0; font-weight: 500; font-size: 1.75vw;">Book 1</p>
                             <p style="margin: 0; padding: 0; font-size: 1vw; font-size: 1.25vw;">4/5 <img src="./assets/star.png"></p>
                             <p style="margin: 0; padding: 0; font-weight: 400; font-size: 1.5vw; text-decoration-line: line-through; font-style: italic;">100.000 VND</p>
-                            <p style="margin: 0; padding: 0; font-weight: 500; font-size: 2vw;">80.000 VND</p>
+                            <p style="margin: 0; padding: 0; font-weight: 500; font-size: 2vw;">80.000 VND</p> -->
                         </a>
                     </nav> 
                 </div>
@@ -284,29 +305,29 @@ session_start();
                     <h2><a class="promotion-title" style="margin-left: 2vw;" href="./index.php">ĐỀ CỬ DÀNH CHO BẠN ></a></h2>
                     <nav class="promotionnav">
                         <a class="promotionnav-item" href="./index.php" style="margin-left: 5vw;">
-                            <img src="./assets/book2.jpg" align= "right" height="100" width= "100"<br/>
-                            <p style="text-align: right; margin: 0; padding: 0; font-weight: 500; font-size: 1.75vw;">Book 1</p>
+                            <img class="promotion-image1" src="./assets/book2.jpg" align= "right" height="100" width= "100"<br/>
+                            <p style="text-align: right; margin: 0; padding: 0; font-weight: 600; font-size: 1.75vw;">Book 1</p>
                         </a>
                         <a class="promotionnav-item" href="./index.php">
-                            <img src="./assets/book2.jpg" align= "right" height="100" width= "100"<br/>
+                            <img class="promotion-image1" src="./assets/book2.jpg" align= "right" height="100" width= "100"<br/>
                             <p style="text-align: right; margin: 0; padding: 0; font-weight: 600; font-size: 1.75vw;">Book 2</p>
                         </a>
                         <a class="promotionnav-item" href="./index.php">
-                            <img src="./assets/book2.jpg" align= "right" height="100" width= "100"<br/>
+                            <img class="promotion-image1" src="./assets/book2.jpg" align= "right" height="100" width= "100"<br/>
                             <p style="text-align: right; margin: 0; padding: 0; font-weight: 600; font-size: 1.75vw;">Book 3</p>
                         </a>
                     </nav>
                     <nav class="promotionnav" style="margin-top: 2vw;">
                         <a class="promotionnav-item" href="./index.php" style="margin-left: 5vw;">
-                            <img src="./assets/book2.jpg" align= "right" height="100" width= "100"<br/>
+                            <img class="promotion-image1" src="./assets/book2.jpg" align= "right" height="100" width= "100"<br/>
                             <p style="text-align: right; margin: 0; padding: 0; font-weight: 600; font-size: 1.75vw;">Book 4</p>
                         </a>
                         <a class="promotionnav-item" href="./index.php">
-                            <img src="./assets/book2.jpg" align= "right" height="100" width= "100"<br/>
+                            <img class="promotion-image1" src="./assets/book2.jpg" align= "right" height="100" width= "100"<br/>
                             <p style="text-align: right; margin: 0; padding: 0; font-weight: 600; font-size: 1.75vw;">Book 5</p>
                         </a>
                         <a class="promotionnav-item" href="./index.php">
-                            <img src="./assets/book2.jpg" align= "right" height="100" width= "100"<br/>
+                            <img class="promotion-image1" src="./assets/book2.jpg" align= "right" height="100" width= "100"<br/>
                             <p style="text-align: right; margin: 0; padding: 0; font-weight: 600; font-size: 1.75vw;">Book 6</p>
                         </a>
                     </nav>
@@ -317,7 +338,7 @@ session_start();
                     <div class="promotionnav">
                         <a class="promotionnav-item1" href="./index.php" style="margin-left: 8vw; border: solid 3px; border-color: #F08A5D; padding-bottom: 2vw; padding-left: 2vw; padding-right: 2vw;">
                             <p style="font-size:1.1vw; text-align: justify;"><i>"Chỉ khi bạn có một khát khao, một ước mơ mãnh liệt cũng như cố gắng hết sức để đạt được ước mơ đó, thì vũ trụ sẽ đáp lại mong muốn sâu thẳm trong tâm hồn bạn."</i><br></p>
-                            <p style="text-align: right; font-weight: 500; font-size: 1.25vw;">- Nhà giả kim -</p>
+                            <p class="promotionnav-item1-p" style="text-align: right; font-weight: 500; font-size: 1.25vw;"><h5> - Nhà giả kim - </h5></p>
                         </a>
                     </div>
                 </div>
@@ -326,7 +347,7 @@ session_start();
             <div id="notification">
                 <div style="margin-left: 9vw; width: 50vw; height: 0.3vw; background-color: #F08A5D;"></div>
                 <h2><a class="promotion-title" style="margin-top: 2vw; margin-left: 9vw;" href="./index.php">THÔNG BÁO MỚI ></a></h2>
-                <div style="background-color: #F08A5D; display: flex; padding: 3vw; margin-left: 9vw; border-radius: 1vw;">
+                <div class="notification" style="background-color: #F08A5D; display: flex; padding: 3vw; margin-left: 9vw; border-radius: 1vw;">
                     <nav style="display: flex;">
                         <img src="./assets/book2.jpg" style="width: 50%; height: auto; padding: 0; margin: 0; border-radius: 4%;">
                         <span class="noti">
@@ -343,6 +364,7 @@ session_start();
                         </span>
                     </nav>
                 </div>
+                
             </div>
         </main>
 

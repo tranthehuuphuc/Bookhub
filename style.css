@@ -237,6 +237,7 @@ body {
 .noti a:hover{
   color:#000000;
 }
+
 @media (max-width: 600px) {
   .topbtn {
     margin: 0 10vw;
@@ -291,6 +292,14 @@ body {
     font-size: 3vw;
   }
 
+  /*p2*/
+  .promotionnav1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: -12em;
+  }
+  
   /* p3 */
   .details {
     display: flex;
@@ -305,5 +314,48 @@ body {
 
   .details-b2 {
     margin-left: -2.6em;
+  }
+  /* p4 */
+
+
+  /* p5 */
+  .promotion-image1 {
+    width: 80px;
+    height: 110px;
+    margin-right: -1.35em;
+    border-radius: 10px;
+  }
+
+  .promotionnav-item1 {
+    width: 30vw; 
+    height: 65vw;
+  }
+
+  .promotionnav-item1 i{
+    font-size: 4vw
+  }
+
+  .promotionnav-item1-p h5{
+    font-size: 2vw;
+  }
+
+  .notification {
+    width: 76vw;
+    height: 100vw;
+    margin-left: 1em;
+  }
+
+  .notification nav{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .notification nav .noti {
+    margin-top: 2em;
+  }
+
+  .noti a{
+    font-size: 4vw;
   }
 }
