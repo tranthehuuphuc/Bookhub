@@ -1,26 +1,31 @@
 <?php
 declare(strict_types=1);
 
-function get_books(PDO $pdo, string $title = '', string $category = '', string $author = '', string $publisher = ''): array {
-    $sql = "SELECT books.*, GROUP_CONCAT(book_categories.category_id) AS category_ids
+function get_books(PDO $pdo, string $title = '', int $category_id = 0, int $author_id = 0, string $publisher = ''): array {
+    $sql = "SELECT books.*, GROUP_CONCAT(book_categories.category_id) AS category_ids,
+                   authors.author_id, authors.author_name,
+                   GROUP_CONCAT(book_information.language) AS languages,
+                   GROUP_CONCAT(book_information.format) AS formats
             FROM books
             LEFT JOIN book_categories ON books.book_id = book_categories.book_id
-            WHERE 1";
+            LEFT JOIN authors ON books.author_id = authors.author_id
+            LEFT JOIN book_information ON books.book_id = book_information.book_id
+            WHERE 1=1";
 
     if ($title) {
         $sql .= " AND books.title LIKE :title";
     }
-    if ($category) {
-        $sql .= " AND book_categories.category_id = :category";
+    if ($category_id) {
+        $sql .= " AND book_categories.category_id = :category_id";
     }
-    if ($author) {
-        $sql .= " AND books.author_id = :author";
+    if ($author_id) {
+        $sql .= " AND books.author_id = :author_id";
     }
     if ($publisher) {
-        $sql .= " AND books.publisher = :publisher";
+        $sql .= " AND books.publisher LIKE :publisher";
     }
 
-    $sql .= " GROUP BY books.book_id"; // Grouping by book ID
+    $sql .= " GROUP BY books.book_id";
 
     $stmt = $pdo->prepare($sql);
 
@@ -28,25 +33,31 @@ function get_books(PDO $pdo, string $title = '', string $category = '', string $
         $searchTitle = '%' . $title . '%';
         $stmt->bindParam(':title', $searchTitle, PDO::PARAM_STR);
     }
-    if ($category) {
-        $stmt->bindParam(':category', $category, PDO::PARAM_STR);
+    if ($category_id) {
+        $stmt->bindParam(':category_id', $category_id, PDO::PARAM_INT);
     }
-    if ($author) {
-        $stmt->bindParam(':author', $author, PDO::PARAM_STR);
+    if ($author_id) {
+        $stmt->bindParam(':author_id', $author_id, PDO::PARAM_INT);
     }
     if ($publisher) {
-        $stmt->bindParam(':publisher', $publisher, PDO::PARAM_STR);
+        $searchPublisher = '%' . $publisher . '%';
+        $stmt->bindParam(':publisher', $searchPublisher, PDO::PARAM_STR);
     }
 
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-$title = urldecode($_GET['search'] ?? ''); // Get and decode search term
-$category = urldecode($_GET['category'] ?? '');
-$author = urldecode($_GET['author'] ?? '');
+
+// Get and decode search parameters
+$title = urldecode($_GET['search'] ?? '');
+$category_id = isset($_GET['category']) ? (int)urldecode($_GET['category']) : 0;
+$author_id = isset($_GET['author']) ? (int)urldecode($_GET['author']) : 0;
 $publisher = urldecode($_GET['publisher'] ?? '');
 
+
+// Set up database connection
 $dsn = "mysql:host=localhost;dbname=bookhub;charset=utf8mb4";
 $pdo = new PDO($dsn, 'root', 'root');
-$books = get_books($pdo, $title, $category, $author, $publisher);
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$books = get_books($pdo, $title, $category_id, $author_id, $publisher);

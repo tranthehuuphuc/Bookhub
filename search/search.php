@@ -98,19 +98,21 @@
         <!-- End of account options -->
 
         <div class="wrapper" style="margin-top: 5vw;margin-bottom: 5vw;">
-        <div id="search-container">
-            <form action="./search.php" method="GET">
-                <input type="search" id="search-input" name="search" placeholder="Tìm kiếm sách.." />
-                <button id="search">Tìm kiếm</button>
-            </form>
+            <div id="search-container">
+                <form id="search-form" action="./search.php" method="GET">
+                    <input type="search" id="search-input" name="search" placeholder="Tìm kiếm sách.." />
+                    <button id="search">Tìm kiếm</button>
+                </form>
+            </div>
+            <div id="buttons">
+                <button class="button-value" onclick="filterProduct('category', '1')">Thể loại</button>
+                <button class="button-value" onclick="filterProduct('author', '1')">Tác giả</button>
+                <button class="button-value" onclick="filterProduct('publisher', 'Nhà xuất bản')">Nhà xuất bản</button>
+            </div>
+            <div id="products"></div>
         </div>
-        <div id="buttons">
-            <button class="button-value" onclick="filterProduct('category', 'Thể loại')">Thể loại</button>
-            <button class="button-value" onclick="filterProduct('author', 'Tác giả')">Tác giả</button>
-            <button class="button-value" onclick="filterProduct('publisher', 'Nhà xuất bản')">Nhà xuất bản</button>
-        </div>
-        <div id="products"></div>
-        </div>
+
+
 
         <section id="product1" class="section-p1">
             <div class="pro-container">
@@ -120,8 +122,12 @@
                 ?>
 
                 <?php if (!empty($books)): ?>
-                    <?php foreach ($books as $book): ?>
-                        <div class="pro">
+                    <?php foreach ($books as $index => $book): ?>
+                        <div class="pro" 
+                            data-category="<?php echo htmlspecialchars($book['category_ids']); ?>" 
+                            data-author="<?php echo htmlspecialchars($book['author_id']); ?>" 
+                            data-publisher="<?php echo htmlspecialchars($book['publisher']); ?>">
+
                             <img src="<?php echo '../admin/uploads/' . htmlspecialchars($book['cover_image']); ?>" alt="<?php echo htmlspecialchars($book['title']); ?>">
                             <div class="des">
                                 <span><?php echo htmlspecialchars($book['publisher']); ?></span>
@@ -142,14 +148,63 @@
             </div>
         </section>
 
-        <script>
-        function filterProduct(filterType, filterValue) {
-            const params = new URLSearchParams(window.location.search);
-            params.set(filterType, filterValue);
-            window.location.search = params.toString();
-        }
-        </script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const params = new URLSearchParams(window.location.search);
+        const isFirstBook = document.querySelector('.pro:first-of-type');
+        const firstBookCategory = isFirstBook ? isFirstBook.getAttribute('data-category') : null;
+        const firstBookAuthor = isFirstBook ? isFirstBook.getAttribute('data-author') : null;
+        const firstBookPublisher = isFirstBook ? isFirstBook.getAttribute('data-publisher') : null;
 
+        if (isFirstBook) {
+            params.set('category', firstBookCategory);
+            params.set('author', firstBookAuthor);
+            params.set('publisher', firstBookPublisher);
+            const newUrl = window.location.pathname + '?' + params.toString();
+            window.history.replaceState({}, '', newUrl);
+        }
+    });
+
+
+    function filterProduct(filterType, filterValue) {
+        const params = new URLSearchParams();
+
+        // Set the new filter parameter
+        params.set(filterType, filterValue);
+
+        // Get the corresponding attribute values from the first book element
+        const isFirstBook = document.querySelector('.pro:first-of-type');
+        let firstBookCategory = null;
+        let firstBookAuthor = null;
+        let firstBookPublisher = null;
+        if (isFirstBook) {
+            if (filterType === 'category') {
+                firstBookCategory = isFirstBook.getAttribute('data-category');
+            } else if (filterType === 'author') {
+                firstBookAuthor = isFirstBook.getAttribute('data-author');
+            } else if (filterType === 'publisher') {
+                firstBookPublisher = isFirstBook.getAttribute('data-publisher');
+            }
+        }
+
+        // Set the additional attributes if available
+        if (firstBookCategory) {
+            params.set('category', firstBookCategory);
+        }
+        if (firstBookAuthor) {
+            params.set('author', firstBookAuthor);
+        }
+        if (firstBookPublisher) {
+            params.set('publisher', firstBookPublisher);
+        }
+
+        // Construct the new URL
+        const newUrl = window.location.pathname + '?' + params.toString();
+        window.location.href = newUrl;
+    }
+
+
+</script>
 
     <footer>
         <div class="footer-section footer-content">
