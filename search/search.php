@@ -177,6 +177,36 @@
                 <img src="../assets/etc.jpg" alt="">
                 <div class="des">
                     <span>Technology</span>
+                    <h5>abcd</h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pro" onclick="window.location.href='../thao luan va chi tiet.php';">
+                <img src="../assets/etc.jpg" alt="">
+                <div class="des">
+                    <span>Technology</span>
+                    <h5>abcd</h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pro" onclick="window.location.href='../thao luan va chi tiet.php';">
+                <img src="../assets/etc.jpg" alt="">
+                <div class="des">
+                    <span>Technology</span>
                     <h5>C/C++ Programming</h5>
                     <div class="star">
                         <i class="fas fa-star"></i>
