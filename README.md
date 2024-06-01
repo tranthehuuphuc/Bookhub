@@ -38,7 +38,23 @@ This is a web application project of Group 16, from the subject Web Application 
 6. **Access the Website**:
    - Open your browser and navigate to `http://localhost/[your_project_folder]` to view the website.
 
-#### For MacOS:
+#### For MacOS (using Xampp):
+1. **Install Xampp**: Download from [Xampp](https://www.apachefriends.org/index.html).
+2. **Setup Xampp**:
+   - Follow the installation instructions to set up Xampp.
+3. **Prepare the Code**:
+   - Locate the `htdocs` folder in your Xampp installation directory.
+   - Copy and paste all your project files into the `htdocs` folder.
+4. **Start Servers**:
+   - In Xampp, start both Apache and MySQL servers.
+5. **Database Setup**:
+   - Open your browser and go to `http://localhost/phpmyadmin`.
+   - Create a database named `bookhub`.
+   - Import the provided `.sql` file into the `bookhub` database.
+6. **Access the Website**:
+   - Open your browser and navigate to `http://localhost/[your_project_folder]` to view the website.
+     
+#### For MacOS (using Mamp):
 1. **Install Mamp**: Download from [Mamp](https://www.mamp.info/en/downloads/).
 2. **Setup Mamp**:
    - Follow the installation instructions to set up Mamp.
