@@ -122,22 +122,28 @@ session_start();
                         <h2><a class="promotion-title" style="margin-left: 3vw;" href="./index.php">SẢN PHẨM NỔI BẬT ></a></h2>
                         <nav class="promotionnav">
                             <a class="promotionnav-item" href="./index.php" style="margin-left: 5vw;">
-                                <img src="./assets/etc.jpg" class="promotion-image"><br/>
-                                <p style="margin: 0; padding: 0; font-weight: 500; font-size: 1.75vw;">Python</p>
-                                <p style="margin: 0; padding: 0; font-size: 1vw; font-size: 1.25vw;">4/5 <img src="./assets/star.png"></p>
-                                <p style="margin: 0; padding: 0; font-weight: 500; font-size: 1.5vw;">100.000 VND</p>
+                                <div class="promotionnav-item-1">
+                                    <img src="./assets/etc.jpg" class="promotion-image"><br/>
+                                    <p style="margin: 0; padding: 0; font-weight: 500; font-size: 1.75vw;">Python</p>
+                                    <p style="margin: 0; padding: 0; font-size: 1vw; font-size: 1.25vw;">4/5 <img src="./assets/star.png"></p>
+                                    <p style="margin: 0; padding: 0; font-weight: 500; font-size: 1.5vw;">100.000 VND</p>
+                                </div>
                             </a>
-                            <a class="promotionnav-item" href="./index.php">
-                                <img src="./assets/etc.jpg" class="promotion-image"><br/>
-                                <p style="margin: 0; padding: 0; font-weight: 500; font-size: 1.75vw;">C#</p>
-                                <p style="margin: 0; padding: 0; font-size: 1vw; font-size: 1.25vw;">4/5 <img src="./assets/star.png"></p>
-                                <p style="margin: 0; padding: 0; font-weight: 500; font-size: 1.5vw;">100.000 VND</p>
+                            <a class="promotionnav-item" href="./index.php" style="margin-left: 5vw;">
+                                <div class="promotionnav-item-1">
+                                    <img src="./assets/etc.jpg" class="promotion-image"><br/>
+                                    <p style="margin: 0; padding: 0; font-weight: 500; font-size: 1.75vw;">C#</p>
+                                    <p style="margin: 0; padding: 0; font-size: 1vw; font-size: 1.25vw;">4/5 <img src="./assets/star.png"></p>
+                                    <p style="margin: 0; padding: 0; font-weight: 500; font-size: 1.5vw;">100.000 VND</p>
+                                </div>
                             </a>
-                            <a class="promotionnav-item" href="./index.php">
-                                <img src="./assets/etc.jpg" class="promotion-image"><br/>
-                                <p style="margin: 0; padding: 0; font-weight: 500; font-size: 1.75vw;">C/C++</p>
-                                <p style="margin: 0; padding: 0; font-size: 1vw; font-size: 1.25vw;">4/5 <img src="./assets/star.png"></p>
-                                <p style="margin: 0; padding: 0; font-weight: 500; font-size: 1.5vw;">100.000 VND</p>
+                            <a class="promotionnav-item" href="./index.php" style="margin-left: 5vw;">
+                                <div class="promotionnav-item-1">
+                                    <img src="./assets/etc.jpg" class="promotion-image"><br/>
+                                    <p style="margin: 0; padding: 0; font-weight: 500; font-size: 1.75vw;">C/C++</p>
+                                    <p style="margin: 0; padding: 0; font-size: 1vw; font-size: 1.25vw;">4/5 <img src="./assets/star.png"></p>
+                                    <p style="margin: 0; padding: 0; font-weight: 500; font-size: 1.5vw;">100.000 VND</p>
+                                </div>
                             </a>
                         </nav>
                     </div>
@@ -145,11 +151,13 @@ session_start();
                         <div style="margin-top: 2vw; margin-left: 5vw; width: 20vw; height: 0.3vw; background-color: #F08A5D;"></div>
                         <h2><a class="promotion-title" style="margin-left: 7vw" href="./index.php">SẢN PHẨM TOP #1 ></a></h2>
                         <nav class="promotionnav" style="margin-left:2vw;">
-                            <a class="promotionnav-item" href="./index.php" style="margin-left: 7vw;">
-                                <img src="./assets/etc.jpg" class="promotion-image"><br/>
-                                <p style="margin: 0; padding: 0; font-weight: 500; font-size: 1.75vw;">HTML</p>
-                                <p style="margin: 0; padding: 0; font-size: 1vw; font-size: 1.25vw;">4/5 <img src="./assets/star.png"></p>
-                                <p style="margin: 0; padding: 0; font-weight: 500; font-size: 1.5vw;">100.000 VND</p>
+                            <a class="promotionnav-item" href="./index.php" style="margin-left: 5vw;">
+                                <div class="promotionnav-item-1">
+                                    <img src="./assets/etc.jpg" class="promotion-image"><br/>
+                                    <p style="margin: 0; padding: 0; font-weight: 500; font-size: 1.75vw;">HTML</p>
+                                    <p style="margin: 0; padding: 0; font-size: 1vw; font-size: 1.25vw;">4/5 <img src="./assets/star.png"></p>
+                                    <p style="margin: 0; padding: 0; font-weight: 500; font-size: 1.5vw;">100.000 VND</p>
+                                </div>
                             </a>
                         </nav>
                     </div>
@@ -184,23 +192,39 @@ session_start();
             </div>
         
             <section id="best-seller" style="margin-left: 10vw;">
-                    <div style="margin-top: 2vw; margin-left: 2vw; width: 50vw; height: 0.3vw; background-color: #F08A5D;"></div>
-                    <h2><a class="promotion-title" style="margin-left: 2vw;" href="./index.php">THỂ LOẠI SÁCH BÁN CHẠY ></a></h2>
-                    <div class="details">
-                        <div class="details-b1">
-                            <span><a href="#">> Tình cảm</a></span>
-                            <span><a href="#">> Bí ẩn</a></span>
-                            <span><a href="#">> Giả tưởng và khoa học viễn tưởng</a></span>
-                            <span><a href="#">> Kinh dị, giật gân</a></span>
-                            <span><a href="#">> Self-help</a></span>
-                            <span><a href="#">> Tiểu sử, tự truyện và hồi ký</a></span>
+                <div style="margin-top: 2vw; margin-left: 2vw; width: 50vw; height: 0.3vw; background-color: #F08A5D;"></div>
+                <h2><a class="promotion-title" style="margin-left: 2vw;" href="./index.php">THỂ LOẠI SÁCH BÁN CHẠY ></a></h2>
+                <div class="details">
+                    <!-- <div class="details-b1">
+                        <span><a href="#">> Tình cảm</a></span>
+                        <span><a href="#">> Bí ẩn</a></span>
+                        <span><a href="#">> Giả tưởng và khoa học viễn tưởng</a></span>
+                        <span><a href="#">> Kinh dị, giật gân</a></span>
+                        <span><a href="#">> Self-help</a></span>
+                        <span><a href="#">> Tiểu sử, tự truyện và hồi ký</a></span>
                     </div>
                     <div class="details-b2">
-                            <span><a href="#">> Truyện ngắn</a></span>
-                            <span><a href="#">> Nấu ăn</a></span>
-                            <span><a href="#">> Bàn luận</a></span>
-                            <span><a href="#">> Lịch sử</a></span>
+                        <span><a href="#">> Truyện ngắn</a></span>
+                        <span><a href="#">> Nấu ăn</a></span>
+                        <span><a href="#">> Bàn luận</a></span>
+                        <span><a href="#">> Lịch sử</a></span>
+                    </div> -->
+
+                    <div class="details-b1">
+                        <a href="#"><h5>> Tình cảm</h5></a>
+                        <a href="#"><h5>> Bí ẩn</h5></a>
+                        <a href="#"><h5>> Giả tưởng và khoa học viễn tưởng</h5></a>
+                        <a href="#"><h5>> Kinh dị, giật gân</h5></a>
+                        <a href="#"><h5>> Self-help</h5></a>
+                        <a href="#"><h5>> Tiểu sử, tự truyện và hồi ký</h5></a>
                     </div>
+                    <div class="details-b2">
+                        <a href="#"><h5>> Truyện ngắn</h5></a>
+                        <a href="#"><h5>> Nấu ăn</h5></a>
+                        <a href="#"><h5>> Bàn luận</h5></a>
+                        <a href="#"><h5>> Lịch sử</h5></a>
+                    </div>
+                </div>
             </section>
                 
             <section id="post">
