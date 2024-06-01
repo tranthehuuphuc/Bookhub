@@ -38,17 +38,17 @@
                     <svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32" fill="#FFFFFF"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
                 </label>
                 
-                <a class="logo-link" href="Bookhub.html"><img id="BookHub" src="../assets/logo.png" alt="BookHub"></a>
+                <a class="logo-link" href="Bookhub.php"><img id="BookHub" src="../assets/logo.png" alt="BookHub"></a>
                 <a class="globalnav-item" href="./Book_Store/bookstore.php">Bookstore</a>
-                <a class="globalnav-item" href="./Bookhub.html">Thể loại</a>
+                <a class="globalnav-item" href="./Bookhub.php">Thể loại</a>
                 <a class="globalnav-item" href="./discuss/discuss.php">Thảo luận</a>
                 <a class="globalnav-item" href="./signin/signin.php">Đăng nhập</a>
-                <a class="globalnav-item" href="./search/search.html">Tìm kiếm</a>
-                <button id="profile-button" onclick="window.location.href='./Account/AccountProfile.html'"><img id="profile-icon" src="../assets/account.png" alt="Profile Icon"></button>
+                <a class="globalnav-item" href="./search/search.php">Tìm kiếm</a>
+                <button id="profile-button" onclick="window.location.href='./Account/AccountProfile.php'"><img id="profile-icon" src="../assets/account.png" alt="Profile Icon"></button>
             </div> -->
         <input type="checkbox" id="sidebar-active">
         <!-- New logo image that only appears when the navbar is collapsed -->
-        <a href="../index.html"><img id="new-logo" src="../assets/BookHub.png" alt="New Logo"></a>
+        <a href="../index.php"><img id="new-logo" src="../assets/BookHub.png" alt="New Logo"></a>
 
         <label for="sidebar-active" class="open-sidebar-button">
             <svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32" fill="#FFFFFF">
@@ -66,29 +66,29 @@
                 </svg>
             </label>
 
-            <a class="logo-link" href="../index.html"><img id="BookHub" src="../assets/logo.png" alt="BookHub"></a>
+            <a class="logo-link" href="../index.php"><img id="BookHub" src="../assets/logo.png" alt="BookHub"></a>
             <a class="globalnav-item" href="../Book_Store/bookstore.php">Bookstore</a>
             <a class="globalnav-item" href="../discuss/discuss.php">Thảo luận</a>
             <a class="globalnav-item" href="../signin/signin.php">Đăng nhập</a>
-            <a class="globalnav-item" href="../search/search.html">Tìm kiếm</a>
-            <a class="globalnav-item-show" href="../account/AccountReceipts.html">Đơn hàng</a>
-            <a class="globalnav-item-show" href="../account/AccountCart.html">Mục đã lưu</a>
-            <a class="globalnav-item-show" href="../account/AccountSettings.html">Tài khoản</a>
+            <a class="globalnav-item" href="../search/search.php">Tìm kiếm</a>
+            <a class="globalnav-item-show" href="../account/AccountReceipts.php">Đơn hàng</a>
+            <a class="globalnav-item-show" href="../account/AccountCart.php">Mục đã lưu</a>
+            <a class="globalnav-item-show" href="../account/AccountSettings.php">Tài khoản</a>
             <a class="globalnav-item-show" href="../account/AccountAssets/join.png">Đăng xuất</a>
             <button id="profile-button"><img id="profile-icon" src="../assets/account.png" alt="Profile Icon"></button>
         </div>
     </nav>
 
         <!-- <div id="globalheader">
-            <a href="../Bookhub.html"><img id="BookHub" src="../assets/logo.png" alt="BookHub"></a>
+            <a href="../Bookhub.php"><img id="BookHub" src="../assets/logo.png" alt="BookHub"></a>
             <nav id="globalnav">
-                <a class="globalnav-item" href="./bookstore.html">Bookstore</a>
-                <a class="globalnav-item" href="../Bookhub.html">Thể loại</a>
-                <a class="globalnav-item" href="../thao luan va chi tiet.html">Thảo luận</a>
+                <a class="globalnav-item" href="./bookstore.php">Bookstore</a>
+                <a class="globalnav-item" href="../Bookhub.php">Thể loại</a>
+                <a class="globalnav-item" href="../thao luan va chi tiet.php">Thảo luận</a>
                 <a class="globalnav-item" href="../signin/signin.php">Đăng nhập</a>
-                <a href="../search/search.html" style="width: 3vw; height: 3vw;"><img src="../assets/search.png" alt="Search" style="width: 3vw; height: 3vw; margin: 0px;"></a>
+                <a href="../search/search.php" style="width: 3vw; height: 3vw;"><img src="../assets/search.png" alt="Search" style="width: 3vw; height: 3vw; margin: 0px;"></a>
             </nav>
-            <button id="profile-button" onclick="window.location.href='../Account/AccountProfile.html'"><img id="profile-icon" src="../Account/AccountAssets/account.png" alt="Profile Icon"></button>
+            <button id="profile-button" onclick="window.location.href='../Account/AccountProfile.php'"><img id="profile-icon" src="../Account/AccountAssets/account.png" alt="Profile Icon"></button>
             <div id="mobile">
                 <i id="bar" class="fa fa-bars"></i>
             </div>
@@ -144,7 +144,7 @@
         <section id="product1" class="section-p1">
         <h4 class="section-title"><a href="#">>Technology Books</a></h4>
         <div class="pro-container">
-            <div class="pro" onclick="window.location.href='../thao luan va chi tiet.html';">
+            <div class="pro" onclick="window.location.href='../thao luan va chi tiet.php';">
                 <img src="../assets/etc.jpg" alt="">
                 <div class="des">
                     <span>Technology</span>
@@ -161,7 +161,7 @@
                 <a href="#"><i class="fa fa-shopping-cart cart"></i></a>
             </div>
 
-            <div class="pro" onclick="window.location.href='../thao luan va chi tiet.html';">
+            <div class="pro" onclick="window.location.href='../thao luan va chi tiet.php';">
                 <img src="../assets/etc.jpg" alt="">
                 <div class="des">
                     <span>Technology</span>
@@ -178,7 +178,7 @@
                 <a href="#"><i class="fa fa-shopping-cart cart"></i></a>
             </div>
 
-            <div class="pro" onclick="window.location.href='../thao luan va chi tiet.html';">
+            <div class="pro" onclick="window.location.href='../thao luan va chi tiet.php';">
                 <img src="../assets/etc.jpg" alt="">
                 <div class="des">
                     <span>Technology</span>
@@ -195,7 +195,7 @@
                 <a href="#"><i class="fa fa-shopping-cart cart"></i></a>
             </div>
 
-            <div class="pro" onclick="window.location.href='../thao luan va chi tiet.html';">
+            <div class="pro" onclick="window.location.href='../thao luan va chi tiet.php';">
                 <img src="../assets/etc.jpg" alt="">
                 <div class="des">
                     <span>Technology</span>
@@ -212,7 +212,7 @@
                 <a href="#"><i class="fa fa-shopping-cart cart"></i></a>
             </div>
 
-            <div class="pro" onclick="window.location.href='../thao luan va chi tiet.html';">
+            <div class="pro" onclick="window.location.href='../thao luan va chi tiet.php';">
                 <img src="../assets/etc.jpg" alt="">
                 <div class="des">
                     <span>Technology</span>
@@ -229,7 +229,7 @@
                 <a href="#"><i class="fa fa-shopping-cart cart"></i></a>
             </div>
 
-            <div class="pro" onclick="window.location.href='../thao luan va chi tiet.html';">
+            <div class="pro" onclick="window.location.href='../thao luan va chi tiet.php';">
                 <img src="../assets/etc.jpg" alt="">
                 <div class="des">
                     <span>Technology</span>
@@ -246,7 +246,7 @@
                 <a href="#"><i class="fa fa-shopping-cart cart"></i></a>
             </div>
 
-            <div class="pro" onclick="window.location.href='../thao luan va chi tiet.html';">
+            <div class="pro" onclick="window.location.href='../thao luan va chi tiet.php';">
                 <img src="../assets/etc.jpg" alt="">
                 <div class="des">
                     <span>Technology</span>
@@ -270,7 +270,7 @@
     <section id="product1" class="section-p1">
         <h4 class="section-title"><a href="#">>Tình Cảm</a></h4>
         <div class="pro-container">
-            <div class="pro" onclick="window.location.href='../thao luan va chi tiet.html';">
+            <div class="pro" onclick="window.location.href='../thao luan va chi tiet.php';">
                 <img src="../assets/etc.jpg" alt="">
                 <div class="des">
                     <span>Technology</span>
@@ -287,7 +287,7 @@
                 <a href="#"><i class="fa fa-shopping-cart cart"></i></a>
             </div>
 
-            <div class="pro" onclick="window.location.href='../thao luan va chi tiet.html';">
+            <div class="pro" onclick="window.location.href='../thao luan va chi tiet.php';">
                 <img src="../assets/etc.jpg" alt="">
                 <div class="des">
                     <span>Technology</span>
@@ -304,7 +304,7 @@
                 <a href="#"><i class="fa fa-shopping-cart cart"></i></a>
             </div>
 
-            <div class="pro" onclick="window.location.href='../thao luan va chi tiet.html';">
+            <div class="pro" onclick="window.location.href='../thao luan va chi tiet.php';">
                 <img src="../assets/etc.jpg" alt="">
                 <div class="des">
                     <span>Technology</span>
@@ -321,7 +321,7 @@
                 <a href="#"><i class="fa fa-shopping-cart cart"></i></a>
             </div>
 
-            <div class="pro" onclick="window.location.href='../thao luan va chi tiet.html';">
+            <div class="pro" onclick="window.location.href='../thao luan va chi tiet.php';">
                 <img src="../assets/etc.jpg" alt="">
                 <div class="des">
                     <span>Technology</span>
@@ -338,7 +338,7 @@
                 <a href="#"><i class="fa fa-shopping-cart cart"></i></a>
             </div>
 
-            <div class="pro" onclick="window.location.href='../thao luan va chi tiet.html';">
+            <div class="pro" onclick="window.location.href='../thao luan va chi tiet.php';">
                 <img src="../assets/etc.jpg" alt="">
                 <div class="des">
                     <span>Technology</span>
@@ -355,7 +355,7 @@
                 <a href="#"><i class="fa fa-shopping-cart cart"></i></a>
             </div>
 
-            <div class="pro" onclick="window.location.href='../thao luan va chi tiet.html';">
+            <div class="pro" onclick="window.location.href='../thao luan va chi tiet.php';">
                 <img src="../assets/etc.jpg" alt="">
                 <div class="des">
                     <span>Technology</span>
@@ -372,7 +372,7 @@
                 <a href="#"><i class="fa fa-shopping-cart cart"></i></a>
             </div>
 
-            <div class="pro" onclick="window.location.href='../thao luan va chi tiet.html';">
+            <div class="pro" onclick="window.location.href='../thao luan va chi tiet.php';">
                 <img src="../assets/etc.jpg" alt="">
                 <div class="des">
                     <span>Technology</span>
