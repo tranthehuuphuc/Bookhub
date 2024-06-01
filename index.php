@@ -109,7 +109,7 @@ session_start();
                     <h2>Mua bán, trao đổi, thảo luận và cùng chia sẻ về những cuốn sách mà bạn yêu thích.</h2>
                     <div class="button-top">
                         <a href="./signin/signin.php" class="topbtn">Đăng ký ngay&nbsp;&#x276F;</a>
-                        <a href="./aboutUs/aboutUs.html" class="more">Tìm hiểu thêm</a>
+                        <a href="./aboutUs/aboutUs.php" class="more">Tìm hiểu thêm</a>
                     </div>
                 </div>
             </div>
