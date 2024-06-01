@@ -93,7 +93,10 @@ This is a web application project of Group 16, from the subject Web Application 
 - **Frontend**: HTML, CSS, JavaScript
 - **Backend**: PHP
 - **Database**: MySQL
+## Điểm số SEO
+Ảnh có chứa văn bản, ảnh chụp màn hình, Trang web, phần mềm
 
+Mô tả được tạo tự động
 ## Help
 If you encounter any issues, please feel free to reach out to the authors or check the documentation for guidance.
 
