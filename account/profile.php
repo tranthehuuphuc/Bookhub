@@ -67,7 +67,7 @@
                 <li><img class="option-icons" src="../assets/orders.png"><a href="./orders.php">Đơn hàng</a></li>
                 <li><img class="option-icons" src="../assets/saves.png"><a href="./saves.php">Mục đã lưu</a></li>
                 <li><img class="option-icons" src="../assets/setting.png"><a href="./profile.php">Tài khoản</a></li>
-                <li><img class="option-icons" src="../assets/join.png"><a href="../Bookhub.php">Đăng xuất</a></li>
+                <li><img class="option-icons" src="../assets/join.png"><a href="../signin/signin.php">Đăng xuất</a></li>
             </ul>
         </div>
         <script>
@@ -116,7 +116,7 @@
             <div class="title-bar">
                 <p class="title">Tài khoản</p>
                 <div style="background-color: #d9d9d9; width: 100%; height: 1px; margin: 5px 0 0 0; padding: 0;"></div>
-                <p class="sub-title">Xin chào Group 16!</p>
+                <p class="sub-title">Xin chào <?php echo $_SESSION["user_username"];?>!</p>
             </div>
 
             <!-- Start of My Books -->
@@ -178,6 +178,10 @@
 
             <!-- Start of Account Settings -->
             <div class="main">
+            <div id="loading-spinner" style="display: none;">
+                <div class="spinner"></div>
+            </div>
+
                 <p class="header">Cài đặt tài khoản</p>
                 <div class="row">
                     <div class="col1">
@@ -185,49 +189,109 @@
                     </div>
                     <div class="col2">
                         <p class="bullet">Địa chỉ vận chuyển</p>
-                        <p class="properties">Số nhà</p>
-                        <p class="properties">Phường/Xã</p>
-                        <p class="properties">Quận/Huyện</p>
-                        <p class="properties">Tỉnh/Thành phố</p>
+                        <?php
+                            $user_id = $_SESSION["user_id"];
+                            $sql = "SELECT * FROM shipping WHERE user_id = :user_id";
+                            $stmt = $pdo->prepare($sql);
+                            $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+                            $stmt->execute();
+                            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                            if ($result) {
+                                echo "<p class='properties'>" . $result['home_address'] . "</p>";
+                                echo "<p class='properties'>" . $result['ward'] . "</p>";
+                                echo "<p class='properties'>" . $result['district'] . "</p>";
+                                echo "<p class='properties'>" . $result['city'] . "</p>";
+                            } else {
+                                echo "<p class='properties'>Số nhà</p>";
+                                echo "<p class='properties'>Phường/Xã</p>";
+                                echo "<p class='properties'>Quận/Huyện</p>";
+                                echo "<p class='properties'>Tỉnh/Thành phố</p>";
+                            }
+                        ?>
                         <a class="edit shipping-button">Chỉnh sửa</a>
                     </div>
                     <div class="col3">
                         <p class="bullet">Thông tin liên hệ</p>
-                        <p class="properties">tranthehuuphuc@icloud.com</p>
-                        <p class="properties">0977983302</p>
+                        <?php
+                            if ($result) {
+                                echo "<p class='properties'>" . $result['shipping_email'] . "</p>";
+                                echo "<p class='properties'>" . $result['shipping_phone'] . "</p>";
+                            } else {
+                                echo "<p class='properties'>Email</p>";
+                                echo "<p class='properties'>Số điện thoại</p>";
+                            }
+                        ?>
                         <a class="edit shipping-button">Chỉnh sửa</a>
                     </div>
                 </div>
                 <div id="shipping-settings" class="hidden">
-                    <form action="./php/update_shipping.php" method="POST">
+                    <form id="update-shipping" method="POST">
                         <div style="display: block; align-items: center; margin: 0; padding: 0;">
                             <p class="header" style="justify-content: center; display: flex; margin-top: 0; text-align: center;">Chỉnh sửa thông tin vận chuyển</p>
                             <p class="small-header" for="address">Địa chỉ vận chuyển</p>
                             <div class="input-field">
                                 <p class="field-label">Số nhà</p>
-                                <input type="text" class="input-box" id="home_number" name="home_number" placeholder="Số nhà">
+                                <?php
+                                    if ($result) {
+                                        echo "<input type='text' class='input-box' id='home_address' name='home_address' value='" . $result['home_address'] . "'>";
+                                    } else {
+                                        echo "<input type='text' class='input-box' id='home_address' name='home_address' placeholder='Số nhà'>";
+                                    }
+                                ?>
+                                
                             </div>
                             <div class="input-field">
                                 <p class="field-label">Phường/Xã</p>
-                                <input type="text" class="input-box" id="ward" name="ward" placeholder="Phường/Xã">
+                                <?php
+                                    if ($result) {
+                                        echo "<input type='text' class='input-box' id='ward' name='ward' value='" . $result['ward'] . "'>";
+                                    } else {
+                                        echo "<input type='text' class='input-box' id='ward' name='ward' placeholder='Phường/Xã'>";
+                                    }
+                                ?>
                             </div>
                             <div class="input-field">
                                 <p class="field-label">Quận/Huyện</p>
-                                <input type="text" class="input-box" id="district" name="district" placeholder="Quận/Huyện">
+                                <?php
+                                    if ($result) {
+                                        echo "<input type='text' class='input-box' id='district' name='district' value='" . $result['district'] . "'>";
+                                    } else {
+                                        echo "<input type='text' class='input-box' id='district' name='district' placeholder='Quận/Huyện'>";
+                                    }
+                                ?>
                             </div>
                             <div class="input-field">
                                 <p class="field-label">Tỉnh/Thành phố</p>
-                                <input type="text" class="input-box" id="city" name="city" placeholder="Tỉnh/Thành phố">
+                                <?php
+                                    if ($result) {
+                                        echo "<input type='text' class='input-box' id='city' name='city' value='" . $result['city'] . "'>";
+                                    } else {
+                                        echo "<input type='text' class='input-box' id='city' name='city' placeholder='Tỉnh/Thành phố'>";
+                                    }
+                                ?>
                             </div>
 
                             <p class="small-header">Thông tin liên hệ</p>
                             <div class="input-field">
                                 <p class="field-label">Email</p>
-                                <input type="text" class="input-box" id="shipping_email" name="shipping_email" placeholder="Email">
+                                <?php
+                                    if ($result) {
+                                        echo "<input type='text' class='input-box' id='shipping_email' name='shipping_email' value='" . $result['shipping_email'] . "'>";
+                                    } else {
+                                        echo "<input type='text' class='input-box' id='shipping_email' name='shipping_email' placeholder='Email'>";
+                                    }
+                                ?>
                             </div>
                             <div class="input-field">
                                 <p class="field-label">Số điện thoại</p>
-                                <input type="text" class="input-box" id="shipping_phone" name="shipping_phone" placeholder="Số điện thoại">
+                                <?php
+                                    if ($result) {
+                                        echo "<input type='text' class='input-box' id='shipping_phone' name='shipping_phone' value='" . $result['shipping_phone'] . "'>";
+                                    } else {
+                                        echo "<input type='text' class='input-box' id='shipping_phone' name='shipping_phone' placeholder='Số điện thoại'>";
+                                    }
+                                ?>
                             </div>
                             <div class="submit-field">
                                 <input type="submit" class="submit-button" value="Lưu">
@@ -236,6 +300,55 @@
                         </div>
                     </form>
                 </div>
+
+                <script>
+                    document.getElementById("update-shipping").addEventListener("submit", function(event) {
+                    event.preventDefault();
+
+                    var shipping_email = document.getElementById("shipping_email").value;
+                    var shipping_phone = document.getElementById("shipping_phone").value;
+                    var home_address = document.getElementById("home_address").value;
+                    var ward = document.getElementById("ward").value;
+                    var district = document.getElementById("district").value;
+                    var city = document.getElementById("city").value;
+
+                    var data = {
+                        shipping_email: shipping_email,
+                        shipping_phone: shipping_phone,
+                        home_address: home_address,
+                        ward: ward,
+                        district: district,
+                        city: city
+                    };
+
+                    document.getElementById("loading-spinner").style.display = "flex";
+
+                    fetch("./php/update_shipping.php", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/x-www-form-urlencoded"
+                        },
+                        body: new URLSearchParams(data)
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById("loading-spinner").style.display = "none";
+
+                        if (data.status === "success") {
+                            alert(data.message);
+                            window.location.reload();
+                        } else {
+                            alert(data.message);
+                        }
+                    })
+                    .catch((error) => {
+                        document.getElementById("loading-spinner").style.display = "none";
+                        
+                        console.error("Error:", error);
+                    });
+                });
+
+                </script>
                 <script>
                     function EditShippingSettings() {
                         var shippingSettings = document.getElementById("shipping-settings");
@@ -294,29 +407,87 @@
                     </div>
                 </div>
                 <div id="payment-settings" class="hidden">
-                    <div style="display: block; align-items: center; margin: 0; padding: 0;">
-                        <p class="header" style="justify-content: center; display: flex; margin-top: 0; text-align: center;">Chỉnh sửa thông tin thanh toán</p>
-                        <p class="small-header" for="contact">Thông tin liên hệ thanh toán</p>
-                        <div class="input-field">
-                            <p class="field-label">Email</p>
-                            <input type="text" class="input-box" name="contact" placeholder="Email">
-                        </div>
-                        <div class="input-field">
-                            <p class="field-label">Số điện thoại</p>
-                            <input type="text" class="input-box" name="contact" placeholder="Số điện thoại">
-                        </div>
+                    <form id="update-payment" method="POST">
+                        <div style="display: block; align-items: center; margin: 0; padding: 0;">
+                            <p class="header" style="justify-content: center; display: flex; margin-top: 0; text-align: center;">Chỉnh sửa thông tin thanh toán</p>
+                            <p class="small-header" for="contact">Thông tin liên hệ thanh toán</p>
+                            <div class="input-field">
+                                <p class="field-label">Email</p>
+                                <?php
+                                    $user_id = $_SESSION["user_id"];
+                                    $sql = "SELECT * FROM payment WHERE user_id = :user_id";
+                                    $stmt = $pdo->prepare($sql);
+                                    $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+                                    $stmt->execute();
+                                    $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-                        <p class="small-header" for="payment">Phương thức thanh toán</p>
-                        <div class="input-field">
-                            <p class="field-label">Phương thức thanh toán</p>
-                            <input type="text" class="input-box" name="payment" placeholder="Phương thức thanh toán">
+                                    if ($result) {
+                                        echo "<input type='text' class='input-box' id='payment_email' name='payment_email' value='" . $result['payment_email'] . "'>";
+                                    } else {
+                                        echo "<input type='text' class='input-box' id='payment_email' name='payment_email' placeholder='Email'>";
+                                    }
+                                ?>
+                            </div>
+                            <div class="input-field">
+                                <p class="field-label">Số điện thoại</p>
+                                <?php
+                                    if ($result) {
+                                        echo "<input type='text' class='input-box' id='payment_phone' name='payment_phone' value='" . $result['payment_phone'] . "'>";
+                                    } else {
+                                        echo "<input type='text' class='input-box' id='payment_phone' name='payment_phone' placeholder='Số điện thoại'>";
+                                    }
+                                ?>
+                            </div>
+                            <p class="small-header" for="payment">Phương thức thanh toán</p>
+                            <p class="properties" style="color: green;"><i>Hiện tại trang web chỉ hỗ trợ thanh toán với PayPal</i></p>
+
+                            <div class="submit-field">
+                                <input type="submit" class="submit-button" value="Lưu">
+                                <div class="cancel-button">Huỷ</div>
+                            </div>
                         </div>
-                        <div class="submit-field">
-                            <div class="submit-button">Lưu</div>
-                            <div class="cancel-button">Huỷ</div>
-                        </div>
-                    </div>
+                    </form>
                 </div>
+
+                <script>
+                    document.getElementById("update-payment").addEventListener("submit", function(event) {
+                    event.preventDefault();
+                    var payment_email = document.getElementById("payment_email").value;
+                    var payment_phone = document.getElementById("payment_phone").value;
+
+                    var data = {
+                        payment_email: payment_email,
+                        payment_phone: payment_phone
+                    };
+
+                    document.getElementById("loading-spinner").style.display = "flex";
+
+                    fetch("./php/update_payment.php", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/x-www-form-urlencoded"
+                        },
+                        body: new URLSearchParams(data)
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById("loading-spinner").style.display = "none";
+
+                        if (data.status === "success") {
+                            alert(data.message);
+                            window.location.reload();
+                        } else {
+                            alert(data.message);
+                        }
+                    })
+                    .catch((error) => {
+                        document.getElementById("loading-spinner").style.display = "none";
+                        
+                        console.error("Error:", error);
+                    });
+                });
+
+                </script>
                 <script>
                     function EditPaymentSettings() {
                         var paymentSettings = document.getElementById("payment-settings");
@@ -370,33 +541,87 @@
                         <p class="small-header">Thông tin cá nhân</p>
                     </div>
                     <div class="col2">
-                        <p class="properties">Email: tranthehuuphuc@icloud.com</p>
-                        <p class="properties">Số điện thoại: 0123456789</p>
-                        <p class="properties">Ngày sinh: 02/02/2004</p>
+                        <?php
+                            $user_id = $_SESSION["user_id"];
+                            $sql = "SELECT * FROM users WHERE user_id = :user_id";
+                            $stmt = $pdo->prepare($sql);
+                            $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+                            $stmt->execute();
+                            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                            echo "<p class='properties'>Email: " . $result['email'] . "</p>";
+                            echo "<p class='properties'>Số điện thoại: " . $result['phone'] . "</p>";
+                            echo "<p class='properties'>Ngày sinh: " . $result['birthday'] . "</p>";
+                        ?>
                         <a class="edit account-button">Chỉnh sửa</a>
+                        <a class="edit pwd-button" style="margin-left: 20px;">Đổi mật khẩu</a>
                     </div>
                 </div>
                 <div id="account-settings" class="hidden">
-                    <div style="display: block; align-items: center; margin: 0; padding: 0;">
-                        <p class="header" style="justify-content: center; display: flex; margin-top: 0; text-align: center;">Chỉnh sửa thông tin cá nhân</p>
-                        <div class="input-field">
-                            <p class="field-label">Email</p>
-                            <input type="text" class="input-box" name="email" placeholder="Email">
+                    <form id="update-accountinfo" method="POST">
+                        <div style="display: block; align-items: center; margin: 0; padding: 0;">
+                            <p class="header" style="justify-content: center; display: flex; margin-top: 0; text-align: center;">Chỉnh sửa thông tin cá nhân</p>
+                            <div class="input-field">
+                                <p class="field-label">Email</p>
+                                <input type='text' class='input-box' id='email' name='email' value='<?php echo $result['email']; ?>'>
+                            </div>
+                            <div class="input-field">
+                                <p class="field-label">Số điện thoại</p>
+                                <input type='text' class='input-box' id='phone' name='phone' value='<?php echo $result['phone']; ?>'>
+                            </div>
+                            <div class="input-field">
+                                <p class="field-label">Ngày sinh</p>
+                                <input type='text' class='input-box' id='birthday' name='birthday' value='<?php echo $result['birthday']; ?>'>
+                            </div>
+                            <div class="submit-field">
+                                <input type="submit" class="submit-button" value="Lưu">
+                                <div class="cancel-button">Huỷ</div>
+                            </div>
                         </div>
-                        <div class="input-field">
-                            <p class="field-label">Số điện thoại</p>
-                            <input type="text" class="input-box" name="phone" placeholder="Số điện thoại">
-                        </div>
-                        <div class="input-field">
-                            <p class="field-label">Ngày sinh</p>
-                            <input type="text" class="input-box" name="dob" placeholder="Ngày sinh">
-                        </div>
-                        <div class="submit-field">
-                            <div class="submit-button">Lưu</div>
-                            <div class="cancel-button">Huỷ</div>
-                        </div>
-                    </div>
+                    </form>
                 </div>
+
+                <script>
+                    document.getElementById("update-accountinfo").addEventListener("submit", function(event) {
+                        event.preventDefault();
+                        var email = document.getElementById("email").value;
+                        var phone = document.getElementById("phone").value;
+                        var birthday = document.getElementById("birthday").value;
+
+                        var data = {
+                            email: email,
+                            phone: phone,
+                            birthday: birthday
+                        };
+
+                        document.getElementById("loading-spinner").style.display = "flex";
+
+                        fetch("./php/update_accountinfo.php", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/x-www-form-urlencoded"
+                            },
+                            body: new URLSearchParams(data)
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            document.getElementById("loading-spinner").style.display = "none";
+
+                            if (data.status === "success") {
+                                alert(data.message);
+                                window.location.reload();
+                            } else {
+                                alert(data.message);
+                            }
+                        })
+                        .catch((error) => {
+                            document.getElementById("loading-spinner").style.display = "none";
+
+                            console.error("Error:", error);
+                        });
+                    });
+                </script>
+
                 <script>
                     function EditAccountSettings() {
                         var accountSettings = document.getElementById("account-settings");
@@ -441,6 +666,152 @@
                         var cancelButton = document.querySelectorAll(".cancel-button");
                         cancelButton.forEach(button => {
                             button.addEventListener("click", CloseAccountSettings);
+                        });
+                    });
+                </script>
+                
+                <div id="password-settings" class="hidden">
+                    <form id="update-pwd" method="POST">
+                        <div style="display: block; align-items: center; margin: 0; padding: 0;">
+                            <p class="header" style="justify-content: center; display: flex; margin-top: 0; text-align: center;">Đổi mật khẩu</p>
+                            <div class="input-field">
+                                <p class="field-label">Mật khẩu cũ</p>
+                                <input type="password" class="input-box" id="old_pwd" name="old_pwd" placeholder="Mật khẩu cũ">
+                            </div>
+                            <div class="input-field">
+                                <p class="field-label">Mật khẩu mới</p>
+                                <input type="password" class="input-box" id="new_pwd" name="new_pwd" placeholder="Mật khẩu mới">
+                            </div>
+                            <div class="input-field">
+                                <p class="field-label">Nhập lại mật khẩu mới</p>
+                                <input type="password" class="input-box" id="confirm_pwd" name="confirm_pwd" placeholder="Nhập lại mật khẩu mới">
+                            </div>
+                            <div class="submit-field">
+                                <input type="submit" class="submit-button" value="Lưu">
+                                <div class="cancel-button">Huỷ</div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <script>
+                    document.getElementById("update-pwd").addEventListener("submit", function(event) {
+                        event.preventDefault();
+                        var old_pwd = document.getElementById("old_pwd").value;
+                        var new_pwd = document.getElementById("new_pwd").value;
+                        var confirm_pwd = document.getElementById("confirm_pwd").value;
+
+                        if (new_pwd !== confirm_pwd) {
+                            alert("Mật khẩu mới không khớp");
+                            return;
+                        }
+                        else if (old_pwd === new_pwd) {
+                            alert("Mật khẩu mới không được trùng với mật khẩu cũ");
+                            return;
+                        }
+                        else if (new_pwd.length < 8) {
+                            alert("Mật khẩu mới phải chứa ít nhất 8 ký tự");
+                            return;
+                        }
+                        else if (new_pwd.search(/[a-z]/) < 0) {
+                            alert("Mật khẩu mới phải chứa ít nhất 1 ký tự thường");
+                            return;
+                        }
+                        else if (new_pwd.search(/[A-Z]/) < 0) {
+                            alert("Mật khẩu mới phải chứa ít nhất 1 ký tự hoa");
+                            return;
+                        }
+                        else if (new_pwd.search(/[0-9]/) < 0) {
+                            alert("Mật khẩu mới phải chứa ít nhất 1 số");
+                            return;
+                        }
+                        else if (new_pwd.search(/[!@#$%^&*]/) < 0) {
+                            alert("Mật khẩu mới phải chứa ít nhất 1 ký tự đặc biệt");
+                            return;
+                        }
+                        else if (new_pwd.search(/\s/) >= 0) {
+                            alert("Mật khẩu mới không được chứa khoảng trắng");
+                            return;
+                        }
+                        else if (old_pwd === "" || new_pwd === "" || confirm_pwd === "") {
+                            alert("Vui lòng nhập đầy đủ thông tin");
+                            return;
+                        }
+
+                        document.getElementById("loading-spinner").style.display = "flex";
+
+                        var data = {
+                            current_pwd: old_pwd,
+                            new_pwd: new_pwd,
+                            confirm_pwd: confirm_pwd
+                        };
+
+                        fetch("./php/update_pwd.php", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/x-www-form-urlencoded"
+                            },
+                            body: new URLSearchParams(data)
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            document.getElementById("loading-spinner").style.display = "none";
+
+                            if (data.status === "success") {
+                                alert(data.message);
+                                document.getElementById("update-pwd").reset();
+                                ClosePwd();
+                            } else {
+                                alert(data.message);
+                            }
+                        })
+                        .catch(error => {
+                            document.getElementById("loading-spinner").style.display = "none";
+
+                            console.error("Error:", error);
+                        });
+                    });
+                </script>
+
+                <script>
+                    function EditPwd() {
+                        var pwd = document.getElementById("password-settings");
+                        var overlay = document.getElementById("blur-overlay");
+                        
+                        pwd.classList.remove("hidden");
+                        pwd.classList.add("show");
+
+                        overlay.classList.remove("hidden");
+                        overlay.classList.add("show");
+                    }
+
+                    function ClosePwd() {
+                        var pwd = document.getElementById("password-settings");
+                        var overlay = document.getElementById("blur-overlay");
+
+                        overlay.classList.remove("show");
+                        overlay.classList.add("hidden");
+                        
+                        pwd.classList.remove("show");
+                        pwd.classList.add("hidden");
+                    }
+
+                    document.addEventListener("DOMContentLoaded", () => {
+                        var editButton = document.querySelector(".pwd-button");
+                        var overlay = document.getElementById("blur-overlay");
+
+                        editButton.addEventListener("click", EditPwd);
+                        
+                        overlay.addEventListener("click", ClosePwd);
+                        document.addEventListener('keydown', (event) => {
+                            if (event.key === 'Escape') {
+                                ClosePwd();
+                            }
+                        });
+                        
+                        var cancelButton = document.querySelectorAll(".cancel-button");
+                        cancelButton.forEach(button => {
+                            button.addEventListener("click", ClosePwd);
                         });
                     });
                 </script>
