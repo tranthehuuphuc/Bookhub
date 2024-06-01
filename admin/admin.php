@@ -65,9 +65,9 @@ include 'dbh.php';
                 <a class="globalnav-item" href="../Book_Store/bookstore.php">Bookstore</a>
                 <a class="globalnav-item" href="../discuss/discuss.php">Về Chúng Tôi</a>
                 <a class="globalnav-item" href="../search/search.php">Tìm kiếm</a>
-                <a class="globalnav-item-show" href="../account/AccountReceipts.php">Đơn hàng</a>
-                <a class="globalnav-item-show" href="../account/AccountCart.php">Mục đã lưu</a>
-                <a class="globalnav-item-show" href="../account/AccountSettings.php">Tài khoản</a>
+                <a class="globalnav-item-show" href="../account/orders.php">Đơn hàng</a>
+                <a class="globalnav-item-show" href="../account/saves.php">Mục đã lưu</a>
+                <a class="globalnav-item-show" href="../account/profile.php">Tài khoản</a>
                 <a class="globalnav-item-show" href="../signin/logout.php">Đăng xuất</a>
                 <button id="profile-button"><img id="profile-icon" src="../assets/account.png" alt="Profile Icon"></button>
             </div>
