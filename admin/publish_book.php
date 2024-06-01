@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Upload the cover image
     $cover_image = $_FILES['cover_image']['name'];
-    $target_dir = "../uploads/";
+    $target_dir = "../admin/uploads/";
     $target_file = $target_dir . basename($cover_image);
 
     // Check if image file is a actual image or fake image
