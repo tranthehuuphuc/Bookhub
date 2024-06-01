@@ -2,7 +2,7 @@
 
 $servername = "localhost";
 $username = "root";
-$password = "";
+$password = "root";
 $dbname = "bookhub";
 $conn = mysqli_connect($servername, $username, $password, $dbname);
 

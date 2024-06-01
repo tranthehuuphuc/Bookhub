@@ -48,5 +48,5 @@ $author = urldecode($_GET['author'] ?? '');
 $publisher = urldecode($_GET['publisher'] ?? '');
 
 $dsn = "mysql:host=localhost;dbname=bookhub;charset=utf8mb4";
-$pdo = new PDO($dsn, 'root', '');
+$pdo = new PDO($dsn, 'root', 'root');
 $books = get_books($pdo, $title, $category, $author, $publisher);
