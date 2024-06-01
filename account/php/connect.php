@@ -1,7 +1,7 @@
 <?php
     $dsn = "mysql:host=localhost;dbname=bookhub";
-    $dbusername = "rkzykryi_vy";
-    $dbpassword = "databasepassword";
+    $dbusername = "root";
+    $dbpassword = "root";
 
     try {
         $pdo = new PDO($dsn, $dbusername, $dbpassword);
