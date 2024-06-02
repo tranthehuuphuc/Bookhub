@@ -8,7 +8,6 @@
         $user_id = $_SESSION["user_id"];
 
         try {
-            // Lấy danh sách đơn hàng của người dùng
             $sql = "SELECT * FROM orders WHERE user_id = :user_id ORDER BY order_date DESC";
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
@@ -21,7 +20,7 @@
             echo json_encode(['status' => 'error', 'message' => 'Error: ' . $e->getMessage()]);
             exit();
         } finally {
-            $pdo = null; // Đóng kết nối cơ sở dữ liệu
+            $pdo = null;
         }
     }
 ?>

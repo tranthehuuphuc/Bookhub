@@ -537,29 +537,29 @@ html, body {
     width: 10%;
 }
 
-.date-col {
+.date_col {
+    margin: 0;
+    padding: 0;
+    width: 40%;
+}
+
+.total_col {
+    margin: 0;
+    padding: 0;
+    width: 30%;
+}
+
+.status_col {
     margin: 0;
     padding: 0;
     width: 20%;
-}
-
-.total-col {
-    margin: 0;
-    padding: 0;
-    width: 20%;
-}
-
-.status-col {
-    margin: 0;
-    padding: 0;
-    width: 50%;
 }
 
 .list-header {
     font-size: 24px;
     font-weight: 500;
     margin: 0;
-    padding: 0 25px;
+    padding: 0;
     text-align: center;
 }
 
@@ -567,13 +567,39 @@ html, body {
     font-size: 20px;
     font-weight: 400;
     margin: 0;
-    padding: 0 25px;
+    padding: 0;
     text-align: center;
 }
 
-.order { margin-bottom: 10px; cursor: pointer; }
+.order { 
+    cursor: pointer; 
+    border-radius: 5px;
+    padding: 5px 0;
+}
+
+.order:hover { 
+    background-color: #eaf8ff; 
+}
         
-.order-details { display: none; margin-left: 20px; }
+.order-details { 
+    display: none; 
+    margin: 25px 150px 0 125px; 
+}
+
+.list-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px 0;
+    padding: 0;
+}
+
+.details-item {
+    font-size: 18px;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+}
 
 /* END OF ORDER */
 
@@ -617,10 +643,15 @@ html, body {
         padding: 40px 50px;
         margin: 10px;
         max-width: 400px;
+        height: auto;
     }
 
     .box-link {
         font-size: 15px;
+    }
+
+    .header-box {
+        font-size: 28px;
     }
 
     .row {
@@ -762,6 +793,14 @@ html, body {
     .cancel-label {
         font-size: 18px;
     }
+
+    .list-header {
+        font-size: 22px;
+    }
+
+    .list-item {
+        font-size: 20px;
+    }
 }
 
 @media (max-width: 1024px) {
@@ -783,7 +822,7 @@ html, body {
     }
 
     .header {
-        font-size: 28px;
+        font-size: 24px;
         margin-top: 50px;
         margin-bottom: 10px;
     }
@@ -798,13 +837,18 @@ html, body {
     }
 
     .pretty-box {
-        padding: 25px 35px;
+        padding: 30px 40px;
         margin: 10px;
         max-width: 400px;
+        height: auto;
     }
 
     .box-link {
         font-size: 15px;
+    }
+
+    .header-box {
+        font-size: 24px;
     }
 
     .row {
@@ -957,6 +1001,21 @@ html, body {
         font-size: 18px;
     }
 
+    .list-header {
+        font-size: 20px;
+    }
+
+    .list-item {
+        font-size: 18px;
+    }
+
+    .order-details {
+        margin: 20px 125px 0 100px;
+    }
+
+    .details-item {
+        font-size: 16px;
+    }
 }
 
 @media (max-width: 767px) {
@@ -978,7 +1037,7 @@ html, body {
     }
 
     .header {
-        font-size: 28px;
+        font-size: 18px;
         margin-top: 50px;
         margin-bottom: 10px;
     }
@@ -994,13 +1053,19 @@ html, body {
     }
 
     .pretty-box {
-        padding: 40px 50px;
+        padding: 20px 30px;
         margin: 10px;
         min-width: 200px;
+        max-width: 300px;
+        height: auto;
     }
 
     .box-link {
         font-size: 15px;
+    }
+
+    .header-box {
+        font-size: 20px;
     }
 
     .row {
@@ -1160,6 +1225,22 @@ html, body {
 
     .cancel-label {
         font-size: 18px;
+    }
+
+    .list-header {
+        font-size: 16px;
+    }
+
+    .list-item {
+        font-size: 14px;
+    }
+
+    .order-details {
+        margin: 10px 50px 0 25px;
+    }
+
+    .details-item {
+        font-size: 12px;
     }
 }
 

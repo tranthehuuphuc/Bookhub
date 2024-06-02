@@ -24,10 +24,8 @@ try {
     } else {
         echo json_encode(['status' => 'error', 'message' => 'Không tìm thấy chi tiết đơn hàng']);
     }
-    exit();
 } catch (PDOException $e) {
     echo json_encode(['status' => 'error', 'message' => 'Có lỗi xảy ra: ' . $e->getMessage()]);
-    exit();
 } finally {
     $pdo = null;
 }
