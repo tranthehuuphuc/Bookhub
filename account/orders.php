@@ -24,6 +24,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" />
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
         <script src="https://www.paypal.com/sdk/js?client-id=AYeQLbENNd3RtNT3-NbYPKzLgzQB3QfESrSDOge_SH6VNEwpUJ4oKmN0grzc4OKKWIXIQFWNjRNwh9HZ&currency=USD"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     </head>
 
     <body>
@@ -114,355 +115,120 @@
 
        <main>
             <div class="title-bar">
-                <p class="title">Tài khoản</p>
+                <p class="title">Đơn hàng của bạn</p>
                 <div style="background-color: #d9d9d9; width: 100%; height: 1px; margin: 5px 0 0 0; padding: 0;"></div>
-                <p class="sub-title">Xin chào Group 16!</p>
             </div>
 
             <!-- Start of My Books -->
             <div class="main">
-                <p class="header">Sách của bạn</p>
-                <div class="book-slider">
-                    <div class="prev-button slider-button"><i class="fas fa-chevron-left"></i></div>
-                    <div class="book-list">
-                        <img class="book-thumb" src="../assets/book3.jpg">
-                        <img class="book-thumb" src="../assets/book3.jpg">
-                        <img class="book-thumb" src="../assets/book3.jpg">
-                        <img class="book-thumb" src="../assets/book3.jpg">
-                        <img class="book-thumb" src="../assets/book3.jpg">
-                        <img class="book-thumb" src="../assets/book3.jpg">
-                        <img class="book-thumb" src="../assets/book3.jpg">
-                        <img class="book-thumb" src="../assets/book3.jpg">
-                        <img class="book-thumb" src="../assets/book3.jpg">
+                <p class="header">Tất cả đơn hàng của bạn</p>
+                <div style="background-color: #d9d9d9; width: 100%; height: 1px; margin: 5px 0 5px 0; padding: 0;"></div>
+                <div class="list-row">
+                    <div class="id_col">
+                        <p class="list-header">ID</p>
                     </div>
-                    <div class="next-button slider-button"><i class="fas fa-chevron-right"></i></div>
+                    <div class="date_col">
+                        <p class="list-header">Ngày đặt hàng</p>
+                    </div>
+                    <div class="total_col">
+                        <p class="list-header">Tổng tiền</p>
+                    </div>
+                    <div class="status_col">
+                        <p class="list-header">Trạng thái</p>
+                    </div>
+                </div>
+                <div style="background-color: #d9d9d9; width: 100%; height: 1px; margin: 5px 0 5px 0; padding: 0;"></div>
+                <div id="orderList">
+                    <!-- Orders list will appear hear -->
                 </div>
                 <script>
-                    var bookSlider = document.querySelector('.book-slider');
-                    var bookList = document.querySelector('.book-list');
-                    var prevButton = document.querySelector('.prev-button');
-                    var nextButton = document.querySelector('.next-button');
-                    var bookThumbs = document.querySelectorAll('.book-thumb');
-                    
-                    var scrollAmount = 0;
+                    $(document).ready(function() {
+                        loadOrders();
 
-                    prevButton.addEventListener('click', () => {
-                        var direction = -1;
-                        scrollAmount = bookList.clientWidth * direction;
-                        bookList.scrollBy({left: scrollAmount, behavior: "smooth"})
+                        function loadOrders() {
+                            $.ajax({
+                                url: './php/load_orders.php',
+                                type: 'GET',
+                                success: function(response) {
+                                    if (response.status === 'success') {
+                                        updateOrderList(response.orders);
+                                    } else {
+                                        alert(response.message);
+                                    }
+                                }
+                            });
+                        }
+                        
+                        function updateOrderList(orders) {
+                            $('#orderList').empty();
+                            if (orders.length > 0) {
+                                $.each(orders, function(index, order) {
+                                    var orderHtml = '<div class="list-row order" data-order-id="' + order.order_id + '">';
+                                    orderHtml += '<div class="id_col"><p class="list-item">' + order.order_id + '</p></div>';
+                                    orderHtml += '<div class="date_col"><p class="list-item">' + order.order_date + '</p></div>';
+                                    orderHtml += '<div class="total_col"><p class="list-item">' + order.sum_price + '</p></div>';
+                                    orderHtml += '<div class="status_col"><p class="list-item">' + order.order_status + '</p></div>';
+                                    orderHtml += '</div>';
+                                    orderHtml += '<div class="order-details"></div>';
+                                    orderHtml += '<div style="background-color: #d9d9d9; width: 100%; height: 1px; margin: 5px 0 5px 0; padding: 0;"></div>';
+                                    $('#orderList').append(orderHtml);
+                                });
+                            } else {
+                                $('#orderList').append('<p>Không có đơn hàng nào.</p>');
+                            }
+                        }
                     });
 
-                    nextButton.addEventListener('click', () => {
-                        var direction = 1;
-                        scrollAmount = bookList.clientWidth * direction;
-                        bookList.scrollBy({left: scrollAmount, behavior: "smooth"})
+                    function loadOrderDetails(orderId, orderElement) {
+                        $.ajax({
+                            url: './php/get_order_details.php',
+                            type: 'GET',
+                            data: { order_id: orderId },
+                            success: function(response) {
+                                if (response.status === 'success') {
+                                    updateOrderDetails(response.order_details, orderElement);
+                                } else {
+                                    alert(response.message);
+                                }
+                            }
+                        });
+                    }
+
+                    function updateOrderDetails(details, orderElement) {
+                        var detailsContent = '';
+                        $.each(details, function(index, detail) {
+                            detailsContent += '<div class="list-row"><img src="../../admin/uploads/' + detail.cover_image + '" alt="Cover Image" width="50px"><p class="bullet">' + detail.book_id + '<p class="bullet">' + detail.quantity + '<p class="bullet">' + detail.price + '</p></div>';
+                        });
+                        orderElement.find('.order-details').html(detailsContent).slideDown();
+                    }
+
+                    $('#orderList').on('click', '.order', function() {
+                        var orderId = $(this).data('order-id');
+                        var orderElement = $(this);
+                        if (orderElement.find('.order-details').is(':visible')) {
+                            orderElement.find('.order-details').slideUp();
+                        } else {
+                            loadOrderDetails(orderId, orderElement);
+                        }
                     });
                 </script>
+
             </div>
-            <!-- End of My Books -->
 
             <div class="gray-bar">
-                <div class="pretty-box">
-                    <p class="header-box">Đơn hàng của bạn</p>
-                    <p class="properties">Theo dõi, chỉnh sửa hoặc huỷ đơn hàng.</p>
-                    <br>
-                    <a href="./orders.php" class="box-link">Xem lịch sử mua hàng của bạn ></a>
-                </div>
                 <div class="pretty-box">
                     <p class="header-box">Mục đã lưu</p>
                     <p class="properties">Hãy tập hợp và lưu lại các sản phẩm bạn quan tâm.</p>
                     <br>
                     <a href="./saves.php" class="box-link">Xem sản phẩm đã lưu ></a>
                 </div>
+                <div class="pretty-box">
+                    <p class="header-box">Tài khoản của bạn</p>
+                    <p class="properties">Xem sản phẩm bạn đã mua, tuỳ chỉnh cài đặt tài khoản.</p>
+                    <br>
+                    <a href="./profile.php" class="box-link">Xem tài khoản của bạn ></a>
+                </div>
             </div>
-
-            <!-- Start of Account Settings -->
-            <div class="main">
-                <p class="header">Cài đặt tài khoản</p>
-                <div class="row">
-                    <div class="col1">
-                        <p class="small-header">Vận chuyển</p>
-                    </div>
-                    <div class="col2">
-                        <p class="bullet">Địa chỉ vận chuyển</p>
-                        <p class="properties">Số nhà</p>
-                        <p class="properties">Phường/Xã</p>
-                        <p class="properties">Quận/Huyện</p>
-                        <p class="properties">Tỉnh/Thành phố</p>
-                        <a class="edit shipping-button">Chỉnh sửa</a>
-                    </div>
-                    <div class="col3">
-                        <p class="bullet">Thông tin liên hệ</p>
-                        <p class="properties">tranthehuuphuc@icloud.com</p>
-                        <p class="properties">0977983302</p>
-                        <a class="edit shipping-button">Chỉnh sửa</a>
-                    </div>
-                </div>
-                <div id="shipping-settings" class="hidden">
-                    <form action="./php/update_shipping.php" method="POST">
-                        <div style="display: block; align-items: center; margin: 0; padding: 0;">
-                            <p class="header" style="justify-content: center; display: flex; margin-top: 0; text-align: center;">Chỉnh sửa thông tin vận chuyển</p>
-                            <p class="small-header" for="address">Địa chỉ vận chuyển</p>
-                            <div class="input-field">
-                                <p class="field-label">Số nhà</p>
-                                <input type="text" class="input-box" id="home_number" name="home_number" placeholder="Số nhà">
-                            </div>
-                            <div class="input-field">
-                                <p class="field-label">Phường/Xã</p>
-                                <input type="text" class="input-box" id="ward" name="ward" placeholder="Phường/Xã">
-                            </div>
-                            <div class="input-field">
-                                <p class="field-label">Quận/Huyện</p>
-                                <input type="text" class="input-box" id="district" name="district" placeholder="Quận/Huyện">
-                            </div>
-                            <div class="input-field">
-                                <p class="field-label">Tỉnh/Thành phố</p>
-                                <input type="text" class="input-box" id="city" name="city" placeholder="Tỉnh/Thành phố">
-                            </div>
-
-                            <p class="small-header">Thông tin liên hệ</p>
-                            <div class="input-field">
-                                <p class="field-label">Email</p>
-                                <input type="text" class="input-box" id="shipping_email" name="shipping_email" placeholder="Email">
-                            </div>
-                            <div class="input-field">
-                                <p class="field-label">Số điện thoại</p>
-                                <input type="text" class="input-box" id="shipping_phone" name="shipping_phone" placeholder="Số điện thoại">
-                            </div>
-                            <div class="submit-field">
-                                <input type="submit" class="submit-button" value="Lưu">
-                                <div class="cancel-button">Huỷ</div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <script>
-                    function EditShippingSettings() {
-                        var shippingSettings = document.getElementById("shipping-settings");
-                        var overlay = document.getElementById("blur-overlay");
-                        overlay.classList.toggle("hidden");
-
-                        if (overlay.classList.contains("hidden")) {
-                            shippingSettings.classList.remove("show");
-                            setTimeout(() => shippingSettings.classList.add("hidden"), 0);
-                        } else {
-                            shippingSettings.classList.remove("hidden");
-                            setTimeout(() => shippingSettings.classList.add("show"), 0);
-                        }
-                    }
-
-                    function CloseShippingSettings() {
-                        var shippingSettings = document.getElementById("shipping-settings");
-                        var overlay = document.getElementById("blur-overlay");
-
-                        overlay.classList.remove("show");
-                        overlay.classList.add("hidden");
-                        
-                        shippingSettings.classList.remove("show");
-                        shippingSettings.classList.add("hidden");
-                    }
-
-                    document.addEventListener("DOMContentLoaded", () => {
-                        var editButton = document.querySelectorAll(".shipping-button");
-                        var overlay = document.getElementById("blur-overlay");
-
-                        editButton.forEach(button => {
-                            button.addEventListener("click", EditShippingSettings);
-                        });
-                        
-                        overlay.addEventListener("click", CloseShippingSettings);
-                        document.addEventListener('keydown', (event) => {
-                            if (event.key === 'Escape') {
-                                CloseShippingSettings();
-                            }
-                        });
-                        document.getElementsByClassName("cancel-button")[0].addEventListener("click", CloseShippingSettings);
-                    });
-                </script>
-
-                <div class="row">
-                    <div class="col1">
-                        <p class="small-header">Thanh toán</p>
-                    </div>
-                    <div class="col2">
-                        <p class="bullet">Thông tin liên hệ thanh toán</p>
-                        <a class="edit payment-button">Chỉnh sửa</a>
-                    </div>
-                    <div class="col3">
-                        <p class="bullet">Phương thức thanh toán</p>
-                        <a class="edit payment-button">Chỉnh sửa</a>
-                    </div>
-                </div>
-                <div id="payment-settings" class="hidden">
-                    <div style="display: block; align-items: center; margin: 0; padding: 0;">
-                        <p class="header" style="justify-content: center; display: flex; margin-top: 0; text-align: center;">Chỉnh sửa thông tin thanh toán</p>
-                        <p class="small-header" for="contact">Thông tin liên hệ thanh toán</p>
-                        <div class="input-field">
-                            <p class="field-label">Email</p>
-                            <input type="text" class="input-box" name="contact" placeholder="Email">
-                        </div>
-                        <div class="input-field">
-                            <p class="field-label">Số điện thoại</p>
-                            <input type="text" class="input-box" name="contact" placeholder="Số điện thoại">
-                        </div>
-
-                        <p class="small-header" for="payment">Phương thức thanh toán</p>
-                        <div class="input-field">
-                            <p class="field-label">Phương thức thanh toán</p>
-                            <input type="text" class="input-box" name="payment" placeholder="Phương thức thanh toán">
-                        </div>
-                        <div class="submit-field">
-                            <div class="submit-button">Lưu</div>
-                            <div class="cancel-button">Huỷ</div>
-                        </div>
-                    </div>
-                </div>
-                <script>
-                    function EditPaymentSettings() {
-                        var paymentSettings = document.getElementById("payment-settings");
-                        var overlay = document.getElementById("blur-overlay");
-                        overlay.classList.toggle("hidden");
-
-                        if (overlay.classList.contains("hidden")) {
-                            paymentSettings.classList.remove("show");
-                            setTimeout(() => paymentSettings.classList.add("hidden"), 0);
-                        } else {
-                            paymentSettings.classList.remove("hidden");
-                            setTimeout(() => paymentSettings.classList.add("show"), 0);
-                        }
-                    }
-
-                    function ClosePaymentSettings() {
-                        var paymentSettings = document.getElementById("payment-settings");
-                        var overlay = document.getElementById("blur-overlay");
-
-                        overlay.classList.remove("show");
-                        overlay.classList.add("hidden");
-                        
-                        paymentSettings.classList.remove("show");
-                        paymentSettings.classList.add("hidden");
-                    }
-
-                    document.addEventListener("DOMContentLoaded", () => {
-                        var editButton = document.querySelectorAll(".payment-button");
-                        var overlay = document.getElementById("blur-overlay");
-
-                        editButton.forEach(button => {
-                            button.addEventListener("click", EditPaymentSettings);
-                        });
-                        
-                        overlay.addEventListener("click", ClosePaymentSettings);
-                        document.addEventListener('keydown', (event) => {
-                            if (event.key === 'Escape') {
-                                ClosePaymentSettings();
-                            }
-                        });
-                        
-                        var cancelButton = document.querySelectorAll(".cancel-button");
-                        cancelButton.forEach(button => {
-                            button.addEventListener("click", ClosePaymentSettings);
-                        });
-                    });
-                </script>
-
-                <div class="row">
-                    <div class="col1">
-                        <p class="small-header">Thông tin cá nhân</p>
-                    </div>
-                    <div class="col2">
-                        <p class="properties">Email: tranthehuuphuc@icloud.com</p>
-                        <p class="properties">Số điện thoại: 0123456789</p>
-                        <p class="properties">Ngày sinh: 02/02/2004</p>
-                        <a class="edit account-button">Chỉnh sửa</a>
-                    </div>
-                </div>
-                <div id="account-settings" class="hidden">
-                    <div style="display: block; align-items: center; margin: 0; padding: 0;">
-                        <p class="header" style="justify-content: center; display: flex; margin-top: 0; text-align: center;">Chỉnh sửa thông tin cá nhân</p>
-                        <div class="input-field">
-                            <p class="field-label">Email</p>
-                            <input type="text" class="input-box" name="email" placeholder="Email">
-                        </div>
-                        <div class="input-field">
-                            <p class="field-label">Số điện thoại</p>
-                            <input type="text" class="input-box" name="phone" placeholder="Số điện thoại">
-                        </div>
-                        <div class="input-field">
-                            <p class="field-label">Ngày sinh</p>
-                            <input type="text" class="input-box" name="dob" placeholder="Ngày sinh">
-                        </div>
-                        <div class="submit-field">
-                            <div class="submit-button">Lưu</div>
-                            <div class="cancel-button">Huỷ</div>
-                        </div>
-                    </div>
-                </div>
-                <script>
-                    function EditAccountSettings() {
-                        var accountSettings = document.getElementById("account-settings");
-                        var overlay = document.getElementById("blur-overlay");
-                        overlay.classList.toggle("hidden");
-
-                        if (overlay.classList.contains("hidden")) {
-                            accountSettings.classList.remove("show");
-                            setTimeout(() => accountSettings.classList.add("hidden"), 0);
-                        } else {
-                            accountSettings.classList.remove("hidden");
-                            setTimeout(() => accountSettings.classList.add("show"), 0);
-                        }
-                    }
-
-                    function CloseAccountSettings() {
-                        var accountSettings = document.getElementById("account-settings");
-                        var overlay = document.getElementById("blur-overlay");
-
-                        overlay.classList.remove("show");
-                        overlay.classList.add("hidden");
-                        
-                        accountSettings.classList.remove("show");
-                        accountSettings.classList.add("hidden");
-                    }
-
-                    document.addEventListener("DOMContentLoaded", () => {
-                        var editButton = document.querySelectorAll(".account-button");
-                        var overlay = document.getElementById("blur-overlay");
-
-                        editButton.forEach(button => {
-                            button.addEventListener("click", EditAccountSettings);
-                        });
-                        
-                        overlay.addEventListener("click", CloseAccountSettings);
-                        document.addEventListener('keydown', (event) => {
-                            if (event.key === 'Escape') {
-                                CloseAccountSettings();
-                            }
-                        });
-                        
-                        var cancelButton = document.querySelectorAll(".cancel-button");
-                        cancelButton.forEach(button => {
-                            button.addEventListener("click", CloseAccountSettings);
-                        });
-                    });
-                </script>
-
-                <!-- <div id="paypal-button-container"></div>
-                
-                <script>
-                paypal.Buttons({
-                    createOrder: function(data, actions) {
-                        return actions.order.create({
-                            purchase_units: [{
-                                amount: {
-                                    value: '0.01'
-                                }
-                            }]
-                        });
-                    }
-                    
-                }).render('#paypal-button-container'); // Renders the PayPal button
-                </script> -->
-            </div>
-            <!-- End of Account Settings-->
        </main> 
 
        <footer style="background-image: url('../assets/footer.png')">

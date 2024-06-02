@@ -75,7 +75,7 @@ html, body {
     border-radius: 25px;;
     display: block;
     margin: 40px 0;
-    padding: 30px 50px;
+    padding: 40px 50px;
     width: 38%;
     min-height: 200px;
 }
@@ -103,6 +103,7 @@ html, body {
 .row {
     display: flex;
     flex-wrap: wrap;
+    justify-content: start;
     padding-bottom: 50px;
 }
 
@@ -152,8 +153,6 @@ html, body {
 .edit:hover {
     text-decoration: underline;
 }
-
-
 
 .book-slider {
     display: flex;
@@ -523,9 +522,443 @@ html, body {
 }
 /* END OF SAVES PAGE */
 
+/* START OF ORDER */
+.list-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
 
+.id_col {
+    margin: 0;
+    padding: 0;
+    width: 10%;
+}
+
+.date-col {
+    margin: 0;
+    padding: 0;
+    width: 20%;
+}
+
+.total-col {
+    margin: 0;
+    padding: 0;
+    width: 20%;
+}
+
+.status-col {
+    margin: 0;
+    padding: 0;
+    width: 50%;
+}
+
+.list-header {
+    font-size: 24px;
+    font-weight: 500;
+    margin: 0;
+    padding: 0 25px;
+    text-align: center;
+}
+
+.list-item {
+    font-size: 20px;
+    font-weight: 400;
+    margin: 0;
+    padding: 0 25px;
+    text-align: center;
+}
+
+.order { margin-bottom: 10px; cursor: pointer; }
+        
+.order-details { display: none; margin-left: 20px; }
+
+/* END OF ORDER */
 
 /* START OF RESPONSIVE DESIGN */
+
+@media (max-width: 1280px) {
+    .main {
+        padding: 0 150px;
+    }
+
+    .title-bar {
+        padding: 80px 150px 20px;
+    }
+
+    .title {
+        font-size: 20px;
+    }
+
+    .sub-title {
+        font-size: 30px;
+        margin: 30px 0 10px;
+    }
+
+    .header {
+        font-size: 28px;
+        margin-top: 50px;
+        margin-bottom: 10px;
+    }
+
+    .small-header {
+        font-size: 20px;
+    }
+
+    .gray-bar {
+        justify-content: center;
+        padding: 10px;
+        width: auto;
+    }
+
+    .pretty-box {
+        padding: 40px 50px;
+        margin: 10px;
+        max-width: 400px;
+    }
+
+    .box-link {
+        font-size: 15px;
+    }
+
+    .row {
+        padding-left: 20px;
+        padding-bottom: 20px;
+    }
+
+    .col1 {
+        margin-top: 7px;
+        max-width: 300px;
+    }
+
+    .col2, .col3 {
+        margin-top: 7px;
+        max-width: 280px;
+    }
+
+    .bullet {
+        font-size: 15px;
+    }
+
+    .properties {
+        font-size: 15px;
+    }
+
+    .edit {
+        font-size: 15px;
+    }
+
+    .book-list {
+        width: 100%;
+    }
+
+    .book-thumb {
+        max-width: 200px;
+        margin: 15px;
+    }
+
+    .slider-button {
+        display: none;
+    }
+
+    .input-field {
+        margin: 5px 0;
+        padding: 10px 0 0 15px;
+    }
+
+    .field-label {
+        font-size: 13px;
+    }
+
+    .input-box {
+        font-size: 15px;
+        margin: 5px 0 0 0;
+        min-width: 300px;
+    }
+
+    .submit-button {
+        font-size: 15px;
+        width: 20%;
+        height: 5%;
+    }
+
+    .cancel-button {
+        font-size: 15px;
+        width: 20%;
+        height: 5%;
+    }
+
+    .saves-intro {
+        padding: 0 20px;
+    }
+
+    .intro-header {
+        font-size: 40px;
+    }
+
+    .intro-icon {
+        width: 30px;
+        margin: 10px 0;
+    }
+
+    .intro-properties {
+        font-size: 20px;
+    }
+
+    .scaled-book {
+        width: 150px;
+        margin: 15px;
+    }
+
+    .book-price {
+        font-size: 28px;
+        margin: 0;
+    }
+
+    .quantity-selector {
+        margin: 0;
+    }
+
+    .quantity-button {
+        font-size: 15px;
+        width: 25px;
+        height: 25px;
+    }
+
+    .quantity {
+        width: 40px;
+        height: 25px;
+        font-size: 20px;
+        margin: auto 0;
+    }
+
+    .total {
+        font-size: 22px;
+    }
+
+    .pay {
+        flex-direction: column;
+        padding-bottom: 50px;
+    }
+
+    #checkout-button {
+        font-size: 15px;
+        width: 40%;
+        height: 5%;
+    }
+
+    #payment {
+        width: 85%;
+        padding: 0 20px 20px;
+        height: auto;
+    }
+
+    .payment-header {
+        font-size: 28px;
+    }
+
+    .cancel-label {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .main {
+        padding: 0 100px;
+    }
+
+    .title-bar {
+        padding: 80px 100px 20px;
+    }
+
+    .title {
+        font-size: 20px;
+    }
+
+    .sub-title {
+        font-size: 30px;
+        margin: 30px 0 10px;
+    }
+
+    .header {
+        font-size: 28px;
+        margin-top: 50px;
+        margin-bottom: 10px;
+    }
+
+    .small-header {
+        font-size: 20px;
+    }
+
+    .gray-bar {
+        padding: 10px;
+        width: auto;
+    }
+
+    .pretty-box {
+        padding: 25px 35px;
+        margin: 10px;
+        max-width: 400px;
+    }
+
+    .box-link {
+        font-size: 15px;
+    }
+
+    .row {
+        padding-left: 20px;
+        padding-bottom: 20px;
+    }
+
+    .col1 {
+        margin-top: 7px;
+        width: 280px;
+    }
+
+    .col2, .col3 {
+        margin-top: 7px;
+        width: 250px;
+    }
+
+    .bullet {
+        font-size: 15px;
+    }
+
+    .properties {
+        font-size: 15px;
+    }
+
+    .edit {
+        font-size: 15px;
+    }
+
+    .book-list {
+        width: 100%;
+    }
+
+    .book-thumb {
+        width: 75%;
+        margin: 15px;
+    }
+
+    .slider-button {
+        display: none;
+    }
+
+    #shipping-settings, #payment-settings, #account-settings, #password-settings, #payment {
+        padding: 25px;
+    }
+
+    #shipping-settings.show, #payment-settings.show, #account-settings.show, #password-settings.show, #payment.show {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .input-field {
+        margin: 5px 0;
+        padding: 10px 0 0 15px;
+    }
+
+    .field-label {
+        font-size: 13px;
+    }
+
+    .input-box {
+        font-size: 15px;
+        margin: 5px 0 0 0;
+        min-width: 300px;
+    }
+
+    .submit-button {
+        font-size: 15px;
+        width: 20%;
+        height: 5%;
+    }
+
+    .cancel-button {
+        font-size: 15px;
+        width: 20%;
+        height: 5%;
+    }
+
+    .saves-intro {
+        padding: 0 20px;
+    }
+
+    .intro-header {
+        font-size: 40px;
+    }
+
+    .intro-icon {
+        width: 30px;
+        margin: 10px 0;
+    }
+
+    .intro-properties {
+        font-size: 20px;
+    }
+
+    .scaled-book {
+        width: 150px;
+        margin: 15px;
+    }
+
+    .book-price {
+        font-size: 28px;
+        margin: 0;
+    }
+
+    .quantity-selector {
+        margin: 0;
+    }
+
+    .quantity-button {
+        font-size: 15px;
+        width: 25px;
+        height: 25px;
+    }
+
+    .quantity {
+        width: 40px;
+        height: 25px;
+        font-size: 20px;
+        margin: auto 0;
+    }
+
+    .total {
+        font-size: 22px;
+    }
+
+    .pay {
+        flex-direction: column;
+        padding-bottom: 50px;
+    }
+
+    #checkout-button {
+        font-size: 15px;
+        width: 40%;
+        height: 5%;
+    }
+
+    #payment {
+        width: 85%;
+        padding: 0 20px 20px;
+        height: auto;
+    }
+
+    .payment-header {
+        font-size: 28px;
+    }
+
+    .cancel-label {
+        font-size: 18px;
+    }
+
+}
+
 @media (max-width: 767px) {
     .main {
         padding: 0 20px;
@@ -563,7 +996,7 @@ html, body {
     .pretty-box {
         padding: 40px 50px;
         margin: 10px;
-        min-width: 260px;
+        min-width: 200px;
     }
 
     .box-link {
@@ -637,6 +1070,12 @@ html, body {
         height: 5%;
     }
 
+    .cancel-button {
+        font-size: 15px;
+        width: 20%;
+        height: 5%;
+    }
+
     .saves-intro {
         padding: 0 20px;
     }
@@ -652,12 +1091,6 @@ html, body {
 
     .intro-properties {
         font-size: 20px;
-    }
-
-    .saved {
-        width: 100%;
-        display: flex;
-        justify-content: center;
     }
 
     .scaled-book {

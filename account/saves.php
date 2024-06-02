@@ -289,13 +289,13 @@
                     <p class="header-box">Tài khoản của bạn</p>
                     <p class="properties">Xem sản phẩm bạn đã mua, tuỳ chỉnh cài đặt tài khoản.</p>
                     <br>
-                    <a href="./orders.php" class="box-link">Xem tài khoản của bạn ></a>
+                    <a href="./profile.php" class="box-link">Xem tài khoản của bạn ></a>
                 </div>
                 <div class="pretty-box">
                     <p class="header-box">Đơn hàng</p>
                     <p class="properties">Theo dõi, chỉnh sửa hoặc huỷ đơn hàng.</p>
                     <br>
-                    <a href="./saves.php" class="box-link">Xem lịch sử mua hàng của bạn ></a>
+                    <a href="./order.php" class="box-link">Xem lịch sử mua hàng của bạn ></a>
                 </div>
             </div>
        </main> 
