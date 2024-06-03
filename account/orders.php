@@ -110,9 +110,7 @@
             });
         </script>
         <!-- End of Account options -->
-
         
-
        <main>
             <div class="title-bar">
                 <p class="title">Đơn hàng của bạn</p>
@@ -249,59 +247,59 @@
        </main> 
 
        <footer style="background-image: url('../assets/footer.png')">
-        <div class="footer-section footer-content">
-            <p class="section-title">VỀ BOOKHUB</p>
-            <div class="divider short-divider"></div>
-            <p class="description">BookHub là nền tảng kết nối những người<br/>có niềm yêu thích sách lại với nhau.</p>
-            <div class="social-links">
-                <a href="https://facebook.com" target="_blank"><img src="../assets/facebook.png" alt="facebook" class="social-icon"></a>
-                <a href="https://instagram.com" target="_blank"><img src="../assets/instagram.png" alt="instagram" class="social-icon"></a>
+            <div class="footer-section footer-content">
+                <p class="section-title">VỀ BOOKHUB</p>
+                <div class="divider short-divider"></div>
+                <p class="description">BookHub là nền tảng kết nối những người<br/>có niềm yêu thích sách lại với nhau.</p>
+                <div class="social-links">
+                    <a href="https://facebook.com" target="_blank"><img src="../assets/facebook.png" alt="facebook" class="social-icon"></a>
+                    <a href="https://instagram.com" target="_blank"><img src="../assets/instagram.png" alt="instagram" class="social-icon"></a>
+                </div>
             </div>
-        </div>
-        <div class="footer-section link_contact">
-           
-        <p class="section-title">ĐƯỜNG DẪN</p>
-            <div class="divider"></div>
-            <ul class="links-list">
-                <li><a href="../Book_Store/bookstore.php" class="myLink">Bookstore</a></li>
-                <li><a href="../discuss/discuss.php" class="myLink">Thảo luận</a></li>
-                <li><a href="../signin/signin.php" class="myLink">Đăng nhập</a></li>
-                <li><a href="../search/search.php" class="myLink">Tìm kiếm</a></li>
-            </ul>
-        </div>
-        <div class="footer-section contact">
-            <p class="section-title">LIÊN HỆ</p>
-            <div class="divider"></div>
-            <table>
-                <tr>
-                    <td><img src="../assets/phone-call.png" alt="phone" class="contact-icon"></td>
-                    <td class="contact-info">016.161.6161</td>
-                </tr>
-                <tr>
-                    <td><img src="../assets/email.png" alt="mail" class="contact-icon"></td>
-                    <td class="contact-info"><a href="mailto:group16@gmail.com" class="email-link">group16@gmail.com</a></td>
-                </tr>
-            </table>
-        </div>
-        <div class="footer-bottom">
-            <p class="copyright">&copy; 2024 BookHub. All rights reserved.</p>
-        </div>
-    </footer>
+            <div class="footer-section link_contact">
+            
+            <p class="section-title">ĐƯỜNG DẪN</p>
+                <div class="divider"></div>
+                <ul class="links-list">
+                    <li><a href="../Book_Store/bookstore.php" class="myLink">Bookstore</a></li>
+                    <li><a href="../discuss/discuss.php" class="myLink">Thảo luận</a></li>
+                    <li><a href="../signin/signin.php" class="myLink">Đăng nhập</a></li>
+                    <li><a href="../search/search.php" class="myLink">Tìm kiếm</a></li>
+                </ul>
+            </div>
+            <div class="footer-section contact">
+                <p class="section-title">LIÊN HỆ</p>
+                <div class="divider"></div>
+                <table>
+                    <tr>
+                        <td><img src="../assets/phone-call.png" alt="phone" class="contact-icon"></td>
+                        <td class="contact-info">016.161.6161</td>
+                    </tr>
+                    <tr>
+                        <td><img src="../assets/email.png" alt="mail" class="contact-icon"></td>
+                        <td class="contact-info"><a href="mailto:group16@gmail.com" class="email-link">group16@gmail.com</a></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="footer-bottom">
+                <p class="copyright">&copy; 2024 BookHub. All rights reserved.</p>
+            </div>
+        </footer>
  
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('.tab').forEach(tab => {
-                tab.addEventListener('click', function() {
-                    // Remove 'active' class from all tabs and panels
-                    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-                    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                document.querySelectorAll('.tab').forEach(tab => {
+                    tab.addEventListener('click', function() {
+                        // Remove 'active' class from all tabs and panels
+                        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                        document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
 
-                    // Add 'active' class to the clicked tab and corresponding panel
-                    this.classList.add('active');
-                    document.querySelector(this.dataset.target).classList.add('active');
+                        // Add 'active' class to the clicked tab and corresponding panel
+                        this.classList.add('active');
+                        document.querySelector(this.dataset.target).classList.add('active');
+                    });
                 });
             });
-        });
-    </script>
+        </script>
     </body>
 </html>

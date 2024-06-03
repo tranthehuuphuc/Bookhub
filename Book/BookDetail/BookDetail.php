@@ -8,6 +8,9 @@
         $book_query = "SELECT * FROM books WHERE book_id = $book_id";
         $book_result = $conn->query($book_query);
         $book = $book_result->fetch_assoc();
+
+        // Save book details to json file
+        $json_book = json_encode($book);
         
         // Fetch author details
         $author_id = $book['author_id'];
@@ -89,7 +92,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" />
         <link rel="stylesheet" type="text/css" href="../../navbar.css">
         <link rel="stylesheet" type="text/css" href="../../footer.css">
-
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <style>
             .hidden-chapter {
                 display: none;
@@ -231,10 +234,48 @@
                         <h3 style="background-color: #F08A5D; padding: 14px; color: #ffffff; border-radius: 30px;">Tìm hiểu thêm</h3>
                     </a> -->
                     <a href="#" style="text-decoration: none;">
-                        <h3 style="background-color: #F08A5D; padding: 14px; color: #ffffff; border-radius: 30px;">Thêm vào giỏ hàng</h3>
+                        <div id="add_to_cart"><h3 style="background-color: #F08A5D; padding: 14px; color: #ffffff; border-radius: 30px;">Thêm vào giỏ hàng</h3></div>
                     </a>
                 </div>
             </div>
+
+            <!-- Ajax request to add the book to the cart -->
+            <script>
+                document.getElementById('add_to_cart').addEventListener('click', function() {
+                    var book_id = <?php echo $book[book_id]; ?>;
+                    var cover_image = <?php echo $book[cover_image]; ?>;
+                    var price = <?php echo $book[price]; ?>;
+                    var quantity = 1;
+
+                    if (!book.book_id || !book.cover_image || !book.price) {
+                        alert('Dữ liệu không hợp lệ');
+                        return;
+                    }
+                    console.log(book.cover_image, book.price, book.book_id, book.quantity);
+                    $.ajax({
+                        url: 'add_to_cart.php',
+                        type: 'POST',
+                        dataType: 'json',
+                        data: {
+                            book_id: book_id,
+                            cover_image: cover_image,
+                            price: price,
+                            quantity: quantity
+                        },
+                        success: function(response) {
+                            // Show a success message
+                            if (response.status === 'success') {
+                                alert(response.message);
+                            } else {
+                                alert(response.message);
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            alert('Đã xảy ra lỗi: ' + error);
+                        }
+                    });
+                });
+            </script>
 
             <div class="book-detail" style="margin-left: 250px; margin-right: 100px;">
                 <h1 style="font-weight: 700; margin-bottom: 0;"><i><?php echo $book['title']; ?></i></h1>

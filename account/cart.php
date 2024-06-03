@@ -104,13 +104,13 @@
 
        <main>
             <div class="title-bar">
-                <p class="title">Mục đã lưu</p>
+                <p class="title">Giỏ hàng của bạn</p>
             </div>
 
             <!-- Start of Saves -->
             <div class="main">
                 <div class="saves-intro">
-                    <p class="intro-header">Mục đã lưu</p>
+                    <p class="intro-header">Giỏ hàng</p>
                 </div>
                 <div class="saves-intro">
                     <img class="intro-icon" src="../assets/saves.png">

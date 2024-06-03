@@ -23,4 +23,8 @@
             $pdo = null;
         }
     }
+    else {
+        echo json_encode(['status' => 'error', 'message' => 'Error: Invalid request']);
+        exit();
+    }
 ?>
