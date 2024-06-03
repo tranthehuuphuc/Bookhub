@@ -2,6 +2,9 @@
 session_start();
 
 include './admin/dbh.php';
+$book_query = "SELECT * FROM books";
+$book_result = $conn->query($book_query);
+$books = $book_result->fetch_assoc();
 
 // Check if the user is logged in
 $isLoggedIn = isset($_SESSION['user_id']);
@@ -145,32 +148,22 @@ function renderfooterLinks($isLoggedIn) {
                 <div class="promotion-p">
                     <div class="promotion-p1" style="margin-top: 2vw; margin-left: 3vw; width: 50vw; height: 0.3vw; background-color: #F08A5D;"></div>
                         <h2><a class="promotion-title" style="margin-left: 3vw;" href="./index.php">SẢN PHẨM NỔI BẬT ></a></h2>
-                        <nav class="promotionnav">
-                            <a class="promotionnav-item" href="./index.php" style="margin-left: 5vw;">
-                                <div class="promotionnav-item-1">
-                                    <img src="./assets/etc.jpg" class="promotion-image"><br/>
-                                    <p style="margin: 0; padding: 0; font-weight: 500; font-size: 1.75vw;">Python</p>
-                                    <p style="margin: 0; padding: 0; font-size: 1vw; font-size: 1.25vw;">4/5 <img src="./assets/star.png"></p>
-                                    <p style="margin: 0; padding: 0; font-weight: 500; font-size: 1.5vw;">100.000 VND</p>
-                                </div>
-                            </a>
-                            <a class="promotionnav-item" href="./index.php" style="margin-left: 5vw;">
-                                <div class="promotionnav-item-1">
-                                    <img src="./assets/etc.jpg" class="promotion-image"><br/>
-                                    <p style="margin: 0; padding: 0; font-weight: 500; font-size: 1.75vw;">C#</p>
-                                    <p style="margin: 0; padding: 0; font-size: 1vw; font-size: 1.25vw;">4/5 <img src="./assets/star.png"></p>
-                                    <p style="margin: 0; padding: 0; font-weight: 500; font-size: 1.5vw;">100.000 VND</p>
-                                </div>
-                            </a>
-                            <a class="promotionnav-item" href="./index.php" style="margin-left: 5vw;">
-                                <div class="promotionnav-item-1">
-                                    <img src="./assets/etc.jpg" class="promotion-image"><br/>
-                                    <p style="margin: 0; padding: 0; font-weight: 500; font-size: 1.75vw;">C/C++</p>
-                                    <p style="margin: 0; padding: 0; font-size: 1vw; font-size: 1.25vw;">4/5 <img src="./assets/star.png"></p>
-                                    <p style="margin: 0; padding: 0; font-weight: 500; font-size: 1.5vw;">100.000 VND</p>
-                                </div>
-                            </a>
-                        </nav>
+                        <?php if (!empty($books)): ?>
+                        <?php foreach ($books as $index => $book): ?>
+                                <nav class="promotionnav">
+                                <a class="promotionnav-item" href="./index.php" style="margin-left: 5vw;">
+                                    <div class="promotionnav-item-1">
+                                        <img src="./assets/etc.jpg" class="promotion-image"><br/>
+                                        <p style="margin: 0; padding: 0; font-weight: 500; font-size: 1.75vw;"><?php echo $book['title'] ?></p>
+                                        <p style="margin: 0; padding: 0; font-size: 1vw; font-size: 1.25vw;">4/5 <img src="./assets/star.png"></p>
+                                        <p style="margin: 0; padding: 0; font-weight: 500; font-size: 1.5vw;">100.000 VND</p>
+                                    </div>
+                                </a>
+                            </nav>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                        <p>No books found.</p>
+                    <?php endif; ?>
                     </div>
                     <div class="promotion-p2">
                         <div style="margin-top: 2vw; margin-left: 5vw; width: 20vw; height: 0.3vw; background-color: #F08A5D;"></div>
