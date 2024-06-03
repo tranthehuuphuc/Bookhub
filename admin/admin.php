@@ -66,7 +66,7 @@ include 'dbh.php';
                 <a class="globalnav-item" href="../discuss/discuss.php">Về Chúng Tôi</a>
                 <a class="globalnav-item" href="../search/search.php">Tìm kiếm</a>
                 <a class="globalnav-item-show" href="../account/orders.php">Đơn hàng</a>
-                <a class="globalnav-item-show" href="../account/cart.php">Mục đã lưu</a>
+                <a class="globalnav-item-show" href="../account/cart.php">Giỏ hàng</a>
                 <a class="globalnav-item-show" href="../account/profile.php">Tài khoản</a>
                 <a class="globalnav-item-show" href="../signin/logout.php">Đăng xuất</a>
                 <button id="profile-button"><img id="profile-icon" src="../assets/account.png" alt="Profile Icon"></button>
@@ -80,7 +80,7 @@ include 'dbh.php';
             <div style="background-color: #d9d9d9; width: 25%; height: 0.05vw; margin: 0; padding: 0;"></div>
             <ul>
                 <li><img class="option-icons" src="../assets/orders.png"><a href="../account/orders.php">Đơn hàng</a></li>
-                <li><img class="option-icons" src="../assets/saves.png"><a href="../account/cart.php">Mục đã lưu</a></li>
+                <li><img class="option-icons" src="../assets/saves.png"><a href="../account/cart.php">Giỏ hàng</a></li>
                 <li><img class="option-icons" src="../assets/setting.png"><a href="../account/profile.php">Tài khoản</a></li>
                 <li><img class="option-icons" src="../assets/join.png"><a href="../signin/logout.php">Đăng xuất</a></li>
             </ul>
