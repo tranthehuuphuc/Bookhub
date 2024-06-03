@@ -292,7 +292,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `username`, `email`, `password`, `role`, `phone`, `birthday`, `fullname`) VALUES
-(1, 'vy', '22521709@gm.uit.edu.vn', '$2y$12$mMwhp9prqP7HMJBjkyj61egQIOqpBodoVYqA5IPrcoK.VXGS4qmxq', 'admin', '0392537965', '19/09/2004', 'Trần Thị Thúy Vy');
+(1, 'admin', 'admin@bookhub.com', '$2y$12$96yHHRcucPJkrQ1xp3BsL.v2uMJ2BO8Q1SGhp.LZgT4B5i4/Bdf5i', 'admin', '0977983302', '02/02/2004', 'Trần Thế Hữu Phúc');
 
 --
 -- Indexes for dumped tables

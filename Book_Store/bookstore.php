@@ -11,7 +11,7 @@
         if ($isLoggedIn) {
             // User is logged in
             echo '<a class="globalnav-item-show" href="../account/orders.php">Đơn hàng</a>';
-            echo '<a class="globalnav-item-show" href="../account/saves.php">Mục đã lưu</a>';
+            echo '<a class="globalnav-item-show" href="../account/cart.php">Mục đã lưu</a>';
             echo '<a class="globalnav-item-show" href="../account/profile.php">Tài khoản</a>';
             echo '<a class="globalnav-item-show" href="../signin/logout.php">Đăng xuất</a>';
             echo '<button id="profile-button"><img id="profile-icon" src="../assets/account.png" alt="Profile Icon"></button>';
@@ -92,7 +92,7 @@
             <div style="background-color: #d9d9d9; width: 25%; height: 0.05vw; margin: 0; padding: 0;"></div>
             <ul>
                 <li><img class="option-icons" src="../assets/orders.png"><a href="./orders.php">Đơn hàng</a></li>
-                <li><img class="option-icons" src="../assets/saves.png"><a href="./saves.php">Mục đã lưu</a></li>
+                <li><img class="option-icons" src="../assets/saves.png"><a href="./cart.php">Mục đã lưu</a></li>
                 <li><img class="option-icons" src="../assets/setting.png"><a href="./profile.php">Tài khoản</a></li>
                 <li><img class="option-icons" src="../assets/join.png"><a href="../sigin/logout.php">Đăng xuất</a></li>
             </ul>

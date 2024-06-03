@@ -50,7 +50,7 @@
             if ($isLoggedIn) {
                 // User is logged in
                 echo '<a class="globalnav-item-show" href="../../account/orders.php">Đơn hàng</a>';
-                echo '<a class="globalnav-item-show" href="../../account/saves.php">Mục đã lưu</a>';
+                echo '<a class="globalnav-item-show" href="../../account/cart.php">Mục đã lưu</a>';
                 echo '<a class="globalnav-item-show" href="../../account/profile.php">Tài khoản</a>';
                 echo '<a class="globalnav-item-show" href="../../signin/logout.php">Đăng xuất</a>';
                 echo '<button id="profile-button"><img id="profile-icon" src="../../assets/account.png" alt="Profile Icon"></button>';
@@ -178,7 +178,7 @@
         <div style="background-color: #d9d9d9; width: 25%; height: 0.05vw; margin: 0; padding: 0;"></div>
         <ul>
             <li><img class="option-icons" src="../../assets/orders.png"><a href="../../account/orders.php">Đơn hàng</a></li>
-            <li><img class="option-icons" src="../../assets/saves.png"><a href="../../account/saves.php">Mục đã lưu</a></li>
+            <li><img class="option-icons" src="../../assets/saves.png"><a href="../../account/cart.php">Mục đã lưu</a></li>
             <li><img class="option-icons" src="../../assets/setting.png"><a href="../../account/profile.php">Tài khoản</a></li>
             <li><img class="option-icons" src="../../assets/join.png"><a href="../../signin/logout.php">Đăng xuất</a></li>
         </ul>
@@ -242,10 +242,8 @@
             <!-- Ajax request to add the book to the cart -->
             <script>
                 document.getElementById('add_to_cart').addEventListener('click', function() {
-                    var book_id = <?php echo $book[book_id]; ?>;
-                    var cover_image = <?php echo $book[cover_image]; ?>;
-                    var price = <?php echo $book[price]; ?>;
-                    var quantity = 1;
+                    var book = <?php echo $json_book; ?>;
+                    book.quantity = 1;
 
                     if (!book.book_id || !book.cover_image || !book.price) {
                         alert('Dữ liệu không hợp lệ');
@@ -257,10 +255,10 @@
                         type: 'POST',
                         dataType: 'json',
                         data: {
-                            book_id: book_id,
-                            cover_image: cover_image,
-                            price: price,
-                            quantity: quantity
+                            book_id: book.book_id,
+                            cover_image: book.cover_image,
+                            price: book.price,
+                            quantity: book.quantity
                         },
                         success: function(response) {
                             // Show a success message
@@ -271,6 +269,7 @@
                             }
                         },
                         error: function(xhr, status, error) {
+                            console.error(xhr.responseText); 
                             alert('Đã xảy ra lỗi: ' + error);
                         }
                     });

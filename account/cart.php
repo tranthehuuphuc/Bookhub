@@ -41,7 +41,7 @@
                 <a class="globalnav-item" href="../discuss/discuss.php">Thảo luận</a>
                 <a class="globalnav-item" href="../search/search.php">Tìm kiếm</a>
                 <a class="globalnav-item-show" href="./orders.php">Đơn hàng</a>
-                <a class="globalnav-item-show" href="./saves.php">Mục đã lưu</a>
+                <a class="globalnav-item-show" href="./cart.php">Mục đã lưu</a>
                 <a class="globalnav-item-show" href="./profile.php">Tài khoản</a>
                 <a class="globalnav-item-show" href="../signin/signin.php">Đăng xuất</a>
                 <button id="profile-button"><img id="profile-icon" src="../assets/account.png" alt="Profile Icon"></button>
@@ -55,7 +55,7 @@
             <div style="background-color: #d9d9d9; width: 25%; height: 0.05vw; margin: 0; padding: 0;"></div>
             <ul>
                 <li><img class="option-icons" src="../assets/orders.png"><a href="./orders.php">Đơn hàng</a></li>
-                <li><img class="option-icons" src="../assets/saves.png"><a href="./saves.php">Mục đã lưu</a></li>
+                <li><img class="option-icons" src="../assets/saves.png"><a href="./cart.php">Mục đã lưu</a></li>
                 <li><img class="option-icons" src="../assets/setting.png"><a href="./profile.php">Tài khoản</a></li>
                 <li><img class="option-icons" src="../assets/join.png"><a href="../signin/signin.php">Đăng xuất</a></li>
             </ul>
