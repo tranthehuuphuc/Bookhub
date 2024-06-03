@@ -26,7 +26,5 @@
         }
     } catch (PDOException $e) {
         echo json_encode(['status' => 'error', 'message' => 'Có lỗi xảy ra: ' . $e->getMessage()]);
-    } finally {
-        $pdo = null;
     }
 ?>

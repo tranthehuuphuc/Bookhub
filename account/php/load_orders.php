@@ -19,8 +19,6 @@
         } catch (PDOException $e) {
             echo json_encode(['status' => 'error', 'message' => 'Error: ' . $e->getMessage()]);
             exit();
-        } finally {
-            $pdo = null;
         }
     }
     else {

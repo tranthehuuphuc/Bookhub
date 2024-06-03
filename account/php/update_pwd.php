@@ -60,7 +60,5 @@
         }
     } catch (PDOException $e) {
         respond('error', 'Có lỗi xảy ra');
-    } finally {
-        $pdo = null; // Close the database connection
     }
 ?>

@@ -62,7 +62,5 @@
         respond('success', 'Cập nhật thông tin giao hàng thành công');
     } catch (PDOException $e) {
         respond('error', 'Có lỗi xảy ra: ' . $e->getMessage());
-    } finally {
-        $pdo = null; // Close the database connection
     }
 ?>

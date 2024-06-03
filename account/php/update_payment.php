@@ -40,7 +40,5 @@
             echo json_encode(['status' => 'error', 'message' => 'Có lỗi xảy ra']);
             exit();
         }
-
-        $pdo = null; // Close the database connection
     }
 ?>
