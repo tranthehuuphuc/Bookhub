@@ -131,9 +131,21 @@ function renderfooterLinks($isLoggedIn) {
         <!-- End of Account options -->
 
         <main>
-            <section class="hero">
-                <h1>Về BookHub</h1>
-                <p>Chào mừng đến với BookHub, điểm đến cho mọi thứ về sách!</p>
+        <div id="topimg" style="height:50%">
+                <div class="text">
+                    <h2>Mua bán, trao đổi, thảo luận và cùng chia sẻ về những cuốn sách mà bạn yêu thích.</h2>
+                    <div class="button-top">
+                        <a href="../signin/signin.php" class="topbtn">Đăng ký ngay&nbsp;&#x276F;</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="maindiv">
+            <section class="mision">
+                <div class="container">
+                    <h1>Về BookHub</h1>
+                    <p>Chào mừng đến với BookHub, điểm đến cho mọi thứ về sách!</p>
+                </div>
             </section>
         
             <section class="mission">
@@ -168,6 +180,7 @@ function renderfooterLinks($isLoggedIn) {
                     <p>Thông qua các hoạt động cộng đồng của chúng tôi, chúng tôi nhằm mục tiêu lan tỏa niềm vui từ việc đọc sách và tạo ra ảnh hưởng tích cực trong cuộc sống của mọi người.</p>
                 </div>
             </section>
+            </div>
         </main>
 
         <footer style="background-image: url('../assets/footer.png')">
