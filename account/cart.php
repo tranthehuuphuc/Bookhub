@@ -14,6 +14,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" />
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
         <script src="https://www.paypal.com/sdk/js?client-id=AYeQLbENNd3RtNT3-NbYPKzLgzQB3QfESrSDOge_SH6VNEwpUJ4oKmN0grzc4OKKWIXIQFWNjRNwh9HZ&currency=USD"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     </head>
 
     <body>
@@ -120,66 +121,111 @@
                 </div>
                 <div style="background-color: #d9d9d9; width: 100%; height: 1px; margin: 5px 0 5px 0; padding: 0;"></div>
                 
-                <div class="saved">
-                    <img class="scaled-book" src="../assets/book3.jpg">
-                    <div class="book-info">
-                        <div class="book-row">
-                            <p class="book-price">100000đ</p>
-                            <div class="quantity-selector">
-                                <button class="quantity-button" onclick="decreaseQuantity(this)">-</button>
-                                <input type="text" class="quantity" value="0" onchange="updateTotal()">
-                                <button class="quantity-button" onclick="increaseQuantity(this)">+</button>
-                            </div>
-                        </div>
-                        <div style="background-color: #d9d9d9; width: 100%; height: 1px; margin: 5px 0 5px 0; padding: 0;"></div>
-                        <div class="total">
-                            <p>Tổng:</p> <p><span class="total-price">0</span>đ</p>
-                        </div>
-                    </div>
+                <div id="myCart">
+                    <!-- Cart items will be displayed here -->
                 </div>
-                <div style="background-color: #d9d9d9; width: 100%; height: 1px; margin: 5px 0 5px 0; padding: 0;"></div>
 
-                <div class="saved">
-                    <img class="scaled-book" src="../assets/book3.jpg">
-                    <div class="book-info">
-                        <div class="book-row">
-                            <p class="book-price">100000đ</p>
-                            <div class="quantity-selector">
-                                <button class="quantity-button" onclick="decreaseQuantity(this)">-</button>
-                                <input type="text" class="quantity" value="0" onchange="updateTotal()">
-                                <button class="quantity-button" onclick="increaseQuantity(this)">+</button>
-                            </div>
-                        </div>
-                        <div style="background-color: #d9d9d9; width: 100%; height: 1px; margin: 5px 0 5px 0; padding: 0;"></div>
-                        <div class="total">
-                            <p>Tổng:</p> <p><span class="total-price">0</span>đ</p>
-                        </div>
+                <div id="summary">
+                    <p class="header" style="text-align: center;">Tổng giá trị sản phẩm bạn đã chọn là <span id="grand-total">0</span>đ</p>
+                    <p class="properties" style="text-align: center;">Vận chuyển miễn phí đối với mọi đơn hàng</p>
+                    
+                    <div class="pay">
+                        <button id="checkout-button">Thanh toán</button>
                     </div>
-                </div>
-                <div style="background-color: #d9d9d9; width: 100%; height: 1px; margin: 5px 0 5px 0; padding: 0;"></div>
-
-                <p class="header" style="text-align: center;">Tổng giá trị sản phẩm bạn đã chọn là <span id="grand-total">0</span>đ</p>
-                <p class="properties" style="text-align: center;">Vận chuyển miễn phí đối với mọi đơn hàng</p>
-                
-                <div class="pay">
-                    <button id="checkout-button">Thanh toán</button>
                 </div>
 
                 <div id="payment" class="hidden">
-                    <p class="payment-header">Thanh toán</p>
-                    <div id="paypal-button-container"></div>
-                    <div class="cancel-label">Huỷ</div>
+                    <div style="display: block">
+                        <p class="payment-header">Thanh toán</p>
+                        <div id="paypal-button-container"></div>
+                        <div class="cancel-label">Huỷ</div>
+                    </div>
                 </div>
                 
                 <script>
-                    document.addEventListener('DOMContentLoaded', function () {
-                        updateTotal();
+                    $(document).ready(function() {
+                        loadCart();
                     });
+
+                    function loadCart() {
+                        $.ajax({
+                            url: './php/load_cart.php',
+                            type: 'GET',
+                            dataType: 'json',
+                            success: function(response) {
+                                if (response.status === 'success') {
+                                    console.log(response.cart);
+                                    updateCart(response.cart);
+                                } else {
+                                    alert(response.message);
+                                }
+                            },
+                            error: function(xhr, status, error) {
+                                console.log(xhr.responseText);
+                                alert('Đã xảy ra lỗi, vui lòng thử lại sau.');
+                            }
+                        });
+                    }
+
+                    function updateCart(cart) {
+                        $('#myCart').empty();
+                        if (cart.length > 0) {
+                            $.each(cart, function(index, item) {
+                                let book = '';
+                                book += '<div class="saved">';
+                                    book += '<img class="scaled-book" src="../admin/uploads/' + item.cover_image + '" alt="Book Cover">';
+                                    book += '<div class="book-info">';
+                                        book += '<div class="book-row">';
+                                            book += ' <p class="book-price">' + item.price + 'đ</p>';
+                                            book += '<div class="quantity-selector">';
+                                                book += '<button class="quantity-button" onclick="decreaseQuantity(this)">-</button>';
+                                                book += '<input type="text" class="quantity" value="0" onchange="updateTotal()">';
+                                                book += '<button class="quantity-button" onclick="increaseQuantity(this)">+</button>';
+                                            book += '</div>';
+                                        book += '</div>';
+                                        book += '<div style="background-color: #d9d9d9; width: 100%; height: 1px; margin: 5px 0 5px 0; padding: 0;"></div>';
+                                        book += '<div class="book-row">';
+                                            book += '<div class="remove-button" onclick="removeFromCart(' + item.book_id + ')">Xoá</div>';
+                                            book += '<div class="total">';
+                                                book += '<p>Tổng:</p> <p><span class="total-price">0</span>đ</p>';
+                                            book += '</div>';
+                                        book += '</div>';
+                                    book += '</div>';
+                                book += '</div>';
+                                book += '<div style="background-color: #d9d9d9; width: 100%; height: 1px; margin: 5px 0 5px 0; padding: 0;"></div>';
+                                $('#myCart').append(book);
+                            });
+                            updateTotal();  // Update total after updating cart
+                        } else {
+                            $('#myCart').append('<p class="properties" style="text-align: center; color: orange">Không có sản phẩm nào trong giỏ hàng của bạn.</p>');
+                            $('#summary').empty();
+                        }
+                    }
+
+                    function removeFromCart(book_id) {
+                        $.ajax({
+                            url: './php/remove_from_cart.php',
+                            type: 'POST',
+                            data: { book_id: book_id },
+                            dataType: 'json',
+                            success: function(response) {
+                                if (response.status === 'success') {
+                                    loadCart();
+                                } else {
+                                    alert(response.message);
+                                }
+                            },
+                            error: function(xhr, status, error) {
+                                console.log(xhr.responseText);
+                                alert('Đã xảy ra lỗi, vui lòng thử lại sau.');
+                            }
+                        });
+                    }
 
                     function decreaseQuantity(button) {
                         const input = button.nextElementSibling;
-                        var currentValue = parseInt(input.value);
-                        if (currentValue >= 1) {
+                        let currentValue = parseInt(input.value);
+                        if (currentValue > 0) {
                             input.value = currentValue - 1;
                             updateTotal();
                         }
@@ -187,28 +233,36 @@
 
                     function increaseQuantity(button) {
                         const input = button.previousElementSibling;
-                        var currentValue = parseInt(input.value);
+                        let currentValue = parseInt(input.value);
                         input.value = currentValue + 1;
                         updateTotal();
                     }
 
                     function updateTotal() {
                         const products = document.querySelectorAll('.book-info');
-                        const alltotal = document.querySelectorAll(".total-price");
-                        var total = 0;
-                        var grandTotal = 0;
-                        
+                        let grandTotal = 0;
+
                         products.forEach(product => {
-                            const price = parseInt(product.querySelector('.book-price').textContent);
+                            const price = parseInt(product.querySelector('.book-price').textContent.replace('đ', ''));
                             const quantity = parseInt(product.querySelector('.quantity').value);
-                            
-                            total = price * quantity;
+                            const total = price * quantity;
+
                             product.querySelector(".total-price").textContent = total;
+                            grandTotal += total;
                         });
 
-                        alltotal.forEach(pertotal => {
-                            grandTotal = parseInt(pertotal.textContent) + grandTotal;
-                            document.getElementById("grand-total").textContent = grandTotal;
+                        document.getElementById("grand-total").textContent = grandTotal;
+                    }
+
+                    function addToOrders() {
+                        const products = document.querySelectorAll('.book-info');
+
+                        products.forEach(product => {
+                            const price = parseInt(product.querySelector('.book-price').textContent.replace('đ', ''));
+                            const quantity = parseInt(product.querySelector('.quantity').value);
+                            const total = price * quantity;
+
+                            orders.push({ book_id, quantity, total });
                         });
                     }
 
@@ -234,11 +288,9 @@
                     }
 
                     document.getElementById("checkout-button").addEventListener("click", function() {
-                        var grandTotalVND = parseFloat(document.getElementById("grand-total").textContent);
-                        var exchangeRate = 0.00004;
-                        var grandTotalUSD = (grandTotalVND * exchangeRate).toFixed(2);
-
-                        console.log(grandTotalUSD);
+                        const grandTotalVND = parseFloat(document.getElementById("grand-total").textContent.replace('đ', ''));
+                        const exchangeRate = 0.00004;
+                        const grandTotalUSD = (grandTotalVND * exchangeRate).toFixed(2);
 
                         if (grandTotalVND > 0) {
                             if (document.getElementById("paypal-button-container").children.length === 0) {
@@ -257,7 +309,6 @@
                                     onApprove: function(data, actions) {
                                         return actions.order.capture().then(function(details) {
                                             alert('Transaction completed by ' + details.payer.name.given_name + '!');
-                                            window.history.back();
                                             hidePayment();
                                         });
                                     },
@@ -266,8 +317,7 @@
                                     }
                                 }).render('#paypal-button-container');
                             }
-                        }
-                        else {
+                        } else {
                             alert("Vui lòng chọn sản phẩm trước khi thanh toán.");
                         }
                     });
@@ -280,6 +330,7 @@
                         hidePayment();
                         removePayPalButton();
                     });
+
                 </script>
             </div>
             <!-- End of Saves -->
