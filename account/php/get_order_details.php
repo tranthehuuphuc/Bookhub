@@ -12,7 +12,6 @@
     }
 
     try {
-        // Lấy chi tiết đơn hàng từ bảng `orderdetails`
         $sql = "SELECT order_id, book_id, quantity, price, cover_image FROM orderdetails WHERE order_id = :order_id";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':order_id', $order_id, PDO::PARAM_INT);

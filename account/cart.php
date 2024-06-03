@@ -154,7 +154,6 @@
                             dataType: 'json',
                             success: function(response) {
                                 if (response.status === 'success') {
-                                    console.log(response.cart);
                                     updateCart(response.cart);
                                 } else {
                                     alert(response.message);
@@ -254,15 +253,39 @@
                         document.getElementById("grand-total").textContent = grandTotal;
                     }
 
-                    function addToOrders() {
+                    function addToOrders(grand_total) {
                         const products = document.querySelectorAll('.book-info');
+                        var orderdetails = [];
 
                         products.forEach(product => {
-                            const price = parseInt(product.querySelector('.book-price').textContent.replace('đ', ''));
+                            const book_id = parseInt(product.parentElement.querySelector('.remove-button').getAttribute('onclick').match(/\d+/)[0]);
                             const quantity = parseInt(product.querySelector('.quantity').value);
-                            const total = price * quantity;
+                            const price = parseInt(product.querySelector('.book-price').textContent.replace('đ', '').replace(',', ''));
+                            if (quantity > 0) {
+                                orderdetails.push({ book_id: book_id, quantity: quantity, price: price });
+                            }
+                        });
 
-                            orders.push({ book_id, quantity, total });
+                        $.ajax({
+                            url: './php/create_order.php',
+                            type: 'POST',
+                            data: JSON.stringify({ 
+                                sum_price: grand_total,
+                                orderdetails: orderdetails
+                            }),
+                            contentType: 'application/json; charset=utf-8',
+                            dataType: 'json',
+                            success: function(response) {
+                                if (response.status === 'success') {
+                                    alert('Đã thêm đơn hàng thành công!');
+                                } else {
+                                    alert(response.message);
+                                }
+                            },
+                            error: function(xhr, status, error) {
+                                console.log(xhr.responseText);
+                                alert('Đã xảy ra lỗi, vui lòng thử lại sau.');
+                            }
                         });
                     }
 
@@ -309,6 +332,7 @@
                                     onApprove: function(data, actions) {
                                         return actions.order.capture().then(function(details) {
                                             alert('Transaction completed by ' + details.payer.name.given_name + '!');
+                                            addToOrders(grandTotalVND);
                                             hidePayment();
                                         });
                                     },
