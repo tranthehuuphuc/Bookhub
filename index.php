@@ -2,9 +2,16 @@
 session_start();
 
 include './admin/dbh.php';
+// Fetch all books from the database
 $book_query = "SELECT * FROM books";
 $book_result = $conn->query($book_query);
-$books = $book_result->fetch_assoc();
+
+// Check if there are any books
+if ($book_result->num_rows > 0) {
+    // Fetch all rows and store them in an array
+    $books = $book_result->fetch_all(MYSQLI_ASSOC);
+}
+
 
 // Check if the user is logged in
 $isLoggedIn = isset($_SESSION['user_id']);
@@ -144,246 +151,142 @@ function renderfooterLinks($isLoggedIn) {
 
             <div style="margin-top: 2vw; margin-left:8vw;width: 85%; height: 1px; background-color: #F08A5D;"></div>
         
-            <div id="promotion" style="display: flex;">
-                <div class="promotion-p">
-                    <div class="promotion-p1" style="margin-top: 2vw; margin-left: 3vw; width: 50vw; height: 0.3vw; background-color: #F08A5D;"></div>
-                        <h2><a class="promotion-title" style="margin-left: 3vw;" href="./index.php">SẢN PHẨM NỔI BẬT ></a></h2>
-                        <?php if (!empty($books)): ?>
-                        <?php foreach ($books as $index => $book): ?>
-                                <nav class="promotionnav">
-                                <a class="promotionnav-item" href="./index.php" style="margin-left: 5vw;">
-                                    <div class="promotionnav-item-1">
-                                        <img src="./assets/etc.jpg" class="promotion-image"><br/>
-                                        <p style="margin: 0; padding: 0; font-weight: 500; font-size: 1.75vw;"><?php echo $book['title'] ?></p>
-                                        <p style="margin: 0; padding: 0; font-size: 1vw; font-size: 1.25vw;">4/5 <img src="./assets/star.png"></p>
-                                        <p style="margin: 0; padding: 0; font-weight: 500; font-size: 1.5vw;">100.000 VND</p>
-                                    </div>
-                                </a>
-                            </nav>
-                            <?php endforeach; ?>
-                        <?php else: ?>
-                        <p>No books found.</p>
-                    <?php endif; ?>
-                    </div>
-                    <div class="promotion-p2">
-                        <div style="margin-top: 2vw; margin-left: 5vw; width: 20vw; height: 0.3vw; background-color: #F08A5D;"></div>
-                        <h2><a class="promotion-title" style="margin-left: 7vw" href="./index.php">SẢN PHẨM TOP #1 ></a></h2>
-                        <nav class="promotionnav" style="margin-left:2vw;">
-                            <a class="promotionnav-item" href="./index.php" style="margin-left: 5vw;">
-                                <div class="promotionnav-item-1">
-                                    <img src="./assets/etc.jpg" class="promotion-image"><br/>
-                                    <p style="margin: 0; padding: 0; font-weight: 500; font-size: 1.75vw;">HTML</p>
-                                    <p style="margin: 0; padding: 0; font-size: 1vw; font-size: 1.25vw;">4/5 <img src="./assets/star.png"></p>
-                                    <p style="margin: 0; padding: 0; font-weight: 500; font-size: 1.5vw;">100.000 VND</p>
-                                </div>
-                            </a>
-                        </nav>
-                    </div>
-                </div>
-                <div id="promotion" class="promotion-mobile">
-                    <div style="margin-top: 2vw; margin-left: 3vw; width: 50vw; height: 0.3vw; background-color: #F08A5D;"></div>
-                    <h2><a class="promotion-title" style="margin-left: 3vw;" href="./index.php">SẢN PHẨM ĐANG GIẢM GIÁ ></a></h2>
-                    <nav class="promotionnav promotionnav1">
-                        <a class="promotionnav-item" href="./index.php" style="margin-left: 5vw;">
-                            <div class="promotionnav-item-1">
-                                <img src="./assets/etc.jpg" class="promotion-image"><br/>
-                                <p style="margin: 0; padding: 0; font-weight: 500; font-size: 1.75vw;">Book 1</p>
-                                <p style="margin: 0; padding: 0; font-size: 1vw; font-size: 1.25vw;">4/5 <img src="./assets/star.png"></p>
-                                <p style="margin: 0; padding: 0; font-weight: 400; font-size: 1.5vw; text-decoration-line: line-through; font-style: italic;">150.000 VND</p>
-                                <p style="margin: 0; padding: 0; font-weight: 500; font-size: 2vw;">110.000 VND</p>
+            <div id="promotion">
+    <h2><a class="promotion-title" href="./index.php">SẢN PHẨM NỔI BẬT ></a></h2>
+    <div class="scroll-container">
+        <div class="scroll-arrow left" onclick="scrollLeft()"><</div>
+        <div class="promotion-p">
+            <?php if (!empty($books)): ?>
+                <?php foreach ($books as $index => $book): ?>
+                    <a class="promotionnav-item" href="./Book/BookDetail/BookDetail.php?book_id=<?php echo $book['book_id'] ?>">
+                        <img src="<?php echo './admin/uploads/' . $book['cover_image']; ?>" class="promotion-image"><br/>
+                        <div class="des">
+                            <span><?php echo htmlspecialchars($book['publisher']); ?></span>
+                            <h5><?php echo htmlspecialchars($book['price']); ?>.000đ</h5>
+                            <div class="star">
+                                <?php 
+                                $rating = floor($book['rating']);
+                                for ($i = 0; $i < 5; $i++): 
+                                    if ($i < $rating): ?>
+                                        <i class="fas fa-star"></i>
+                                    <?php else: ?>
+                                        <i class="far fa-star"></i>
+                                    <?php endif; 
+                                endfor; 
+                                ?>
                             </div>
-                            <!-- <img src="./assets/etc.jpg" class="promotion-image"><br/>
-                            <p style="margin: 0; padding: 0; font-weight: 500; font-size: 1.75vw;">Book 1</p>
-                            <p style="margin: 0; padding: 0; font-size: 1vw; font-size: 1.25vw;">4/5 <img src="./assets/star.png"></p>
-                            <p style="margin: 0; padding: 0; font-weight: 400; font-size: 1.5vw; text-decoration-line: line-through; font-style: italic;">150.000 VND</p>
-                            <p style="margin: 0; padding: 0; font-weight: 500; font-size: 2vw;">110.000 VND</p> -->
-                        </a>
-                        <a class="promotionnav-item" href="./index.php">
-                            <div class="promotionnav-item-1">
-                                <img src="./assets/etc.jpg" class="promotion-image"><br/>
-                                <p style="margin: 0; padding: 0; font-weight: 500; font-size: 1.75vw;">Book 1</p>
-                                <p style="margin: 0; padding: 0; font-size: 1vw; font-size: 1.25vw;">4/5 <img src="./assets/star.png"></p>
-                                <p style="margin: 0; padding: 0; font-weight: 400; font-size: 1.5vw; text-decoration-line: line-through; font-style: italic;">200.000 VND</p>
-                                <p style="margin: 0; padding: 0; font-weight: 500; font-size: 2vw;">135.000 VND</p>
-                            </div>
-                            <!-- <img src="./assets/etc.jpg" class="promotion-image"><br/>
-                            <p style="margin: 0; padding: 0; font-weight: 500; font-size: 1.75vw;">Book 1</p>
-                            <p style="margin: 0; padding: 0; font-size: 1vw; font-size: 1.25vw;">4/5 <img src="./assets/star.png"></p>
-                            <p style="margin: 0; padding: 0; font-weight: 400; font-size: 1.5vw; text-decoration-line: line-through; font-style: italic;">200.000 VND</p>
-                            <p style="margin: 0; padding: 0; font-weight: 500; font-size: 2vw;">135.000 VND</p> -->
-                        </a>
-                        <a class="promotionnav-item" href="./index.php">
-                            <div class="promotionnav-item-1">
-                                <img src="./assets/etc.jpg" class="promotion-image"><br/>
-                                <p style="margin: 0; padding: 0; font-weight: 500; font-size: 1.75vw;">Book 1</p>
-                                <p style="margin: 0; padding: 0; font-size: 1vw; font-size: 1.25vw;">4/5 <img src="./assets/star.png"></p>
-                                <p style="margin: 0; padding: 0; font-weight: 400; font-size: 1.5vw; text-decoration-line: line-through; font-style: italic;">100.000 VND</p>
-                                <p style="margin: 0; padding: 0; font-weight: 500; font-size: 2vw;">80.000 VND</p>
-                            </div>
-                            <!-- <img src="./assets/etc.jpg" class="promotion-image"><br/>
-                            <p style="margin: 0; padding: 0; font-weight: 500; font-size: 1.75vw;">Book 1</p>
-                            <p style="margin: 0; padding: 0; font-size: 1vw; font-size: 1.25vw;">4/5 <img src="./assets/star.png"></p>
-                            <p style="margin: 0; padding: 0; font-weight: 400; font-size: 1.5vw; text-decoration-line: line-through; font-style: italic;">100.000 VND</p>
-                            <p style="margin: 0; padding: 0; font-weight: 500; font-size: 2vw;">80.000 VND</p> -->
-                        </a>
-                    </nav> 
-                </div>
-            </div>
-        
-            <section id="best-seller" style="margin-left: 10vw;">
-                <div style="margin-top: 2vw; margin-left: 2vw; width: 50vw; height: 0.3vw; background-color: #F08A5D;"></div>
-                <h2><a class="promotion-title" style="margin-left: 2vw;" href="./index.php">THỂ LOẠI SÁCH BÁN CHẠY ></a></h2>
-                <div class="details">
-                    <!-- <div class="details-b1">
-                        <span><a href="#">> Tình cảm</a></span>
-                        <span><a href="#">> Bí ẩn</a></span>
-                        <span><a href="#">> Giả tưởng và khoa học viễn tưởng</a></span>
-                        <span><a href="#">> Kinh dị, giật gân</a></span>
-                        <span><a href="#">> Self-help</a></span>
-                        <span><a href="#">> Tiểu sử, tự truyện và hồi ký</a></span>
-                    </div>
-                    <div class="details-b2">
-                        <span><a href="#">> Truyện ngắn</a></span>
-                        <span><a href="#">> Nấu ăn</a></span>
-                        <span><a href="#">> Bàn luận</a></span>
-                        <span><a href="#">> Lịch sử</a></span>
-                    </div> -->
+                        </div>
+                    </a>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p>No books found.</p>
+            <?php endif; ?>
+        </div>
+        <div class="scroll-arrow right" onclick="scrollRight()">></div>
+    </div>
+</div>
 
-                    <div class="details-b1">
-                        <a href="#"><h5>> Tình cảm</h5></a>
-                        <a href="#"><h5>> Bí ẩn</h5></a>
-                        <a href="#"><h5>> Giả tưởng và khoa học viễn tưởng</h5></a>
-                        <a href="#"><h5>> Kinh dị, giật gân</h5></a>
-                        <a href="#"><h5>> Self-help</h5></a>
-                        <a href="#"><h5>> Tiểu sử, tự truyện và hồi ký</h5></a>
-                    </div>
-                    <div class="details-b2">
-                        <a href="#"><h5>> Truyện ngắn</h5></a>
-                        <a href="#"><h5>> Nấu ăn</h5></a>
-                        <a href="#"><h5>> Bàn luận</h5></a>
-                        <a href="#"><h5>> Lịch sử</h5></a>
-                    </div>
+
+            <script>
+                function scrollLeft() {
+    const container = document.querySelector('.promotion-p');
+    container.scrollBy({
+        left: -200, // Adjust based on item width
+        behavior: 'smooth'
+    });
+}
+
+function scrollRight() {
+    const container = document.querySelector('.promotion-p');
+    container.scrollBy({
+        left: 200, // Adjust based on item width
+        behavior: 'smooth'
+    });
+}
+document.addEventListener('DOMContentLoaded', function() {
+    const container = document.querySelector('.promotion-p');
+
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    container.addEventListener('mousedown', (e) => {
+        isDown = true;
+        container.classList.add('active');
+        startX = e.pageX - container.offsetLeft;
+        scrollLeft = container.scrollLeft;
+    });
+
+    container.addEventListener('mouseleave', () => {
+        isDown = false;
+        container.classList.remove('active');
+    });
+
+    container.addEventListener('mouseup', () => {
+        isDown = false;
+        container.classList.remove('active');
+    });
+
+    container.addEventListener('mousemove', (e) => {
+        if(!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - container.offsetLeft;
+        const walk = (x - startX) * 3; //scroll-fast
+        container.scrollLeft = scrollLeft - walk;
+    });
+
+    container.addEventListener('touchstart', (e) => {
+        isDown = true;
+        startX = e.touches[0].pageX - container.offsetLeft;
+        scrollLeft = container.scrollLeft;
+    });
+
+    container.addEventListener('touchend', () => {
+        isDown = false;
+    });
+
+    container.addEventListener('touchmove', (e) => {
+        if(!isDown) return;
+        const x = e.touches[0].pageX - container.offsetLeft;
+        const walk = (x - startX) * 3; //scroll-fast
+        container.scrollLeft = scrollLeft - walk;
+    });
+});
+
+                function scrollLeft() {
+                    const container = document.querySelector('.promotion-p');
+                    container.scrollBy({
+                        left: -200, // Adjust based on item width
+                        behavior: 'smooth'
+                    });
+                }
+
+                function scrollRight() {
+                    const container = document.querySelector('.promotion-p');
+                    container.scrollBy({
+                        left: 200, // Adjust based on item width
+                        behavior: 'smooth'
+                    });
+                }
+
+            </script>
+
+        
+            <section id="best-seller" >
+            <div style="margin-top: 2vw; margin-left:8vw;width: 85%; height: 1px; background-color: #F08A5D;"></div>
+                <h2><a class="promotion-title" href="./index.php">THỂ LOẠI SÁCH BÁN CHẠY ></a></h2>
+                <div class="details">
+
                 </div>
             </section>
                 
-            <section id="post">
-                <div style="display: flex; margin-left: 12vw">
-                    <div class="post-mobile">
-                        <div style="margin-top: 2vw; width: 50vw; height: 0.3vw; background-color: #F08A5D;"></div>
-                        <h2><a class="promotion-title" style="margin-left: 0vw;" href="./index.php">BÀI VIẾT NỔI BẬT ></a></h2>
-                        <div style="display:flex">
-                            <nav class="postnav">
-                                <a class="post-item" href="./index.php" style="margin-left: 0vw;">
-                                    <img src="./assets/book2.jpg" class="promotion-image"><br/>
-                                    <p style="margin: 0; padding: 0; font-weight: 1000; font-size: 1.5vw;">THẢO LUẬN VỀ SÁCH SỐ 2</p>
-                                    <p style="margin: 0; padding: 0; font-weight: 500; font-size: 1.25vw;">Đăng bởi: user1</p>
-                                    <p style="margin: 0; padding: 0; font-weight: 300; font-size: 1vw;">
-                                        <br/>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-                                        Aenean commodo ligula eget dolor. Aenean massa. Cum sociis
-                                        natoque penatibus et magnis dis parturient montes, nascetur
-                                        ridiculus mus. Donec quam felis, ultricies nec, pellentesque
-                                        eu, pretium quis, sem. Nulla consequat massa quis enim...
-                                    </p>
-                                </a>
-                                <a class="post-item" href="./index.php" style="margin-left: 3vw;">
-                                    <img src="./assets/book2.jpg" class="promotion-image"><br/>
-                                    <p style="margin: 0; padding: 0; font-weight: 1000; font-size: 1.75vw;">THẢO LUẬN VỀ SÁCH SỐ 3</p>
-                                    <p style="margin: 0; padding: 0; font-weight: 500; font-size: 1.25vw;">Đăng bởi: user2</p>
-                                    <p style="margin: 0; padding: 0; font-weight: 300; font-size: 1vw;">
-                                        <br/>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-                                        Aenean commodo ligula eget dolor. Aenean massa. Cum sociis
-                                        natoque penatibus et magnis dis parturient montes, nascetur
-                                        ridiculus mus. Donec quam felis, ultricies nec, pellentesque
-                                        eu, pretium quis, sem. Nulla consequat massa quis enim...
-                                    </p>
-                                </a>
-                            </nav>
-                        </div>
-                    </div>
-                    <div>
-                        <div style="margin-top: 2vw; margin-left: 5vw; width: 20vw; height: 0.3vw; background-color: #F08A5D;"></div>
-                        <h2><a class="promotion-title" style="margin-left: 7vw" href="./index.php">BÀI VIẾT GẦN ĐÂY ></a></h2>
-                        <nav class="postnav">
-                            <span class="post1-item" href="./index.php" style="margin-left: 7vw;">
-                                <a href="" style="text-decoration: none;color:#ffffff;"> <i>> Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-                                    Aenean commodo ligula eget dolor.</i> - bởi user1</a>
-                                <br/><br/><a href="" style="text-decoration: none;color:#ffffff;"> <i>> Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-                                        Aenean commodo ligula eget dolor.</i> - bởi user2</a>
-                                <br/><br/><a href="" style="text-decoration: none;color:#ffffff;"> <i>> Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-                                            Aenean commodo ligula eget dolor.</i> - bởi user3</a>
-                            </span>
-                        </nav>
-                    </div>
-                </div>
-            </section>
         
-            <div style="display: flex; padding-bottom: 3vw; margin-left: 10vw;">     
-                <div id="nomination">
-                    <div style="margin-top: 2vw; margin-left: 2vw; width: 50vw; height: 0.3vw; background-color: #F08A5D;"></div>
-                    <h2><a class="promotion-title" style="margin-left: 2vw;" href="./index.php">ĐỀ CỬ DÀNH CHO BẠN ></a></h2>
-                    <nav class="promotionnav">
-                        <a class="promotionnav-item" href="./index.php" style="margin-left: 5vw;">
-                            <img class="promotion-image1" src="./assets/book2.jpg" align= "right" height="100" width= "100"<br/>
-                            <p style="text-align: right; margin: 0; padding: 0; font-weight: 600; font-size: 1.75vw;">Book 1</p>
-                        </a>
-                        <a class="promotionnav-item" href="./index.php">
-                            <img class="promotion-image1" src="./assets/book2.jpg" align= "right" height="100" width= "100"<br/>
-                            <p style="text-align: right; margin: 0; padding: 0; font-weight: 600; font-size: 1.75vw;">Book 2</p>
-                        </a>
-                        <a class="promotionnav-item" href="./index.php">
-                            <img class="promotion-image1" src="./assets/book2.jpg" align= "right" height="100" width= "100"<br/>
-                            <p style="text-align: right; margin: 0; padding: 0; font-weight: 600; font-size: 1.75vw;">Book 3</p>
-                        </a>
-                    </nav>
-                    <nav class="promotionnav" style="margin-top: 2vw;">
-                        <a class="promotionnav-item" href="./index.php" style="margin-left: 5vw;">
-                            <img class="promotion-image1" src="./assets/book2.jpg" align= "right" height="100" width= "100"<br/>
-                            <p style="text-align: right; margin: 0; padding: 0; font-weight: 600; font-size: 1.75vw;">Book 4</p>
-                        </a>
-                        <a class="promotionnav-item" href="./index.php">
-                            <img class="promotion-image1" src="./assets/book2.jpg" align= "right" height="100" width= "100"<br/>
-                            <p style="text-align: right; margin: 0; padding: 0; font-weight: 600; font-size: 1.75vw;">Book 5</p>
-                        </a>
-                        <a class="promotionnav-item" href="./index.php">
-                            <img class="promotion-image1" src="./assets/book2.jpg" align= "right" height="100" width= "100"<br/>
-                            <p style="text-align: right; margin: 0; padding: 0; font-weight: 600; font-size: 1.75vw;">Book 6</p>
-                        </a>
-                    </nav>
-                </div>
-                <div>
-                    <div style="margin-top: 2vw; margin-left: 5vw; width: 20vw; height: 0.3vw; background-color: #F08A5D;"></div>
-                    <h2><a class="promotion-title" style="margin-left: 4.5vw" href="./index.php">CÂU NÓI HAY CỦA NGÀY ></a></h2>
-                    <div class="promotionnav">
-                        <a class="promotionnav-item1" href="./index.php" style="margin-left: 8vw; border: solid 3px; border-color: #F08A5D; padding-bottom: 2vw; padding-left: 2vw; padding-right: 2vw;">
-                            <p style="font-size:1.1vw; text-align: justify;"><i>"Chỉ khi bạn có một khát khao, một ước mơ mãnh liệt cũng như cố gắng hết sức để đạt được ước mơ đó, thì vũ trụ sẽ đáp lại mong muốn sâu thẳm trong tâm hồn bạn."</i><br></p>
-                            <p class="promotionnav-item1-p" style="text-align: right; font-weight: 500; font-size: 1.25vw;"><h5> - Nhà giả kim - </h5></p>
-                        </a>
-                    </div>
-                </div>
+            <div>     
+
             </div>
         
             <div id="notification">
-                <div style="margin-left: 9vw; width: 50vw; height: 0.3vw; background-color: #F08A5D;"></div>
-                <h2><a class="promotion-title" style="margin-top: 2vw; margin-left: 9vw;" href="./index.php">THÔNG BÁO MỚI ></a></h2>
-                <div class="notification" style="background-color: #F08A5D; display: flex; padding: 3vw; margin-left: 9vw; border-radius: 1vw;">
-                    <nav style="display: flex;">
-                        <img src="./assets/book2.jpg" style="width: 50%; height: auto; padding: 0; margin: 0; border-radius: 4%;">
-                        <span class="noti">
-                            <a href="#">> Bảo trì web ngày .../...</a><br/>
-                            <a href="#">> Sự cố về việc đăng nhập</a><br/>
-                            <a href="#">> Thông báo về việc cập nhật sách mới</a><br/>
-                            <a href="#">> Thông báo về việc cập nhật sách mới</a><br/>
-                            <a href="#">> Thông báo về việc cập nhật sách mới</a><br/>
-                            <a href="#">> Bảo trì web ngày .../...</a><br/>
-                            <a href="#">> Giao hàng thành công</a><br/>
-                            <a href="#">> Thông báo về việc cập nhật sách mới</a><br/>
-                            <a href="#">> Cập nhật thanh toán</a><br/>
-                            <a href="#">> Đơn hàng đã được cập nhật</a><br/>
-                        </span>
-                    </nav>
-                </div>
-                
-            </div>
+
         </main>
 
         <footer>

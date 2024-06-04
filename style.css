@@ -73,87 +73,156 @@ body {
   color: #ffffff;
   text-decoration: underline;
 }
-#promotion {
-  background-color: #ffffff;
-  max-height: 200vw;
-  margin-left: 9vw;
+
+/* Scrollable container and arrows */
+.scroll-container {
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
-.promotionnav {
-  align-items: center;
-  display: flex;
+.scroll-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 2rem;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  padding: 10px;
 }
 
+.scroll-arrow.left {
+  left: 0;
+}
+
+.scroll-arrow.right {
+  right: 0;
+}
+
+/* Promotion items */
+.promotion-p {
+  display: inline-block;
+  white-space: nowrap;
+  overflow-x: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  margin-left: 100px;
+}
+
+.promotion-p::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}
+
+/* Responsive adjustments */
 .promotionnav-item {
-  background-color: #faf7f7;
-  display: block;
   color: #000;
   text-align: center;
   text-decoration: none;
-  border-radius: 4%;
-  width: 10vw;
+  width: 200px;
   height: auto;
-  padding: 1vw;
-  margin-left: 3vw;
+  display: inline-block;
+  margin-right: 50px;
 }
 
 .promotion-title {
   font-family: 'MavenPro';
   color: #000;
-  font-size: 1.75vw;
+  font-size: 20px;
   text-decoration: none;
   margin-top: 0;
   padding: 0px;
+  margin-left: 200px;
 }
 
 .promotion-image {
   width: 100%;
-  height: auto;
+  height: 300px;
   padding: 0px;
   margin: 0px;
-  border-radius: 4%;
+  box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.15);
+
+}
+
+@media (max-width: 768px) {
+  .promotionnav-item {
+    width: 150px;
+    margin-right: 20px;
+  }
+
+  .promotion-image {
+    height: 200px;
+  }
+
+  .scroll-arrow {
+    font-size: 1.5rem;
+    padding: 5px;
+  }
 }
 
 
-.details {
-  display: flex;
-  font-style: italic;
-}
 
-.details-b1 {
-  display: flex;
-  flex-direction: column;
-  padding-left: 4vw;
-}
-
-.details-b2 {
-  display: flex;
-  flex-direction: column;
-}
-
-.details {
-  display: flex;
-  font-style: italic;
-}
-
-.details-b1 {
-  display: flex;
-  flex-direction: column;
-  padding-left: 4vw;
-}
-
-.details-b2 {
-  display: flex;
-  flex-direction: column;
-}
-
-/* #best-seller span a{
-  font-size: 1.5vw;
-  padding-right: 6vw;
+.promotionnav-item {
+  color: #000;
+  text-align: center;
   text-decoration: none;
-  color: #0084ff;
-  transition: 0.3s;
-} */
+  width: 200px;
+  height: auto;
+  display: inline-block;
+  margin-right: 50px;
+}
+
+.promotion-title {
+  font-family: 'MavenPro';
+  color: #000;
+  font-size: 20px;
+  text-decoration: none;
+  margin-top: 0;
+  padding: 0px;
+  margin-left: 50px;
+}
+
+.promotion-image {
+  width: 100%;
+  height: 300px;
+  padding: 0px;
+  margin: 0px;
+  box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.15);
+}
+
+
+.details {
+  display: flex;
+  font-style: italic;
+}
+
+.details-b1 {
+  display: flex;
+  flex-direction: column;
+  padding-left: 4vw;
+}
+
+.details-b2 {
+  display: flex;
+  flex-direction: column;
+}
+
+.details {
+  display: flex;
+  font-style: italic;
+}
+
+.details-b1 {
+  display: flex;
+  flex-direction: column;
+  padding-left: 4vw;
+}
+
+.details-b2 {
+  display: flex;
+  flex-direction: column;
+}
 
 .details a{
   font-size: 1.5vw;
@@ -255,107 +324,5 @@ body {
 @media (max-width: 1000px) {
   .topbtn {
     margin: 0 15vw;
-  }
-}
-
-@media (max-width: 900px){
-  /* p1 */
-  .promotionnav {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-left: -5em;
-  }
-  
-  .promotionnav-item {
-    margin-top: 1em;
-    padding: 1.5em 2em;
-    border: 1px solid #ffa48e;
-    border-radius: 10px;
-  }
-
-  .promotionnav-item .promotion-image {
-    width: 80px;
-    height: 110px;
-    margin-left: -0.3em;
-  }
-
-  .promotion-p2 {
-    margin-left: -1em;
-  }
-
-  .promotionnav-item-1 {
-    margin-left: -1em;
-  }
-
-  .promotion-title {
-    font-size: 3vw;
-  }
-
-  /*p2*/
-  .promotionnav1 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-left: -12em;
-  }
-  
-  /* p3 */
-  .details {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-left: -10em;
-  }
-
-  .details h5{
-    margin-top: -0.5em;
-  }
-
-  .details-b2 {
-    margin-left: -2.6em;
-  }
-  /* p4 */
-
-
-  /* p5 */
-  .promotion-image1 {
-    width: 80px;
-    height: 110px;
-    margin-right: -1.35em;
-    border-radius: 10px;
-  }
-
-  .promotionnav-item1 {
-    width: 30vw; 
-    height: 65vw;
-  }
-
-  .promotionnav-item1 i{
-    font-size: 4vw
-  }
-
-  .promotionnav-item1-p h5{
-    font-size: 2vw;
-  }
-
-  .notification {
-    width: 76vw;
-    height: 100vw;
-    margin-left: 1em;
-  }
-
-  .notification nav{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-  }
-
-  .notification nav .noti {
-    margin-top: 1.5em;
-  }
-
-  .noti a{
-    font-size: 4vw;
   }
 }
