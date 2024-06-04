@@ -24,6 +24,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" />
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
         <script src="https://www.paypal.com/sdk/js?client-id=AYeQLbENNd3RtNT3-NbYPKzLgzQB3QfESrSDOge_SH6VNEwpUJ4oKmN0grzc4OKKWIXIQFWNjRNwh9HZ&currency=USD"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     </head>
 
     <body>
@@ -138,20 +139,44 @@
                 <p class="header">Sách của bạn</p>
                 <div class="book-slider">
                     <div class="prev-button slider-button"><i class="fas fa-chevron-left"></i></div>
-                    <div class="book-list">
-                        <img class="book-thumb" src="../assets/book3.jpg">
-                        <img class="book-thumb" src="../assets/book3.jpg">
-                        <img class="book-thumb" src="../assets/book3.jpg">
-                        <img class="book-thumb" src="../assets/book3.jpg">
-                        <img class="book-thumb" src="../assets/book3.jpg">
-                        <img class="book-thumb" src="../assets/book3.jpg">
-                        <img class="book-thumb" src="../assets/book3.jpg">
-                        <img class="book-thumb" src="../assets/book3.jpg">
-                        <img class="book-thumb" src="../assets/book3.jpg">
+                    <div class="book-list" id="my-books">
+                        <!-- Book list will be loaded here -->
                     </div>
                     <div class="next-button slider-button"><i class="fas fa-chevron-right"></i></div>
                 </div>
                 <script>
+                    $(document).ready(function() {
+                        loadMyBooks();
+                    });
+
+                    function loadMyBooks() {
+                        $.ajax({
+                            url: "./php/load_mybooks.php",
+                            type: "GET",
+                            dataType: 'json',
+                            success: function(response) {
+                                if (response.status === "success") {
+                                    let my_books = '';
+                                    if (response.mybooks.length > 0) {
+                                        console.log(response.mybooks);
+                                        $.each(response.mybooks, function(index, book) {
+                                            my_books += '<img class="book-thumb" src="../admin/uploads/' + book.cover_image + '" alt="' + book.book_id + '">';
+                                        });
+                                        console.log(my_books);
+                                    } else {
+                                        my_books = '<p class="properties">Bạn chưa có sách nào</p>';
+                                    }
+                                    $('#my-books').append(my_books);
+                                } else {
+                                    alert(response.message);
+                                }
+                            },
+                            error: function(xhr, status, error) {
+                                alert("Có lỗi xảy ra: " + error);
+                            }
+                        });
+                    }
+
                     var bookSlider = document.querySelector('.book-slider');
                     var bookList = document.querySelector('.book-list');
                     var prevButton = document.querySelector('.prev-button');
