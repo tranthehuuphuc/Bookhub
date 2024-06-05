@@ -235,6 +235,7 @@
                     </a> -->
                     <a href="#" style="text-decoration: none;">
                         <div id="add_to_cart"><h3 style="background-color: #F08A5D; padding: 14px; color: #ffffff; border-radius: 30px;">Thêm vào giỏ hàng</h3></div>
+                        <p class="book-price"><?php echo $book['price'] ?>đ</p>
                     </a>
                 </div>
             </div>

@@ -159,7 +159,7 @@ function renderfooterLinks($isLoggedIn) {
                                 <img src="<?php echo '../admin/uploads/' . htmlspecialchars($book['cover_image']); ?>" alt="<?php echo htmlspecialchars($book['title']); ?>">
                                 <div class="des">
                                     <span><?php echo htmlspecialchars($book['publisher']); ?></span>
-                                    <h5><?php echo htmlspecialchars($book['price']); ?>.000đ</h5>
+                                    <h5><?php echo htmlspecialchars($book['price']); ?>.đ</h5>
                                     <div class="star">
                                         <?php 
                                         $rating = floor($book['rating']);

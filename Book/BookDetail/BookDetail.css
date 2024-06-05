@@ -59,6 +59,24 @@ main {
     cursor: pointer;
 }
 
+.book-price {
+    font-size: 30px;
+    font-weight: 600;
+    color: #000;
+    margin-top: 10px; /* Add some top margin for spacing */
+    padding: 8px; /* Add padding to match the button */
+    border-radius: 10px; /* Rounded corners */
+    display: inline-block; /* Ensure it respects its width and height */
+
+    transition: background-color 0.3s, transform 0.3s; /* Add transition for hover effect */
+}
+
+.book-price:hover {
+    scale: 1.05; /* Scale up slightly on hover */
+    transform: translateY(-2px); /* Move up slightly on hover */
+}
+
+
 /* Responsive styles */
 @media (max-width: 1000px) {
     main {

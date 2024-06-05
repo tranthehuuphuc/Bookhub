@@ -30,6 +30,32 @@
             echo '<li><a class="myLink" href="../signin/signin.php">Đăng nhập</a></li>';
         }
     }
+
+
+    $sql = "SELECT c.category_name AS category_name, b.cover_image, b.rating, b.book_id,
+    COUNT(r.book_id) AS rating_count
+    FROM categories c
+    LEFT JOIN book_categories bc ON c.category_id = bc.category_id
+    LEFT JOIN books b ON bc.book_id = b.book_id
+    LEFT JOIN ratings r ON b.book_id = r.book_id
+    GROUP BY c.category_id, b.book_id
+    ORDER BY c.category_name";
+    $result = $conn->query($sql);
+
+    $categories = [];
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            // Add book data to the categories array
+            $categories[$row['category_name']][] = [
+                'cover_image' => $row['cover_image'],
+                'rating' => $row['rating'],
+                'rating_count' => $row['rating_count'],
+                'book_id' => $row['book_id']
+            ];
+        }
+    }
+
+    $conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -43,10 +69,10 @@
         <link rel="stylesheet" type="text/css" href="../style.css">
         <link rel="stylesheet" type="text/css" href="../navbar.css">
         <link rel="stylesheet" type="text/css" href="../footer.css">
-        <link rel="apple-touch-icon" sizes="180x180" href="./favicon_io/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="./favicon_io/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="./favicon_io/favicon-16x16.png">
-        <link rel="manifest" href="./favicon_io/site.webmanifest">
+        <link rel="apple-touch-icon" sizes="180x180" href="../favicon_io/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="../favicon_io/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="../favicon_io/favicon-16x16.png">
+        <link rel="manifest" href="../favicon_io/site.webmanifest">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" />
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -91,9 +117,9 @@
             <p id="myprofile">Hồ sơ của tôi</p>
             <div style="background-color: #d9d9d9; width: 25%; height: 0.05vw; margin: 0; padding: 0;"></div>
             <ul>
-                <li><img class="option-icons" src="../assets/orders.png"><a href="./orders.php">Đơn hàng</a></li>
-                <li><img class="option-icons" src="../assets/saves.png"><a href="./cart.php">Giỏ hàng</a></li>
-                <li><img class="option-icons" src="../assets/setting.png"><a href="./profile.php">Tài khoản</a></li>
+                <li><img class="option-icons" src="../assets/orders.png"><a href="../account/orders.php">Đơn hàng</a></li>
+                <li><img class="option-icons" src="../assets/saves.png"><a href="../account/cart.php">Giỏ hàng</a></li>
+                <li><img class="option-icons" src="../assets/setting.png"><a href="../account/profile.php">Tài khoản</a></li>
                 <li><img class="option-icons" src="../assets/join.png"><a href="../sigin/logout.php">Đăng xuất</a></li>
             </ul>
         </div>
@@ -144,297 +170,67 @@
             </div>
         </div>
 
-        <div class="books">
-            <div class="dropdown">
-                <div class="select">
-                    <span class="selected">Programming Language</span>
-                    <div class="caret"></div>
-                </div>
-                <ul class="menu">
-                    <li>C/C++</li>
-                    <li>Python</li>
-                    <li>Java</li>
-                    <li>Golang</li>
-                    <li>CSharp</li>
-                </ul>
-            </div>
-    
-            <div class="dropdown">
-                <div class="select">
-                    <span class="selected">Price</span>
-                    <div class="caret"></div>
-                </div>
-                <ul class="menu">
-                    <li>50.000d - 100.000d</li>
-                    <li>100.000d - 200.000d</li>
-                    <li>Trên 200.000d</li>
-                </ul>
-            </div>
+        <script>
+            // Function to handle search action
+            function performSearch() {
+                // Get the value of the input field
+                var searchTerm = document.getElementById("search-input").value;
+                
+                // Redirect to the search page with the search term in the URL
+                window.location.href = "../search/search.php?search=" + encodeURIComponent(searchTerm);
+            }
 
-            <div class="dropdown">
-                <div class="select">
-                    <span class="selected">System Design</span>
-                    <div class="caret"></div>
-                </div>
-                <ul class="menu">
-                    <li>Design Tutorial</li>
-                    <li>Design Patterns</li>
-                    <li>Design Roadmap</li>
-                </ul>
-            </div>
-        </div>
+            // Add event listeners
+            document.getElementById("search").addEventListener("click", performSearch);
+            document.getElementById("search-input").addEventListener("keypress", function(event) {
+                // Check if the key pressed is Enter (key code 13)
+                if (event.keyCode === 13 || event.which === 13) {
+                    // Perform the search action
+                    performSearch();
+                }
+            });
+        </script>
 
-        <section id="product1" class="section-p1">
-        <h4 class="section-title"><a href="#">>Technology Books</a></h4>
-        <div class="pro-container">
-            <div class="pro" onclick="window.location.href='../thao luan va chi tiet.php';">
-                <img src="../assets/etc.jpg" alt="">
-                <div class="des">
-                    <span>Technology</span>
-                    <h5>C/C++ Programming</h5>
-                    <div class="star">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
+
+
+        <?php foreach ($categories as $category_name => $books): ?>
+            <?php if (!empty($books)): ?> <!-- Check if the category has any books -->
+                <section class="section-p1">
+                    <div class="category-title"><?php echo htmlspecialchars($category_name); ?> ></div>
+                    <div class="pro-container">
+                        <div class="category">
+                            <?php foreach ($books as $book): ?>
+                                <?php if (!empty($book['cover_image']) && isset($book['rating'])): ?> <!-- Check if the book has cover image and rating -->
+                                    <div class="book-item" onclick="window.location.href='../Book/BookDetail/BookDetail.php?book_id=<?php echo $book['book_id']; ?>'">
+                                        <img src="<?php echo '../admin/uploads/' . htmlspecialchars($book['cover_image']); ?>" alt="Book Cover">
+                                        <div class="store-rating">
+                                            <?php 
+                                            // Display star icons based on the book's rating
+                                            for ($i = 0; $i < 5; $i++) {
+                                                if ($i < $book['rating']) {
+                                                    echo '<i class="fas fa-star" style="color: gold;"></i>';
+                                                } else {
+                                                    echo '<i class="far fa-star" style="color: gold;"></i>';
+                                                }
+                                            }
+                                            // Display the number of ratings if available
+                                            if (isset($book['rating_count'])) {
+                                                echo '<span> (' . $book['rating_count'] . ' đánh giá)</span>';
+                                            }
+                                            ?>
+                                        </div>
+                                    </div>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+                        </div>
                     </div>
-                    <h4>100.000 VND</h4>
-                </div>
-                <a href="#"><i class="fa fa-shopping-cart cart"></i></a>
-            </div>
+                </section>
+            <?php endif; ?>
+        <?php endforeach; ?>
 
-            <div class="pro" onclick="window.location.href='../thao luan va chi tiet.php';">
-                <img src="../assets/etc.jpg" alt="">
-                <div class="des">
-                    <span>Technology</span>
-                    <h5>C/C++ Programming</h5>
-                    <div class="star">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h4>100.000 VND</h4>
-                </div>
-                <a href="#"><i class="fa fa-shopping-cart cart"></i></a>
-            </div>
 
-            <div class="pro" onclick="window.location.href='../thao luan va chi tiet.php';">
-                <img src="../assets/etc.jpg" alt="">
-                <div class="des">
-                    <span>Technology</span>
-                    <h5>C/C++ Programming</h5>
-                    <div class="star">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h4>100.000 VND</h4>
-                </div>
-                <a href="#"><i class="fa fa-shopping-cart cart"></i></a>
-            </div>
 
-            <div class="pro" onclick="window.location.href='../thao luan va chi tiet.php';">
-                <img src="../assets/etc.jpg" alt="">
-                <div class="des">
-                    <span>Technology</span>
-                    <h5>C/C++ Programming</h5>
-                    <div class="star">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h4>100.000 VND</h4>
-                </div>
-                <a href="#"><i class="fa fa-shopping-cart cart"></i></a>
-            </div>
 
-            <div class="pro" onclick="window.location.href='../thao luan va chi tiet.php';">
-                <img src="../assets/etc.jpg" alt="">
-                <div class="des">
-                    <span>Technology</span>
-                    <h5>C/C++ Programming</h5>
-                    <div class="star">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h4>100.000 VND</h4>
-                </div>
-                <a href="#"><i class="fa fa-shopping-cart cart"></i></a>
-            </div>
-
-            <div class="pro" onclick="window.location.href='../thao luan va chi tiet.php';">
-                <img src="../assets/etc.jpg" alt="">
-                <div class="des">
-                    <span>Technology</span>
-                    <h5>C/C++ Programming</h5>
-                    <div class="star">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h4>100.000 VND</h4>
-                </div>
-                <a href="#"><i class="fa fa-shopping-cart cart"></i></a>
-            </div>
-
-            <div class="pro" onclick="window.location.href='../thao luan va chi tiet.php';">
-                <img src="../assets/etc.jpg" alt="">
-                <div class="des">
-                    <span>Technology</span>
-                    <h5>C/C++ Programming</h5>
-                    <div class="star">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h4>100.000 VND</h4>
-                </div>
-                <a href="#"><i class="fa fa-shopping-cart cart"></i></a>
-            </div>
-
-        </div>
-
-    </section>
-
-    <section id="product1" class="section-p1">
-        <h4 class="section-title"><a href="#">>Tình Cảm</a></h4>
-        <div class="pro-container">
-            <div class="pro" onclick="window.location.href='../thao luan va chi tiet.php';">
-                <img src="../assets/etc.jpg" alt="">
-                <div class="des">
-                    <span>Technology</span>
-                    <h5>C/C++ Programming</h5>
-                    <div class="star">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h4>100.000 VND</h4>
-                </div>
-                <a href="#"><i class="fa fa-shopping-cart cart"></i></a>
-            </div>
-
-            <div class="pro" onclick="window.location.href='../thao luan va chi tiet.php';">
-                <img src="../assets/etc.jpg" alt="">
-                <div class="des">
-                    <span>Technology</span>
-                    <h5>C/C++ Programming</h5>
-                    <div class="star">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h4>100.000 VND</h4>
-                </div>
-                <a href="#"><i class="fa fa-shopping-cart cart"></i></a>
-            </div>
-
-            <div class="pro" onclick="window.location.href='../thao luan va chi tiet.php';">
-                <img src="../assets/etc.jpg" alt="">
-                <div class="des">
-                    <span>Technology</span>
-                    <h5>C/C++ Programming</h5>
-                    <div class="star">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h4>100.000 VND</h4>
-                </div>
-                <a href="#"><i class="fa fa-shopping-cart cart"></i></a>
-            </div>
-
-            <div class="pro" onclick="window.location.href='../thao luan va chi tiet.php';">
-                <img src="../assets/etc.jpg" alt="">
-                <div class="des">
-                    <span>Technology</span>
-                    <h5>C/C++ Programming</h5>
-                    <div class="star">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h4>100.000 VND</h4>
-                </div>
-                <a href="#"><i class="fa fa-shopping-cart cart"></i></a>
-            </div>
-
-            <div class="pro" onclick="window.location.href='../thao luan va chi tiet.php';">
-                <img src="../assets/etc.jpg" alt="">
-                <div class="des">
-                    <span>Technology</span>
-                    <h5>C/C++ Programming</h5>
-                    <div class="star">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h4>100.000 VND</h4>
-                </div>
-                <a href="#"><i class="fa fa-shopping-cart cart"></i></a>
-            </div>
-
-            <div class="pro" onclick="window.location.href='../thao luan va chi tiet.php';">
-                <img src="../assets/etc.jpg" alt="">
-                <div class="des">
-                    <span>Technology</span>
-                    <h5>C/C++ Programming</h5>
-                    <div class="star">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h4>100.000 VND</h4>
-                </div>
-                <a href="#"><i class="fa fa-shopping-cart cart"></i></a>
-            </div>
-
-            <div class="pro" onclick="window.location.href='../thao luan va chi tiet.php';">
-                <img src="../assets/etc.jpg" alt="">
-                <div class="des">
-                    <span>Technology</span>
-                    <h5>C/C++ Programming</h5>
-                    <div class="star">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h4>100.000 VND</h4>
-                </div>
-                <a href="#"><i class="fa fa-shopping-cart cart"></i></a>
-            </div>
-
-        </div>
-
-    </section>
     <footer>
         <div class="footer-section footer-content">
             <p class="section-title">VỀ BOOKHUB</p>
@@ -449,11 +245,10 @@
             <p class="section-title">ĐƯỜNG DẪN</p>
             <div class="divider"></div>
             <ul class="links-list">
-                <li><a href="" class="myLink">Bookstore</a></li>
-                <li><a href="" class="myLink">Thể loại</a></li>
-                <li><a href="" class="myLink">Về Chúng Tôi</a></li>
+                <li><a href="./bookstore.php" class="myLink">Bookstore</a></li>
+                <li><a href="../aboutUs/aboutUs.php" class="myLink">Về Chúng Tôi</a></li>
                 <?php renderfooterLinks($isLoggedIn); ?>
-                <li><a href="" class="myLink">Tìm kiếm</a></li>
+                <li><a href="../search/search.php" class="myLink">Tìm kiếm</a></li>
             </ul>
         </div>
         <div class="footer-section contact">

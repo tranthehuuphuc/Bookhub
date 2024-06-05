@@ -891,8 +891,11 @@
                 <ul class="links-list">
                     <li><a href="../Book_Store/bookstore.php" class="myLink">Bookstore</a></li>
                     <li><a href="../aboutUs/aboutUs.php" class="myLink">Về chúng tôi</a></li>
-                    <li><a href="../signin/signin.php" class="myLink">Đăng nhập</a></li>
                     <li><a href="../search/search.php" class="myLink">Tìm kiếm</a></li>
+                    <li><a href="../account/orders.php" class="myLink">Đơn hàng</a></li>
+                    <li><a href="../account/cart.php" class="myLink">Giỏ hàng</a></li>
+                    <li><a href="../account/profile.php" class="myLink">Tài khoản</a></li>
+                    <li><a href="../signin/signin.php" class="myLink">Đăng xuất</a></li>
                 </ul>
             </div>
             <div class="footer-section contact">
