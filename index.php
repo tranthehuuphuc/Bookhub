@@ -3,7 +3,8 @@ session_start();
 
 include './admin/dbh.php';
 // Fetch all books from the database
-$book_query = "SELECT * FROM books";
+$book_query = "SELECT * FROM books
+                ORDER BY book_id DESC";
 $book_result = $conn->query($book_query);
 
 // Check if there are any books
@@ -12,6 +13,47 @@ if ($book_result->num_rows > 0) {
     $books = $book_result->fetch_all(MYSQLI_ASSOC);
 }
 
+// Updated SQL query to fetch the top 4 most ordered books
+$book_query = "
+    SELECT books.*, SUM(orderdetails.quantity) AS total_quantity
+    FROM books
+    JOIN orderdetails ON books.book_id = orderdetails.book_id
+    GROUP BY books.book_id
+    ORDER BY total_quantity DESC
+    LIMIT 4
+";
+
+$book_result = $conn->query($book_query);
+
+// Check if there are any books
+if ($book_result->num_rows > 0) {
+    // Fetch all rows and store them in an array
+    $books_mostsold = $book_result->fetch_all(MYSQLI_ASSOC);
+}
+
+// Fetch top 5 categories by the number of books
+$category_query = "
+    SELECT c.category_id, c.category_name, COUNT(bc.book_id) as book_count
+    FROM book_categories bc
+    JOIN categories c ON bc.category_id = c.category_id
+    GROUP BY bc.category_id
+    ORDER BY book_count DESC
+    LIMIT 5
+";
+$category_result = $conn->query($category_query);
+
+$ratings_query = "
+SELECT r.*, u.username
+FROM ratings r
+JOIN users u ON r.user_id = u.user_id
+LIMIT 3";
+$ratings_result = $conn->query($ratings_query);
+
+// Check if there are any categories
+if ($category_result->num_rows > 0) {
+    // Fetch all rows and store them in an array
+    $categories = $category_result->fetch_all(MYSQLI_ASSOC);
+}
 
 // Check if the user is logged in
 $isLoggedIn = isset($_SESSION['user_id']);
@@ -151,107 +193,106 @@ function renderfooterLinks($isLoggedIn) {
 
             <div style="margin-top: 2vw; margin-left:8vw;width: 85%; height: 1px; background-color: #F08A5D;"></div>
         
-            <div id="promotion">
-    <h2><a class="promotion-title" href="./index.php">SẢN PHẨM NỔI BẬT ></a></h2>
-    <div class="scroll-container">
-        <div class="scroll-arrow left" onclick="scrollLeft()"><</div>
-        <div class="promotion-p">
-            <?php if (!empty($books)): ?>
-                <?php foreach ($books as $index => $book): ?>
-                    <a class="promotionnav-item" href="./Book/BookDetail/BookDetail.php?book_id=<?php echo $book['book_id'] ?>">
-                        <img src="<?php echo './admin/uploads/' . $book['cover_image']; ?>" class="promotion-image"><br/>
-                        <div class="des">
-                            <span><?php echo htmlspecialchars($book['publisher']); ?></span>
-                            <h5><?php echo htmlspecialchars($book['price']); ?>.000đ</h5>
-                            <div class="star">
-                                <?php 
-                                $rating = floor($book['rating']);
-                                for ($i = 0; $i < 5; $i++): 
-                                    if ($i < $rating): ?>
-                                        <i class="fas fa-star"></i>
-                                    <?php else: ?>
-                                        <i class="far fa-star"></i>
-                                    <?php endif; 
-                                endfor; 
-                                ?>
-                            </div>
-                        </div>
-                    </a>
-                <?php endforeach; ?>
-            <?php else: ?>
-                <p>No books found.</p>
-            <?php endif; ?>
-        </div>
-        <div class="scroll-arrow right" onclick="scrollRight()">></div>
-    </div>
-</div>
+                <h2><a class="promotion-title" href="./index.php">SẢN PHẨM MỚI ></a></h2>
+                <div class="scroll-container">
+                    <div class="scroll-arrow left" onclick="scrollLeft()"><</div>
+                    <div class="promotion-p">
+                        <?php if (!empty($books)): ?>
+                            <?php foreach ($books as $index => $book): ?>
+                                <a class="promotionnav-item" href="./Book/BookDetail/BookDetail.php?book_id=<?php echo $book['book_id'] ?>">
+                                    <img src="<?php echo './admin/uploads/' . $book['cover_image']; ?>" class="promotion-image"><br/>
+                                    <div class="des">
+                                        <span><?php echo htmlspecialchars($book['publisher']); ?></span>
+                                        <h5><?php echo htmlspecialchars($book['price']); ?>đ</h5>
+                                        <div class="star">
+                                            <?php 
+                                            $rating = floor($book['rating']);
+                                            for ($i = 0; $i < 5; $i++): 
+                                                if ($i < $rating): ?>
+                                                    <i class="fas fa-star" style="color:gold"></i>
+                                                <?php else: ?>
+                                                    <i class="far fa-star" style="color:gold"></i>
+                                                <?php endif; 
+                                            endfor; 
+                                            ?>
+                                        </div>
+                                    </div>
+                                </a>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <p>No books found.</p>
+                        <?php endif; ?>
+                    </div>
+                    <div class="scroll-arrow right" onclick="scrollRight()">></div>
+                </div>
+            </div>
 
 
             <script>
                 function scrollLeft() {
-    const container = document.querySelector('.promotion-p');
-    container.scrollBy({
-        left: -200, // Adjust based on item width
-        behavior: 'smooth'
-    });
-}
+                    const container = document.querySelector('.promotion-p');
+                    container.scrollBy({
+                        left: -200, // Adjust based on item width
+                        behavior: 'smooth'
+                    });
+                }
 
-function scrollRight() {
-    const container = document.querySelector('.promotion-p');
-    container.scrollBy({
-        left: 200, // Adjust based on item width
-        behavior: 'smooth'
-    });
-}
-document.addEventListener('DOMContentLoaded', function() {
-    const container = document.querySelector('.promotion-p');
+                function scrollRight() {
+                    const container = document.querySelector('.promotion-p');
+                    container.scrollBy({
+                        left: 200, // Adjust based on item width
+                        behavior: 'smooth'
+                    });
+                }
+                document.addEventListener('DOMContentLoaded', function() {
+                    const container = document.querySelector('.promotion-p');
 
-    let isDown = false;
-    let startX;
-    let scrollLeft;
+                    let isDown = false;
+                    let startX;
+                    let scrollLeft;
 
-    container.addEventListener('mousedown', (e) => {
-        isDown = true;
-        container.classList.add('active');
-        startX = e.pageX - container.offsetLeft;
-        scrollLeft = container.scrollLeft;
-    });
+                    container.addEventListener('mousedown', (e) => {
+                        isDown = true;
+                        container.classList.add('active');
+                        startX = e.pageX - container.offsetLeft;
+                        scrollLeft = container.scrollLeft;
+                    });
 
-    container.addEventListener('mouseleave', () => {
-        isDown = false;
-        container.classList.remove('active');
-    });
+                    container.addEventListener('mouseleave', () => {
+                        isDown = false;
+                        container.classList.remove('active');
+                    });
 
-    container.addEventListener('mouseup', () => {
-        isDown = false;
-        container.classList.remove('active');
-    });
+                    container.addEventListener('mouseup', () => {
+                        isDown = false;
+                        container.classList.remove('active');
+                    });
 
-    container.addEventListener('mousemove', (e) => {
-        if(!isDown) return;
-        e.preventDefault();
-        const x = e.pageX - container.offsetLeft;
-        const walk = (x - startX) * 3; //scroll-fast
-        container.scrollLeft = scrollLeft - walk;
-    });
+                    container.addEventListener('mousemove', (e) => {
+                        if(!isDown) return;
+                        e.preventDefault();
+                        const x = e.pageX - container.offsetLeft;
+                        const walk = (x - startX) * 3; //scroll-fast
+                        container.scrollLeft = scrollLeft - walk;
+                    });
 
-    container.addEventListener('touchstart', (e) => {
-        isDown = true;
-        startX = e.touches[0].pageX - container.offsetLeft;
-        scrollLeft = container.scrollLeft;
-    });
+                    container.addEventListener('touchstart', (e) => {
+                        isDown = true;
+                        startX = e.touches[0].pageX - container.offsetLeft;
+                        scrollLeft = container.scrollLeft;
+                    });
 
-    container.addEventListener('touchend', () => {
-        isDown = false;
-    });
+                    container.addEventListener('touchend', () => {
+                        isDown = false;
+                    });
 
-    container.addEventListener('touchmove', (e) => {
-        if(!isDown) return;
-        const x = e.touches[0].pageX - container.offsetLeft;
-        const walk = (x - startX) * 3; //scroll-fast
-        container.scrollLeft = scrollLeft - walk;
-    });
-});
+                    container.addEventListener('touchmove', (e) => {
+                        if(!isDown) return;
+                        const x = e.touches[0].pageX - container.offsetLeft;
+                        const walk = (x - startX) * 3; //scroll-fast
+                        container.scrollLeft = scrollLeft - walk;
+                    });
+                });
 
                 function scrollLeft() {
                     const container = document.querySelector('.promotion-p');
@@ -271,21 +312,211 @@ document.addEventListener('DOMContentLoaded', function() {
 
             </script>
 
-        
-            <section id="best-seller" >
             <div style="margin-top: 2vw; margin-left:8vw;width: 85%; height: 1px; background-color: #F08A5D;"></div>
-                <h2><a class="promotion-title" href="./index.php">THỂ LOẠI SÁCH BÁN CHẠY ></a></h2>
-                <div class="details">
-
-                </div>
-            </section>
-                
         
+            <div id="promotion">
+                <h2><a class="promotion-title" href="./index.php">SẢN PHẨM BÁN CHẠY ></a></h2>
+                <div class="scroll-container">
+                    <div class="scroll-arrow left" onclick="scrollLeft()"><</div>
+                    <div class="promotion-p">
+                        <?php if (!empty($books)): ?>
+                            <?php foreach ($books_mostsold as $index => $book_mostsold): ?>
+                                <a class="promotionnav-item" href="./Book/BookDetail/BookDetail.php?book_id=<?php echo $book_mostsold['book_id'] ?>">
+                                    <img src="<?php echo './admin/uploads/' . $book_mostsold['cover_image']; ?>" class="promotion-image"><br/>
+                                    <div class="des">
+                                        <span><?php echo htmlspecialchars($book_mostsold['publisher']); ?></span>
+                                        <h5><?php echo htmlspecialchars($book_mostsold['price']); ?>đ</h5>
+                                        <div class="star">
+                                            <?php 
+                                            $rating = floor($book_mostsold['rating']);
+                                            for ($i = 0; $i < 5; $i++): 
+                                                if ($i < $rating): ?>
+                                                    <i class="fas fa-star" style="color:gold"></i>
+                                                <?php else: ?>
+                                                    <i class="far fa-star" style="color:gold"></i>
+                                                <?php endif; 
+                                            endfor; 
+                                            ?>
+                                        </div>
+                                    </div>
+                                </a>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <p>No books found.</p>
+                        <?php endif; ?>
+                    </div>
+                    <div class="scroll-arrow right" onclick="scrollRight()">></div>
+                </div>
+            </div>
+                
+            <div style="margin-top: 2vw; margin-left:8vw;width: 85%; height: 1px; background-color: #F08A5D;"></div>
             <div>     
-
+                <h2><a class="promotion-title" href="./index.php">THỂ LOẠI NỔI BẬT ></a></h2>
+                <div class="category-container">
+                <?php if (!empty($categories)): ?>
+                    <?php foreach ($categories as $category): ?>
+                        <div class="category-item">
+                            <a class="category-link" href="./Book_Store/bookstore.php">
+                                <?php echo htmlspecialchars($category['category_name']); ?>
+                            </a>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <p>No categories found.</p>
+                <?php endif; ?>
+                </div>
             </div>
         
-            <div id="notification">
+            <div style="margin-top: 2vw; margin-left:8vw;width: 85%; height: 1px; background-color: #F08A5D;"></div>
+            <div class="ratings">
+                <h2><a class="promotion-title" href="./index.php">ĐÁNH GIÁ MỚI NHẤT ></a></h2>
+                <div class="rating-book">
+                    <?php while ($rating = $ratings_result->fetch_assoc()): ?>
+                        <?php 
+                        // Assuming you have a column named 'avatar' in your ratings table
+                        // and it stores the path to the user's avatar image
+                        $avatar_path = !empty($rating['avatar']) ? htmlspecialchars($rating['avatar']) : "./discuss/d_assets/user.png"; 
+                        
+                        // Fetch the corresponding book title from the database using SQL query
+                        $book_id = $rating['book_id'];
+                        $sql = "SELECT title FROM books WHERE book_id = $book_id";
+                        $result = $conn->query($sql);
+                        $row = $result->fetch_assoc();
+                        $book_title = $row['title'];
+                        ?>
+                            <div class="rating">
+                                <div class="user">
+                                    <img src="<?php echo $avatar_path; ?>" alt="User Avatar" class="avatar" width="50px">
+                                    <h4 class="user-name">@<?php echo htmlspecialchars($rating['username']); ?></h4>
+                                    <h4 class="rating-time"><?php echo htmlspecialchars($rating['rating_date']); ?></h4>
+                                </div>
+                                <div class="star">
+                                    <?php for ($i = 0; $i < 5; $i++): ?>
+                                        <?php if ($i < (int)$rating['rating']): ?>
+                                            <i class="fas fa-star" style="color: gold;"></i>
+                                        <?php else: ?>
+                                            <i class="far fa-star" style="color: gold;"></i>
+                                        <?php endif; ?>
+                                    <?php endfor; ?>
+                                </div>
+                                <div class="rating-comment">
+                                    <p style="font-weight: 100;"><?php echo htmlspecialchars($rating['review']); ?></p>
+                                </div>
+                                <a class="book-title" href="./Book/BookDetail/BookDetail.php?book_id=<?php echo $rating['book_id'] ?>" >
+                                    <p style="font-weight: bold;">Sách: <?php echo htmlspecialchars($book_title); ?></p>
+                                </a>
+                             </div>
+                             <div style="margin-top: 2vw; margin-left:8vw;width: 85%; height: 1px; background-color: #F08A5D;"></div>
+                        <?php endwhile; ?>
+                    </div>
+                </div>
+            </div>
+
+            <h2><a class="promotion-title" href="./index.php">CÂU NÓI HAY ></a></h2>
+            <div class="container">
+                <h1>Random Quotes</h1>
+                <div id="quote-grid">
+                    <!-- Quotes will be dynamically added here -->
+                </div>
+                <button id="refresh-btn">Refresh Quotes</button>
+            </div>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <script>
+                $(document).ready(function(){
+                    // Function to refresh quotes
+                    function refreshQuotes() {
+                        $.ajax({
+                            type: 'GET',
+                            url: 'fetch_quotes.php',
+                            success: function(response){
+                                $('#quote-grid').html(response);
+                            }
+                        });
+                    }
+
+                    // Initial page load
+                    refreshQuotes();
+
+                    // Refresh quotes when button is clicked
+                    $('#refresh-btn').click(function(){
+                        refreshQuotes();
+                    });
+                });
+
+            </script>
+
+        <div style="margin-top: 2vw; margin-left:8vw;width: 85%; height: 1px; background-color: #F08A5D;"></div>
+        <h2><a class="promotion-title" href="./index.php">ĐỘI NGŨ BOOKHUB ></a></h2>
+        <div class="team-section">
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="./discuss/d_assets/user.png" alt="Team Member 1" class="team-member-img">
+                    <div class="member-details">
+                        <h3>Trần Thế Hữu Phúc</h3>
+                        <p>Front-end, Back-end</p>
+                        <p>Email: tranthehuuphuc@icloud.com</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="./discuss/d_assets/user.png" alt="Team Member 2" class="team-member-img">
+                    <div class="member-details">
+                        <h3>Nguyễn Thị Hồng Lam</h3>
+                        <p>Front-end</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="./discuss/d_assets/user.png" alt="Team Member 3" class="team-member-img">
+                    <div class="member-details">
+                        <h3>Lê Thị Bích Tuyền</h3>
+                        <p>Front-end</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="./discuss/d_assets/user.png" alt="Team Member 4" class="team-member-img">
+                    <div class="member-details">
+                        <h3>Trần Thị Thúy Vy</h3>
+                        <p>Front-end, Back-end</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+            <div style="margin-top: 2vw; margin-left:8vw;width: 85%; height: 1px; background-color: #F08A5D;"></div>
+
+            <div class="subscribe-form-container">
+                <h2>Nhận thông báo mới nhất từ BookHub</h2>
+                <form id="subscribe-form" action="subscribe.php" method="post">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+
+                    <button type="submit">Subscribe</button>
+                </form>
+                <div id="subscribe-message" style="display: none;"></div>
+            </div>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <script>
+            $(document).ready(function(){
+                $('#subscribe-form').submit(function(e){
+                    e.preventDefault(); // Prevent form submission
+                    var formData = $(this).serialize(); // Serialize form data
+                    $.ajax({
+                        type: 'POST',
+                        url: 'subscribe.php',
+                        data: formData,
+                        success: function(response){
+                            // Show appropriate message based on response
+                            if (response === 'subscribed') {
+                                $('#subscribe-message').text('Bạn đã đăng ký nhận thông báo rồi.').css('color', 'red').show();
+                            } else if (response === 'success') {
+                                $('#subscribe-message').text('Đăng ký nhận thông báo thành công.').css('color', 'green').show();
+                            } else {
+                                $('#subscribe-message').text('An error occurred. Please try again later.').css('color', 'red').show();
+                            }
+                        }
+                    });
+                });
+            });
+            </script>
 
         </main>
 

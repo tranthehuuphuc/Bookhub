@@ -107,7 +107,7 @@ body {
   white-space: nowrap;
   overflow-x: auto;
   scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  -ms-overflow-style: none;
   margin-left: 100px;
 }
 
@@ -115,7 +115,6 @@ body {
   display: none; /* Chrome, Safari and Opera */
 }
 
-/* Responsive adjustments */
 .promotionnav-item {
   color: #000;
   text-align: center;
@@ -133,7 +132,7 @@ body {
   text-decoration: none;
   margin-top: 0;
   padding: 0px;
-  margin-left: 200px;
+  margin-left: 100px;
 }
 
 .promotion-image {
@@ -142,174 +141,75 @@ body {
   padding: 0px;
   margin: 0px;
   box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.15);
-
 }
 
 @media (max-width: 768px) {
   .promotionnav-item {
-    width: 150px;
+    width: 200px;
     margin-right: 20px;
   }
-
-  .promotion-image {
-    height: 200px;
+  .promotion-title {
+    font-size: 18px;
+    margin-left: 10px;
+  }
+  .promotion-p {
+    margin-left: 20px;
   }
 
   .scroll-arrow {
-    font-size: 1.5rem;
-    padding: 5px;
+    display: none;
   }
 }
 
-
-
-.promotionnav-item {
-  color: #000;
+.category-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 1200px;
+}
+.category-item {
+  background-color: #f6f2f0;
+  border: 2px solid #F08A5D;
+  border-radius: 10px;
+  padding: 20px;
   text-align: center;
-  text-decoration: none;
-  width: 200px;
-  height: auto;
-  display: inline-block;
-  margin-right: 50px;
-}
-
-.promotion-title {
-  font-family: 'MavenPro';
-  color: #000;
-  font-size: 20px;
-  text-decoration: none;
-  margin-top: 0;
-  padding: 0px;
-  margin-left: 50px;
-}
-
-.promotion-image {
-  width: 100%;
-  height: 300px;
-  padding: 0px;
-  margin: 0px;
-  box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.15);
-}
-
-
-.details {
-  display: flex;
-  font-style: italic;
-}
-
-.details-b1 {
-  display: flex;
-  flex-direction: column;
-  padding-left: 4vw;
-}
-
-.details-b2 {
-  display: flex;
-  flex-direction: column;
-}
-
-.details {
-  display: flex;
-  font-style: italic;
-}
-
-.details-b1 {
-  display: flex;
-  flex-direction: column;
-  padding-left: 4vw;
-}
-
-.details-b2 {
-  display: flex;
-  flex-direction: column;
-}
-
-.details a{
-  font-size: 1.5vw;
-  padding-right: 6vw;
-  text-decoration: none;
-  color: #0084ff;
-  transition: 0.3s;
-}
-
-#best-seller h5{
-  font-size: 1.5vw;
-}
-
-
-.post-item {
-  background-color: rgba(240, 138, 93, 0.8);
-  display: block;
-  color: #ffffff;
-  text-align: left;
-  text-decoration: none;
-  border-radius: 2vw;
-  width: 15vw;
-  height: fit-content;
-  padding: 3vw;
-}
-
-.post1-item {
-  background-color: rgba(240, 138, 93, 0.8);
-  display: block;
-  font-size: 1vw;
-  color: #ffffff;
-  text-align: left;
-  text-decoration: none;
-  border-radius: 10%;
-  width: 12vw;
-  height: fit-content;
-  padding: 2vw;
-}
-
-
-.postnav {
+  transition: background-color 0.3s, transform 0.3s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   align-items: center;
-  display: flex;
-  font-size: 1vw;
 }
-
-.promotionnav-item1 {
-  color: #000;
+.category-item:hover {
+  background-color: #F08A5D;
+  transform: translateY(-5px);
+    .category-link{
+      color: #fff;
+      font-weight: bold;
+    }
+}
+.category-link {
   text-decoration: none;
-  border-radius: 4%;
-  width: 10vw;
-  height: auto;
-  background-blend-mode:lighten;
-  margin-left: 8vw; 
-  border: solid 3px; 
-  border-color: #F08A5D; 
-  padding-bottom: 0vw;
-  padding-left: 2vw;
-  padding-right: 2vw;
-  background-image:url('assets/book2.jpg');
-  background-size:cover ;
-    background-color: rgba(250, 247, 247, 0.8);
-  }
-
-#notification {
-  padding-bottom: 5vw;
-  margin-right: 30vw;
-  padding-left: 3vw;
-}
-
-.noti a{
-  transition: 0.3s;
+  color: #333;
+  font-size: 1.2em;
   font-style: italic;
-  padding-left: 2vw;
-  text-decoration: none;
-  color: #ffffff;
-  font-size: 1.3vw;
-  line-height: 2vw;
 }
-
-.noti a:hover{
-  color:#000000;
+.rating {
+  margin-left: 100px;
+  margin-top: 10px;
+}
+.book-title {
+  text-decoration: none;
+  font-style: italic;
+  color:#F08A5D;
 }
 
 @media (max-width: 600px) {
   .topbtn {
     margin: 0 10vw;
+  }
+
+  .rating {
+    margin-left: 50px;
   }
 
   .text h2 {
@@ -324,5 +224,182 @@ body {
 @media (max-width: 1000px) {
   .topbtn {
     margin: 0 15vw;
+  }
+}
+
+.subscribe-form-container {
+  width: 60%;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+
+.subscribe-form-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#subscribe-form {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+input[type="email"] {
+  width: 95%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button[type="submit"] {
+  background-color: #F08A5D;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+  font-family: MavenPro, sans-serif;
+}
+
+button[type="submit"]:hover {
+  background-color: #b44f24;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+#quote-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.quote-card {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.quote-text {
+  font-style: italic;
+  color: #000000;
+}
+
+.quote-source {
+  font-weight: bold;
+  color: #999;
+}
+
+#refresh-btn {
+  padding: 10px 20px;
+  background-color: #F08A5D;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+  font-weight: 600;
+  font-family: MavenPro, sans-serif;
+}
+
+#refresh-btn:hover {
+  background-color: #b44f24;
+}
+
+/* Add this CSS to your existing stylesheet or create a new one */
+
+
+.team-section {
+  margin-top: 40px;
+  margin-left: 100px;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+  gap: 20px;
+  width: 100%;
+}
+
+.team-member {
+  display: flex;
+  align-items: center;
+  text-align: left;
+  padding: 10px;
+  flex-wrap: wrap;
+}
+
+.team-member-img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+.member-details {
+  flex: 1;
+  min-width: 150px;
+}
+
+.member-details h3 {
+  margin-top: 0;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.member-details p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .team-section {
+    margin-left: 0;
+  }
+  .team-member {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+  }
+
+  .team-member-img {
+      margin-right: 0;
+      margin-bottom: 10px;
+  }
+
+  .member-details {
+      min-width: auto;
+  }
+
+  .member-details h3 {
+      font-size: 18px;
+  }
+
+  .member-details p {
+      font-size: 14px;
+  }
+  .team-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   }
 }

@@ -424,12 +424,12 @@
                 <hr>
                 <div class="rating-book">
                     <h3 style="font-weight: 600;">Đánh giá:</h3>
-                    <?php 
-                    while ($rating = $ratings_result->fetch_assoc()) { 
+                    <?php while ($rating = $ratings_result->fetch_assoc()): ?>
+                        <?php 
                         // Assuming you have a column named 'avatar' in your ratings table
                         // and it stores the path to the user's avatar image
                         $avatar_path = !empty($rating['avatar']) ? htmlspecialchars($rating['avatar']) : "../../discuss/d_assets/user.png"; 
-                    ?>
+                        ?>
                         <div class="rating">
                             <div class="user">
                                 <img src="<?php echo $avatar_path; ?>" alt="User Avatar" class="avatar" width="50px">
@@ -437,15 +437,22 @@
                                 <h4 class="rating-time"><?php echo htmlspecialchars($rating['rating_date']); ?></h4>
                             </div>
                             <div class="star">
-                                <h4 style="font-weight: 100;"><?php echo str_repeat('★', (int)$rating['rating']) . str_repeat('☆', 5 - (int)$rating['rating']); ?></h4>
+                                <?php for ($i = 0; $i < 5; $i++): ?>
+                                    <?php if ($i < (int)$rating['rating']): ?>
+                                        <i class="fas fa-star" style="color: gold"></i>
+                                    <?php else: ?>
+                                        <i class="far fa-star" style="color:gold"></i>
+                                    <?php endif; ?>
+                                <?php endfor; ?>
                             </div>
                             <div class="rating-comment">
                                 <p style="font-weight: 100;"><?php echo htmlspecialchars($rating['review']); ?></p>
                             </div>
                         </div>
                         <hr />
-                    <?php } ?>
+                    <?php endwhile; ?>
                 </div>
+
 
 
                 <a href="../../discuss/discuss.php" style="text-decoration: none;color: #F08A5D;font-style: italic;text-align: right;"><h3 style="font-weight: 600;">Xem tất cả đánh giá</h3></a>
