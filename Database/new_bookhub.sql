@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jun 03, 2024 at 06:26 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Host: localhost:8889
+-- Generation Time: Jun 05, 2024 at 02:58 PM
+-- Server version: 5.7.39
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -32,7 +32,7 @@ CREATE TABLE `authors` (
   `author_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
   `birth_date` date DEFAULT NULL,
   `nationality` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci DEFAULT NULL,
-  `biography` text CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci DEFAULT NULL
+  `biography` text CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
@@ -53,7 +53,7 @@ CREATE TABLE `books` (
   `book_id` int(11) NOT NULL,
   `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
   `author_id` int(11) DEFAULT NULL,
-  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci DEFAULT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci,
   `publication_year` int(11) DEFAULT NULL,
   `publisher` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci DEFAULT NULL,
   `available_quantity` int(11) DEFAULT NULL,
@@ -68,8 +68,8 @@ CREATE TABLE `books` (
 --
 
 INSERT INTO `books` (`book_id`, `title`, `author_id`, `description`, `publication_year`, `publisher`, `available_quantity`, `cover_image`, `rating`, `price`, `book_file`) VALUES
-(61, 'Thất lạc cõi người', 23, 'Nhân gian thất cách (人間失格にんげんしっかく Ningen Shikkaku?, n.đ.: \"Mất tư cách làm người\") là một tiểu thuyết ngắn mang yếu tố tự thuật năm 1948 của Dazai Osamu. Cuốn sách được xem là kiệt tác của tác giả và xếp thứ hai trong số những tiểu thuyết bán chạy nhất ở Nhật, chỉ sau Nỗi lòng của Natsume Sōseki. Tại Việt Nam, tiểu thuyết được phát hành dưới tên Thất lạc cõi người bởi nhà sách Phương Nam.', 2011, 'Hội Nhà Văn', 2, 'tlcn.jpg', 0, 80, 'book.pdf'),
-(62, 'Cho tôi xin một vé đi tuổi thơ', 22, 'Cho tôi xin một vé đi tuổi thơ là truyện ngắn của nhà văn Nguyễn Nhật Ánh. Tác phẩm là một trong những sáng tác thành công nhất của ông và nhận được Giải thưởng Văn học ASEAN của năm 2010.\r\n\r\nNguyễn Nhật Ánh viết ở mặt sau cuốn sách: \"Tôi viết cuốn sách này không dành cho trẻ em. Tôi viết cho những ai từng là trẻ em\". Trả lời phỏng vấn của báo Người lao động, ông nói \"đối tượng cảm thụ mà tôi muốn nhắm tới là người lớn\", với Cho tôi xin một vé đi tuổi thơ ông \"cho phép mình mở rộng biên độ đề tài và hình ảnh đến tối đa vì tôi viết về trẻ em nhưng là cho những ai từng là trẻ em đọc\".', 2008, 'NXB Trẻ', 5, '1vdtt.jpg', 0, 80, 'Lab 04 - Working with Web Server in C.pdf');
+(61, 'Thất lạc cõi người', 23, 'Nhân gian thất cách (人間失格にんげんしっかく Ningen Shikkaku?, n.đ.: \"Mất tư cách làm người\") là một tiểu thuyết ngắn mang yếu tố tự thuật năm 1948 của Dazai Osamu. Cuốn sách được xem là kiệt tác của tác giả và xếp thứ hai trong số những tiểu thuyết bán chạy nhất ở Nhật, chỉ sau Nỗi lòng của Natsume Sōseki. Tại Việt Nam, tiểu thuyết được phát hành dưới tên Thất lạc cõi người bởi nhà sách Phương Nam.', 2011, 'Hội Nhà Văn', 2, 'tlcn.jpg', 0, 80000, 'book.pdf'),
+(62, 'Cho tôi xin một vé đi tuổi thơ', 22, 'Cho tôi xin một vé đi tuổi thơ là truyện ngắn của nhà văn Nguyễn Nhật Ánh. Tác phẩm là một trong những sáng tác thành công nhất của ông và nhận được Giải thưởng Văn học ASEAN của năm 2010.\r\n\r\nNguyễn Nhật Ánh viết ở mặt sau cuốn sách: \"Tôi viết cuốn sách này không dành cho trẻ em. Tôi viết cho những ai từng là trẻ em\". Trả lời phỏng vấn của báo Người lao động, ông nói \"đối tượng cảm thụ mà tôi muốn nhắm tới là người lớn\", với Cho tôi xin một vé đi tuổi thơ ông \"cho phép mình mở rộng biên độ đề tài và hình ảnh đến tối đa vì tôi viết về trẻ em nhưng là cho những ai từng là trẻ em đọc\".', 2008, 'NXB Trẻ', 5, '1vdtt.jpg', 0, 80000, 'Lab 04 - Working with Web Server in C.pdf');
 
 -- --------------------------------------------------------
 
@@ -88,8 +88,8 @@ CREATE TABLE `book_categories` (
 
 INSERT INTO `book_categories` (`book_id`, `category_id`) VALUES
 (61, 24),
-(61, 25),
 (62, 24),
+(61, 25),
 (62, 26);
 
 -- --------------------------------------------------------
@@ -101,7 +101,7 @@ INSERT INTO `book_categories` (`book_id`, `category_id`) VALUES
 CREATE TABLE `book_chapters` (
   `chapter_id` int(11) NOT NULL,
   `book_id` int(11) NOT NULL,
-  `chapter_title` varchar(255) DEFAULT NULL
+  `chapter_title` varchar(255) COLLATE utf8_vietnamese_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
@@ -134,10 +134,10 @@ INSERT INTO `book_chapters` (`chapter_id`, `book_id`, `chapter_title`) VALUES
 CREATE TABLE `book_information` (
   `book_id` int(11) NOT NULL,
   `number_of_pages` int(11) DEFAULT NULL,
-  `language` varchar(255) DEFAULT NULL,
-  `format` varchar(255) DEFAULT NULL,
-  `ISBN` varchar(255) DEFAULT NULL,
-  `chapters` text DEFAULT NULL
+  `language` varchar(255) COLLATE utf8_vietnamese_ci DEFAULT NULL,
+  `format` varchar(255) COLLATE utf8_vietnamese_ci DEFAULT NULL,
+  `ISBN` varchar(255) COLLATE utf8_vietnamese_ci DEFAULT NULL,
+  `chapters` text COLLATE utf8_vietnamese_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
@@ -157,10 +157,19 @@ INSERT INTO `book_information` (`book_id`, `number_of_pages`, `language`, `forma
 CREATE TABLE `cart` (
   `user_id` int(11) NOT NULL,
   `book_id` int(11) NOT NULL,
-  `cover_image` varchar(255) NOT NULL,
+  `cover_image` varchar(255) COLLATE utf8_vietnamese_ci NOT NULL,
   `quantity` int(11) DEFAULT NULL,
-  `price` int(11) DEFAULT NULL
+  `price` int(11) DEFAULT NULL,
+  `cart_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`user_id`, `book_id`, `cover_image`, `quantity`, `price`, `cart_date`) VALUES
+(1, 61, 'tlcn.jpg', 1, 80000, '2024-06-05 14:48:18'),
+(1, 62, '1vdtt.jpg', 1, 80000, '2024-06-05 14:48:24');
 
 -- --------------------------------------------------------
 
@@ -170,7 +179,7 @@ CREATE TABLE `cart` (
 
 CREATE TABLE `categories` (
   `category_id` int(11) NOT NULL,
-  `category_name` varchar(255) NOT NULL
+  `category_name` varchar(255) COLLATE utf8_vietnamese_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
@@ -194,10 +203,17 @@ INSERT INTO `categories` (`category_id`, `category_name`) VALUES
 CREATE TABLE `mybooks` (
   `user_id` int(11) NOT NULL,
   `book_id` int(11) NOT NULL,
-  `cover_image` varchar(255) DEFAULT NULL,
+  `cover_image` varchar(255) COLLATE utf8_vietnamese_ci DEFAULT NULL,
   `price` int(11) DEFAULT NULL,
   `quantity` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+
+--
+-- Dumping data for table `mybooks`
+--
+
+INSERT INTO `mybooks` (`user_id`, `book_id`, `cover_image`, `price`, `quantity`) VALUES
+(1, 61, 'tlcn.jpg', 80000, 2);
 
 -- --------------------------------------------------------
 
@@ -210,8 +226,19 @@ CREATE TABLE `orderdetails` (
   `book_id` int(11) DEFAULT NULL,
   `quantity` int(11) DEFAULT NULL,
   `price` int(11) DEFAULT NULL,
-  `cover_image` varchar(255) DEFAULT NULL
+  `cover_image` varchar(255) COLLATE utf8_vietnamese_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+
+--
+-- Dumping data for table `orderdetails`
+--
+
+INSERT INTO `orderdetails` (`order_id`, `book_id`, `quantity`, `price`, `cover_image`) VALUES
+(1, 62, 1, 80000, '1vdtt.jpg'),
+(1, 61, 1, 80000, 'tlcn.jpg'),
+(2, 62, 1, 80000, '1vdtt.jpg'),
+(3, 61, 1, 80000, 'tlcn.jpg'),
+(4, 61, 1, 80000, 'tlcn.jpg');
 
 -- --------------------------------------------------------
 
@@ -223,9 +250,19 @@ CREATE TABLE `orders` (
   `order_id` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
   `order_date` date DEFAULT NULL,
-  `order_status` varchar(255) NOT NULL,
+  `order_status` varchar(255) COLLATE utf8_vietnamese_ci NOT NULL,
   `sum_price` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`order_id`, `user_id`, `order_date`, `order_status`, `sum_price`) VALUES
+(1, 1, '2024-06-04', 'Hoàn thành', 160000),
+(2, 1, '2024-06-05', 'Hoàn thành', 80000),
+(3, 1, '2024-06-05', 'Hoàn thành', 80000),
+(4, 1, '2024-06-05', 'Hoàn thành', 80000);
 
 -- --------------------------------------------------------
 
@@ -235,9 +272,16 @@ CREATE TABLE `orders` (
 
 CREATE TABLE `payment` (
   `user_id` int(11) NOT NULL,
-  `payment_email` varchar(255) DEFAULT NULL,
-  `payment_phone` varchar(255) DEFAULT NULL
+  `payment_email` varchar(255) COLLATE utf8_vietnamese_ci DEFAULT NULL,
+  `payment_phone` varchar(255) COLLATE utf8_vietnamese_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+
+--
+-- Dumping data for table `payment`
+--
+
+INSERT INTO `payment` (`user_id`, `payment_email`, `payment_phone`) VALUES
+(1, 'tranthehuuphuc@icloud.com', '0977983302');
 
 -- --------------------------------------------------------
 
@@ -250,8 +294,8 @@ CREATE TABLE `ratings` (
   `user_id` int(11) DEFAULT NULL,
   `book_id` int(11) DEFAULT NULL,
   `rating` decimal(3,2) DEFAULT NULL,
-  `review` text DEFAULT NULL,
-  `rating_date` timestamp NOT NULL DEFAULT current_timestamp()
+  `review` text COLLATE utf8_vietnamese_ci,
+  `rating_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 -- --------------------------------------------------------
@@ -262,13 +306,20 @@ CREATE TABLE `ratings` (
 
 CREATE TABLE `shipping` (
   `user_id` int(11) NOT NULL,
-  `shipping_email` varchar(255) DEFAULT NULL,
-  `shipping_phone` varchar(255) DEFAULT NULL,
-  `home_address` varchar(255) DEFAULT NULL,
-  `ward` varchar(255) DEFAULT NULL,
-  `district` varchar(255) DEFAULT NULL,
-  `city` varchar(255) DEFAULT NULL
+  `shipping_email` varchar(255) COLLATE utf8_vietnamese_ci DEFAULT NULL,
+  `shipping_phone` varchar(255) COLLATE utf8_vietnamese_ci DEFAULT NULL,
+  `home_address` varchar(255) COLLATE utf8_vietnamese_ci DEFAULT NULL,
+  `ward` varchar(255) COLLATE utf8_vietnamese_ci DEFAULT NULL,
+  `district` varchar(255) COLLATE utf8_vietnamese_ci DEFAULT NULL,
+  `city` varchar(255) COLLATE utf8_vietnamese_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+
+--
+-- Dumping data for table `shipping`
+--
+
+INSERT INTO `shipping` (`user_id`, `shipping_email`, `shipping_phone`, `home_address`, `ward`, `district`, `city`) VALUES
+(1, 'tranthehuuphuc@icloud.com', '0977983302', 'Xóm 5, thôn Mỹ Huệ III', 'Bình Dương', 'Bình Sơn', 'Quảng Ngãi');
 
 -- --------------------------------------------------------
 
@@ -278,13 +329,13 @@ CREATE TABLE `shipping` (
 
 CREATE TABLE `users` (
   `user_id` int(11) NOT NULL,
-  `username` varchar(255) DEFAULT NULL,
-  `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `role` varchar(255) NOT NULL DEFAULT 'user',
-  `phone` varchar(255) DEFAULT NULL,
-  `birthday` varchar(255) DEFAULT NULL,
-  `fullname` varchar(255) DEFAULT NULL
+  `username` varchar(255) COLLATE utf8_vietnamese_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8_vietnamese_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8_vietnamese_ci NOT NULL,
+  `role` varchar(255) COLLATE utf8_vietnamese_ci NOT NULL DEFAULT 'user',
+  `phone` varchar(255) COLLATE utf8_vietnamese_ci DEFAULT NULL,
+  `birthday` varchar(255) COLLATE utf8_vietnamese_ci DEFAULT NULL,
+  `fullname` varchar(255) COLLATE utf8_vietnamese_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
@@ -292,7 +343,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `username`, `email`, `password`, `role`, `phone`, `birthday`, `fullname`) VALUES
-(1, 'admin', 'admin@bookhub.com', '$2y$12$96yHHRcucPJkrQ1xp3BsL.v2uMJ2BO8Q1SGhp.LZgT4B5i4/Bdf5i', 'admin', '0977983302', '02/02/2004', 'Trần Thế Hữu Phúc');
+(1, 'tranthehuuphuc', 'tranthehuuphuc@icloud.com', '$2y$12$kmm4iXc7vAZEQWlX3x6mje9hS56McS1AAwpsQs/WquzIw5RsqJyQe', 'admin', '0977983302', '02/02/2004', 'Trần Thế Hữu Phúc');
 
 --
 -- Indexes for dumped tables
@@ -422,7 +473,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `ratings`
@@ -434,7 +485,7 @@ ALTER TABLE `ratings`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
