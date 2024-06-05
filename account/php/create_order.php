@@ -51,14 +51,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $stmt->bindParam(':cover_image', $cover_image, PDO::PARAM_STR);
                 $stmt->execute();
 
-                $sql = "INSERT INTO mybooks (user_id, book_id, cover_image, price, quantity) VALUES (:user_id, :book_id, :cover_image, :price, :quantity)";
+                // Check if the book is already in mybooks
+                $sql = "SELECT * FROM mybooks WHERE user_id = :user_id AND book_id = :book_id";
                 $stmt = $pdo->prepare($sql);
                 $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
                 $stmt->bindParam(':book_id', $book_id, PDO::PARAM_INT);
-                $stmt->bindParam(':cover_image', $cover_image, PDO::PARAM_STR);
-                $stmt->bindParam(':price', $price, PDO::PARAM_INT);
-                $stmt->bindParam(':quantity', $quantity, PDO::PARAM_INT);
                 $stmt->execute();
+                $mybook = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                if ($mybook) {
+                    // Update quantity
+                    $quantity += $mybook["quantity"];
+                    $sql = "UPDATE mybooks SET quantity = :quantity WHERE user_id = :user_id AND book_id = :book_id";
+                    $stmt = $pdo->prepare($sql);
+                    $stmt->bindParam(':quantity', $quantity, PDO::PARAM_INT);
+                    $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+                    $stmt->bindParam(':book_id', $book_id, PDO::PARAM_INT);
+                    $stmt->execute();
+                }
+                else {
+                    // Insert new book
+                    $sql = "INSERT INTO mybooks (user_id, book_id, cover_image, price, quantity) VALUES (:user_id, :book_id, :cover_image, :price, :quantity)";
+                    $stmt = $pdo->prepare($sql);
+                    $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+                    $stmt->bindParam(':book_id', $book_id, PDO::PARAM_INT);
+                    $stmt->bindParam(':cover_image', $cover_image, PDO::PARAM_STR);
+                    $stmt->bindParam(':price', $price, PDO::PARAM_INT);
+                    $stmt->bindParam(':quantity', $quantity, PDO::PARAM_INT);
+                    $stmt->execute();
+                }
             }
             else {
                 echo json_encode(['status' => 'error', 'message' => 'Không tìm thấy sách']);
