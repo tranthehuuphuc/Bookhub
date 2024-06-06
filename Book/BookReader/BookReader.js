@@ -1,8 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const bookList = document.getElementById('book-list');
     const bookReader = document.getElementById('book-reader');
     const bookView = document.getElementById('book-view');
-    const backBtn = document.getElementById('back-btn');
     const fullscreenBtn = document.getElementById('fullscreen-btn');
     const pageLeft = document.getElementById('page-left');
     const pageRight = document.getElementById('page-right');
@@ -12,40 +10,35 @@ document.addEventListener('DOMContentLoaded', () => {
     const fontFamilySelect = document.getElementById('font-family');
     const backgroundColorSelect = document.getElementById('background-color');
 
-    const books = [
-        { id: 1, title: 'Thất lạc cõi người', cover: './book-cover/book.jpg', format: 'pdf', content: './book.pdf' }
-    ];
-
-    let currentBook = null;
     let currentPage = 0;
     let bookText = [];
+  // Extract book_id from the URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const bookId = urlParams.get('book_id');
 
-    function displayBookList() {
-        bookList.innerHTML = '';
-        books.forEach(book => {
-            const bookItem = document.createElement('div');
-            bookItem.classList.add('book-item');
-            bookItem.innerHTML = `
-                <img src="${book.cover}" alt="${book.title}">
-                <h3>${book.title}</h3>
-            `;
-            bookItem.addEventListener('click', () => openBook(book));
-            bookList.appendChild(bookItem);
-        });
-        bookList.style.display = 'flex';
-        bookReader.style.display = 'none';
-    }
-
-    function openBook(book) {
-        currentBook = book;
-        if (book.format === 'pdf') {
-            parsePDFText(book.content);
+// Fetch book information from the server
+fetch(`get_books.php?book_id=${bookId}`)
+    .then(response => response.json())
+    .then(data => {
+        console.log('Received data:', data); // Log the received data
+        if (data.exists) {
+            // Book exists in mybooks table, display the PDF viewer
+            openBook(data.book); // Assuming only one book is returned
         } else {
-            bookText = [{ page: 1, text: book.content }];
-            currentPage = 0;
-            renderPages();
+            // Book does not exist or no books found, redirect user
+            const redirectUrl = `../BookDetail/BookDetail.php?book_id=${bookId}`;
+            window.location.href = redirectUrl;
         }
-    }
+    })
+    .catch(error => {
+        console.error('Error checking book:', error);
+    });
+
+function openBook(book) {
+    console.log('Opening book:', book); // Log the book object
+    const pdfUrl = `../../admin/files/${book.book_file}`;
+    parsePDFText(pdfUrl);
+}
 
     async function parsePDFText(pdfUrl) {
         const loadingTask = pdfjsLib.getDocument(pdfUrl);
@@ -68,19 +61,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const rightPage = bookText[currentPage + 1];
     
         if (window.innerWidth <= 1140) {
-            // Only render the left page and show its page number
             pageLeft.innerHTML = leftPage ? `<p>${leftPage.text}</p><span class="page-number">${leftPage.page}</span>` : '';
             pageRight.innerHTML = '';
         } else {
-            // Render both pages and show their page numbers
             pageLeft.innerHTML = leftPage ? `<p>${leftPage.text}</p><span class="page-number">${leftPage.page}</span>` : '';
             pageRight.innerHTML = rightPage ? `<p>${rightPage.text}</p><span class="page-number">${rightPage.page}</span>` : '';
         }
     
-        pageLeft.scrollTop = 0; // Reset scroll position
-        pageRight.scrollTop = 0; // Reset scroll position
+        pageLeft.scrollTop = 0;
+        pageRight.scrollTop = 0;
     
-        bookList.style.display = 'none';
         bookReader.style.display = 'block';
     }
     
@@ -100,7 +90,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         renderPages();
     }
-    
 
     function toggleFullscreen() {
         if (!document.fullscreenElement) {
@@ -144,7 +133,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return brightness < 128;
     }
 
-    // Swipe detection for mobile
     let touchStartX = 0;
     let touchEndX = 0;
 
@@ -159,45 +147,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function handleSwipe() {
         const touchDiff = touchEndX - touchStartX;
-        const swipeThreshold = 80; // Minimum distance in pixels to be considered a swipe
-        const edgeThreshold = 20;  // Distance from the edge to consider as edge swipe
+        const swipeThreshold = 80;
+        const edgeThreshold = 20;
 
         if (Math.abs(touchDiff) > swipeThreshold) {
             if (touchStartX < window.innerWidth && touchDiff < 0) {
-                // Swipe right from center
                 turnPage('next');
             } else if (touchStartX < window.innerWidth && touchDiff > 0) {
-                // Swipe left from center
                 turnPage('prev');
             }
         } else if (touchStartX < edgeThreshold || touchStartX > window.innerWidth - edgeThreshold) {
-            // Edge swipe
             toggleFullscreen();
         }
     }
 
-    // Get references to your buttons (replace with actual IDs)
     const nextButton = document.querySelector('#next-btn');
     const prevButton = document.querySelector('#prev-btn');
 
-    // Add event listener for keydown
     document.addEventListener('keydown', function(event) {
         if (event.key === 'ArrowRight') {
-            // Right arrow key pressed, trigger next button click
             nextButton.click();
         } else if (event.key === 'ArrowLeft') {
-            // Left arrow key pressed, trigger prev button click
             prevButton.click();
         }
     });
 
     prevBtn.addEventListener('click', () => turnPage('prev'));
     nextBtn.addEventListener('click', () => turnPage('next'));
-    backBtn.addEventListener('click', () => displayBookList());
     fullscreenBtn.addEventListener('click', toggleFullscreen);
     fontSizeSelect.addEventListener('change', updateSettings);
     fontFamilySelect.addEventListener('change', updateSettings);
     backgroundColorSelect.addEventListener('change', updateSettings);
-
-    displayBookList();
 });

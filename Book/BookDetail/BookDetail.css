@@ -76,6 +76,17 @@ main {
     transform: translateY(-2px); /* Move up slightly on hover */
 }
 
+.readBtn {
+    color: #fff;
+    background-color: #F08A5D;
+    border-radius: 20px;
+    border: solid 1px #F08A5D;
+    padding: 5px;
+    font-weight: 500;
+    font-family: MavenPro, sans-serif;
+    cursor: pointer;
+    display: block;
+}
 
 /* Responsive styles */
 @media (max-width: 1000px) {

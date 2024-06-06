@@ -44,6 +44,15 @@
 
         // Check if the user is logged in
         $isLoggedIn = isset($_SESSION['user_id']);
+        $hasBook = false;
+        if ($isLoggedIn) {
+            $user_id = $_SESSION['user_id'];
+            $mybooks_query = "SELECT * FROM mybooks WHERE user_id = $user_id AND book_id = $book_id";
+            $mybooks_result = $conn->query($mybooks_query);
+            if ($mybooks_result->num_rows > 0) {
+                $hasBook = true;
+            }
+        }
 
         // Function to render the navbar links based on user authentication status
         function renderNavbarLinks($isLoggedIn) {
@@ -235,7 +244,11 @@
                     </a> -->
                     <a href="#" style="text-decoration: none;">
                         <div id="add_to_cart"><h3 style="background-color: #F08A5D; padding: 14px; color: #ffffff; border-radius: 30px;">Thêm vào giỏ hàng</h3></div>
+                        <?php if ($hasBook): ?>
+                            <div id="readBtn" onclick="window.location.href='../BookReader/BookReader.php?book_id=<?php echo $book_id; ?>'"><h3 style="background-color: #fff; padding: 14px; color: #F08A5D; border-radius: 30px;border:solid 2px #F08A5D">Đọc sách</h3></div>
+                        <?php endif; ?>
                         <p class="book-price"><?php echo $book['price'] ?>đ</p>
+                                <!-- Render the "Read Book" button if the user has the book -->
                     </a>
                 </div>
             </div>

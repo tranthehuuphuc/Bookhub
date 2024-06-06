@@ -160,7 +160,8 @@
                                     if (response.mybooks.length > 0) {
                                         console.log(response.mybooks);
                                         $.each(response.mybooks, function(index, book) {
-                                            my_books += '<img class="book-thumb" src="../admin/uploads/' + book.cover_image + '" alt="' + book.book_id + '">';
+                                            my_books += '<img class="book-thumb" src="../admin/uploads/' + book.cover_image + '" alt="' + book.book_id + '" onclick="window.location.href=\'../Book/BookDetail/BookDetail.php?book_id=' + book.book_id + '\'">';
+
                                         });
                                         console.log(my_books);
                                     } else {

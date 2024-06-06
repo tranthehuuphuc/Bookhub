@@ -4,6 +4,7 @@ if (!isset($_SESSION['user_id'])) {
     header('Location: ../../signin/signin.php');
     exit();
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -113,55 +114,52 @@ if (!isset($_SESSION['user_id'])) {
 
 
     <main>
-        <div style="width: 80%;margin: 0 auto;padding-top: 20px;"><h2>Sách của bạn &#x203A;</h2></div>
-        <div class="container" id="book-list">
-            <!-- Book items will be dynamically inserted here -->
-        </div>
+    <div style="width: 80%; margin: 0 auto; padding-top: 20px;"><h2>Sách của bạn &#x203A;</h2></div>
         
-        <div class="container" id="book-reader" style="display: none;">
-            <div class="top-menu">
-                <button id="back-btn">Back to List</button>
-                <button id="fullscreen-btn">Fullscreen</button>
-                <div id="settings">
-                    <div class="settings-items">
-                        <label for="font-size">Font Size:</label>
-                        <select id="font-size">
-                            <option value="12px">12px</option>
-                            <option value="14px">14px</option>
-                            <option value="16px">16px</option>
-                            <option value="18px">18px</option>
-                        </select>
-                    </div>
-                    <div class="settings-items">
-                        <label for="font-family">Font Family:</label>
-                        <select id="font-family">
-                            <option value="Arial, sans-serif">Arial</option>
-                            <option value="'Times New Roman', serif">Times New Roman</option>
-                            <option value="'Courier New', monospace">Courier New</option>
-                            <option value="'Comic Sans MS', cursive">Comic Sans MS</option>
-                            <option value="'MavenPro', sans-serif">Maven Pro</option>
-                        </select>
-                    </div>
-                    <div class="settings-items">
-                        <label for="background-color">Background Color:</label>
-                        <select id="background-color">
-                            <option value="#ffffff">White</option>
-                            <option value="#f5f5dc">Beige</option>
-                            <option value="#000000">Black</option>
-                        </select>
-                    </div>
+    <div class="container" id="book-reader">
+        <div class="top-menu">
+            <button id="fullscreen-btn">Fullscreen</button>
+            <div id="settings">
+                <div class="settings-items">
+                    <label for="font-size">Font Size:</label>
+                    <select id="font-size">
+                        <option value="12px">12px</option>
+                        <option value="14px">14px</option>
+                        <option value="16px">16px</option>
+                        <option value="18px">18px</option>
+                    </select>
+                </div>
+                <div class="settings-items">
+                    <label for="font-family">Font Family:</label>
+                    <select id="font-family">
+                        <option value="Arial, sans-serif">Arial</option>
+                        <option value="'Times New Roman', serif">Times New Roman</option>
+                        <option value="'Courier New', monospace">Courier New</option>
+                        <option value="'Comic Sans MS', cursive">Comic Sans MS</option>
+                        <option value="'MavenPro', sans-serif">Maven Pro</option>
+                    </select>
+                </div>
+                <div class="settings-items">
+                    <label for="background-color">Background Color:</label>
+                    <select id="background-color">
+                        <option value="#ffffff">White</option>
+                        <option value="#f5f5dc">Beige</option>
+                        <option value="#000000">Black</option>
+                    </select>
                 </div>
             </div>
-            <div id="book-view">
-                <div id="page-left" class="page"></div>
-                <div id="page-right" class="page"></div>
-            </div>
-            <div id="controls">
-                <button id="prev-btn">&laquo; Previous</button>
-                <button id="next-btn">Next &raquo;</button>
-            </div>
         </div>
-    </main>
+        <div id="book-view">
+            <div id="page-left" class="page"></div>
+            <div id="page-right" class="page"></div>
+        </div>
+        <div id="controls">
+            <button id="prev-btn">&laquo; Previous</button>
+            <button id="next-btn">Next &raquo;</button>
+        </div>
+    </div>
+</main>
+
     
     <!-- <div class="footer">
         Page number will not be displayed
@@ -183,8 +181,8 @@ if (!isset($_SESSION['user_id'])) {
             <ul class="links-list">
                 <li><a href="../../Book_Store/bookstore.php" class="myLink">Bookstore</a></li>
                 <li><a href="../../discuss/discuss.php" class="myLink">Về Chúng Tôi</a></li>
-                <li><a class="myLink" href="../../account/profile.php">Tài khoản</a></li>;
-                <li><a class="myLink" href="../../signin/logout.php">Đăng xuất</a></li>;
+                <li><a class="myLink" href="../../account/profile.php">Tài khoản</a></li>
+                <li><a class="myLink" href="../../signin/logout.php">Đăng xuất</a></li>
                 <li><a href="../../search/search.php" class="myLink">Tìm kiếm</a></li>
             </ul>
         </div>
