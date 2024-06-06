@@ -163,16 +163,6 @@ CREATE TABLE `cart` (
   `cart_date` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_vietnamese_ci;
 
---
--- Dumping data for table `cart`
---
-
-INSERT INTO `cart` (`user_id`, `book_id`, `cover_image`, `quantity`, `price`, `cart_date`) VALUES
-(1, 61, 'tlcn.jpg', 1, 80000, '2024-06-06 18:00:49'),
-(1, 62, '1vdtt.jpg', 1, 80000, '2024-06-06 18:01:02'),
-(3, 61, 'tlcn.jpg', 1, 80000, '2024-06-06 15:38:35'),
-(5, 62, '1vdtt.jpg', 1, 80000, '2024-06-06 17:56:02');
-
 -- --------------------------------------------------------
 
 --
@@ -210,16 +200,6 @@ CREATE TABLE `mybooks` (
   `quantity` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_vietnamese_ci;
 
---
--- Dumping data for table `mybooks`
---
-
-INSERT INTO `mybooks` (`user_id`, `book_id`, `cover_image`, `price`, `quantity`) VALUES
-(1, 61, 'tlcn.jpg', 80000, 1),
-(1, 62, '1vdtt.jpg', 80000, 1),
-(3, 61, 'tlcn.jpg', 80000, 1),
-(5, 62, '1vdtt.jpg', 80000, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -234,16 +214,6 @@ CREATE TABLE `orderdetails` (
   `cover_image` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_vietnamese_ci;
 
---
--- Dumping data for table `orderdetails`
---
-
-INSERT INTO `orderdetails` (`order_id`, `book_id`, `quantity`, `price`, `cover_image`) VALUES
-(1, 61, 1, 80000, 'tlcn.jpg'),
-(2, 62, 1, 80000, '1vdtt.jpg'),
-(3, 61, 1, 80000, 'tlcn.jpg'),
-(4, 62, 1, 80000, '1vdtt.jpg');
-
 -- --------------------------------------------------------
 
 --
@@ -257,16 +227,6 @@ CREATE TABLE `orders` (
   `order_status` varchar(255) NOT NULL,
   `sum_price` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_vietnamese_ci;
-
---
--- Dumping data for table `orders`
---
-
-INSERT INTO `orders` (`order_id`, `user_id`, `order_date`, `order_status`, `sum_price`) VALUES
-(1, 3, '2024-06-06', 'HoÃ n thÃ nh', 80000),
-(2, 5, '2024-06-06', 'HoÃ n thÃ nh', 80000),
-(3, 1, '2024-06-06', 'HoÃ n thÃ nh', 80000),
-(4, 1, '2024-06-06', 'HoÃ n thÃ nh', 80000);
 
 -- --------------------------------------------------------
 
@@ -380,7 +340,7 @@ INSERT INTO `quotes` (`id`, `quote`, `source`) VALUES
 (73, 'Happiness is not something ready made. It comes from your own actions.', 'Dalai Lama'),
 (74, 'The greatest wealth is health.', 'Virgil'),
 (75, 'The road to success and the road to failure are almost exactly the same.', 'Colin R. Davis'),
-(76, 'Believe you can and you\'re halfway there.', 'Theodore Roosevelt'),
+(76, 'Believe you can and you are halfway there.', 'Theodore Roosevelt'),
 (77, 'What we think, we become.', 'Buddha'),
 (78, 'A goal without a plan is just a wish.', 'Antoine de Saint-Exupéry'),
 (79, 'Happiness depends upon ourselves.', 'Aristotle');
