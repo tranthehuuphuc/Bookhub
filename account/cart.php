@@ -343,6 +343,7 @@
                                             alert('Transaction completed by ' + details.payer.name.given_name + '!');
                                             addToOrders(grandTotalVND);
                                             hidePayment();
+                                            loadCart();
                                         });
                                     },
                                     onError: function(err) {
