@@ -135,7 +135,7 @@
             </div>
 
             <!-- Start of My Books -->
-            <div class="main">
+            <div id="all-books" class="main">
                 <p class="header">Sách của bạn</p>
                 <div class="book-slider">
                     <div class="prev-button slider-button"><i class="fas fa-chevron-left"></i></div>
@@ -158,16 +158,20 @@
                                 if (response.status === "success") {
                                     let my_books = '';
                                     if (response.mybooks.length > 0) {
-                                        console.log(response.mybooks);
                                         $.each(response.mybooks, function(index, book) {
                                             my_books += '<img class="book-thumb" src="../admin/uploads/' + book.cover_image + '" alt="' + book.book_id + '" onclick="window.location.href=\'../Book/BookDetail/BookDetail.php?book_id=' + book.book_id + '\'">';
-
                                         });
-                                        console.log(my_books);
+                                        $('#my-books').append(my_books);
                                     } else {
-                                        my_books = '<p class="properties">Bạn chưa có sách nào</p>';
+                                        $('#all-books').empty();
+                                        my_books += '<div class="saves-intro">';
+                                        my_books += '<img src="../assets/book.png" alt="No Orders" class="intro-icon" style="width: 50px; height: auto;">';
+                                        my_books += '</div>';
+                                        my_books += '<div class="saves-intro">';
+                                        my_books += '<p class="intro-properties" style="color: orange;">Bạn chưa có sách nào.</p>';
+                                        my_books += '</div>';
+                                        $('#all-books').append(my_books);
                                     }
-                                    $('#my-books').append(my_books);
                                 } else {
                                     alert(response.message);
                                 }

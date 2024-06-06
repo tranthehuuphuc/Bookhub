@@ -71,7 +71,6 @@ require_once "php/login_view.php";
             </div>
             <input id="login-btn" type="submit" value="Đăng nhập" class="btn solid" />
           </form>
-
           <script>
             document.getElementById("login-btn").addEventListener("click", function() {
               event.preventDefault();
@@ -100,25 +99,80 @@ require_once "php/login_view.php";
                 }
               });
             }
-
           </script>
 
-          <form action="./php/signup.php" class="sign-up-form" method="post">
+          <form class="sign-up-form" method="post">
             <h2 class="title">Đăng ký</h2>
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" placeholder="Username" name="username" required/>
+              <input type="text" placeholder="Username" name="signup_username" required/>
             </div>
             <div class="input-field">
               <i class="fas fa-envelope"></i>
-              <input type="email" placeholder="Email" name="email" required/>
+              <input type="email" placeholder="Email" name="signup_email" required/>
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Password" name="pwd" required/>
+              <input type="password" placeholder="Password" name="signup_pwd" required/>
             </div>
-            <input type="submit" class="btn" value="Đăng ký" />
+            <input id="signup-btn" type="submit" class="btn" value="Đăng ký" />
           </form>
+          <script>
+            document.getElementById("signup-btn").addEventListener("click", function(event) {
+                event.preventDefault();
+                signup_request();
+            });
+
+            function signup_request() {
+                var new_pwd = $("input[name='signup_pwd']").val();
+                if (new_pwd.length < 8) {
+                    alert("Mật khẩu mới phải chứa ít nhất 8 ký tự");
+                    return;
+                }
+                else if (new_pwd.search(/[a-z]/) < 0) {
+                    alert("Mật khẩu mới phải chứa ít nhất 1 ký tự thường");
+                    return;
+                }
+                else if (new_pwd.search(/[A-Z]/) < 0) {
+                    alert("Mật khẩu mới phải chứa ít nhất 1 ký tự hoa");
+                    return;
+                }
+                else if (new_pwd.search(/[0-9]/) < 0) {
+                    alert("Mật khẩu mới phải chứa ít nhất 1 số");
+                    return;
+                }
+                else if (new_pwd.search(/[!@#$%^&*]/) < 0) {
+                    alert("Mật khẩu mới phải chứa ít nhất 1 ký tự đặc biệt");
+                    return;
+                }
+                else if (new_pwd.search(/\s/) >= 0) {
+                    alert("Mật khẩu mới không được chứa khoảng trắng");
+                    return;
+                }
+
+                $.ajax({
+                    url: "./php/signup.php",
+                    type: "POST",
+                    dataType: "json",
+                    data: {
+                        username: $("input[name='signup_username']").val(),
+                        email: $("input[name='signup_email']").val(),
+                        pwd: new_pwd
+                    },
+                    success: function(response) {
+                        if (response.status === "success") {
+                            alert(response.message);
+                            window.location.href = "./signin.php";
+                        } else {
+                            alert(response.message);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        alert("Đã xảy ra lỗi: " + error);
+                    }
+                });
+            }
+        </script>
         </div>
       </div>
       <div class="panels-container">

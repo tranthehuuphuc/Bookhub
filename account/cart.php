@@ -380,7 +380,7 @@
                     <p class="header-box">Đơn hàng</p>
                     <p class="properties">Theo dõi, chỉnh sửa hoặc huỷ đơn hàng.</p>
                     <br>
-                    <a href="./order.php" class="box-link">Xem lịch sử mua hàng của bạn ></a>
+                    <a href="./orders.php" class="box-link">Xem lịch sử mua hàng của bạn ></a>
                 </div>
             </div>
        </main> 
