@@ -118,7 +118,7 @@
             </div>
 
             <!-- Start of My Books -->
-            <div class="main">
+            <div id="orders-container" class="main">
                 <p class="header">Tất cả đơn hàng của bạn</p>
                 <div style="background-color: #d9d9d9; width: 100%; height: 1px; margin: 5px 0 5px 0; padding: 0;"></div>
                 <div class="list-row">
@@ -139,96 +139,105 @@
                 <div id="orderList">
                     <!-- Orders list will appear hear -->
                 </div>
-                <script>
-                    $(document).ready(function() {
-                        loadOrders();
+            </div>
+            <script>
+                $(document).ready(function() {
+                    loadOrders();
 
-                        function loadOrders() {
-                            $.ajax({
-                                url: './php/load_orders.php',
-                                type: 'GET',
-                                dataType: 'json',
-                                success: function(response) {
-                                    if (response.status === 'success') {
-                                        updateOrderList(response.orders);
-                                    } else {
-                                        alert(response.message);
-                                    }
-                                },
-                                error: function(xhr, status, error) {
-                                    alert('Có lỗi xảy ra: ' + error);
+                    function loadOrders() {
+                        $.ajax({
+                            url: './php/load_orders.php',
+                            type: 'GET',
+                            dataType: 'json',
+                            success: function(response) {
+                                if (response.status === 'success') {
+                                    updateOrderList(response.orders);
+                                } else {
+                                    alert(response.message);
                                 }
-                            });
-                        }
-
-                        function updateOrderList(orders) {
-                            $('#orderList').empty();
-                            if (orders.length > 0) {
-                                $.each(orders, function(index, order) {
-                                    var orderHtml = '<div class="order"><div class="list-row" data-order-id="' + order.order_id + '">';
-                                    orderHtml += '<div class="id_col"><p class="list-item">' + order.order_id + '</p></div>';
-                                    orderHtml += '<div class="date_col"><p class="list-item">' + order.order_date + '</p></div>';
-                                    orderHtml += '<div class="total_col"><p class="list-item">' + order.sum_price + 'đ</p></div>';
-                                    orderHtml += '<div class="status_col"><p class="list-item">' + order.order_status + '</p></div>';
-                                    orderHtml += '</div>';
-                                    orderHtml += '<div class="order-details"></div></div>';
-                                    orderHtml += '<div style="background-color: #d9d9d9; width: 100%; height: 1px; margin: 5px 0 5px 0; padding: 0;"></div>';
-                                    $('#orderList').append(orderHtml);
-                                });
-                            } else {
-                                $('#orderList').append('<p>Không có đơn hàng nào.</p>');
-                            }
-                        }
-
-                        function loadOrderDetails(orderId, orderElement) {
-                            $.ajax({
-                                url: './php/get_order_details.php',
-                                type: 'GET',
-                                data: { order_id: orderId },
-                                dataType: 'json',
-                                success: function(response) {
-                                    if (response.status === 'success') {
-                                        updateOrderDetails(response.order_details, orderElement);
-                                    } else {
-                                        alert(response.message);
-                                    }
-                                },
-                                error: function(xhr, status, error) {
-                                    alert('Có lỗi xảy ra: ' + error);
-                                }
-                            });
-                        }
-
-                        function updateOrderDetails(details, orderElement) {
-                            var detailsContent = '';
-                            $.each(details, function(index, detail) {
-                                detailsContent += '<div class="list-details">';
-                                detailsContent += '<img src="../../admin/uploads/' + detail.cover_image + '" alt="Cover Image" width="50px">';
-                                detailsContent += '<p class="details-item">x' + detail.quantity + '</p>';
-                                detailsContent += '<p class="details-item">' + detail.price + 'đ</p>';
-                                detailsContent += '</div>';
-                                if (index < details.length - 1) {
-                                    detailsContent += '<div style="background-color: #d9d9d9; width: 100%; height: 1px; margin: 5px 0 5px 0; padding: 0;"></div>';
-                                }
-                            });
-                            orderElement.find('.order-details').html(detailsContent).slideDown();
-                        }
-
-                        $('#orderList').on('click', '.order', function() {
-                            var orderId = $(this).find('.list-row').data('order-id');
-                            console.log(orderId);
-                            var orderElement = $(this);
-                            console.log(orderElement);
-                            if (orderElement.find('.order-details').is(':visible')) {
-                                orderElement.find('.order-details').slideUp();
-                            } else {
-                                loadOrderDetails(orderId, orderElement);
+                            },
+                            error: function(xhr, status, error) {
+                                alert('Có lỗi xảy ra: ' + error);
                             }
                         });
-                    });
-                </script>
+                    }
 
-            </div>
+                    function updateOrderList(orders) {
+                        $('#orderList').empty();
+                        if (orders.length > 0) {
+                            $.each(orders, function(index, order) {
+                                var orderHtml = '<div class="order"><div class="list-row" data-order-id="' + order.order_id + '">';
+                                orderHtml += '<div class="id_col"><p class="list-item">' + order.order_id + '</p></div>';
+                                orderHtml += '<div class="date_col"><p class="list-item">' + order.order_date + '</p></div>';
+                                orderHtml += '<div class="total_col"><p class="list-item">' + order.sum_price + 'đ</p></div>';
+                                orderHtml += '<div class="status_col"><p class="list-item">' + order.order_status + '</p></div>';
+                                orderHtml += '</div>';
+                                orderHtml += '<div class="order-details"></div></div>';
+                                orderHtml += '<div style="background-color: #d9d9d9; width: 100%; height: 1px; margin: 5px 0 5px 0; padding: 0;"></div>';
+                                $('#orderList').append(orderHtml);
+                            });
+                        } else {
+                            $('#orders-container').empty();
+                            var noOrderHtml = '';
+                            noOrderHtml += '<div class="saves-intro">';
+                            noOrderHtml += '<img src="../assets/orders.png" alt="No Orders" class="intro-icon" style="width: 50px; height: auto;">';
+                            noOrderHtml += '</div>';
+                            noOrderHtml += '<div class="saves-intro">';
+                            noOrderHtml += '<p class="intro-properties" style="color: orange">Bạn chưa có đơn hàng nào.</p>';
+                            noOrderHtml += '</div>';
+                            noOrderHtml += '<div style="background-color: #d9d9d9; width: 100%; height: 1px; margin: 5px 0 5px 0; padding: 0;"></div>';
+                            $('#orders-container').append(noOrderHtml);
+                        }
+                    }
+
+                    function loadOrderDetails(orderId, orderElement) {
+                        $.ajax({
+                            url: './php/get_order_details.php',
+                            type: 'GET',
+                            data: { order_id: orderId },
+                            dataType: 'json',
+                            success: function(response) {
+                                if (response.status === 'success') {
+                                    updateOrderDetails(response.order_details, orderElement);
+                                } else {
+                                    alert(response.message);
+                                }
+                            },
+                            error: function(xhr, status, error) {
+                                alert('Có lỗi xảy ra: ' + error);
+                            }
+                        });
+                    }
+
+                    function updateOrderDetails(details, orderElement) {
+                        var detailsContent = '';
+                        detailsContent += '<div style="background-color: #d9d9d9; width: 100%; height: 1px; margin: 5px 0 5px 0; padding: 0;"></div>';
+                        $.each(details, function(index, detail) {
+                            detailsContent += '<div class="list-details">';
+                            detailsContent += '<img src="../../admin/uploads/' + detail.cover_image + '" alt="Cover Image" width="50px">';
+                            detailsContent += '<p class="details-item">x' + detail.quantity + '</p>';
+                            detailsContent += '<p class="details-item">' + detail.price + 'đ</p>';
+                            detailsContent += '</div>';
+                            if (index < details.length - 1) {
+                                detailsContent += '<div style="background-color: #d9d9d9; width: 100%; height: 1px; margin: 5px 0 5px 0; padding: 0;"></div>';
+                            }
+                        });
+                        orderElement.find('.order-details').html(detailsContent).slideDown();
+                    }
+
+                    $('#orderList').on('click', '.order', function() {
+                        var orderId = $(this).find('.list-row').data('order-id');
+                        console.log(orderId);
+                        var orderElement = $(this);
+                        console.log(orderElement);
+                        if (orderElement.find('.order-details').is(':visible')) {
+                            orderElement.find('.order-details').slideUp();
+                        } else {
+                            loadOrderDetails(orderId, orderElement);
+                        }
+                    });
+                });
+            </script>
 
             <div class="gray-bar">
                 <div class="pretty-box">

@@ -205,7 +205,7 @@
                             });
                             updateTotal();  // Update total after updating cart
                         } else {
-                            $('#myCart').append('<p class="properties" style="text-align: center; color: orange">Không có sản phẩm nào trong giỏ hàng của bạn.</p>');
+                            $('#myCart').append('<p class="intro-properties" style="text-align: center; color: orange">Không có sản phẩm nào trong giỏ hàng của bạn.</p>');
                             $('#summary').empty();
                         }
                     }
