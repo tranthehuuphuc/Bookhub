@@ -106,10 +106,11 @@ Contributors names and contact info:
 - Nguyen Thi Hong Lam (20521518) - [@HLAM131](https://github.com/HLAM131)
 
 ## Version History
-- v0.1: First deployment
+- v0.1 (31/05): First deployment
+- v1.0 (07/06): First completed release
 
 ## License
 This project is licensed under the MIT License.
 
 ## Acknowledgments
-We would like to thank our instructors and classmates for their support and contributions to this project.
+We would like to thank our instructor Tran Tuan Dung and classmates of class NT208.O21 for their support and contributions to this project.
