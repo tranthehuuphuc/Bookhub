@@ -12,7 +12,7 @@
     }
 
     if (!isset($_SESSION["user_id"])) {
-        respond('error', 'Không tìm thấy thông tin người dùng');
+        respond('no_user', 'Hãy đăng nhập trước khi thêm sách vào giỏ hàng');
     }
 
     require_once "connect.php";

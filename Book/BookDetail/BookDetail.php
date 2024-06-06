@@ -278,7 +278,12 @@
                             // Show a success message
                             if (response.status === 'success') {
                                 alert(response.message);
-                            } else {
+                            } 
+                            else if (response.status === 'no_user') {
+                                alert(response.message);
+                                window.location.href = '../../signin/signin.php';
+                            } 
+                            else {
                                 alert(response.message);
                             }
                         },
