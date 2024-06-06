@@ -1,4 +1,10 @@
 <?php
+    header("Content-Type: application/json; charset=UTF-8");
+
+    function respond($status, $message) {
+        echo json_encode(['status' => $status, 'message' => $message]);
+        exit();
+    }
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $username = $_POST["username"];
@@ -9,23 +15,14 @@
             require_once 'login_model.php';
             require_once 'login_contr.php';
 
-            // ERROR HANDLERS
-            $errors = [];
-
             if (is_input_empty($username, $pwd)) {
-                $errors["empty_input"] = "Hãy nhập tất cả các ô.";
+                respond('error', 'Vui lòng điền đầy đủ thông tin.');
             }
 
             $result = get_user($pdo, $username);
 
             if (is_username_wrong($result) || is_password_wrong($pwd, $result["password"])) {
-                $errors["login_incorrect"] = "Tài khoản hoặc mật khẩu không đúng.";
-            }
-
-            if ($errors) {
-                $_SESSION["errors_login"] = $errors;
-                header("Location: ../php/signup.php");
-                exit();
+                respond('error', 'Tên đăng nhập hoặc mật khẩu không chính xác.');
             }
 
             // Start session if not already started
@@ -44,17 +41,14 @@
 
             // Redirect based on user role
             if ($result["role"] == "admin") {
-                header("Location: ../../admin/admin.php");
+                respond('success', 'admin');
             } else {
-                header("Location: ../../account/profile.php");
+                respond('success', 'user');
             }
-
-            exit();
         } catch (PDOException $e) {
             die("Query failed: " . $e->getMessage());
         }
     } else {
-        header("Location: ../signin.php");
-        exit();
+        respond('error', 'Yêu cầu không hợp lệ');
     }
 ?>

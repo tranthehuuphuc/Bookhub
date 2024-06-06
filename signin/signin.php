@@ -22,6 +22,7 @@ require_once "php/login_view.php";
     <link rel="icon" type="image/png" sizes="32x32" href="../signin/favicon_io/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../signin/favicon_io/favicon-16x16.png">
     <link rel="manifest" href="../sigin/favicon_io/site.webmanifest">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 
@@ -58,7 +59,7 @@ require_once "php/login_view.php";
                     <?php check_signup_errors();?>
                     <?php check_login_errors();?>
         </div>
-          <form action="./php/login.php" class="sign-in-form" method="post">
+          <form class="sign-in-form" method="post">
             <h2 class="title">Đăng nhập</h2>
             <div class="input-field">
               <i class="fas fa-user"></i>
@@ -68,8 +69,39 @@ require_once "php/login_view.php";
               <i class="fas fa-lock"></i>
               <input type="password" placeholder="Password" name="pwd" required/>
             </div>
-            <input type="submit" value="Đăng nhập" class="btn solid" />
+            <input id="login-btn" type="submit" value="Đăng nhập" class="btn solid" />
           </form>
+
+          <script>
+            document.getElementById("login-btn").addEventListener("click", function() {
+              event.preventDefault();
+              login_request();
+            });
+
+            function login_request() {
+              $.ajax({
+                url: "./php/login.php",
+                type: "POST",
+                dataType: "json",
+                data: {
+                  username: $("input[name='username']").val(),
+                  pwd: $("input[name='pwd']").val()
+                },
+                success: function(response) {
+                  if (response.status === "success") {
+                    if (response.message === "admin") {
+                      window.location.href = "../admin/admin.php";
+                    } else {
+                      window.location.href = "../index.php";
+                    }
+                  } else {
+                    alert(response.message);
+                  }
+                }
+              });
+            }
+
+          </script>
 
           <form action="./php/signup.php" class="sign-up-form" method="post">
             <h2 class="title">Đăng ký</h2>
