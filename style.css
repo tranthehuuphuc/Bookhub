@@ -106,13 +106,78 @@ body {
   display: inline-block;
   white-space: nowrap;
   overflow-x: auto;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none;
   margin-left: 100px;
 }
 
 .promotion-p::-webkit-scrollbar {
   display: none; /* Chrome, Safari and Opera */
+}
+
+.book-slider {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+.slider-button {
+  background-color: #f0f0f0;
+  border-radius: 30px;
+  cursor: pointer;
+  display: flex;
+  font-size: 20px;
+  padding: 5px;
+  top: 50%;
+  transition: 0.2s;
+  transform: translateY(-50%);
+  width: 30px;
+  height: 30px;
+  justify-content: center;
+  align-items: center;
+}
+
+.slider-button:hover {
+  background-color: #dadada;
+}
+
+.prev-button {
+  left: 0;
+}
+
+.next-button {
+  right: 0;
+}
+
+
+.book-list {
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+  scrollbar-width: none;
+  justify-content: space-between;
+  margin: 0;
+}
+
+.book-thumb {
+  height: 300px;
+  margin: 25px;
+  padding: 0;
+  box-shadow: 0px 0px 5px 1px gray;
+  cursor: pointer;
+}
+
+.book-thumb:hover {
+  box-shadow: 0px 0px 10px 1px gray;
+  transition: 0.2s;
+}
+
+.book-item {
+  text-align: center;
+}
+.book-price {
+  font-weight: 600;
 }
 
 .promotionnav-item {
