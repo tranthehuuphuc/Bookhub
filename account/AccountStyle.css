@@ -194,17 +194,17 @@ html, body {
 .book-list {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     overflow-x: auto;
     scrollbar-width: none;
-    padding: 0 25px 0 0;
+    padding: 0;
     margin: 0;
     width: 900px;
 }
 
 .book-thumb {
-    width: 250px;
-    height: auto;
+    width: auto;
+    height: 300px;
     margin: 25px;
     padding: 0;
     box-shadow: 0px 0px 5px 1px gray;
